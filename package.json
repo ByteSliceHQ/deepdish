@@ -1,0 +1,7 @@
+{
+  "name": "@deepdish/monorepo",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ]
+}
