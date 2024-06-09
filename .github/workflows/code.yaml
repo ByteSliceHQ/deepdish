@@ -1,0 +1,29 @@
+name: Analyze Code
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  biome:
+    name: Format & lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Access repo
+        uses: actions/checkout@v4
+
+      - name: Set up Biome CLI
+        uses: biomejs/setup-biome@v2
+
+      - name: Run code analysis
+        run: biome ci .
+
+  cspell:
+    name: Check spelling
+    runs-on: ubuntu-latest
+    steps:
+      - name: Access repo
+        uses: actions/checkout@v4
+
+      - name: Run spell check
+        uses: streetsidesoftware/cspell-action@v6
