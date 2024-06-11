@@ -1,0 +1,13 @@
+{
+  "name": "@deepdish/monorepo",
+  "private": true,
+  "scripts": {
+    "ci:code": "bun biome check --write .",
+    "ci:spell": "bun cspell --dot ."
+  },
+  "workspaces": ["packages/*"],
+  "devDependencies": {
+    "@biomejs/biome": "1.8.0",
+    "cspell": "^8"
+  }
+}
