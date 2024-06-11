@@ -4,5 +4,5 @@
   "dictionaries": ["html", "node", "typescript"],
   "ignorePaths": ["*.lockb", "node_modules", ".env*", ".git", ".next"],
   "ignoreWords": ["lockb"],
-  "words": ["biomejs", "bunx", "byteslice", "deepdish", "nextjs", "vercel"]
+  "words": ["biomejs", "deepdish", "vercel"]
 }
