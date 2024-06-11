@@ -9,11 +9,11 @@ Welcome to DeepDish CMS, a flexible and feature-rich content management system d
 - **Admin Portal**: A user-friendly admin portal for seamless content management.
 - **Authorization**: Robust security features to keep your content safe.
 - **Persistent Storage of Assets**: Reliable storage solutions for your digital assets.
-- **Next.js Templates**: Jumpstart your project with our Next.js frontend template examples.
+- **Next.js Templates**: Jump-start your project with our Next.js frontend template examples.
 
 ## Active Development
 
-The team at [ByteSlice](https://byteslice.co) is working hard to bring you a stable and feature-rich opensource content management system. We would love to hear your feedback and suggestions. Please feel free to open an issue or [reach out to us directly](https://byteslice.co/contact).
+The team at [ByteSlice](https://byteslice.co) is working hard to bring you a stable and feature-rich open-source content management system. We would love to hear your feedback and suggestions. Please feel free to open an issue or [reach out to us directly](https://byteslice.co/contact).
 
 ## Contribution Guidelines
 

@@ -1,0 +1,15 @@
+# dependencies
+node_modules/
+
+# macOS
+.DS_Store
+*.pem
+
+# secrets
+.env*.local
+
+# typescript
+next-env.d.ts
+
+# vercel
+.next/
