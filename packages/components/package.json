@@ -6,8 +6,5 @@
   "author": {
     "name": "ByteSlice, LLC",
     "url": "https://byteslice.co"
-  },
-  "devDependencies": {
-    "@tsconfig/next": "^2.0.3"
   }
 }
