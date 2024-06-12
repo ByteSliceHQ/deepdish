@@ -1,5 +1,5 @@
 {
-  "extends": "../../tsconfig",
+  "extends": ["../../tsconfig", "@tsconfig/next/tsconfig.json"],
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {

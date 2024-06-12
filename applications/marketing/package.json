@@ -1,0 +1,8 @@
+{
+  "name": "@deepdish/marketing",
+  "version": "0.0.0",
+  "description": "DeepDish marketing site",
+  "devDependencies": {
+    "@tsconfig/next": "^2.0.3"
+  }
+}
