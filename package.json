@@ -5,7 +5,7 @@
     "ci:code": "bun biome check --write .",
     "ci:spell": "bun cspell --dot ."
   },
-  "workspaces": ["applications/*", "packages/*"],
+  "workspaces": ["apps/*", "packages/*"],
   "devDependencies": {
     "@biomejs/biome": "1.8.1",
     "cspell": "8.8.4"
