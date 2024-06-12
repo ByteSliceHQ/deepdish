@@ -1,5 +1,4 @@
 {
-  "references": [{ "path": "./packages/components" }],
   "compilerOptions": {
     "esModuleInterop": true,
     "exactOptionalPropertyTypes": true,
