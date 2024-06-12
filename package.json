@@ -7,7 +7,7 @@
   },
   "workspaces": ["applications/*", "packages/*"],
   "devDependencies": {
-    "@biomejs/biome": "1.8.0",
-    "cspell": "^8"
+    "@biomejs/biome": "1.8.1",
+    "cspell": "8.8.4"
   }
 }
