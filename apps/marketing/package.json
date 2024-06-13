@@ -5,5 +5,8 @@
   "author": {
     "name": "ByteSlice, LLC",
     "url": "https://byteslice.co"
+  },
+  "dependencies": {
+    "@deepdish/components": "workspace:*"
   }
 }
