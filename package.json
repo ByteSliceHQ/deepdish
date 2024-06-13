@@ -2,12 +2,12 @@
   "name": "@deepdish/monorepo",
   "private": true,
   "packageManager": "bun@1.1.12",
+  "workspaces": ["apps/*", "packages/*"],
   "scripts": {
     "format-and-lint": "bun biome check .",
     "format-and-lint:fix": "bun biome check --write .",
     "spellcheck": "bun cspell --dot ."
   },
-  "workspaces": ["apps/*", "packages/*"],
   "devDependencies": {
     "@biomejs/biome": "1.8.1",
     "cspell": "8.8.4",
