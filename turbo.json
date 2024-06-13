@@ -1,3 +1,10 @@
 {
-  "$schema": "https://turbo.build/schema.json"
+  "$schema": "https://turbo.build/schema.json",
+  "tasks": {
+    "//#format-and-lint": {},
+    "//#format-and-lint:fix": {
+      "cache": false
+    },
+    "//#spellcheck": {}
+  }
 }
