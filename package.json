@@ -6,7 +6,8 @@
   "scripts": {
     "format-and-lint": "bun biome check .",
     "format-and-lint:fix": "bun biome check --write .",
-    "spellcheck": "bun cspell --dot ."
+    "spellcheck": "bun cspell --dot .",
+    "postinstall": "next telemetry disable"
   },
   "devDependencies": {
     "@biomejs/biome": "1.8.1",
