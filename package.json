@@ -4,6 +4,7 @@
   "packageManager": "bun@1.1.12",
   "workspaces": ["apps/*", "packages/*"],
   "scripts": {
+    "dev": "turbo dev",
     "format-and-lint": "bun biome check .",
     "format-and-lint:fix": "bun biome check --write .",
     "spellcheck": "bun cspell --dot .",
