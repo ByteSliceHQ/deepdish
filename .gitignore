@@ -8,6 +8,9 @@ node_modules/
 # secrets
 .env*.local
 
+# turborepo
+.turbo/
+
 # typescript
 next-env.d.ts
 

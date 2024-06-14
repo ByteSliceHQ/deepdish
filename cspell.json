@@ -2,7 +2,14 @@
   "version": "0.2",
   "language": "en",
   "dictionaries": ["html", "node", "typescript"],
-  "ignorePaths": ["*.lockb", "node_modules", ".env*", ".git", ".next"],
+  "ignorePaths": [
+    "*.lockb",
+    "node_modules",
+    ".env*",
+    ".git",
+    ".next",
+    ".turbo"
+  ],
   "ignoreWords": ["lockb"],
-  "words": ["biomejs", "deepdish", "vercel"]
+  "words": ["biomejs", "deepdish", "turborepo", "vercel"]
 }
