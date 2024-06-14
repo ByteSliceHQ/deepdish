@@ -7,7 +7,20 @@
     "name": "ByteSlice, LLC",
     "url": "https://byteslice.co"
   },
+  "scripts": {
+    "dev": "next dev"
+  },
   "dependencies": {
-    "@deepdish/components": "workspace:*"
+    "@deepdish/components": "*",
+    "next": "14.2.4",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@tsconfig/next": "2.0.3",
+    "@types/node": "20.14.2",
+    "@types/react": "18.3.3",
+    "@types/react-dom": "18.3.0",
+    "typescript": "5.4.5"
   }
 }

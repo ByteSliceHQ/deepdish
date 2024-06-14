@@ -5,6 +5,10 @@
     "//#format-and-lint:fix": {
       "cache": false
     },
-    "//#spellcheck": {}
+    "//#spellcheck": {},
+    "dev": {
+      "cache": false,
+      "persistent": true
+    }
   }
 }
