@@ -1,4 +1,4 @@
-import { Text } from '@deepdish/components/text'
+import { Text } from '@deepdish/ui/text'
 
 export default function Page() {
   return (
