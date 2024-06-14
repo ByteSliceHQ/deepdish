@@ -24,6 +24,10 @@ We welcome contributions from the community! If you're interested in helping imp
 - **Code Contributions**: Submit a pull request with new features or bug fixes.
 - **Documentation**: Help improve our docs for better understanding and usage.
 
+### How to Contribute
+
+Please refer to this [contribution guide](./CONTRIBUTE.md) for more details.
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
