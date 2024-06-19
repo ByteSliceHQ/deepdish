@@ -1,7 +1,7 @@
+import { Header } from '@/components/header'
+import { Heading1, Paragraph } from '@deepdish/ui/text'
 import { Code } from 'bright'
 import { CircleArrowRight } from 'lucide-react'
-import { Heading1, Paragraph } from '@deepdish/ui/text'
-import { Header } from '@/components/header'
 
 const beforeDeepDishSnippet = `function HeroBanner() {
   return (
