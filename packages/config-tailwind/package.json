@@ -1,0 +1,11 @@
+{
+  "name": "@deepdish/config-tailwind",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    ".": "./tailwind.config.ts"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.4"
+  }
+}
