@@ -1,10 +1,9 @@
-import { Text } from '@deepdish/ui/typography'
+import { Heading } from '@deepdish/ui/typography'
 
 export default function Page() {
   return (
     <>
-      Page
-      <Text />
+      <Heading level={2}>Page</Heading>
     </>
   )
 }
