@@ -21,6 +21,7 @@
     "typescript": "5.4.5"
   },
   "exports": {
+    "./link": "./src/link.tsx",
     "./typography": "./src/typography.tsx"
   }
 }
