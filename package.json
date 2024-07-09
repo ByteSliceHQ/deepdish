@@ -5,14 +5,14 @@
   "workspaces": ["apps/*", "packages/*"],
   "scripts": {
     "dev": "turbo dev",
-    "format-and-lint": "bun biome check .",
-    "format-and-lint:fix": "bun biome check --write .",
-    "spellcheck": "bun cspell --dot .",
+    "format-and-lint": "biome check .",
+    "format-and-lint:fix": "biome check --write .",
+    "spellcheck": "cspell --dot .",
     "postinstall": "next telemetry disable"
   },
   "devDependencies": {
     "@biomejs/biome": "1.8.1",
-    "@changesets/cli": "^2.27.5",
+    "@changesets/cli": "2.27.5",
     "cspell": "8.8.4",
     "turbo": "2.0.3"
   }
