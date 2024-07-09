@@ -1,9 +1,10 @@
 type MediaProps = {
+  className?: string
   src?: string
 }
 
 export function Audio(props: MediaProps) {
-  return <audio controls muted src={props.src} />
+  return <audio className={props.className} controls muted src={props.src} />
 }
 
 type ImageProps = {
@@ -11,9 +12,9 @@ type ImageProps = {
 }
 
 export function Image(props: MediaProps & ImageProps) {
-  return <img src={props.src} alt={props.alt} />
+  return <img className={props.className} src={props.src} alt={props.alt} />
 }
 
 export function Video(props: MediaProps) {
-  return <video controls muted src={props.src} />
+  return <video className={props.className} controls muted src={props.src} />
 }

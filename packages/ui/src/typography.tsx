@@ -1,5 +1,6 @@
 type TypographyProps = {
   children?: string
+  className?: string
 }
 
 const headings = {
@@ -32,5 +33,5 @@ type TextProps = {
 
 function Text(props: TypographyProps & TextProps) {
   const { Component } = props
-  return <Component>{props.children}</Component>
+  return <Component className={props.className}>{props.children}</Component>
 }
