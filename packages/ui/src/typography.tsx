@@ -18,6 +18,10 @@ type HeadingProps = {
   level: keyof Headings
 }
 
+type TextProps = {
+  Component: 'p' | Headings[keyof Headings]
+}
+
 export function Heading(props: TypographyProps & HeadingProps) {
   const { level, ...rest } = props
   return <Text Component={headings[level]} {...rest} />
@@ -25,10 +29,6 @@ export function Heading(props: TypographyProps & HeadingProps) {
 
 export function Paragraph(props: TypographyProps) {
   return <Text Component={'p'} {...props} />
-}
-
-type TextProps = {
-  Component: 'p' | Headings[keyof Headings]
 }
 
 function Text(props: TypographyProps & TextProps) {

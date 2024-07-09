@@ -3,20 +3,20 @@ type MediaProps = {
   src?: string
 }
 
-export function Audio(props: MediaProps) {
-  return <Playback Component="audio" {...props} />
-}
-
 type ImageProps = {
   alt?: string
 }
 
-export function Image(props: MediaProps & ImageProps) {
-  return <img className={props.className} src={props.src} alt={props.alt} />
-}
-
 type PlaybackProps = {
   Component: 'audio' | 'video'
+}
+
+export function Audio(props: MediaProps) {
+  return <Playback Component="audio" {...props} />
+}
+
+export function Image(props: MediaProps & ImageProps) {
+  return <img className={props.className} src={props.src} alt={props.alt} />
 }
 
 function Playback(props: MediaProps & PlaybackProps) {
