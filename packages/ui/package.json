@@ -22,6 +22,7 @@
   },
   "exports": {
     "./link": "./src/link.tsx",
+    "./media": "./src/media.tsx",
     "./typography": "./src/typography.tsx"
   }
 }
