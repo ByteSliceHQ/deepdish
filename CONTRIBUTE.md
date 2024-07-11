@@ -48,14 +48,14 @@ bun changeset --empty
 
 ### Style Guide
 
-A changeset's message should be a succinct, high-level description of applicable changes. It should be a one-liner with no starting capitalization or ending punctuation written in _simple past tense_.
+A changeset's message should be a succinct, high-level description of applied changes. It should be a one-liner with starting capitalization and ending punctuation written in _simple past tense_.
 
 > 💡 Since the resulting changelog and release notes (of each relevant package) will automatically specify the version type and reference the associated commit, it is unnecessary to divulge the "why" or dive deep into technical considerations. Anyone reviewing the aforementioned changelog and notes can simply access the associated commit and examine the underlying contribution.
 
 Below are a few cheesy examples of effective messages:
 ```
-added bake functionality to pizza feature
-fixed burnt crust in oven module
-updated description of toppings package
-refactored directory structure of delivery service
+Added bake functionality to pizza feature.
+Fixed burnt crust in oven module.
+Updated description of toppings package.
+Refactored directory structure of delivery service.
 ```
