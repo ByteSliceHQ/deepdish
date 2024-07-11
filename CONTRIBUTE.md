@@ -48,7 +48,7 @@ bun changeset --empty
 
 ### Style Guide
 
-A changeset's message should be a succinct, high-level description of applicable changes. It should be a one-liner with no starting capitalization or ending punctuation written in _present perfect_ tense.
+A changeset's message should be a succinct, high-level description of applicable changes. It should be a one-liner with no starting capitalization or ending punctuation written in [imperative mood](https://en.wikipedia.org/wiki/Imperative_mood) (present tense).
 
 > 💡 Since the resulting changelog and release notes (of each relevant package) will automatically specify the version type and reference the associated commit, it is unnecessary to divulge the "why" or dive deep into technical considerations. Anyone reviewing the aforementioned changelog and notes can simply access the associated commit and examine the underlying contribution.
 
