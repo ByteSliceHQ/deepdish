@@ -1,8 +1,3 @@
-type TypographyProps = {
-  children?: string
-  className?: string
-}
-
 const headings = {
   1: 'h1',
   2: 'h2',
@@ -16,24 +11,25 @@ type HeadingLevel = keyof typeof headings
 
 type HeadingType = (typeof headings)[HeadingLevel]
 
-type HeadingProps = {
+type HeadingProps = JSX.IntrinsicElements[HeadingType] & {
   level: HeadingLevel
 }
 
-type TextProps = {
-  Component: 'p' | HeadingType
-}
+export function Heading(props: HeadingProps) {
+  // TODO: preferentially load from CMS
+  const content = props.children
 
-export function Heading(props: TypographyProps & HeadingProps) {
   const { level, ...rest } = props
-  return <Text Component={headings[level]} {...rest} />
+  const Component = headings[level]
+
+  return <Component {...rest}>{content}</Component>
 }
 
-export function Paragraph(props: TypographyProps) {
-  return <Text Component={'p'} {...props} />
-}
+type ParagraphProps = JSX.IntrinsicElements['p']
 
-function Text(props: TypographyProps & TextProps) {
-  const { Component } = props
-  return <Component className={props.className}>{props.children}</Component>
+export function Paragraph(props: ParagraphProps) {
+  // TODO: preferentially load from CMS
+  const content = props.children
+
+  return <p {...props}>{content}</p>
 }
