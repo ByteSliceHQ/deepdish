@@ -12,14 +12,16 @@ const headings = {
   6: 'h6',
 } as const
 
-type Headings = typeof headings
+type HeadingLevel = keyof typeof headings
+
+type HeadingType = (typeof headings)[HeadingLevel]
 
 type HeadingProps = {
-  level: keyof Headings
+  level: HeadingLevel
 }
 
 type TextProps = {
-  Component: 'p' | Headings[keyof Headings]
+  Component: 'p' | HeadingType
 }
 
 export function Heading(props: TypographyProps & HeadingProps) {
