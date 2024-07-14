@@ -2,4 +2,4 @@
 "@deepdish/ui": minor
 ---
 
-Initialized basic modules and "drop-in" components.
+Initialized "drop-in" components of basic UI modules: link, media, typography.
