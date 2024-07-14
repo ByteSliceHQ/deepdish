@@ -1,31 +1,38 @@
-type MediaProps = {
-  className?: string
-  src?: string
-}
+type AudioProps = JSX.IntrinsicElements['audio']
 
-type ImageProps = {
-  alt?: string
-}
+export function Audio(props: AudioProps) {
+  // TODO: preferentially load from CMS
+  const fallback = props.children
+  const src = props.src
 
-type PlaybackProps = {
-  Component: 'audio' | 'video'
-}
-
-export function Audio(props: MediaProps) {
-  return <Playback Component="audio" {...props} />
-}
-
-export function Image(props: MediaProps & ImageProps) {
-  return <img className={props.className} src={props.src} alt={props.alt} />
-}
-
-function Playback(props: MediaProps & PlaybackProps) {
-  const { Component } = props
   return (
-    <Component className={props.className} controls muted src={props.src} />
+    <audio controls {...props} src={src}>
+      {fallback}
+    </audio>
   )
 }
 
-export function Video(props: MediaProps) {
-  return <Playback Component="video" {...props} />
+type ImageProps = JSX.IntrinsicElements['img']
+
+export function Image(props: ImageProps) {
+  // TODO: preferentially load from CMS
+  const description = props.alt
+  const src = props.src
+  const title = props.title
+
+  return <img {...props} alt={description} src={src} title={title} />
+}
+
+type VideoProps = JSX.IntrinsicElements['video']
+
+export function Video(props: VideoProps) {
+  // TODO: preferentially load from CMS
+  const fallback = props.children
+  const src = props.src
+
+  return (
+    <video controls {...props} src={src}>
+      {fallback}
+    </video>
+  )
 }
