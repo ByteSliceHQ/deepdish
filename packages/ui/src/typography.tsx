@@ -11,11 +11,9 @@ type HeadingLevel = keyof typeof headings
 
 type HeadingType = (typeof headings)[HeadingLevel]
 
-type HeadingProps = JSX.IntrinsicElements[HeadingType] & {
-  level: HeadingLevel
-}
+type HeadingProps = JSX.IntrinsicElements[HeadingType]
 
-export function Heading(props: HeadingProps) {
+export function Heading(props: HeadingProps & { level: HeadingLevel }) {
   // TODO: preferentially load from CMS
   const content = props.children
 
