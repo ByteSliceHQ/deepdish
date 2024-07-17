@@ -11,11 +11,9 @@ type HeadingLevel = keyof typeof headings
 
 type HeadingType = (typeof headings)[HeadingLevel]
 
-type HeadingProps = JSX.IntrinsicElements[HeadingType] & {
-  level: HeadingLevel
-}
+type HeadingProps = JSX.IntrinsicElements[HeadingType]
 
-export function Heading(props: HeadingProps) {
+export function Heading(props: HeadingProps & { level: HeadingLevel }) {
   // TODO: preferentially load from CMS
   const content = props.children
 
@@ -23,6 +21,30 @@ export function Heading(props: HeadingProps) {
   const Component = headings[level]
 
   return <Component {...rest}>{content}</Component>
+}
+
+export function Heading1(props: HeadingProps) {
+  return <Heading level={1} {...props} />
+}
+
+export function Heading2(props: HeadingProps) {
+  return <Heading level={2} {...props} />
+}
+
+export function Heading3(props: HeadingProps) {
+  return <Heading level={3} {...props} />
+}
+
+export function Heading4(props: HeadingProps) {
+  return <Heading level={4} {...props} />
+}
+
+export function Heading5(props: HeadingProps) {
+  return <Heading level={5} {...props} />
+}
+
+export function Heading6(props: HeadingProps) {
+  return <Heading level={6} {...props} />
 }
 
 type ParagraphProps = JSX.IntrinsicElements['p']
