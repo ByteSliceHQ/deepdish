@@ -1,7 +1,13 @@
 {
   "version": "0.2",
   "language": "en",
-  "dictionaries": ["html", "node", "typescript"],
+  "dictionaries": ["html", "marketing", "node", "typescript"],
+  "dictionaryDefinitions": [
+    {
+      "name": "marketing",
+      "path": "./.cspell/marketing.txt"
+    }
+  ],
   "ignorePaths": [
     "*.lockb",
     "node_modules",
