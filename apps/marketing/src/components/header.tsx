@@ -1,6 +1,5 @@
-import { Button } from '@/components/ui/button'
-import { DeepDishLogo } from './logo'
 import { Heading1 } from '@deepdish/ui/typography'
+import { DeepDishLogo } from './logo'
 
 export function Header() {
   return (

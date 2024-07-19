@@ -17,7 +17,7 @@ const features = [
   {
     name: 'Point and click editing.',
     description:
-      'Marketing teams can edit content direclty on the website by selecting the content they want to edit.',
+      'Marketing teams can edit content directly on the website by selecting the content they want to edit.',
     icon: CursorArrowRaysIcon,
   },
   {
@@ -53,7 +53,7 @@ async function Features() {
       {features.map((feature) => (
         <div key={feature.id} className="relative pl-9">
           <Paragraph deepdish={feature.name} className="inline font-semibold text-gray-900" />
-          <Paragraph deepdish={feature.decription} className="inline" />
+          <Paragraph deepdish={feature.description} className="inline" />
         </div>
       ))}
     </div>

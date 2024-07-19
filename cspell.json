@@ -11,5 +11,5 @@
     ".turbo"
   ],
   "ignoreWords": ["lockb"],
-  "words": ["biomejs", "deepdish", "turborepo", "vercel"]
+  "words": ["biomejs", "deepdish", "turborepo", "vercel", "waitlist"]
 }
