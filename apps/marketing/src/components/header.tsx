@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button'
+import { Heading1 } from '@deepdish/ui/typography'
 import { DeepDishLogo } from './logo'
 import { Heading1 } from '@deepdish/ui/typography'
 

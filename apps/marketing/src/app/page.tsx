@@ -3,9 +3,7 @@ import Footer from '@/components/footer'
 import { Header } from '@/components/header'
 import Hero from '@/components/hero'
 import Subscribe from '@/components/subscribe'
-import { Heading1, Paragraph } from '@deepdish/ui/typography'
 import { Code } from 'bright'
-import { CircleArrowRight } from 'lucide-react'
 
 const beforeDeepDishSnippet = `function HeroBanner() {
   return (
