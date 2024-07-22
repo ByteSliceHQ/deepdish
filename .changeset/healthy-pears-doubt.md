@@ -2,4 +2,4 @@
 "@deepdish/resolvers": patch
 ---
 
-Initialized resolvers package.
+Initialized content resolvers package.

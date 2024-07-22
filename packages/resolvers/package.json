@@ -1,7 +1,7 @@
 {
   "name": "@deepdish/resolvers",
   "version": "0.0.0",
-  "description": "DeepDish data resolvers",
+  "description": "DeepDish content resolvers",
   "homepage": "",
   "author": {
     "name": "ByteSlice, LLC",
