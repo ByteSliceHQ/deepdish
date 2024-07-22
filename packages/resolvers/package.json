@@ -1,0 +1,21 @@
+{
+  "name": "@deepdish/resolvers",
+  "version": "0.0.0",
+  "description": "DeepDish content resolvers",
+  "homepage": "",
+  "author": {
+    "name": "ByteSlice, LLC",
+    "url": "https://byteslice.co"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@tsconfig/recommended": "1.0.7",
+    "typescript": "5.4.5"
+  },
+  "exports": {
+    ".": "./src/resolver.ts"
+  }
+}
