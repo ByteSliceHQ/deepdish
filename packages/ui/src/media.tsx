@@ -1,6 +1,4 @@
-type AudioProps = JSX.IntrinsicElements['audio']
-
-export function Audio(props: AudioProps) {
+export function Audio(props: ElementProps<'audio'>) {
   // TODO: preferentially load from CMS
   const fallback = props.children
   const src = props.src
@@ -12,9 +10,7 @@ export function Audio(props: AudioProps) {
   )
 }
 
-type ImageProps = JSX.IntrinsicElements['img']
-
-export function Image(props: ImageProps) {
+export function Image(props: ElementProps<'img'>) {
   // TODO: preferentially load from CMS
   const description = props.alt
   const src = props.src
@@ -23,9 +19,7 @@ export function Image(props: ImageProps) {
   return <img {...props} alt={description} src={src} title={title} />
 }
 
-type VideoProps = JSX.IntrinsicElements['video']
-
-export function Video(props: VideoProps) {
+export function Video(props: ElementProps<'video'>) {
   // TODO: preferentially load from CMS
   const fallback = props.children
   const src = props.src

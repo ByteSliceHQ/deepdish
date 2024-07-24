@@ -1,6 +1,4 @@
-type LinkProps = JSX.IntrinsicElements['a']
-
-export function Link(props: LinkProps) {
+export function Link(props: ElementProps<'a'>) {
   // TODO: preferentially load from CMS
   const destination = props.children
   const href = props.href
