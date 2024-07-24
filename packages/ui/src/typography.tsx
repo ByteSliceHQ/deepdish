@@ -4,36 +4,28 @@ type ElementProps<T extends keyof JSX.IntrinsicElements> = TypographyProps<
   JSX.IntrinsicElements[T]
 >
 
-type BlockQuoteProps = ElementProps<'blockquote'>
-
-export function BlockQuote(props: BlockQuoteProps) {
+export function BlockQuote(props: ElementProps<'blockquote'>) {
   // TODO: preferentially load from CMS
   const content = props.children
 
   return <blockquote>{content}</blockquote>
 }
 
-type BoldProps = ElementProps<'b'>
-
-export function Bold(props: BoldProps) {
+export function Bold(props: ElementProps<'b'>) {
   // TODO: preferentially load from CMS
   const content = props.children
 
   return <b>{content}</b>
 }
 
-type DivProps = ElementProps<'div'>
-
-export function Div(props: DivProps) {
+export function Div(props: ElementProps<'div'>) {
   // TODO: preferentially load from CMS
   const content = props.children
 
   return <div>{content}</div>
 }
 
-type EmphasizeProps = ElementProps<'em'>
-
-export function Emphasize(props: EmphasizeProps) {
+export function Emphasize(props: ElementProps<'em'>) {
   // TODO: preferentially load from CMS
   const content = props.children
 
@@ -53,9 +45,9 @@ type HeadingLevel = keyof typeof headings
 
 type HeadingType = (typeof headings)[HeadingLevel]
 
-type HeadingProps = ElementProps<HeadingType>
-
-export function Heading(props: HeadingProps & { level: HeadingLevel }) {
+export function Heading(
+  props: ElementProps<HeadingType> & { level: HeadingLevel },
+) {
   // TODO: preferentially load from CMS
   const content = props.children
 
@@ -65,69 +57,59 @@ export function Heading(props: HeadingProps & { level: HeadingLevel }) {
   return <Component {...rest}>{content}</Component>
 }
 
-export function Heading1(props: HeadingProps) {
+export function Heading1(props: ElementProps<'h1'>) {
   return <Heading level={1} {...props} />
 }
 
-export function Heading2(props: HeadingProps) {
+export function Heading2(props: ElementProps<'h2'>) {
   return <Heading level={2} {...props} />
 }
 
-export function Heading3(props: HeadingProps) {
+export function Heading3(props: ElementProps<'h3'>) {
   return <Heading level={3} {...props} />
 }
 
-export function Heading4(props: HeadingProps) {
+export function Heading4(props: ElementProps<'h4'>) {
   return <Heading level={4} {...props} />
 }
 
-export function Heading5(props: HeadingProps) {
+export function Heading5(props: ElementProps<'h5'>) {
   return <Heading level={5} {...props} />
 }
 
-export function Heading6(props: HeadingProps) {
+export function Heading6(props: ElementProps<'h6'>) {
   return <Heading level={6} {...props} />
 }
 
-type ItalicizeProps = ElementProps<'i'>
-
-export function Italicize(props: ItalicizeProps) {
+export function Italicize(props: ElementProps<'i'>) {
   // TODO: preferentially load from CMS
   const content = props.children
 
   return <i>{content}</i>
 }
 
-type ParagraphProps = ElementProps<'p'>
-
-export function Paragraph(props: ParagraphProps) {
+export function Paragraph(props: ElementProps<'p'>) {
   // TODO: preferentially load from CMS
   const content = props.children
 
   return <p {...props}>{content}</p>
 }
 
-type SpanProps = ElementProps<'span'>
-
-export function Span(props: SpanProps) {
+export function Span(props: ElementProps<'span'>) {
   // TODO: preferentially load from CMS
   const content = props.children
 
   return <span>{content}</span>
 }
 
-type StrongProps = ElementProps<'strong'>
-
-export function Strong(props: StrongProps) {
+export function Strong(props: ElementProps<'strong'>) {
   // TODO: preferentially load from CMS
   const content = props.children
 
   return <strong>{content}</strong>
 }
 
-type UnderlineProps = ElementProps<'u'>
-
-export function Underline(props: UnderlineProps) {
+export function Underline(props: ElementProps<'u'>) {
   // TODO: preferentially load from CMS
   const content = props.children
 
