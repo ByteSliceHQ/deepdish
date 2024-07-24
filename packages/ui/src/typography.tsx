@@ -1,6 +1,10 @@
 type TypographyProps<T> = Omit<T, 'children'> & { children: string }
 
-type BlockQuoteProps = TypographyProps<JSX.IntrinsicElements['blockquote']>
+type ElementProps<T extends keyof JSX.IntrinsicElements> = TypographyProps<
+  JSX.IntrinsicElements[T]
+>
+
+type BlockQuoteProps = ElementProps<'blockquote'>
 
 export function BlockQuote(props: BlockQuoteProps) {
   // TODO: preferentially load from CMS
@@ -9,7 +13,7 @@ export function BlockQuote(props: BlockQuoteProps) {
   return <blockquote>{content}</blockquote>
 }
 
-type BoldProps = TypographyProps<JSX.IntrinsicElements['b']>
+type BoldProps = ElementProps<'b'>
 
 export function Bold(props: BoldProps) {
   // TODO: preferentially load from CMS
@@ -18,7 +22,7 @@ export function Bold(props: BoldProps) {
   return <b>{content}</b>
 }
 
-type DivProps = TypographyProps<JSX.IntrinsicElements['div']>
+type DivProps = ElementProps<'div'>
 
 export function Div(props: DivProps) {
   // TODO: preferentially load from CMS
@@ -27,7 +31,7 @@ export function Div(props: DivProps) {
   return <div>{content}</div>
 }
 
-type EmphasizeProps = TypographyProps<JSX.IntrinsicElements['em']>
+type EmphasizeProps = ElementProps<'em'>
 
 export function Emphasize(props: EmphasizeProps) {
   // TODO: preferentially load from CMS
@@ -49,7 +53,7 @@ type HeadingLevel = keyof typeof headings
 
 type HeadingType = (typeof headings)[HeadingLevel]
 
-type HeadingProps = TypographyProps<JSX.IntrinsicElements[HeadingType]>
+type HeadingProps = ElementProps<HeadingType>
 
 export function Heading(props: HeadingProps & { level: HeadingLevel }) {
   // TODO: preferentially load from CMS
@@ -85,7 +89,7 @@ export function Heading6(props: HeadingProps) {
   return <Heading level={6} {...props} />
 }
 
-type ItalicizeProps = TypographyProps<JSX.IntrinsicElements['i']>
+type ItalicizeProps = ElementProps<'i'>
 
 export function Italicize(props: ItalicizeProps) {
   // TODO: preferentially load from CMS
@@ -94,7 +98,7 @@ export function Italicize(props: ItalicizeProps) {
   return <i>{content}</i>
 }
 
-type ParagraphProps = TypographyProps<JSX.IntrinsicElements['p']>
+type ParagraphProps = ElementProps<'p'>
 
 export function Paragraph(props: ParagraphProps) {
   // TODO: preferentially load from CMS
@@ -103,7 +107,7 @@ export function Paragraph(props: ParagraphProps) {
   return <p {...props}>{content}</p>
 }
 
-type SpanProps = TypographyProps<JSX.IntrinsicElements['span']>
+type SpanProps = ElementProps<'span'>
 
 export function Span(props: SpanProps) {
   // TODO: preferentially load from CMS
@@ -112,7 +116,7 @@ export function Span(props: SpanProps) {
   return <span>{content}</span>
 }
 
-type StrongProps = TypographyProps<JSX.IntrinsicElements['strong']>
+type StrongProps = ElementProps<'strong'>
 
 export function Strong(props: StrongProps) {
   // TODO: preferentially load from CMS
@@ -121,7 +125,7 @@ export function Strong(props: StrongProps) {
   return <strong>{content}</strong>
 }
 
-type UnderlineProps = TypographyProps<JSX.IntrinsicElements['u']>
+type UnderlineProps = ElementProps<'u'>
 
 export function Underline(props: UnderlineProps) {
   // TODO: preferentially load from CMS
