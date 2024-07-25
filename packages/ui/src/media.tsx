@@ -1,3 +1,5 @@
+import type { ElementProps } from './types'
+
 export function Audio(props: ElementProps<'audio'>) {
   // TODO: preferentially load from CMS
   const fallback = props.children

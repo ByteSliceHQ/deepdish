@@ -1,3 +1,5 @@
+import type { ElementProps, IntrinsicElement } from './types'
+
 type TypographyProps<T extends IntrinsicElement> = Omit<
   ElementProps<T>,
   'children'
