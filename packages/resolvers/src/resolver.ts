@@ -1,18 +1,17 @@
-type Read<Context, Value> = (context: Context) => Promise<Value>
+type Context = { key: string }
 
-type Write<Context, Value> = (
-  context: Context,
-  value: Value,
-) => Promise<boolean>
+type Read<Value> = (context: Context) => Promise<Value>
 
-type Resolver<Context, Value> = {
-  read: Read<Context, Value>
-  write: Write<Context, Value>
+type Write<Value> = (context: Context, value: Value) => Promise<boolean>
+
+export type Resolver<Value> = {
+  read: Read<Value>
+  write: Write<Value>
 }
 
-export function createResolver<Context, Value>(
-  read: Read<Context, Value>,
-  write: Write<Context, Value>,
-): Resolver<Context, Value> {
+export function createResolver<Value>(
+  read: Read<Value>,
+  write: Write<Value>,
+): Resolver<Value> {
   return { read, write }
 }
