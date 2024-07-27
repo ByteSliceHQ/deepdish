@@ -12,7 +12,7 @@ async function updateJSON<Value>(path: string, key: string, value: Value) {
   return writeFile(path, JSON.stringify(data), { encoding: 'utf-8' })
 }
 
-/** Creates a resolver to asynchronously read/write string values in a JSON file. */
+/** Creates a resolver to asynchronously read/write string values of a JSON file. */
 export function createTextResolver(path: string) {
   return createResolver<string>(
     async ({ key }) => {
