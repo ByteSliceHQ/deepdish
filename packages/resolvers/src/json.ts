@@ -9,7 +9,7 @@ async function parseJSON(path: string) {
 async function updateJSON<Value>(path: string, key: string, value: Value) {
   const data = await parseJSON(path)
   data[key] = value
-  return writeFile(path, data, { encoding: 'utf-8' })
+  return writeFile(path, JSON.stringify(data), { encoding: 'utf-8' })
 }
 
 /** Creates a resolver to asynchronously read/write string values in a JSON file. */
