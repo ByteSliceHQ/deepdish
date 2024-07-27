@@ -1,11 +1,8 @@
-import type { ElementProps, IntrinsicElement, SetChildren } from './types'
+import type { DeepDish, IntrinsicElement } from './types'
 
 type Value = string
 
-type TypographyProps<T extends IntrinsicElement> = SetChildren<
-  ElementProps<T>,
-  Value
->
+type TypographyProps<T extends IntrinsicElement> = DeepDish<T, Value, Value>
 
 export function BlockQuote(props: TypographyProps<'blockquote'>) {
   // TODO: preferentially load from CMS

@@ -1,6 +1,11 @@
-import type { ElementProps } from './types'
+import type { DeepDish } from './types'
 
-export function Link(props: ElementProps<'a'>) {
+type LinkValue = {
+  href: string
+  title: string
+}
+
+export function Link(props: DeepDish<'a', LinkValue, string>) {
   // TODO: preferentially load from CMS
   const destination = props.children
   const href = props.href

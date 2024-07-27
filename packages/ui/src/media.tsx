@@ -1,6 +1,10 @@
-import type { ElementProps } from './types'
+import type { DeepDish } from './types'
 
-export function Audio(props: ElementProps<'audio'>) {
+type AudioValue = {
+  src: string
+}
+
+export function Audio(props: DeepDish<'audio', AudioValue, string>) {
   // TODO: preferentially load from CMS
   const fallback = props.children
   const src = props.src
@@ -12,7 +16,13 @@ export function Audio(props: ElementProps<'audio'>) {
   )
 }
 
-export function Image(props: ElementProps<'img'>) {
+type ImageValue = {
+  alt: string
+  src: string
+  title: string
+}
+
+export function Image(props: DeepDish<'img', ImageValue>) {
   // TODO: preferentially load from CMS
   const description = props.alt
   const src = props.src
@@ -21,7 +31,11 @@ export function Image(props: ElementProps<'img'>) {
   return <img {...props} alt={description} src={src} title={title} />
 }
 
-export function Video(props: ElementProps<'video'>) {
+type VideoValue = {
+  src: string
+}
+
+export function Video(props: DeepDish<'video', VideoValue, string>) {
   // TODO: preferentially load from CMS
   const fallback = props.children
   const src = props.src
