@@ -1,8 +1,13 @@
 type Context = { key: string }
 
-type Read<Value> = (context: Context) => Promise<Value>
+// TODO: enhance error return type
+type Read<Value> = (context: Context) => Promise<Value | null>
 
-type Write<Value> = (context: Context, value: Value) => Promise<boolean>
+// TODO: enhance error return type
+type Write<Value> = (
+  context: Context,
+  value: Value,
+) => Promise<undefined | null>
 
 export type Resolver<Value> = {
   read: Read<Value>
