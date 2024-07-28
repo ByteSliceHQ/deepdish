@@ -1,8 +1,8 @@
 {
   "name": "@deepdish/marketing",
   "version": "0.0.0",
-  "description": "DeepDish marketing site",
   "private": true,
+  "description": "DeepDish marketing site",
   "homepage": "",
   "author": {
     "name": "ByteSlice, LLC",
