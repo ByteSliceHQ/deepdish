@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.8.1",
+    "@changesets/changelog-git": "0.2.0",
     "@changesets/cli": "2.27.5",
     "cspell": "8.8.4",
     "sort-package-json": "2.10.0",
