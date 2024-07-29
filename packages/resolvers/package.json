@@ -8,11 +8,12 @@
     "url": "https://byteslice.co"
   },
   "exports": {
-    ".": "./src/resolver.ts"
+    ".": "./src/resolver.ts",
+    "./json": "./src/json.ts"
   },
   "dependencies": {},
   "devDependencies": {
-    "@tsconfig/recommended": "1.0.7",
+    "@tsconfig/node20": "20.1.4",
     "typescript": "5.4.5"
   },
   "publishConfig": {
