@@ -7,16 +7,16 @@
     "name": "ByteSlice, LLC",
     "url": "https://byteslice.co"
   },
-  "publishConfig": {
-    "access": "restricted"
+  "exports": {
+    ".": "./src/resolver.ts",
+    "./json": "./src/json.ts"
   },
   "dependencies": {},
   "devDependencies": {
     "@tsconfig/node20": "20.1.4",
     "typescript": "5.4.5"
   },
-  "exports": {
-    ".": "./src/resolver.ts",
-    "./json": "./src/json.ts"
+  "publishConfig": {
+    "access": "restricted"
   }
 }

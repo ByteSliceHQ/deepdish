@@ -7,8 +7,10 @@
     "name": "ByteSlice, LLC",
     "url": "https://byteslice.co"
   },
-  "publishConfig": {
-    "access": "restricted"
+  "exports": {
+    "./link": "./src/link.tsx",
+    "./media": "./src/media.tsx",
+    "./typography": "./src/typography.tsx"
   },
   "dependencies": {
     "react": "18.3.1",
@@ -20,9 +22,7 @@
     "@types/react-dom": "18.3.0",
     "typescript": "5.4.5"
   },
-  "exports": {
-    "./link": "./src/link.tsx",
-    "./media": "./src/media.tsx",
-    "./typography": "./src/typography.tsx"
+  "publishConfig": {
+    "access": "restricted"
   }
 }
