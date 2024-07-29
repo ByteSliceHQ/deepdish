@@ -1,9 +1,7 @@
 type Context = { key: string }
 
-// TODO: enhance error return type
 type Read<Value> = (context: Context) => Promise<Value | null>
 
-// TODO: enhance error return type
 type Write<Value> = (
   context: Context,
   value: Value,
