@@ -12,7 +12,7 @@
     "dev": "next dev"
   },
   "dependencies": {
-    "@deepdish/ui": "workspace:*",
+    "@deepdish/ui": "*",
     "@heroicons/react": "^2.1.5",
     "@radix-ui/react-slot": "^1.0.2",
     "@tailwindcss/forms": "^0.5.7",
@@ -28,7 +28,7 @@
     "tailwindcss-animate": "1.0.7"
   },
   "devDependencies": {
-    "@deepdish/config-tailwind": "workspace:*",
+    "@deepdish/config-tailwind": "*",
     "@tsconfig/next": "2.0.3",
     "@types/diff": "^5.2.1",
     "@types/node": "20.14.2",
