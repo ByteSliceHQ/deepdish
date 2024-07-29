@@ -28,7 +28,6 @@
     "tailwindcss-animate": "1.0.7"
   },
   "devDependencies": {
-    "@deepdish/config-tailwind": "*",
     "@tsconfig/next": "2.0.3",
     "@types/diff": "^5.2.1",
     "@types/node": "20.14.2",
