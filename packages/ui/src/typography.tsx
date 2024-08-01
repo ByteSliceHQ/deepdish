@@ -105,8 +105,9 @@ export function Span(props: TypographyProps<'span'>) {
     // @ts-expect-error Server Component
     <DeepDish
       deepdish={props.deepdish}
+      fallback={props.children}
       render={(content) => {
-        return <span {...props}>{content || props.children}</span>
+        return <span {...props}>{content}</span>
       }}
     />
   )
