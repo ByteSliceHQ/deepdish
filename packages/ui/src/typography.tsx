@@ -1,36 +1,39 @@
 import type { ElementProps, IntrinsicElement } from './types'
 
-type TypographyProps<T extends IntrinsicElement> = Omit<
-  ElementProps<T>,
-  'children'
-> & { children: string }
+type TypographyValue = string
+
+type TypographyProps<T extends IntrinsicElement> = ElementProps<
+  T,
+  TypographyValue,
+  string
+>
 
 export function BlockQuote(props: TypographyProps<'blockquote'>) {
   // TODO: preferentially load from CMS
   const content = props.children
 
-  return <blockquote>{content}</blockquote>
+  return <blockquote {...props}>{content}</blockquote>
 }
 
 export function Bold(props: TypographyProps<'b'>) {
   // TODO: preferentially load from CMS
   const content = props.children
 
-  return <b>{content}</b>
+  return <b {...props}>{content}</b>
 }
 
 export function Div(props: TypographyProps<'div'>) {
   // TODO: preferentially load from CMS
   const content = props.children
 
-  return <div>{content}</div>
+  return <div {...props}>{content}</div>
 }
 
 export function Emphasize(props: TypographyProps<'em'>) {
   // TODO: preferentially load from CMS
   const content = props.children
 
-  return <em>{content}</em>
+  return <em {...props}>{content}</em>
 }
 
 const headings = {
@@ -86,7 +89,7 @@ export function Italicize(props: TypographyProps<'i'>) {
   // TODO: preferentially load from CMS
   const content = props.children
 
-  return <i>{content}</i>
+  return <i {...props}>{content}</i>
 }
 
 export function Paragraph(props: TypographyProps<'p'>) {
@@ -100,19 +103,19 @@ export function Span(props: TypographyProps<'span'>) {
   // TODO: preferentially load from CMS
   const content = props.children
 
-  return <span>{content}</span>
+  return <span {...props}>{content}</span>
 }
 
 export function Strong(props: TypographyProps<'strong'>) {
   // TODO: preferentially load from CMS
   const content = props.children
 
-  return <strong>{content}</strong>
+  return <strong {...props}>{content}</strong>
 }
 
 export function Underline(props: TypographyProps<'u'>) {
   // TODO: preferentially load from CMS
   const content = props.children
 
-  return <u>{content}</u>
+  return <u {...props}>{content}</u>
 }

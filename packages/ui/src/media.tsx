@@ -1,6 +1,11 @@
 import type { ElementProps } from './types'
 
-export function Audio(props: ElementProps<'audio'>) {
+type AudioValue = {
+  fallback: string
+  src: string
+}
+
+export function Audio(props: ElementProps<'audio', AudioValue, string>) {
   // TODO: preferentially load from CMS
   const fallback = props.children
   const src = props.src
@@ -12,7 +17,13 @@ export function Audio(props: ElementProps<'audio'>) {
   )
 }
 
-export function Image(props: ElementProps<'img'>) {
+type ImageValue = {
+  description: string
+  src: string
+  title: string
+}
+
+export function Image(props: ElementProps<'img', ImageValue>) {
   // TODO: preferentially load from CMS
   const description = props.alt
   const src = props.src
@@ -21,7 +32,12 @@ export function Image(props: ElementProps<'img'>) {
   return <img {...props} alt={description} src={src} title={title} />
 }
 
-export function Video(props: ElementProps<'video'>) {
+type VideoValue = {
+  fallback: string
+  src: string
+}
+
+export function Video(props: ElementProps<'video', VideoValue, string>) {
   // TODO: preferentially load from CMS
   const fallback = props.children
   const src = props.src

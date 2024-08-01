@@ -1,6 +1,12 @@
 import type { ElementProps } from './types'
 
-export function Link(props: ElementProps<'a'>) {
+type LinkValue = {
+  destination: string
+  href: string
+  title: string
+}
+
+export function Link(props: ElementProps<'a', LinkValue, string>) {
   // TODO: preferentially load from CMS
   const destination = props.children
   const href = props.href
