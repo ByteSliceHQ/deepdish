@@ -101,19 +101,15 @@ export function Paragraph(props: TypographyProps<'p'>) {
 }
 
 export function Span(props: TypographyProps<'span'>) {
-  if (props.deepdish) {
-    return (
-      // @ts-expect-error Server Component
-      <DeepDish
-        deepdish={props.deepdish}
-        render={(content) => {
-          return <span {...props}>{content}</span>
-        }}
-      />
-    )
-  }
-
-  return <span {...props}>{props.children}</span>
+  return (
+    // @ts-expect-error Server Component
+    <DeepDish
+      deepdish={props.deepdish}
+      render={(content) => {
+        return <span {...props}>{content || props.children}</span>
+      }}
+    />
+  )
 }
 
 export function Strong(props: TypographyProps<'strong'>) {
