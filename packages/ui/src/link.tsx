@@ -1,6 +1,7 @@
 import type { ElementProps } from './types'
 
 type LinkValue = {
+  destination: string
   href: string
   title: string
 }

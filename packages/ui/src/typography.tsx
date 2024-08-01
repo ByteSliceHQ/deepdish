@@ -1,8 +1,12 @@
 import type { ElementProps, IntrinsicElement } from './types'
 
-type Value = string
+type TypographyValue = string
 
-type TypographyProps<T extends IntrinsicElement> = ElementProps<T, Value, Value>
+type TypographyProps<T extends IntrinsicElement> = ElementProps<
+  T,
+  TypographyValue,
+  string
+>
 
 export function BlockQuote(props: TypographyProps<'blockquote'>) {
   // TODO: preferentially load from CMS

@@ -1,6 +1,7 @@
 import type { ElementProps } from './types'
 
 type AudioValue = {
+  fallback: string
   src: string
 }
 
@@ -17,7 +18,7 @@ export function Audio(props: ElementProps<'audio', AudioValue, string>) {
 }
 
 type ImageValue = {
-  alt: string
+  description: string
   src: string
   title: string
 }
@@ -32,6 +33,7 @@ export function Image(props: ElementProps<'img', ImageValue>) {
 }
 
 type VideoValue = {
+  fallback: string
   src: string
 }
 
