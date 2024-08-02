@@ -3,8 +3,8 @@ import type { ElementProps, IntrinsicElement } from './types'
 
 type TypographyValue = string
 
-type TypographyProps<T extends IntrinsicElement> = ElementProps<
-  T,
+type TypographyProps<E extends IntrinsicElement> = ElementProps<
+  E,
   TypographyValue,
   string
 >
