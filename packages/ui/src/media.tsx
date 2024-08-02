@@ -3,7 +3,7 @@ import type { ElementProps } from './types'
 
 type AudioValue = {
   fallback?: string
-  src?: string
+  source?: string
 }
 
 export function Audio(props: ElementProps<'audio', AudioValue, string>) {
@@ -13,11 +13,11 @@ export function Audio(props: ElementProps<'audio', AudioValue, string>) {
       deepdish={props.deepdish}
       fallback={{
         fallback: props.children,
-        src: props.src,
+        source: props.src,
       }}
       render={(content) => {
         return (
-          <audio controls {...props} src={content?.src}>
+          <audio controls {...props} src={content?.source}>
             {content?.fallback}
           </audio>
         )
@@ -28,7 +28,7 @@ export function Audio(props: ElementProps<'audio', AudioValue, string>) {
 
 type ImageValue = {
   description?: string
-  src?: string
+  source?: string
   title?: string
 }
 
@@ -39,7 +39,7 @@ export function Image(props: ElementProps<'img', ImageValue>) {
       deepdish={props.deepdish}
       fallback={{
         description: props.alt,
-        src: props.src,
+        source: props.src,
         title: props.title,
       }}
       render={(content) => {
@@ -47,7 +47,7 @@ export function Image(props: ElementProps<'img', ImageValue>) {
           <img
             {...props}
             alt={content?.description}
-            src={content?.src}
+            src={content?.source}
             title={content?.title}
           />
         )
@@ -58,7 +58,7 @@ export function Image(props: ElementProps<'img', ImageValue>) {
 
 type VideoValue = {
   fallback?: string
-  src?: string
+  source?: string
 }
 
 export function Video(props: ElementProps<'video', VideoValue, string>) {
@@ -68,11 +68,11 @@ export function Video(props: ElementProps<'video', VideoValue, string>) {
       deepdish={props.deepdish}
       fallback={{
         fallback: props.children,
-        src: props.src,
+        source: props.src,
       }}
       render={(content) => {
         return (
-          <video controls {...props} src={content?.src}>
+          <video controls {...props} src={content?.source}>
             {content?.fallback}
           </video>
         )
