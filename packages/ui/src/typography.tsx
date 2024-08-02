@@ -10,31 +10,55 @@ type TypographyProps<E extends IntrinsicElement> = ElementProps<
 >
 
 export function BlockQuote(props: TypographyProps<'blockquote'>) {
-  // TODO: preferentially load from CMS
-  const content = props.children
-
-  return <blockquote {...props}>{content}</blockquote>
+  return (
+    // @ts-expect-error server component
+    <DeepDish
+      deepdish={props.deepdish}
+      fallback={props.children}
+      render={(content) => {
+        return <blockquote {...props}>{content}</blockquote>
+      }}
+    />
+  )
 }
 
 export function Bold(props: TypographyProps<'b'>) {
-  // TODO: preferentially load from CMS
-  const content = props.children
-
-  return <b {...props}>{content}</b>
+  return (
+    // @ts-expect-error server component
+    <DeepDish
+      deepdish={props.deepdish}
+      fallback={props.children}
+      render={(content) => {
+        return <b {...props}>{content}</b>
+      }}
+    />
+  )
 }
 
 export function Div(props: TypographyProps<'div'>) {
-  // TODO: preferentially load from CMS
-  const content = props.children
-
-  return <div {...props}>{content}</div>
+  return (
+    // @ts-expect-error server component
+    <DeepDish
+      deepdish={props.deepdish}
+      fallback={props.children}
+      render={(content) => {
+        return <div {...props}>{content}</div>
+      }}
+    />
+  )
 }
 
 export function Emphasize(props: TypographyProps<'em'>) {
-  // TODO: preferentially load from CMS
-  const content = props.children
-
-  return <em {...props}>{content}</em>
+  return (
+    // @ts-expect-error server component
+    <DeepDish
+      deepdish={props.deepdish}
+      fallback={props.children}
+      render={(content) => {
+        return <em {...props}>{content}</em>
+      }}
+    />
+  )
 }
 
 const headings = {
@@ -53,13 +77,19 @@ type HeadingType = (typeof headings)[HeadingLevel]
 export function Heading(
   props: TypographyProps<HeadingType> & { level: HeadingLevel },
 ) {
-  // TODO: preferentially load from CMS
-  const content = props.children
-
   const { level, ...rest } = props
   const Component = headings[level]
 
-  return <Component {...rest}>{content}</Component>
+  return (
+    // @ts-expect-error server component
+    <DeepDish
+      deepdish={props.deepdish}
+      fallback={props.children}
+      render={(content) => {
+        return <Component {...rest}>{content}</Component>
+      }}
+    />
+  )
 }
 
 export function Heading1(props: TypographyProps<'h1'>) {
@@ -87,17 +117,29 @@ export function Heading6(props: TypographyProps<'h6'>) {
 }
 
 export function Italicize(props: TypographyProps<'i'>) {
-  // TODO: preferentially load from CMS
-  const content = props.children
-
-  return <i {...props}>{content}</i>
+  return (
+    // @ts-expect-error server component
+    <DeepDish
+      deepdish={props.deepdish}
+      fallback={props.children}
+      render={(content) => {
+        return <i {...props}>{content}</i>
+      }}
+    />
+  )
 }
 
 export function Paragraph(props: TypographyProps<'p'>) {
-  // TODO: preferentially load from CMS
-  const content = props.children
-
-  return <p {...props}>{content}</p>
+  return (
+    // @ts-expect-error server component
+    <DeepDish
+      deepdish={props.deepdish}
+      fallback={props.children}
+      render={(content) => {
+        return <p {...props}>{content}</p>
+      }}
+    />
+  )
 }
 
 export function Span(props: TypographyProps<'span'>) {
@@ -114,15 +156,27 @@ export function Span(props: TypographyProps<'span'>) {
 }
 
 export function Strong(props: TypographyProps<'strong'>) {
-  // TODO: preferentially load from CMS
-  const content = props.children
-
-  return <strong {...props}>{content}</strong>
+  return (
+    // @ts-expect-error server component
+    <DeepDish
+      deepdish={props.deepdish}
+      fallback={props.children}
+      render={(content) => {
+        return <strong {...props}>{content}</strong>
+      }}
+    />
+  )
 }
 
 export function Underline(props: TypographyProps<'u'>) {
-  // TODO: preferentially load from CMS
-  const content = props.children
-
-  return <u {...props}>{content}</u>
+  return (
+    // @ts-expect-error server component
+    <DeepDish
+      deepdish={props.deepdish}
+      fallback={props.children}
+      render={(content) => {
+        return <u {...props}>{content}</u>
+      }}
+    />
+  )
 }
