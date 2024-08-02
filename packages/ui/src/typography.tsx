@@ -102,7 +102,7 @@ export function Paragraph(props: TypographyProps<'p'>) {
 
 export function Span(props: TypographyProps<'span'>) {
   return (
-    // @ts-expect-error Server Component
+    // @ts-expect-error server component
     <DeepDish
       deepdish={props.deepdish}
       fallback={props.children}

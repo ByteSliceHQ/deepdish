@@ -8,7 +8,7 @@ type AudioValue = {
 
 export function Audio(props: ElementProps<'audio', AudioValue, string>) {
   return (
-    // @ts-expect-error Server Component
+    // @ts-expect-error server component
     <DeepDish
       deepdish={props.deepdish}
       fallback={{
@@ -34,7 +34,7 @@ type ImageValue = {
 
 export function Image(props: ElementProps<'img', ImageValue>) {
   return (
-    // @ts-expect-error Server Component
+    // @ts-expect-error server component
     <DeepDish
       deepdish={props.deepdish}
       fallback={{
@@ -63,7 +63,7 @@ type VideoValue = {
 
 export function Video(props: ElementProps<'video', VideoValue, string>) {
   return (
-    // @ts-expect-error Server Component
+    // @ts-expect-error server component
     <DeepDish
       deepdish={props.deepdish}
       fallback={{

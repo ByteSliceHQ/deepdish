@@ -9,7 +9,7 @@ type LinkValue = {
 
 export function Link(props: ElementProps<'a', LinkValue, string>) {
   return (
-    // @ts-expect-error Server Component
+    // @ts-expect-error server component
     <DeepDish
       deepdish={props.deepdish}
       fallback={{
