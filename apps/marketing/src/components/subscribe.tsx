@@ -1,6 +1,6 @@
+import { Link } from '@deepdish/ui/link'
 import { Heading2, Paragraph } from '@deepdish/ui/typography'
 import { Button } from './ui/button'
-import { Link } from '@deepdish/ui/link'
 
 export default function Subscribe() {
   return (
