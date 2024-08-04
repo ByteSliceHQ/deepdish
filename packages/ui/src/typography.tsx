@@ -1,39 +1,62 @@
+import 'server-only'
+
+import { DeepDish } from './deepdish'
 import type { ElementProps, IntrinsicElement } from './types'
 
 type TypographyValue = string
 
-type TypographyProps<T extends IntrinsicElement> = ElementProps<
-  T,
+type TypographyProps<E extends IntrinsicElement> = ElementProps<
+  E,
   TypographyValue,
   string
 >
 
 export function BlockQuote(props: TypographyProps<'blockquote'>) {
-  // TODO: preferentially load from CMS
-  const content = props.children
-
-  return <blockquote {...props}>{content}</blockquote>
+  return (
+    <DeepDish
+      deepdish={props.deepdish}
+      fallback={props.children}
+      render={(content) => {
+        return <blockquote {...props}>{content}</blockquote>
+      }}
+    />
+  )
 }
 
 export function Bold(props: TypographyProps<'b'>) {
-  // TODO: preferentially load from CMS
-  const content = props.children
-
-  return <b {...props}>{content}</b>
+  return (
+    <DeepDish
+      deepdish={props.deepdish}
+      fallback={props.children}
+      render={(content) => {
+        return <b {...props}>{content}</b>
+      }}
+    />
+  )
 }
 
 export function Div(props: TypographyProps<'div'>) {
-  // TODO: preferentially load from CMS
-  const content = props.children
-
-  return <div {...props}>{content}</div>
+  return (
+    <DeepDish
+      deepdish={props.deepdish}
+      fallback={props.children}
+      render={(content) => {
+        return <div {...props}>{content}</div>
+      }}
+    />
+  )
 }
 
 export function Emphasize(props: TypographyProps<'em'>) {
-  // TODO: preferentially load from CMS
-  const content = props.children
-
-  return <em {...props}>{content}</em>
+  return (
+    <DeepDish
+      deepdish={props.deepdish}
+      fallback={props.children}
+      render={(content) => {
+        return <em {...props}>{content}</em>
+      }}
+    />
+  )
 }
 
 const headings = {
@@ -52,13 +75,18 @@ type HeadingType = (typeof headings)[HeadingLevel]
 export function Heading(
   props: TypographyProps<HeadingType> & { level: HeadingLevel },
 ) {
-  // TODO: preferentially load from CMS
-  const content = props.children
-
   const { level, ...rest } = props
   const Component = headings[level]
 
-  return <Component {...rest}>{content}</Component>
+  return (
+    <DeepDish
+      deepdish={props.deepdish}
+      fallback={props.children}
+      render={(content) => {
+        return <Component {...rest}>{content}</Component>
+      }}
+    />
+  )
 }
 
 export function Heading1(props: TypographyProps<'h1'>) {
@@ -86,36 +114,61 @@ export function Heading6(props: TypographyProps<'h6'>) {
 }
 
 export function Italicize(props: TypographyProps<'i'>) {
-  // TODO: preferentially load from CMS
-  const content = props.children
-
-  return <i {...props}>{content}</i>
+  return (
+    <DeepDish
+      deepdish={props.deepdish}
+      fallback={props.children}
+      render={(content) => {
+        return <i {...props}>{content}</i>
+      }}
+    />
+  )
 }
 
 export function Paragraph(props: TypographyProps<'p'>) {
-  // TODO: preferentially load from CMS
-  const content = props.children
-
-  return <p {...props}>{content}</p>
+  return (
+    <DeepDish
+      deepdish={props.deepdish}
+      fallback={props.children}
+      render={(content) => {
+        return <p {...props}>{content}</p>
+      }}
+    />
+  )
 }
 
 export function Span(props: TypographyProps<'span'>) {
-  // TODO: preferentially load from CMS
-  const content = props.children
-
-  return <span {...props}>{content}</span>
+  return (
+    <DeepDish
+      deepdish={props.deepdish}
+      fallback={props.children}
+      render={(content) => {
+        return <span {...props}>{content}</span>
+      }}
+    />
+  )
 }
 
 export function Strong(props: TypographyProps<'strong'>) {
-  // TODO: preferentially load from CMS
-  const content = props.children
-
-  return <strong {...props}>{content}</strong>
+  return (
+    <DeepDish
+      deepdish={props.deepdish}
+      fallback={props.children}
+      render={(content) => {
+        return <strong {...props}>{content}</strong>
+      }}
+    />
+  )
 }
 
 export function Underline(props: TypographyProps<'u'>) {
-  // TODO: preferentially load from CMS
-  const content = props.children
-
-  return <u {...props}>{content}</u>
+  return (
+    <DeepDish
+      deepdish={props.deepdish}
+      fallback={props.children}
+      render={(content) => {
+        return <u {...props}>{content}</u>
+      }}
+    />
+  )
 }
