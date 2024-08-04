@@ -1,19 +1,26 @@
 {
   "name": "@deepdish/monorepo",
   "private": true,
-  "packageManager": "bun@1.1.12",
-  "workspaces": ["apps/*", "packages/*"],
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
+    "ci:publish": "changeset publish && git push --follow-tags",
+    "ci:version": "changeset version",
     "dev": "turbo dev",
-    "format-and-lint": "biome check .",
-    "format-and-lint:fix": "biome check --write .",
-    "spellcheck": "cspell --dot .",
-    "postinstall": "next telemetry disable"
+    "format-and-lint": "biome check . & bun sort-manifests --check",
+    "format-and-lint:fix": "biome check --write . & bun sort-manifests",
+    "sort-manifests": "sort-package-json package.json apps/**/package.json packages/**/package.json",
+    "spellcheck": "cspell --dot ."
   },
   "devDependencies": {
-    "@biomejs/biome": "1.8.1",
-    "@changesets/cli": "2.27.5",
+    "@biomejs/biome": "1.8.3",
+    "@changesets/changelog-git": "0.2.0",
+    "@changesets/cli": "2.27.7",
     "cspell": "8.8.4",
-    "turbo": "2.0.3"
-  }
+    "sort-package-json": "2.10.0",
+    "turbo": "2.0.9"
+  },
+  "packageManager": "bun@1.1.12"
 }

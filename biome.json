@@ -1,11 +1,14 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.6.0/schema.json",
+  "$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
   "files": {
-    "ignore": [".next/", ".turbo/"]
+    "ignore": ["**/package.json", ".next/", ".turbo/"]
   },
   "linter": {
     "rules": {
-      "recommended": true
+      "recommended": true,
+      "performance": {
+        "noBarrelFile": "warn"
+      }
     }
   },
   "formatter": {
