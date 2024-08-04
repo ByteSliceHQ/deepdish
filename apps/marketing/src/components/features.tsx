@@ -28,34 +28,34 @@ const features = [
   },
 ]
 
-const afterDeepDishSnippet = `import { Heading1, Paragraph, Collection } from '@deepdish/ui/typography'
-import { getCollection } from '@deepdish/collections'
+const afterDeepDishSnippet = `import { 
+  Heading1, 
+  Paragraph,
+} from '@deepdish/ui/typography'
+import { Image } from '@deepdish/ui/media'
+import { Link } from '@deepdish/ui/link'
 
 function HeroBanner() {
   return (
     <div>
-      <Heading1 deepdish="hero-heading" className="text-4xl font-semibold" />
-      <Paragraph deepdish="hero-description" className="text-lg mt-4" deepdish="hero-description" />
-    </div>
-  )
-}
-
-type Feature = {
-  id: string
-  name: string
-  description: string
-}
-
-async function Features() {
-  const features = await getCollection<Feature[]>('features')
-  return (
-    <div className="grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2 lg:items-start">
-      {features.map((feature) => (
-        <div key={feature.id} className="relative pl-9">
-          <Paragraph deepdish={feature.name} className="inline font-semibold text-gray-900" />
-          <Paragraph deepdish={feature.description} className="inline" />
-        </div>
-      ))}
+      <Heading1 
+        deepdish="hero-heading" 
+        className="text-4xl 
+        font-semibold" 
+      />
+      <Paragraph
+        deepdish="hero-description"
+        className="text-lg mt-4"
+        deepdish="hero-description"
+      />
+      <Link
+        deepdish="hero-link"
+        className="text-blue-600"
+      />
+      <Image
+        deepdish="hero-image"
+        className="w-full h-96"
+      />
     </div>
   )
 }
