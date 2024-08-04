@@ -1,6 +1,11 @@
 {
   "name": "@deepdish/marketing",
+<<<<<<< HEAD
   "version": "0.0.1",
+=======
+  "version": "0.0.0",
+  "description": "DeepDish marketing site",
+>>>>>>> f5e5f140683d73d04b0dd79b34997f584ad46655
   "private": true,
   "description": "DeepDish marketing site",
   "homepage": "",
@@ -28,7 +33,6 @@
     "tailwindcss-animate": "1.0.7"
   },
   "devDependencies": {
-    "@deepdish/config-tailwind": "workspace:*",
     "@tsconfig/next": "2.0.3",
     "@types/diff": "^5.2.1",
     "@types/node": "20.14.2",

@@ -1,7 +1,5 @@
 import type { Config } from 'tailwindcss'
 import { fontFamily } from 'tailwindcss/defaultTheme'
-// TODO: do we need to keep shared config at all?
-// import { config as sharedConfig } from '@deepdish/config-tailwind'
 
 const config: Pick<
   Config,
