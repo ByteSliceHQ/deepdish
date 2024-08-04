@@ -1,8 +1,8 @@
 {
   "name": "@deepdish/marketing",
   "version": "0.0.1",
-  "description": "DeepDish marketing site",
   "private": true,
+  "description": "DeepDish marketing site",
   "homepage": "",
   "author": {
     "name": "ByteSlice, LLC",
@@ -12,7 +12,7 @@
     "dev": "next dev"
   },
   "dependencies": {
-    "@deepdish/ui": "workspace:*",
+    "@deepdish/ui": "*",
     "@heroicons/react": "^2.1.5",
     "@radix-ui/react-slot": "^1.0.2",
     "@tailwindcss/forms": "^0.5.7",
