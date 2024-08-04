@@ -1,3 +1,5 @@
+import 'server-only'
+
 import { DeepDish } from './deepdish'
 import type { ElementProps } from './types'
 
@@ -9,7 +11,6 @@ type LinkValue = {
 
 export function Link(props: ElementProps<'a', LinkValue, string>) {
   return (
-    // @ts-expect-error server component
     <DeepDish
       deepdish={props.deepdish}
       fallback={{

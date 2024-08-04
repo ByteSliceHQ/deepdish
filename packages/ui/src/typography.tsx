@@ -1,3 +1,5 @@
+import 'server-only'
+
 import { DeepDish } from './deepdish'
 import type { ElementProps, IntrinsicElement } from './types'
 
@@ -11,7 +13,6 @@ type TypographyProps<E extends IntrinsicElement> = ElementProps<
 
 export function BlockQuote(props: TypographyProps<'blockquote'>) {
   return (
-    // @ts-expect-error server component
     <DeepDish
       deepdish={props.deepdish}
       fallback={props.children}
@@ -24,7 +25,6 @@ export function BlockQuote(props: TypographyProps<'blockquote'>) {
 
 export function Bold(props: TypographyProps<'b'>) {
   return (
-    // @ts-expect-error server component
     <DeepDish
       deepdish={props.deepdish}
       fallback={props.children}
@@ -37,7 +37,6 @@ export function Bold(props: TypographyProps<'b'>) {
 
 export function Div(props: TypographyProps<'div'>) {
   return (
-    // @ts-expect-error server component
     <DeepDish
       deepdish={props.deepdish}
       fallback={props.children}
@@ -50,7 +49,6 @@ export function Div(props: TypographyProps<'div'>) {
 
 export function Emphasize(props: TypographyProps<'em'>) {
   return (
-    // @ts-expect-error server component
     <DeepDish
       deepdish={props.deepdish}
       fallback={props.children}
@@ -81,7 +79,6 @@ export function Heading(
   const Component = headings[level]
 
   return (
-    // @ts-expect-error server component
     <DeepDish
       deepdish={props.deepdish}
       fallback={props.children}
@@ -118,7 +115,6 @@ export function Heading6(props: TypographyProps<'h6'>) {
 
 export function Italicize(props: TypographyProps<'i'>) {
   return (
-    // @ts-expect-error server component
     <DeepDish
       deepdish={props.deepdish}
       fallback={props.children}
@@ -131,7 +127,6 @@ export function Italicize(props: TypographyProps<'i'>) {
 
 export function Paragraph(props: TypographyProps<'p'>) {
   return (
-    // @ts-expect-error server component
     <DeepDish
       deepdish={props.deepdish}
       fallback={props.children}
@@ -144,7 +139,6 @@ export function Paragraph(props: TypographyProps<'p'>) {
 
 export function Span(props: TypographyProps<'span'>) {
   return (
-    // @ts-expect-error server component
     <DeepDish
       deepdish={props.deepdish}
       fallback={props.children}
@@ -157,7 +151,6 @@ export function Span(props: TypographyProps<'span'>) {
 
 export function Strong(props: TypographyProps<'strong'>) {
   return (
-    // @ts-expect-error server component
     <DeepDish
       deepdish={props.deepdish}
       fallback={props.children}
@@ -170,7 +163,6 @@ export function Strong(props: TypographyProps<'strong'>) {
 
 export function Underline(props: TypographyProps<'u'>) {
   return (
-    // @ts-expect-error server component
     <DeepDish
       deepdish={props.deepdish}
       fallback={props.children}

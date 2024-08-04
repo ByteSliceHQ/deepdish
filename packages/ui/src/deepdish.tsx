@@ -1,3 +1,5 @@
+import 'server-only'
+
 import type { DeepDishProps } from './types'
 
 export async function DeepDish<V>(props: {
