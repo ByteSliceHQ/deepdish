@@ -13,9 +13,7 @@ export default function Hero() {
           </div>
           <div className="text-center">
             <Heading1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-              Your codebase{' '}
-              <span className="italic font-bold text-orange-600">is</span> your
-              CMS
+              Your codebase is your CMS
             </Heading1>
             <Paragraph className="mt-6 text-lg leading-8 text-gray-600">
               A complete set of building blocks that turns your normal React
