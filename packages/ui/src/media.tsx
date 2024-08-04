@@ -1,12 +1,15 @@
 import 'server-only'
 
+import { z } from 'zod'
 import { DeepDish } from './deepdish'
 import type { ElementProps } from './types'
 
-type AudioValue = {
-  fallback?: string
-  source?: string
-}
+const audioSchema = z.object({
+  fallback: z.string().optional(),
+  source: z.string().optional(),
+})
+
+type AudioValue = z.infer<typeof audioSchema>
 
 export function Audio(props: ElementProps<'audio', AudioValue, string>) {
   return (
@@ -27,11 +30,13 @@ export function Audio(props: ElementProps<'audio', AudioValue, string>) {
   )
 }
 
-type ImageValue = {
-  description?: string
-  source?: string
-  title?: string
-}
+const imageSchema = z.object({
+  description: z.string().optional(),
+  source: z.string().optional(),
+  title: z.string().optional(),
+})
+
+type ImageValue = z.infer<typeof imageSchema>
 
 export function Image(props: ElementProps<'img', ImageValue>) {
   return (
@@ -56,10 +61,12 @@ export function Image(props: ElementProps<'img', ImageValue>) {
   )
 }
 
-type VideoValue = {
-  fallback?: string
-  source?: string
-}
+const videoSchema = z.object({
+  fallback: z.string().optional(),
+  source: z.string().optional(),
+})
+
+type VideoValue = z.infer<typeof videoSchema>
 
 export function Video(props: ElementProps<'video', VideoValue, string>) {
   return (

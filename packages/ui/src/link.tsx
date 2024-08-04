@@ -1,13 +1,16 @@
 import 'server-only'
 
+import { z } from 'zod'
 import { DeepDish } from './deepdish'
 import type { ElementProps } from './types'
 
-type LinkValue = {
-  destination?: string
-  href?: string
-  title?: string
-}
+const linkSchema = z.object({
+  destination: z.string().optional(),
+  href: z.string().optional(),
+  title: z.string().optional(),
+})
+
+type LinkValue = z.infer<typeof linkSchema>
 
 export function Link(props: ElementProps<'a', LinkValue, string>) {
   return (
