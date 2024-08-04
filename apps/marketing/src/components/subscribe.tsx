@@ -1,5 +1,6 @@
 import { Heading2, Paragraph } from '@deepdish/ui/typography'
 import { Button } from './ui/button'
+import { Link } from '@deepdish/ui/link'
 
 export default function Subscribe() {
   return (
@@ -31,16 +32,12 @@ export default function Subscribe() {
               Join waitlist
             </Button>
           </div>
-          <Paragraph className="mt-4 text-sm leading-6 text-gray-600">
-            We care about your data. Read our{' '}
-            <a
-              href="/privacy"
-              className="font-semibold text-gray-900 hover:text-orange-300"
-            >
-              privacy&nbsp;policy
-            </a>
-            .
-          </Paragraph>
+          <Link
+            href="/privacy"
+            className="mt-4 text-sm leading-6 text-gray-600"
+          >
+            We care about your data. Read our privacy policy.
+          </Link>
         </form>
       </div>
     </div>
