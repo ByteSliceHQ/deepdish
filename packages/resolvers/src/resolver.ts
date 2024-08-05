@@ -1,4 +1,5 @@
 import type { Context, Maybe } from './types'
+import type { infer as ZodInfer, ZodTypeAny } from 'zod'
 
 type Read<V> = (context: Context) => Promise<Maybe<V>>
 
@@ -9,27 +10,30 @@ export type Resolver<V> = {
   write: Write<V>
 }
 
-export function createResolver<V>(read: Read<V>, write: Write<V>): Resolver<V> {
-  return {
-    read: async (context) => {
-      'use server'
+export function createResolver<S extends ZodTypeAny>(schema: S) {
+  type Value = ZodInfer<S>
 
-      try {
-        const data = await read(context)
-        // TODO: validate data
-        return data
-      } catch (err) {
-        // TODO: handle error
-      }
-    },
-    write: async (context, value) => {
-      'use server'
+  return (read: Read<Value>, write: Write<Value>): Resolver<Value> => {
+    return {
+      read: async (context) => {
+        'use server'
 
-      try {
-        await write(context, value)
-      } catch (err) {
-        // TODO: handle error
-      }
-    },
+        try {
+          const data = await read(context)
+          return schema.parse(data) as Value
+        } catch (err) {
+          // TODO: handle error
+        }
+      },
+      write: async (context, value) => {
+        'use server'
+
+        try {
+          await write(context, value)
+        } catch (err) {
+          // TODO: handle error
+        }
+      },
+    }
   }
 }

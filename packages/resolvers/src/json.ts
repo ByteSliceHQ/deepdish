@@ -1,3 +1,4 @@
+import type { ZodTypeAny } from 'zod'
 import { readFile, writeFile } from 'node:fs/promises'
 import { createResolver } from './resolver'
 
@@ -12,9 +13,12 @@ async function updateJson<V>(path: string, key: string, value: V) {
   return writeFile(path, JSON.stringify(data), { encoding: 'utf-8' })
 }
 
-/** Creates a resolver to asynchronously read/write string values of a JSON file. */
-export function createTextResolver(path: string) {
-  return createResolver<string>(
+/** Creates a resolver to asynchronously read/write arbitrary values of a JSON file. */
+export function createJsonResolver<S extends ZodTypeAny>(
+  schema: S,
+  path: string,
+) {
+  return createResolver(schema)(
     async ({ key }) => {
       'use server'
 
