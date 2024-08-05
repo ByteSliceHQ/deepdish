@@ -6,7 +6,7 @@ async function parseJSON(path: string) {
   return JSON.parse(json)
 }
 
-async function updateJSON<Value>(path: string, key: string, value: Value) {
+async function updateJSON<V>(path: string, key: string, value: V) {
   const data = await parseJSON(path)
   data[key] = value
   return writeFile(path, JSON.stringify(data), { encoding: 'utf-8' })

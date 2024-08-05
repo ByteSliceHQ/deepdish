@@ -1,18 +1,15 @@
 import type { Context, Maybe } from './types'
 
-type Read<Value> = (context: Context) => Promise<Maybe<Value>>
+type Read<V> = (context: Context) => Promise<Maybe<V>>
 
-type Write<Value> = (context: Context, value: Value) => Promise<void>
+type Write<V> = (context: Context, value: V) => Promise<void>
 
-export type Resolver<Value> = {
-  read: Read<Value>
-  write: Write<Value>
+export type Resolver<V> = {
+  read: Read<V>
+  write: Write<V>
 }
 
-export function createResolver<Value>(
-  read: Read<Value>,
-  write: Write<Value>,
-): Resolver<Value> {
+export function createResolver<V>(read: Read<V>, write: Write<V>): Resolver<V> {
   return {
     read: async (context) => {
       'use server'
