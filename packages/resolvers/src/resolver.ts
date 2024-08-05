@@ -1,11 +1,8 @@
-type Context = { key: string }
+import type { Context, Maybe } from './types'
 
-type Read<Value> = (context: Context) => Promise<Value | null>
+type Read<Value> = (context: Context) => Promise<Maybe<Value>>
 
-type Write<Value> = (
-  context: Context,
-  value: Value,
-) => Promise<undefined | null>
+type Write<Value> = (context: Context, value: Value) => Promise<void>
 
 export type Resolver<Value> = {
   read: Read<Value>
