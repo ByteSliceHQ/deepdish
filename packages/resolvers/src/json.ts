@@ -16,29 +16,11 @@ async function updateJSON<Value>(path: string, key: string, value: Value) {
 export function createTextResolver(path: string) {
   return createResolver<string>(
     async ({ key }) => {
-      'use server'
-
-      try {
-        const data = await parseJSON(path)
-        const value = data[key]
-
-        if (typeof value !== 'string') {
-          throw Error('invalid value')
-        }
-
-        return value
-      } catch {
-        return null
-      }
+      const data = await parseJSON(path)
+      return data[key]
     },
     async ({ key }, value) => {
-      'use server'
-
-      try {
-        await updateJSON<string>(path, key, value)
-      } catch (err) {
-        return null
-      }
+      await updateJSON<string>(path, key, value)
     },
   )
 }
