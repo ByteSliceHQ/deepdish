@@ -16,10 +16,14 @@ async function updateJSON<V>(path: string, key: string, value: V) {
 export function createTextResolver(path: string) {
   return createResolver<string>(
     async ({ key }) => {
+      'use server'
+
       const data = await parseJSON(path)
       return data[key]
     },
     async ({ key }, value) => {
+      'use server'
+
       await updateJSON<string>(path, key, value)
     },
   )
