@@ -6,7 +6,7 @@ async function parseJSON(path: string) {
   return JSON.parse(json)
 }
 
-async function updateJSON<Value>(path: string, key: string, value: Value) {
+async function updateJSON<V>(path: string, key: string, value: V) {
   const data = await parseJSON(path)
   data[key] = value
   return writeFile(path, JSON.stringify(data), { encoding: 'utf-8' })
@@ -18,27 +18,13 @@ export function createTextResolver(path: string) {
     async ({ key }) => {
       'use server'
 
-      try {
-        const data = await parseJSON(path)
-        const value = data[key]
-
-        if (typeof value !== 'string') {
-          throw Error('invalid value')
-        }
-
-        return value
-      } catch {
-        return null
-      }
+      const data = await parseJSON(path)
+      return data[key]
     },
     async ({ key }, value) => {
       'use server'
 
-      try {
-        await updateJSON<string>(path, key, value)
-      } catch (err) {
-        return null
-      }
+      await updateJSON<string>(path, key, value)
     },
   )
 }
