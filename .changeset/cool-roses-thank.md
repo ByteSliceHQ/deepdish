@@ -2,4 +2,4 @@
 "@deepdish/resolvers": patch
 ---
 
-Wrapped implemented read and write handlers.
+Wrapped read and write handler implementations.
