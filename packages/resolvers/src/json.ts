@@ -1,13 +1,13 @@
 import { readFile, writeFile } from 'node:fs/promises'
 import { createResolver } from './resolver'
 
-async function parseJSON(path: string) {
+async function parseJson(path: string) {
   const json = await readFile(path, { encoding: 'utf-8' })
   return JSON.parse(json)
 }
 
-async function updateJSON<V>(path: string, key: string, value: V) {
-  const data = await parseJSON(path)
+async function updateJson<V>(path: string, key: string, value: V) {
+  const data = await parseJson(path)
   data[key] = value
   return writeFile(path, JSON.stringify(data), { encoding: 'utf-8' })
 }
@@ -18,13 +18,13 @@ export function createTextResolver(path: string) {
     async ({ key }) => {
       'use server'
 
-      const data = await parseJSON(path)
+      const data = await parseJson(path)
       return data[key]
     },
     async ({ key }, value) => {
       'use server'
 
-      await updateJSON<string>(path, key, value)
+      await updateJson<string>(path, key, value)
     },
   )
 }
