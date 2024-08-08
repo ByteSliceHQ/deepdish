@@ -1,5 +1,17 @@
-import { readFile, writeFile } from 'node:fs/promises'
+import { readdir, readFile, writeFile } from 'node:fs/promises'
 import { createResolver } from './resolver'
+import type { Key } from './types'
+
+async function readDirectory(path: string): Promise<Key[]> {
+  const files = await readdir(path)
+
+  return files.map((file) => {
+    return {
+      key: file,
+      display: file,
+    }
+  })
+}
 
 async function parseJSON(path: string) {
   const json = await readFile(path, { encoding: 'utf-8' })
@@ -15,6 +27,12 @@ async function updateJSON<V>(path: string, key: string, value: V) {
 /** Creates a resolver to asynchronously read/write string values of a JSON file. */
 export function createTextResolver(path: string) {
   return createResolver<string>(
+    async () => {
+      'use server'
+
+      const keys = await readDirectory(path)
+      return keys
+    },
     async ({ key }) => {
       'use server'
 
