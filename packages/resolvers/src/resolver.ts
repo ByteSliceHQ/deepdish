@@ -16,8 +16,6 @@ export function createResolver<S extends ZodTypeAny>(schema: S) {
   return (read: Read<Value>, write: Write<Value>): Resolver<Value> => {
     return {
       read: async (context) => {
-        'use server'
-
         try {
           const data = await read(context)
           return schema.parse(data) as Value

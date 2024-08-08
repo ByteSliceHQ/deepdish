@@ -20,8 +20,6 @@ export function createJsonResolver<S extends ZodTypeAny>(
 ) {
   return createResolver(schema)(
     async ({ key }) => {
-      'use server'
-
       const data = await parseJson(path)
       return data[key]
     },
