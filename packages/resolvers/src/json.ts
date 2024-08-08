@@ -1,5 +1,5 @@
-import type { ZodTypeAny } from 'zod'
 import { readFile, writeFile } from 'node:fs/promises'
+import type { ZodTypeAny } from 'zod'
 import { createResolver } from './resolver'
 
 async function parseJson(path: string) {

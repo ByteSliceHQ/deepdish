@@ -1,5 +1,5 @@
-import type { Context, Maybe } from './types'
 import type { infer as ZodInfer, ZodTypeAny } from 'zod'
+import type { Context, Maybe } from './types'
 
 type Read<V> = (context: Context) => Promise<Maybe<V>>
 
