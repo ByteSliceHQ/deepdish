@@ -4,9 +4,9 @@ import { z } from 'zod'
 import { DeepDish } from './deepdish'
 import type { ElementProps, IntrinsicElement } from './types'
 
-const typographySchema = z.string()
+export const typographySchema = z.string()
 
-type TypographyValue = z.infer<typeof typographySchema>
+export type TypographyValue = z.infer<typeof typographySchema>
 
 type TypographyProps<E extends IntrinsicElement> = ElementProps<
   E,
