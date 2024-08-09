@@ -8,11 +8,7 @@ export const typographySchema = z.string()
 
 export type TypographyValue = z.infer<typeof typographySchema>
 
-type TypographyProps<E extends IntrinsicElement> = ElementProps<
-  E,
-  TypographyValue,
-  string
->
+type TypographyProps<E extends IntrinsicElement> = ElementProps<E, string>
 
 export function BlockQuote(props: TypographyProps<'blockquote'>) {
   return (

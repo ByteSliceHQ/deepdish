@@ -1,13 +1,10 @@
-import type { Resolver } from '@deepdish/resolvers'
-
-export type DeepDishProps<V> = { key: string; resolver: Resolver<V> }
+export type DeepDishProps = { key: string }
 
 export type ElementProps<
   E extends IntrinsicElement,
-  V,
   C = undefined,
 > = SetChildren<JSX.IntrinsicElements[E], C> & {
-  deepdish?: DeepDishProps<V>
+  deepdish?: DeepDishProps
 }
 
 export type IntrinsicElement = keyof JSX.IntrinsicElements

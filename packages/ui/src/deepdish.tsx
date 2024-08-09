@@ -3,13 +3,13 @@ import 'server-only'
 import type { DeepDishProps } from './types'
 
 export async function DeepDish<V>(props: {
-  deepdish?: DeepDishProps<V>
+  deepdish?: DeepDishProps
   fallback?: V
   render: (value?: V) => React.ReactElement
 }) {
   if (props.deepdish) {
     try {
-      const { key, resolver } = props.deepdish
+      const { key } = props.deepdish
       const value = await resolver.read({ key })
 
       if (value) {

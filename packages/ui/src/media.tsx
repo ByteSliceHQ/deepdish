@@ -11,7 +11,7 @@ export const audioSchema = z.object({
 
 export type AudioValue = z.infer<typeof audioSchema>
 
-export function Audio(props: ElementProps<'audio', AudioValue, string>) {
+export function Audio(props: ElementProps<'audio', string>) {
   return (
     <DeepDish<AudioValue>
       deepdish={props.deepdish}
@@ -38,7 +38,7 @@ export const imageSchema = z.object({
 
 export type ImageValue = z.infer<typeof imageSchema>
 
-export function Image(props: ElementProps<'img', ImageValue>) {
+export function Image(props: ElementProps<'img'>) {
   return (
     <DeepDish<ImageValue>
       deepdish={props.deepdish}
@@ -68,7 +68,7 @@ export const videoSchema = z.object({
 
 export type VideoValue = z.infer<typeof videoSchema>
 
-export function Video(props: ElementProps<'video', VideoValue, string>) {
+export function Video(props: ElementProps<'video', string>) {
   return (
     <DeepDish<VideoValue>
       deepdish={props.deepdish}

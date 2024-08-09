@@ -12,7 +12,7 @@ export const linkSchema = z.object({
 
 export type LinkValue = z.infer<typeof linkSchema>
 
-export function Link(props: ElementProps<'a', LinkValue, string>) {
+export function Link(props: ElementProps<'a', string>) {
   return (
     <DeepDish<LinkValue>
       deepdish={props.deepdish}
