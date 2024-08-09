@@ -14,7 +14,7 @@ export type LinkValue = z.infer<typeof linkSchema>
 
 export function Link(props: ElementProps<'a', LinkValue, string>) {
   return (
-    <DeepDish
+    <DeepDish<LinkValue>
       deepdish={props.deepdish}
       fallback={{
         destination: props.children,

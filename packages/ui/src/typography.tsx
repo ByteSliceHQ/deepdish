@@ -16,7 +16,7 @@ type TypographyProps<E extends IntrinsicElement> = ElementProps<
 
 export function BlockQuote(props: TypographyProps<'blockquote'>) {
   return (
-    <DeepDish
+    <DeepDish<TypographyValue>
       deepdish={props.deepdish}
       fallback={props.children}
       render={(content) => {
@@ -28,7 +28,7 @@ export function BlockQuote(props: TypographyProps<'blockquote'>) {
 
 export function Bold(props: TypographyProps<'b'>) {
   return (
-    <DeepDish
+    <DeepDish<TypographyValue>
       deepdish={props.deepdish}
       fallback={props.children}
       render={(content) => {
@@ -40,7 +40,7 @@ export function Bold(props: TypographyProps<'b'>) {
 
 export function Div(props: TypographyProps<'div'>) {
   return (
-    <DeepDish
+    <DeepDish<TypographyValue>
       deepdish={props.deepdish}
       fallback={props.children}
       render={(content) => {
@@ -52,7 +52,7 @@ export function Div(props: TypographyProps<'div'>) {
 
 export function Emphasize(props: TypographyProps<'em'>) {
   return (
-    <DeepDish
+    <DeepDish<TypographyValue>
       deepdish={props.deepdish}
       fallback={props.children}
       render={(content) => {
@@ -82,7 +82,7 @@ export function Heading(
   const Component = headings[level]
 
   return (
-    <DeepDish
+    <DeepDish<TypographyValue>
       deepdish={props.deepdish}
       fallback={props.children}
       render={(content) => {
@@ -118,7 +118,7 @@ export function Heading6(props: TypographyProps<'h6'>) {
 
 export function Italicize(props: TypographyProps<'i'>) {
   return (
-    <DeepDish
+    <DeepDish<TypographyValue>
       deepdish={props.deepdish}
       fallback={props.children}
       render={(content) => {
@@ -130,7 +130,7 @@ export function Italicize(props: TypographyProps<'i'>) {
 
 export function Paragraph(props: TypographyProps<'p'>) {
   return (
-    <DeepDish
+    <DeepDish<TypographyValue>
       deepdish={props.deepdish}
       fallback={props.children}
       render={(content) => {
@@ -142,7 +142,7 @@ export function Paragraph(props: TypographyProps<'p'>) {
 
 export function Span(props: TypographyProps<'span'>) {
   return (
-    <DeepDish
+    <DeepDish<TypographyValue>
       deepdish={props.deepdish}
       fallback={props.children}
       render={(content) => {
@@ -154,7 +154,7 @@ export function Span(props: TypographyProps<'span'>) {
 
 export function Strong(props: TypographyProps<'strong'>) {
   return (
-    <DeepDish
+    <DeepDish<TypographyValue>
       deepdish={props.deepdish}
       fallback={props.children}
       render={(content) => {
@@ -166,7 +166,7 @@ export function Strong(props: TypographyProps<'strong'>) {
 
 export function Underline(props: TypographyProps<'u'>) {
   return (
-    <DeepDish
+    <DeepDish<TypographyValue>
       deepdish={props.deepdish}
       fallback={props.children}
       render={(content) => {
