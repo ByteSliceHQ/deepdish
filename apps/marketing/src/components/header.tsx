@@ -6,7 +6,10 @@ export function Header() {
     <header className="flex items-center justify-between mx-auto py-3 px-4 border border-gray-700 rounded-t-xl">
       <div className="flex items-center">
         <DeepDishLogo />
-        <Heading1 className="text-lg font-semibold ml-4">DeepDish</Heading1>
+        <Heading1
+          deepdish={{ key: 'product-name' }}
+          className="text-lg font-semibold ml-4"
+        />
       </div>
       <div className="flex items-center gap-2">
         {/* <Button variant="link" disabled>Docs</Button>
