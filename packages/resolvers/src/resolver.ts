@@ -21,6 +21,7 @@ export function createResolver<S extends ZodTypeAny>(schema: S) {
           return schema.parse(data) as Value
         } catch (err) {
           // TODO: handle error
+          console.error(err)
         }
       },
       write: async (context, value) => {
@@ -30,6 +31,7 @@ export function createResolver<S extends ZodTypeAny>(schema: S) {
           await write(context, value)
         } catch (err) {
           // TODO: handle error
+          console.error(err)
         }
       },
     }
