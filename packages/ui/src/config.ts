@@ -21,6 +21,8 @@ type Config = {
   }
 }
 
+export type ConfigType = keyof Config
+
 let config: Config
 
 export function makeConfig(input: Config): void {
