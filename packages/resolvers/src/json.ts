@@ -13,7 +13,7 @@ async function updateJson<V>(path: string, key: string, value: V) {
   return writeFile(path, JSON.stringify(data), { encoding: 'utf-8' })
 }
 
-/** Creates a resolver to asynchronously read/write arbitrary values of a JSON file. */
+/** Creates a resolver to asynchronously read/write values of a JSON file. */
 export function createJsonResolver<S extends ZodTypeAny>(
   schema: S,
   path: string,
