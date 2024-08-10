@@ -1,6 +1,6 @@
 import 'server-only'
 
-import type { ConfigType } from './config'
+import { type ConfigType, getConfig } from './config'
 import type { DeepDishProps } from './types'
 
 export async function DeepDish<V>(props: {
@@ -11,9 +11,13 @@ export async function DeepDish<V>(props: {
 }) {
   if (props.deepdish) {
     try {
-      const { key } = props.deepdish
-      const value = await resolver.read({ key })
+      const config = getConfig()[props.type]
+      if (!config) {
+        throw Error(`Missing component configuration: ${props.type}`)
+      }
 
+      const { key } = props.deepdish
+      const value = await config.resolver.read({ key })
       if (value) {
         return props.render(value)
       }
