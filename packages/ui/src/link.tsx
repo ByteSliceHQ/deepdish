@@ -28,6 +28,7 @@ export function Link(props: ElementProps<'a', string>) {
           </a>
         )
       }}
+      type="link"
     />
   )
 }

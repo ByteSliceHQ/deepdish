@@ -1,11 +1,12 @@
 import 'server-only'
 
-import type { DeepDishProps } from './types'
+import type { DeepDishProps, ElementType } from './types'
 
 export async function DeepDish<V>(props: {
   deepdish?: DeepDishProps
   fallback?: V
   render: (value?: V) => React.ReactElement
+  type: ElementType
 }) {
   if (props.deepdish) {
     try {

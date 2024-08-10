@@ -18,6 +18,7 @@ export function BlockQuote(props: TypographyProps<'blockquote'>) {
       render={(content) => {
         return <blockquote {...props}>{content}</blockquote>
       }}
+      type="typography"
     />
   )
 }
@@ -30,6 +31,7 @@ export function Bold(props: TypographyProps<'b'>) {
       render={(content) => {
         return <b {...props}>{content}</b>
       }}
+      type="typography"
     />
   )
 }
@@ -42,6 +44,7 @@ export function Div(props: TypographyProps<'div'>) {
       render={(content) => {
         return <div {...props}>{content}</div>
       }}
+      type="typography"
     />
   )
 }
@@ -54,6 +57,7 @@ export function Emphasize(props: TypographyProps<'em'>) {
       render={(content) => {
         return <em {...props}>{content}</em>
       }}
+      type="typography"
     />
   )
 }
@@ -84,6 +88,7 @@ export function Heading(
       render={(content) => {
         return <Component {...rest}>{content}</Component>
       }}
+      type="typography"
     />
   )
 }
@@ -120,6 +125,7 @@ export function Italicize(props: TypographyProps<'i'>) {
       render={(content) => {
         return <i {...props}>{content}</i>
       }}
+      type="typography"
     />
   )
 }
@@ -132,6 +138,7 @@ export function Paragraph(props: TypographyProps<'p'>) {
       render={(content) => {
         return <p {...props}>{content}</p>
       }}
+      type="typography"
     />
   )
 }
@@ -144,6 +151,7 @@ export function Span(props: TypographyProps<'span'>) {
       render={(content) => {
         return <span {...props}>{content}</span>
       }}
+      type="typography"
     />
   )
 }
@@ -156,6 +164,7 @@ export function Strong(props: TypographyProps<'strong'>) {
       render={(content) => {
         return <strong {...props}>{content}</strong>
       }}
+      type="typography"
     />
   )
 }
@@ -168,6 +177,7 @@ export function Underline(props: TypographyProps<'u'>) {
       render={(content) => {
         return <u {...props}>{content}</u>
       }}
+      type="typography"
     />
   )
 }
