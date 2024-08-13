@@ -1,16 +1,19 @@
 import 'server-only'
 
+import { z } from 'zod'
 import { DeepDish } from './deepdish'
 import type { ElementProps } from './types'
 
-type AudioValue = {
-  fallback?: string
-  source?: string
-}
+export const audioSchema = z.object({
+  fallback: z.string().optional(),
+  source: z.string().optional(),
+})
+
+export type AudioValue = z.infer<typeof audioSchema>
 
 export function Audio(props: ElementProps<'audio', AudioValue, string>) {
   return (
-    <DeepDish
+    <DeepDish<AudioValue>
       deepdish={props.deepdish}
       fallback={{
         fallback: props.children,
@@ -27,15 +30,17 @@ export function Audio(props: ElementProps<'audio', AudioValue, string>) {
   )
 }
 
-type ImageValue = {
-  description?: string
-  source?: string
-  title?: string
-}
+export const imageSchema = z.object({
+  description: z.string().optional(),
+  source: z.string().optional(),
+  title: z.string().optional(),
+})
+
+export type ImageValue = z.infer<typeof imageSchema>
 
 export function Image(props: ElementProps<'img', ImageValue>) {
   return (
-    <DeepDish
+    <DeepDish<ImageValue>
       deepdish={props.deepdish}
       fallback={{
         description: props.alt,
@@ -56,14 +61,16 @@ export function Image(props: ElementProps<'img', ImageValue>) {
   )
 }
 
-type VideoValue = {
-  fallback?: string
-  source?: string
-}
+export const videoSchema = z.object({
+  fallback: z.string().optional(),
+  source: z.string().optional(),
+})
+
+export type VideoValue = z.infer<typeof videoSchema>
 
 export function Video(props: ElementProps<'video', VideoValue, string>) {
   return (
-    <DeepDish
+    <DeepDish<VideoValue>
       deepdish={props.deepdish}
       fallback={{
         fallback: props.children,

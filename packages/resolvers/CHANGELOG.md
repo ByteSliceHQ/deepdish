@@ -1,5 +1,15 @@
 # @deepdish/resolvers
 
+## 0.2.0
+
+### Minor Changes
+
+- 562f976: Enabled read validation via defined data contract.
+
+### Patch Changes
+
+- 6702635: Wrapped read and write handler implementations.
+
 ## 0.1.0
 
 ### Minor Changes

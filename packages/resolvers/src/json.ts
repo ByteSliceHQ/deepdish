@@ -1,4 +1,5 @@
 import { readdir, readFile, writeFile } from 'node:fs/promises'
+import type { ZodTypeAny } from 'zod'
 import { createResolver } from './resolver'
 import type { Key } from './types'
 
@@ -13,36 +14,35 @@ async function readDirectory(path: string): Promise<Key[]> {
   })
 }
 
-async function parseJSON(path: string) {
+async function parseJson(path: string) {
   const json = await readFile(path, { encoding: 'utf-8' })
   return JSON.parse(json)
 }
 
-async function updateJSON<V>(path: string, key: string, value: V) {
-  const data = await parseJSON(path)
+async function updateJson<V>(path: string, key: string, value: V) {
+  const data = await parseJson(path)
   data[key] = value
   return writeFile(path, JSON.stringify(data), { encoding: 'utf-8' })
 }
 
-/** Creates a resolver to asynchronously read/write string values of a JSON file. */
-export function createTextResolver(path: string) {
-  return createResolver<string>(
+/** Creates a resolver to asynchronously read/write values of a JSON file. */
+export function createJsonResolver<S extends ZodTypeAny>(
+  schema: S,
+  path: string,
+) {
+  return createResolver(schema)(
     async () => {
-      'use server'
-
       const keys = await readDirectory(path)
       return keys
     },
     async ({ key }) => {
-      'use server'
-
-      const data = await parseJSON(path)
+      const data = await parseJson(path)
       return data[key]
     },
     async ({ key }, value) => {
       'use server'
 
-      await updateJSON<string>(path, key, value)
+      await updateJson<string>(path, key, value)
     },
   )
 }
