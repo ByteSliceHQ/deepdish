@@ -1,5 +1,19 @@
 # @deepdish/ui
 
+## 0.2.0
+
+### Minor Changes
+
+- 5bd74b5: Enabled declarative resolver mapping.
+- 71aaf3c: Preferentially loaded resolver data into components.
+
+### Patch Changes
+
+- 562f976: Defined component schemas and inferred their types.
+- Updated dependencies [6702635]
+- Updated dependencies [562f976]
+  - @deepdish/resolvers@0.2.0
+
 ## 0.1.0
 
 ### Minor Changes
