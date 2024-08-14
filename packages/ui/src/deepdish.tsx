@@ -19,7 +19,7 @@ export async function DeepDish<V>(props: {
       const { key } = props.deepdish
       const value = await config.resolver.read({ key })
       if (value) {
-        return props.render(value)
+        return props.render(value as V)
       }
 
       // TODO: handle "missing" data
