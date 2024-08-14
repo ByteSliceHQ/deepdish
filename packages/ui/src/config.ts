@@ -3,25 +3,19 @@ import type { LinkValue } from './link'
 import type { AudioValue, ImageValue, VideoValue } from './media'
 import type { TypographyValue } from './typography'
 
-type Config = {
-  audio?: {
-    resolver: Resolver<AudioValue>
-  }
-  image?: {
-    resolver: Resolver<ImageValue>
-  }
-  link?: {
-    resolver: Resolver<LinkValue>
-  }
-  typography?: {
-    resolver: Resolver<TypographyValue>
-  }
-  video?: {
-    resolver: Resolver<VideoValue>
-  }
+export type ValueMap = {
+  audio: AudioValue
+  image: ImageValue
+  link: LinkValue
+  typography: TypographyValue
+  video: VideoValue
 }
 
-export type ConfigType = keyof Config
+type Config = {
+  [key in keyof ValueMap]?: {
+    resolver: Resolver<ValueMap[key]>
+  }
+}
 
 let config: Config
 
