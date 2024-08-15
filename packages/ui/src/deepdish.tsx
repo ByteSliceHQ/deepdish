@@ -1,3 +1,5 @@
+/// <reference types="react/experimental" />
+
 import 'server-only'
 
 import { type ValueMap, getConfig } from './config'

@@ -12,8 +12,8 @@ export type ValueMap = {
 }
 
 type Config = {
-  [key in keyof ValueMap]?: {
-    resolver: Resolver<ValueMap[key]>
+  readonly [key in keyof ValueMap]?: {
+    readonly resolver: Resolver<ValueMap[key]>
   }
 }
 
