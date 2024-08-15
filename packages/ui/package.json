@@ -1,6 +1,6 @@
 {
   "name": "@deepdish/ui",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "DeepDish UI components",
   "homepage": "",
   "author": {
@@ -8,6 +8,7 @@
     "url": "https://byteslice.co"
   },
   "exports": {
+    "./config": "./src/config.ts",
     "./link": "./src/link.tsx",
     "./media": "./src/media.tsx",
     "./typography": "./src/typography.tsx"

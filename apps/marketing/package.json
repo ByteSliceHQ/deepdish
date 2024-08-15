@@ -1,6 +1,6 @@
 {
   "name": "@deepdish/marketing",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "private": true,
   "description": "DeepDish marketing site",
   "homepage": "",
@@ -12,6 +12,7 @@
     "dev": "next dev"
   },
   "dependencies": {
+    "@deepdish/resolvers": "*",
     "@deepdish/ui": "*",
     "@heroicons/react": "2.1.5",
     "@radix-ui/react-slot": "1.0.2",
