@@ -1,5 +1,11 @@
 # @deepdish/ui
 
+## 0.3.0
+
+### Minor Changes
+
+- 74b1043: Established configuration singleton pattern.
+
 ## 0.2.0
 
 ### Minor Changes

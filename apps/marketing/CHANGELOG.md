@@ -1,5 +1,16 @@
 # @deepdish/marketing
 
+## 0.1.0
+
+### Minor Changes
+
+- 74b1043: Configured typography resolver.
+
+### Patch Changes
+
+- Updated dependencies [74b1043]
+  - @deepdish/ui@0.3.0
+
 ## 0.0.1
 
 ### Patch Changes
