@@ -1,5 +1,5 @@
 ---
-"@deepdish/marketing": patch
+"@deepdish/marketing": minor
 ---
 
 Configured typography resolver.
