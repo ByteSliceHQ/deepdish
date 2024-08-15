@@ -1,5 +1,11 @@
 # @deepdish/ui
 
+## 0.3.1
+
+### Patch Changes
+
+- 4930f8e: Marked configuration attributes as read-only.
+
 ## 0.3.0
 
 ### Minor Changes
