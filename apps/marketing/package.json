@@ -12,6 +12,7 @@
     "dev": "next dev"
   },
   "dependencies": {
+    "@deepdish/resolvers": "*",
     "@deepdish/ui": "*",
     "@heroicons/react": "2.1.5",
     "@radix-ui/react-slot": "1.0.2",
