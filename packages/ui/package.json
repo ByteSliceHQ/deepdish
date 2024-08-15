@@ -8,6 +8,7 @@
     "url": "https://byteslice.co"
   },
   "exports": {
+    "./config": "./src/config.ts",
     "./link": "./src/link.tsx",
     "./media": "./src/media.tsx",
     "./typography": "./src/typography.tsx"

@@ -1,8 +1,11 @@
 import '../globals.css'
 
+import { cms } from '@/cms'
 import { cn } from '@/lib/utils'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+
+cms()
 
 const fontSans = Inter({ subsets: ['latin'], variable: '--font-sans' })
 

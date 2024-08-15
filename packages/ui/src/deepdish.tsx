@@ -1,19 +1,25 @@
 import 'server-only'
 
+import { type ValueMap, getConfig } from './config'
 import type { DeepDishProps } from './types'
 
 export async function DeepDish<V>(props: {
-  deepdish?: DeepDishProps<V>
+  deepdish?: DeepDishProps
   fallback?: V
   render: (value?: V) => React.ReactElement
+  type: keyof ValueMap
 }) {
   if (props.deepdish) {
     try {
-      const { key, resolver } = props.deepdish
-      const value = await resolver.read({ key })
+      const config = getConfig()[props.type]
+      if (!config) {
+        throw Error(`Missing component configuration: ${props.type}`)
+      }
 
+      const { key } = props.deepdish
+      const value = await config.resolver.read({ key })
       if (value) {
-        return props.render(value)
+        return props.render(value as V)
       }
 
       // TODO: handle "missing" data
