@@ -1,8 +1,8 @@
 import type { infer as ZodInfer, ZodTypeAny } from 'zod'
-import type { Context, Key, Maybe } from './types'
+import type { Context, Maybe } from './types'
 
 // TODO: support filtering, querying, pagination, etc.
-type List = () => Promise<Key[]>
+type List = (filter?: (key: string) => boolean) => Promise<string[]>
 
 type Read<V> = (context: Context) => Promise<Maybe<V>>
 
@@ -11,8 +11,10 @@ type Write<V> = (context: Context, value: V) => Promise<void>
 export type Resolver<V> = {
   list: List
   read: Read<V>
+
   write: Write<V>
 }
+
 export function createResolver<S extends ZodTypeAny>(schema: S) {
   type Value = ZodInfer<S>
 
@@ -22,15 +24,19 @@ export function createResolver<S extends ZodTypeAny>(schema: S) {
     write: Write<Value>,
   ): Resolver<Value> => {
     return {
-      list: async () => {
-        'use server'
-
+      list: async (filter) => {
         try {
-          const keys = await list()
           // TODO: validate keys
+          const keys = await list()
+
+          if (filter) {
+            return keys.filter(filter)
+          }
+
           return keys
         } catch (err) {
           // TODO: handle error
+          return []
         }
       },
       read: async (context) => {

@@ -1,32 +1,7 @@
 import { Heading2, Paragraph } from '@deepdish/ui/typography'
-import {
-  CameraIcon,
-  CloudArrowUpIcon,
-  CodeBracketIcon,
-  CursorArrowRaysIcon,
-} from '@heroicons/react/20/solid'
+import { DeepDish } from '@deepdish/ui'
+import * as Icons from '@heroicons/react/20/solid'
 import CodeSnippet from './code'
-
-const features = [
-  {
-    name: 'Next.js framework.',
-    description:
-      'Build completely custom websites with Next.js without dealing with the complexity of a CMS.',
-    icon: CodeBracketIcon,
-  },
-  {
-    name: 'Point and click editing.',
-    description:
-      'Marketing teams can edit content directly on the website by selecting the content they want to edit.',
-    icon: CursorArrowRaysIcon,
-  },
-  {
-    name: 'Media packages.',
-    description:
-      'DeepDish comes with a media package that allows marketing teams to change images and videos on the fly.',
-    icon: CameraIcon,
-  },
-]
 
 const afterDeepDishSnippet = `import { 
   Heading1, 
@@ -61,6 +36,35 @@ function HeroBanner() {
 }
 `
 
+async function FeatureList() {
+  return (
+    <DeepDish
+      type="feature"
+      deepdish={{
+        filter(key) {
+          return key.endsWith('enabled')
+        },
+      }}
+      render={(feature) => {
+        const Icon = Icons[feature.icon as string] || Icons.CubeIcon
+
+        return (
+          <div key={feature.name} className="relative pl-9">
+            <dt className="inline font-semibold text-gray-900">
+              <Icon
+                className="absolute left-1 top-1 h-5 w-5 text-orange-600"
+                aria-hidden="true"
+              />
+              {feature.name}
+            </dt>{' '}
+            <dd className="inline">{feature.description}</dd>
+          </div>
+        )
+      }}
+    />
+  )
+}
+
 export default function Features() {
   return (
     <div className="overflow-hidden bg-background py-24 sm:py-32 border-x border-gray-700">
@@ -80,18 +84,7 @@ export default function Features() {
                 easy to use interface to edit content.
               </Paragraph>
               <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
-                {features.map((feature) => (
-                  <div key={feature.name} className="relative pl-9">
-                    <dt className="inline font-semibold text-gray-900">
-                      <feature.icon
-                        className="absolute left-1 top-1 h-5 w-5 text-orange-600"
-                        aria-hidden="true"
-                      />
-                      {feature.name}
-                    </dt>{' '}
-                    <dd className="inline">{feature.description}</dd>
-                  </div>
-                ))}
+                <FeatureList />
               </dl>
             </div>
           </div>

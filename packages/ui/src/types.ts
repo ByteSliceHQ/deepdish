@@ -1,4 +1,7 @@
-export type DeepDishProps = { key: string }
+export type DeepDishProps = {
+  key?: string
+  filter?: (key: string) => boolean
+}
 
 export type ElementProps<
   E extends IntrinsicElement,

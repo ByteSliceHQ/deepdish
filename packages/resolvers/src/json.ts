@@ -1,17 +1,16 @@
-import { readFile, readdir, writeFile } from 'node:fs/promises'
+import { readFile, writeFile } from 'node:fs/promises'
 import type { ZodTypeAny } from 'zod'
 import { createResolver } from './resolver'
-import type { Key } from './types'
 
-async function readDirectory(path: string): Promise<Key[]> {
-  const files = await readdir(path)
+async function getKeys(path: string): Promise<string[]> {
+  const json = await readFile(path, { encoding: 'utf-8' })
 
-  return files.map((file) => {
-    return {
-      key: file,
-      display: file,
-    }
-  })
+  try {
+    const parsed = JSON.parse(json)
+    return Object.keys(parsed)
+  } catch {
+    return []
+  }
 }
 
 async function parseJson(path: string) {
@@ -32,7 +31,7 @@ export function createJsonResolver<S extends ZodTypeAny>(
 ) {
   return createResolver(schema)(
     async () => {
-      const keys = await readDirectory(path)
+      const keys = await getKeys(path)
       return keys
     },
     async ({ key }) => {
