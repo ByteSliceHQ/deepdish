@@ -11,4 +11,6 @@ export type ElementProps<
 
 export type IntrinsicElement = keyof JSX.IntrinsicElements
 
+export type Maybe<T> = NonNullable<T> | undefined
+
 type SetChildren<T, C> = Omit<T, 'children'> & { children?: C }
