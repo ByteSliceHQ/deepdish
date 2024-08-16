@@ -2,14 +2,14 @@
 
 import 'server-only'
 
-import { type ValueMap, getConfig } from './config'
+import { type ValueType, getConfig } from './config'
 import type { DeepDishProps } from './types'
 
 export async function DeepDish<V>(props: {
   deepdish?: DeepDishProps
   fallback?: V
   render(value?: V): React.ReactElement
-  type: keyof ValueMap
+  type: ValueType
 }) {
   if (props.deepdish) {
     try {
