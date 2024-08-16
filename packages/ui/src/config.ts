@@ -19,7 +19,7 @@ type ConfigMap = {
 
 let configMap: ConfigMap
 
-export function setConfigMap(map: ConfigMap): void {
+export function configure(map: ConfigMap): void {
   if (configMap) {
     throw Error('Configuration map has already been initialized')
   }
