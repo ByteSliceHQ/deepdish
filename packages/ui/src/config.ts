@@ -11,26 +11,26 @@ export type ValueMap = {
   video: VideoValue
 }
 
-type Config = {
+type ConfigMap = {
   readonly [key in keyof ValueMap]?: {
     readonly resolver: Resolver<ValueMap[key]>
   }
 }
 
-let config: Config
+let configMap: ConfigMap
 
-export function makeConfig(input: Config): void {
-  if (config) {
-    throw Error('Configuration has already been initialized')
+export function setConfigMap(map: ConfigMap): void {
+  if (configMap) {
+    throw Error('Configuration map has already been initialized')
   }
 
-  config = Object.freeze(input)
+  configMap = Object.freeze(map)
 }
 
-export function getConfig(key: keyof ValueMap): Config[keyof Config] {
-  if (!config) {
-    throw Error('Configuration has not been initialized')
+export function getConfig(key: keyof ValueMap): ConfigMap[keyof ConfigMap] {
+  if (!configMap) {
+    throw Error('Configuration map has not been initialized')
   }
 
-  return config[key]
+  return configMap[key]
 }
