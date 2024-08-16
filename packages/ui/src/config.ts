@@ -27,10 +27,10 @@ export function makeConfig(input: Config): void {
   config = Object.freeze(input)
 }
 
-export function getConfig(): Config {
+export function getConfig(key: keyof ValueMap): Config[keyof Config] {
   if (!config) {
     throw Error('Configuration has not been initialized')
   }
 
-  return config
+  return config[key]
 }

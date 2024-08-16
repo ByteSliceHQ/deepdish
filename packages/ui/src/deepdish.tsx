@@ -13,7 +13,7 @@ export async function DeepDish<V>(props: {
 }) {
   if (props.deepdish) {
     try {
-      const config = getConfig()[props.type]
+      const config = getConfig(props.type)
       if (!config) {
         throw Error(`Missing component configuration: ${props.type}`)
       }
