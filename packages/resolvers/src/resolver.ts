@@ -1,5 +1,5 @@
 import type { infer as ZodInfer, ZodTypeAny } from 'zod'
-import type { Context, Maybe, Result } from './types'
+import type { Context, Result } from './types'
 
 type Read<T> = (context: Context) => Promise<T>
 
@@ -17,10 +17,7 @@ function handleException(ex: unknown): Error {
 export function createResolver<S extends ZodTypeAny>(schema: S) {
   type Value = ZodInfer<S>
 
-  return (
-    read: Read<Maybe<Value>>,
-    write: Write<void, Value>,
-  ): Resolver<Value> => {
+  return (read: Read<unknown>, write: Write<void, Value>): Resolver<Value> => {
     return {
       read: async (context) => {
         try {
