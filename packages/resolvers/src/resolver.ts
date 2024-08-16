@@ -10,6 +10,10 @@ export type Resolver<V> = {
   write: Write<Result<void>, V>
 }
 
+function handleException(ex: unknown): Error {
+  return ex instanceof Error ? ex : Error('Something went wrong')
+}
+
 export function createResolver<S extends ZodTypeAny>(schema: S) {
   type Value = ZodInfer<S>
 
@@ -24,11 +28,8 @@ export function createResolver<S extends ZodTypeAny>(schema: S) {
           schema.parse(data)
 
           return { data }
-        } catch (err) {
-          const error =
-            err instanceof Error ? err : Error('Something went wrong')
-
-          return { error }
+        } catch (ex) {
+          return { error: handleException(ex) }
         }
       },
       write: async (context, value) => {
@@ -37,11 +38,8 @@ export function createResolver<S extends ZodTypeAny>(schema: S) {
         try {
           await write(context, value)
           return { data: undefined }
-        } catch (err) {
-          const error =
-            err instanceof Error ? err : Error('Something went wrong')
-
-          return { error }
+        } catch (ex) {
+          return { error: handleException(ex) }
         }
       },
     }
