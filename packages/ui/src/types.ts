@@ -1,4 +1,6 @@
-export type DeepDishProps = { key: string }
+export type DeepDishProps = {
+  key: string
+}
 
 export type ElementProps<
   E extends IntrinsicElement,
