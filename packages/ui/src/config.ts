@@ -11,10 +11,12 @@ export type ValueMap = {
   video: VideoValue
 }
 
+type Config<K extends keyof ValueMap> = {
+  readonly resolver: Resolver<ValueMap[K]>
+}
+
 type ConfigMap = {
-  readonly [key in keyof ValueMap]?: {
-    readonly resolver: Resolver<ValueMap[key]>
-  }
+  readonly [K in keyof ValueMap]?: Config<K>
 }
 
 let configMap: ConfigMap
@@ -27,10 +29,10 @@ export function configure(map: ConfigMap): void {
   configMap = Object.freeze(map)
 }
 
-export function getConfig(key: keyof ValueMap): ConfigMap[keyof ConfigMap] {
+export function getConfig<K extends keyof ValueMap>(type: K): Maybe<Config<K>> {
   if (!configMap) {
     throw Error('Configuration map has not been initialized')
   }
 
-  return configMap[key]
+  return configMap[type]
 }
