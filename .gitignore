@@ -16,3 +16,6 @@ next-env.d.ts
 
 # vercel
 .next/
+
+# outputs
+dist
