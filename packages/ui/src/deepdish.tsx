@@ -26,7 +26,7 @@ export async function DeepDish<V>(props: {
       }
 
       return props.render(value.data as V)
-    } catch (err) {
+    } catch (ex) {
       // TODO: handle error
     }
   }
