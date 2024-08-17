@@ -16,5 +16,5 @@
     ".next",
     ".turbo"
   ],
-  "words": ["biomejs", "deepdish", "lockb", "turborepo", "vercel"]
+  "words": ["biomejs", "deepdish", "lockb", "turborepo", "vercel", "tsup"]
 }
