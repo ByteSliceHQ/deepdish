@@ -7,11 +7,6 @@
     "name": "ByteSlice, LLC",
     "url": "https://byteslice.co"
   },
-   "scripts": {
-    "build": "tsup",
-    "dev": "tsup --watch",
-    "prepare": "bun run build"
-  },
   "exports": {
     ".": {
       "import": "./dist/resolver.mjs",
@@ -23,6 +18,11 @@
       "types": "./dist/json.d.ts",
       "require": "./dist/json.js"
     }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "prepare": "bun run build"
   },
   "dependencies": {
     "zod": "3.23.8"

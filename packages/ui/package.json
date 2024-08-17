@@ -7,18 +7,13 @@
     "name": "ByteSlice, LLC",
     "url": "https://byteslice.co"
   },
-  "scripts": {
-    "build": "tsup",
-    "dev": "tsup --watch",
-    "prepare": "bun run build"
-  },
   "exports": {
     "./config": {
       "import": "./dist/config.mjs",
       "types": "./dist/config.d.ts",
       "require": "./dist/config.js"
     },
-    "./link":{
+    "./link": {
       "import": "./dist/link.mjs",
       "types": "./dist/link.d.ts",
       "require": "./dist/link.js"
@@ -33,6 +28,11 @@
       "types": "./dist/typography.d.ts",
       "require": "./dist/typography.js"
     }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "prepare": "bun run build"
   },
   "dependencies": {
     "@deepdish/resolvers": "*",
