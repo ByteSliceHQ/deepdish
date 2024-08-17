@@ -9,4 +9,6 @@ export default defineConfig({
     'src/typography.tsx',
   ],
   format: ['cjs', 'esm'],
+  sourcemap: true,
+  dts: true,
 })
