@@ -19,7 +19,7 @@ export function createResolver<S extends ZodTypeAny>(schema: S) {
 
   return (read: Read<unknown>, write: Write<void, Value>): Resolver<Value> => {
     return {
-      read: async (context) => {
+      async read(context) {
         try {
           const data = await read(context)
           schema.parse(data)
@@ -29,7 +29,7 @@ export function createResolver<S extends ZodTypeAny>(schema: S) {
           return { error: handleException(ex) }
         }
       },
-      write: async (context, value) => {
+      async write(context, value) {
         'use server'
 
         try {
