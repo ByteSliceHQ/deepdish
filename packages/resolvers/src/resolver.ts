@@ -1,27 +1,32 @@
 import type { infer as ZodInfer, ZodTypeAny } from 'zod'
-import type { Context, Maybe } from './types'
+import type { Context, Result } from './types'
 
-type Read<V> = (context: Context) => Promise<Maybe<V>>
+type Read<T> = (context: Context) => Promise<T>
 
-type Write<V> = (context: Context, value: V) => Promise<void>
+type Write<T, V> = (context: Context, value: V) => Promise<T>
 
 export type Resolver<V> = {
-  read: Read<V>
-  write: Write<V>
+  read: Read<Result<V>>
+  write: Write<Result<void>, V>
+}
+
+function handleException(ex: unknown): Error {
+  return ex instanceof Error ? ex : Error('Something went wrong')
 }
 
 export function createResolver<S extends ZodTypeAny>(schema: S) {
   type Value = ZodInfer<S>
 
-  return (read: Read<Value>, write: Write<Value>): Resolver<Value> => {
+  return (read: Read<unknown>, write: Write<void, Value>): Resolver<Value> => {
     return {
       read: async (context) => {
         try {
           const data = await read(context)
-          return schema.parse(data) as Value
-        } catch (err) {
-          // TODO: handle error
-          console.error(err)
+          schema.parse(data)
+
+          return { data }
+        } catch (ex) {
+          return { error: handleException(ex) }
         }
       },
       write: async (context, value) => {
@@ -29,9 +34,9 @@ export function createResolver<S extends ZodTypeAny>(schema: S) {
 
         try {
           await write(context, value)
-        } catch (err) {
-          // TODO: handle error
-          console.error(err)
+          return { data: undefined }
+        } catch (ex) {
+          return { error: handleException(ex) }
         }
       },
     }

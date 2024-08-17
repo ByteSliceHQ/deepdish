@@ -20,12 +20,13 @@ export async function DeepDish<V>(props: {
 
       const { key } = props.deepdish
       const value = await config.resolver.read({ key })
-      if (value) {
-        return props.render(value as V)
+      if (value.error) {
+        // TODO: handle "missing" or "invalid" data
+        return
       }
 
-      // TODO: handle "missing" data
-    } catch (err) {
+      return props.render(value.data as V)
+    } catch (ex) {
       // TODO: handle error
     }
   }
