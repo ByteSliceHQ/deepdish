@@ -19,3 +19,6 @@ next-env.d.ts
 
 # outputs
 dist
+
+# cloud
+.vercel
