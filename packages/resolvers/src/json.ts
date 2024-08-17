@@ -26,7 +26,7 @@ export function createJsonResolver<S extends ZodTypeAny>(
     async ({ key }, value) => {
       'use server'
 
-      await updateJson<string>(path, key, value)
+      await updateJson(path, key, value)
     },
   )
 }
