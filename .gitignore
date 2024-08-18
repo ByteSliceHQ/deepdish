@@ -5,6 +5,9 @@ node_modules/
 .DS_Store
 *.pem
 
+# outputs
+dist
+
 # secrets
 .env*.local
 
@@ -16,9 +19,6 @@ next-env.d.ts
 
 # vercel
 .next/
-
-# outputs
-dist
-
-# cloud
 .vercel
+
+
