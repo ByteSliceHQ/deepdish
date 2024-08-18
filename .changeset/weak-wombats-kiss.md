@@ -2,4 +2,4 @@
 "@deepdish/ui": patch
 ---
 
-Partitioned configuration structure.
+Partitioned the global configuration by data contract.
