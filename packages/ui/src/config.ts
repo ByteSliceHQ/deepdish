@@ -1,8 +1,9 @@
 import type { Resolver } from '@deepdish/resolvers'
 import type { LinkValue } from './link'
 import type { AudioValue, ImageValue, VideoValue } from './media'
-import type { Maybe } from './types'
 import type { TypographyValue } from './typography'
+
+type Maybe<T> = NonNullable<T> | undefined
 
 export type ValueMap = {
   audio: AudioValue
