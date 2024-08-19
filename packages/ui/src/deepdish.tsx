@@ -2,7 +2,7 @@
 
 import 'server-only'
 
-import { type ValueType, getConfig } from './config'
+import { type ValueType, getContract } from './config'
 import type { DeepDishProps } from './types'
 
 export async function DeepDish<V>(props: {
@@ -13,13 +13,13 @@ export async function DeepDish<V>(props: {
 }) {
   if (props.deepdish) {
     try {
-      const config = getConfig(props.type)
-      if (!config) {
-        throw Error(`Missing configuration for "${props.type}"`)
+      const contract = getContract(props.type)
+      if (!contract) {
+        throw Error(`Missing configuration for "${props.type}" contract`)
       }
 
       const { key } = props.deepdish
-      const value = await config.resolver.read({ key })
+      const value = await contract.resolver.read({ key })
       if (value.error) {
         // TODO: handle "missing" or "invalid" data
         return

@@ -15,28 +15,30 @@ export type ValueMap = {
 
 export type ValueType = keyof ValueMap
 
-type Config<T extends ValueType> = {
+type Contract<T extends ValueType> = {
   readonly resolver: Resolver<ValueMap[T]>
 }
 
-type ConfigMap = {
-  readonly [T in ValueType]?: Config<T>
+type Config = {
+  contracts: {
+    readonly [T in ValueType]?: Contract<T>
+  }
 }
 
-let configMap: ConfigMap
+let config: Config
 
-export function configure(map: ConfigMap): void {
-  if (configMap) {
-    throw Error('Configuration map has already been initialized')
+export function configure(input: Config): void {
+  if (config) {
+    throw Error('Configuration has already been initialized')
   }
 
-  configMap = Object.freeze(map)
+  config = Object.freeze(input)
 }
 
-export function getConfig<T extends ValueType>(type: T): Maybe<Config<T>> {
-  if (!configMap) {
-    throw Error('Configuration map has not been initialized')
+export function getContract<T extends ValueType>(type: T): Maybe<Contract<T>> {
+  if (!config) {
+    throw Error('Configuration has not been initialized')
   }
 
-  return configMap[type]
+  return config.contracts[type]
 }
