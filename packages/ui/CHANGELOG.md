@@ -1,5 +1,14 @@
 # @deepdish/ui
 
+## 0.3.2
+
+### Patch Changes
+
+- cbdd36f: Added package bundling.
+- Updated dependencies [27036ce]
+- Updated dependencies [cbdd36f]
+  - @deepdish/resolvers@0.3.0
+
 ## 0.3.1
 
 ### Patch Changes
