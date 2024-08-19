@@ -8,14 +8,27 @@
     "url": "https://byteslice.co"
   },
   "exports": {
-    ".": "./src/resolver.ts",
-    "./json": "./src/json.ts"
+    ".": {
+      "import": "./dist/resolver.mjs",
+      "types": "./dist/resolver.d.ts",
+      "require": "./dist/resolver.js"
+    },
+    "./json": {
+      "import": "./dist/json.mjs",
+      "types": "./dist/json.d.ts",
+      "require": "./dist/json.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch"
   },
   "dependencies": {
     "zod": "3.23.8"
   },
   "devDependencies": {
     "@tsconfig/node20": "20.1.4",
+    "tsup": "8.2.4",
     "typescript": "5.4.5"
   },
   "publishConfig": {

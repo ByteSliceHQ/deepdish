@@ -8,10 +8,30 @@
     "url": "https://byteslice.co"
   },
   "exports": {
-    "./config": "./src/config.ts",
-    "./link": "./src/link.tsx",
-    "./media": "./src/media.tsx",
-    "./typography": "./src/typography.tsx"
+    "./config": {
+      "import": "./dist/config.mjs",
+      "types": "./dist/config.d.ts",
+      "require": "./dist/config.js"
+    },
+    "./link": {
+      "import": "./dist/link.mjs",
+      "types": "./dist/link.d.ts",
+      "require": "./dist/link.js"
+    },
+    "./media": {
+      "import": "./dist/media.mjs",
+      "types": "./dist/media.d.ts",
+      "require": "./dist/media.js"
+    },
+    "./typography": {
+      "import": "./dist/typography.mjs",
+      "types": "./dist/typography.d.ts",
+      "require": "./dist/typography.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch"
   },
   "dependencies": {
     "@deepdish/resolvers": "*",
@@ -23,6 +43,7 @@
     "@tsconfig/create-react-app": "2.0.5",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
+    "tsup": "8.2.4",
     "typescript": "5.4.5"
   },
   "publishConfig": {
