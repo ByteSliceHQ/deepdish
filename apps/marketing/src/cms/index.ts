@@ -9,8 +9,10 @@ const jsonPath = path.resolve(__dirname, './data.json')
 
 export function cms() {
   configure({
-    typography: {
-      resolver: createJsonResolver(typographySchema, jsonPath),
+    contracts: {
+      typography: {
+        resolver: createJsonResolver(typographySchema, jsonPath),
+      },
     },
   })
 }
