@@ -1,5 +1,15 @@
 # @deepdish/resolvers
 
+## 0.3.0
+
+### Minor Changes
+
+- 27036ce: Returned structured operation results.
+
+### Patch Changes
+
+- cbdd36f: Added package bundling.
+
 ## 0.2.0
 
 ### Minor Changes
