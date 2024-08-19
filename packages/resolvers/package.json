@@ -21,8 +21,7 @@
   },
   "scripts": {
     "build": "tsup",
-    "dev": "tsup --watch",
-    "prepare": "bun run build"
+    "dev": "tsup --watch"
   },
   "dependencies": {
     "zod": "3.23.8"
