@@ -3,8 +3,6 @@ import type { LinkValue } from './link'
 import type { AudioValue, ImageValue, VideoValue } from './media'
 import type { TypographyValue } from './typography'
 
-type Maybe<T> = NonNullable<T> | undefined
-
 export type ValueMap = {
   audio: AudioValue
   image: ImageValue
@@ -35,10 +33,15 @@ export function configure(input: Config): void {
   config = Object.freeze(input)
 }
 
-export function getContract<T extends ValueType>(type: T): Maybe<Contract<T>> {
+export function getContract<T extends ValueType>(type: T): Contract<T> {
   if (!config) {
     throw Error('Configuration has not been initialized')
   }
 
-  return config.contracts[type]
+  const contract = config.contracts[type]
+  if (!contract) {
+    throw Error(`Missing "${type}" contract`)
+  }
+
+  return contract
 }

@@ -13,12 +13,9 @@ export async function DeepDish<V>(props: {
 }) {
   if (props.deepdish) {
     try {
-      const contract = getContract(props.type)
-      if (!contract) {
-        throw Error(`Missing configuration for "${props.type}" contract`)
-      }
-
       const { key } = props.deepdish
+      const contract = getContract(props.type)
+
       const value = await contract.resolver.read({ key })
       if (value.error) {
         // TODO: handle "missing" or "invalid" data
