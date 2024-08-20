@@ -3,7 +3,7 @@ import type { LinkValue } from './link'
 import type { AudioValue, ImageValue, VideoValue } from './media'
 import type { TypographyValue } from './typography'
 
-export type ValueMap = {
+type ValueMap = {
   audio: AudioValue
   image: ImageValue
   link: LinkValue
