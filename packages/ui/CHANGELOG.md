@@ -1,5 +1,11 @@
 # @deepdish/ui
 
+## 0.3.3
+
+### Patch Changes
+
+- f7b88d9: Partitioned configuration into distinct, configurable sections.
+
 ## 0.3.2
 
 ### Patch Changes
