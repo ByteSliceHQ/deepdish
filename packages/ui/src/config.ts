@@ -11,15 +11,21 @@ export type ValueMap = {
   video: VideoValue
 }
 
+export type ValueType = keyof ValueMap
+
+type Contract<T extends ValueType> = {
+  readonly resolver: Resolver<ValueMap[T]>
+}
+
 type Config = {
-  readonly [key in keyof ValueMap]?: {
-    readonly resolver: Resolver<ValueMap[key]>
+  contracts: {
+    readonly [T in ValueType]?: Contract<T>
   }
 }
 
 let config: Config
 
-export function makeConfig(input: Config): void {
+export function configure(input: Config): void {
   if (config) {
     throw Error('Configuration has already been initialized')
   }
@@ -27,10 +33,15 @@ export function makeConfig(input: Config): void {
   config = Object.freeze(input)
 }
 
-export function getConfig(): Config {
+export function getContract<T extends ValueType>(type: T): Contract<T> {
   if (!config) {
     throw Error('Configuration has not been initialized')
   }
 
-  return config
+  const contract = config.contracts[type]
+  if (!contract) {
+    throw Error(`Missing "${type}" contract`)
+  }
+
+  return contract
 }
