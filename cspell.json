@@ -1,20 +1,26 @@
 {
   "version": "0.2",
   "language": "en",
-  "dictionaries": ["html", "marketing", "node", "typescript"],
+  "dictionaries": ["html", "marketing", "node", "tooling", "typescript"],
   "dictionaryDefinitions": [
     {
       "name": "marketing",
       "path": "./.cspell/marketing.txt"
+    },
+    {
+      "name": "tooling",
+      "path": "./.cspell/tooling.txt"
     }
   ],
   "ignorePaths": [
     "*.lockb",
+    "dist",
     "node_modules",
     ".env*",
     ".git",
     ".next",
-    ".turbo"
+    ".turbo",
+    ".vercel"
   ],
-  "words": ["biomejs", "deepdish", "lockb", "tsup", "turborepo", "vercel"]
+  "words": ["deepdish"]
 }
