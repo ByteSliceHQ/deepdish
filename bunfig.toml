@@ -1,2 +1,5 @@
 [install]
 exact = true
+
+[install.scopes]
+"@deepdish-cloud" = { token = "$NPM_TOKEN_DEEPDISH_CLOUD", url = "https://registry.npmjs.org/" }
