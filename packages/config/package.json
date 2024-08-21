@@ -1,7 +1,7 @@
 {
   "name": "@deepdish/config",
   "version": "0.0.0",
-  "description": "DeepDish configurations and schemas",
+  "description": "DeepDish configuration and schemas",
   "author": {
     "name": "ByteSlice, LLC",
     "url": "https://byteslice.co"
