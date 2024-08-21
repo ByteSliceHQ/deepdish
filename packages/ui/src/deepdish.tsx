@@ -2,7 +2,7 @@
 
 import 'server-only'
 
-import { type ValueType, getContract } from './config'
+import { type ValueType, getContract } from '@deepdish/config'
 import type { DeepDishProps } from './types'
 
 export async function DeepDish<V>(props: {

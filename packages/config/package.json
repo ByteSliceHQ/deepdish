@@ -1,22 +1,21 @@
 {
-  "name": "@deepdish/resolvers",
-  "version": "0.3.0",
-  "description": "DeepDish content resolvers",
-  "homepage": "",
+  "name": "@deepdish/config",
+  "version": "0.0.0",
+  "description": "DeepDish configuration and schemas",
   "author": {
     "name": "ByteSlice, LLC",
     "url": "https://byteslice.co"
   },
   "exports": {
     ".": {
-      "import": "./dist/resolver.mjs",
-      "types": "./dist/resolver.d.ts",
-      "require": "./dist/resolver.js"
+      "import": "./dist/config.mjs",
+      "types": "./dist/config.d.ts",
+      "require": "./dist/config.js"
     },
-    "./json": {
-      "import": "./dist/json.mjs",
-      "types": "./dist/json.d.ts",
-      "require": "./dist/json.js"
+    "./schemas": {
+      "import": "./dist/schemas.mjs",
+      "types": "./dist/schemas.d.ts",
+      "require": "./dist/schemas.js"
     }
   },
   "scripts": {
@@ -24,6 +23,7 @@
     "dev": "tsup --watch"
   },
   "dependencies": {
+    "@deepdish/resolvers": "*",
     "zod": "3.23.8"
   },
   "devDependencies": {
