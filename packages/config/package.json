@@ -11,6 +11,11 @@
       "import": "./dist/config.mjs",
       "types": "./dist/config.d.ts",
       "require": "./dist/config.js"
+    },
+    "./schemas": {
+      "import": "./dist/schemas.mjs",
+      "types": "./dist/schemas.d.ts",
+      "require": "./dist/schemas.js"
     }
   },
   "scripts": {
@@ -18,8 +23,7 @@
     "dev": "tsup --watch"
   },
   "dependencies": {
-    "@deepdish/resolvers": "*",
-    "@deepdish/ui": "*"
+    "zod": "3.23.8"
   },
   "devDependencies": {
     "@tsconfig/node20": "20.1.4",
