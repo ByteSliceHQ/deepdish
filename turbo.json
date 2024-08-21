@@ -12,7 +12,13 @@
     },
     "build": {
       "outputs": ["dist/**"],
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build"],
+      "env": ["DEEPDISH_SECRET_KEY", "DEEPDISH_URL"]
+    },
+    "start": {
+      "cache": false,
+      "persistent": true,
+      "env": ["DEEPDISH_SECRET_KEY", "DEEPDISH_URL"]
     }
   }
 }
