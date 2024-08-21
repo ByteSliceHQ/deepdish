@@ -17,6 +17,10 @@
     "build": "tsup",
     "dev": "tsup --watch"
   },
+  "dependencies": {
+    "@deepdish/resolvers": "*",
+    "@deepdish/ui": "*"
+  },
   "devDependencies": {
     "@tsconfig/node20": "20.1.4",
     "tsup": "8.2.4",

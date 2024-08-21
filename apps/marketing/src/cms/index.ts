@@ -1,7 +1,7 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { configure } from '@deepdish/config'
 import { createJsonResolver } from '@deepdish/resolvers/json'
-import { configure } from '@deepdish/ui/config'
 import { typographySchema } from '@deepdish/ui/typography'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))

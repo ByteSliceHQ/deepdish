@@ -1,7 +1,7 @@
 import type { Resolver } from '@deepdish/resolvers'
-import type { LinkValue } from './link'
-import type { AudioValue, ImageValue, VideoValue } from './media'
-import type { TypographyValue } from './typography'
+import type { LinkValue } from '@deepdish/ui/link'
+import type { AudioValue, ImageValue, VideoValue } from '@deepdish/ui/media'
+import type { TypographyValue } from '@deepdish/ui/typography'
 
 type ValueMap = {
   audio: AudioValue

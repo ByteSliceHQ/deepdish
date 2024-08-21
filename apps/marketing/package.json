@@ -9,10 +9,11 @@
     "url": "https://byteslice.co"
   },
   "scripts": {
-    "dev": "next dev",
-    "build": "next build"
+    "build": "next build",
+    "dev": "next dev"
   },
   "dependencies": {
+    "@deepdish/config": "*",
     "@deepdish/resolvers": "*",
     "@deepdish/ui": "*",
     "@heroicons/react": "2.1.5",
