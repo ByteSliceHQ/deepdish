@@ -11,22 +11,22 @@ export async function DeepDish<V>(props: {
   render(value?: V): Promise<React.ReactElement>
   type: ValueType
 }) {
-  if (props.deepdish) {
-    try {
-      const { key } = props.deepdish
-      const contract = getContract(props.type)
-
-      const value = await contract.resolver.read({ key })
-      if (value.error) {
-        // TODO: handle "missing" or "invalid" data
-        return
-      }
-
-      return props.render(value.data as V)
-    } catch (ex) {
-      // TODO: handle error
-    }
+  if (!props.deepdish) {
+    return props.render(props.fallback)
   }
 
-  return props.render(props.fallback)
+  try {
+    const { key } = props.deepdish
+    const contract = getContract(props.type)
+
+    const value = await contract.resolver.read({ key })
+    if (value.error) {
+      // TODO: handle "missing" or "invalid" data
+      return
+    }
+
+    return props.render(value.data as V)
+  } catch (ex) {
+    // TODO: handle error
+  }
 }
