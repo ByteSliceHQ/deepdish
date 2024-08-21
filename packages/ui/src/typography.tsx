@@ -1,12 +1,8 @@
 import 'server-only'
 
-import { z } from 'zod'
+import type { TypographyValue } from '@deepdish/config/schemas'
 import { DeepDish } from './deepdish'
 import type { ElementProps, IntrinsicElement } from './types'
-
-export const typographySchema = z.string()
-
-export type TypographyValue = z.infer<typeof typographySchema>
 
 type TypographyProps<E extends IntrinsicElement> = ElementProps<E, string>
 
