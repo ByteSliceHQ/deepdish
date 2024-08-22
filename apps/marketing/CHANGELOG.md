@@ -1,5 +1,11 @@
 # @deepdish/marketing
 
+## 0.1.1
+
+### Patch Changes
+
+- 13e19dc: Integrated DeepDish Cloud typography resolver.
+
 ## 0.1.0
 
 ### Minor Changes
