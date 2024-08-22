@@ -1,5 +1,16 @@
 # @deepdish/ui
 
+## 0.4.0
+
+### Minor Changes
+
+- c7a2377: Consolidated configuration and schemas into separate package.
+
+### Patch Changes
+
+- Updated dependencies [c7a2377]
+  - @deepdish/config@0.1.0
+
 ## 0.3.3
 
 ### Patch Changes
