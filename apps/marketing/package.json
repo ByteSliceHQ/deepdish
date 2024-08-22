@@ -13,6 +13,7 @@
     "dev": "next dev"
   },
   "dependencies": {
+    "@deepdish-cloud/resolvers": "0.0.4",
     "@deepdish/config": "*",
     "@deepdish/resolvers": "*",
     "@deepdish/ui": "*",
