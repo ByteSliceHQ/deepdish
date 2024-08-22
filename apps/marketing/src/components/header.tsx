@@ -9,7 +9,9 @@ export function Header() {
         <Heading1
           deepdish={{ key: 'product-name' }}
           className="text-lg font-semibold ml-4"
-        />
+        >
+          DeepDish
+        </Heading1>
       </div>
       <div className="flex items-center gap-2">
         {/* <Button variant="link" disabled>Docs</Button>

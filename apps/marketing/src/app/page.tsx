@@ -48,6 +48,8 @@ function CodeSnippet(props: CodeSnippetProps) {
   )
 }
 
+export const dynamic = 'force-dynamic'
+
 export default function Page() {
   return (
     <div className="py-3 container">
