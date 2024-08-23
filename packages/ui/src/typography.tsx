@@ -1,9 +1,9 @@
 import 'server-only'
 
 import type { TypographyValue } from '@deepdish/config/schemas'
+import rehypeParse from 'rehype-parse'
 import rehypeSanitize from 'rehype-sanitize'
 import rehypeStringify from 'rehype-stringify'
-import rehypeParse from 'rehype-parse'
 import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
 import { unified } from 'unified'
