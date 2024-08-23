@@ -8,7 +8,7 @@ import type { DeepDishProps } from './types'
 export async function DeepDish<V>(props: {
   deepdish?: DeepDishProps
   fallback?: V
-  render(value?: V): React.ReactElement
+  render(value?: V): Promise<React.ReactElement>
   type: ValueType
 }) {
   if (props.deepdish) {

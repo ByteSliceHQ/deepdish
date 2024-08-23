@@ -16,7 +16,7 @@ export function Audio(props: ElementProps<'audio', string>) {
         fallback: props.children,
         source: props.src,
       }}
-      render={(content) => {
+      render={async (content) => {
         return (
           <audio controls {...props} src={content?.source}>
             {content?.fallback}
@@ -37,7 +37,7 @@ export function Image(props: ElementProps<'img'>) {
         source: props.src,
         title: props.title,
       }}
-      render={(content) => {
+      render={async (content) => {
         return (
           <img
             {...props}
@@ -60,7 +60,7 @@ export function Video(props: ElementProps<'video', string>) {
         fallback: props.children,
         source: props.src,
       }}
-      render={(content) => {
+      render={async (content) => {
         return (
           <video controls {...props} src={content?.source}>
             {content?.fallback}
