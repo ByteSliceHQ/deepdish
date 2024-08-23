@@ -175,7 +175,6 @@ export function Italicize(props: TypographyProps<'i'>) {
   )
 }
 
-// TODO: with format HTML, don't pass in childen
 export function Paragraph(props: TypographyProps<'p'>) {
   return (
     <DeepDish<TypographyValue>
