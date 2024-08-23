@@ -7,8 +7,15 @@ type Success<T> = {
   data: T
 }
 
+type ResolverError =
+  | { type: 'UNKNOWN'; error: Error }
+  | { type: 'DATA_MISSING' }
+  | { type: 'DATA_INVALID'; error: Error }
+  | { type: 'READ'; error: Error }
+  | { type: 'WRITE'; error: Error }
+
 type Failure = {
-  error: Error
+  error: ResolverError
 }
 
 export type Result<T> = Success<T> | Failure
