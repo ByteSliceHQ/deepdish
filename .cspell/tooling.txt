@@ -1,5 +1,6 @@
 biomejs
 lockb
+rehype
 tsup
 turborepo
 vercel
