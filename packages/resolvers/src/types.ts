@@ -3,19 +3,19 @@ export type Context = {
 }
 
 type Success<T> = {
-  error?: never
+  failure?: never
   data: T
 }
 
-type ResolverError =
-  | { type: 'UNKNOWN'; error: Error }
-  | { type: 'DATA_MISSING' }
-  | { type: 'DATA_INVALID'; error: Error }
-  | { type: 'READ'; error: Error }
-  | { type: 'WRITE'; error: Error }
-
-type Failure = {
-  error: ResolverError
+type Failure<T> = {
+  failure: T
 }
 
-export type Result<T> = Success<T> | Failure
+type ResolverFailure =
+  | { type: 'UNEXPECTED'; cause: Error }
+  | { type: 'DATA_MISSING' }
+  | { type: 'DATA_INVALID'; cause: Error }
+  | { type: 'READ'; cause: Error }
+  | { type: 'WRITE'; cause: Error }
+
+export type Result<T> = Success<T> | Failure<ResolverFailure>

@@ -26,7 +26,12 @@ export function createResolver<S extends ZodTypeAny>(schema: S) {
 
           return { data }
         } catch (ex) {
-          return { error: handleException(ex) }
+          return {
+            failure: {
+              type: 'UNEXPECTED',
+              cause: handleException(ex),
+            },
+          }
         }
       },
       async write(context, value) {
@@ -36,7 +41,12 @@ export function createResolver<S extends ZodTypeAny>(schema: S) {
           await write(context, value)
           return { data: undefined }
         } catch (ex) {
-          return { error: handleException(ex) }
+          return {
+            failure: {
+              type: 'UNEXPECTED',
+              cause: handleException(ex),
+            },
+          }
         }
       },
     }
