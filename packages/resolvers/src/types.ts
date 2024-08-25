@@ -1,14 +1,7 @@
+import type { Result } from '@deepdish/types/result'
+
 export type Context = {
   key: string
-}
-
-type Success<T> = {
-  failure?: never
-  data: T
-}
-
-type Failure<T> = {
-  failure: T
 }
 
 type ResolverFailure =
@@ -18,4 +11,4 @@ type ResolverFailure =
   | { type: 'READ'; cause: Error }
   | { type: 'WRITE'; cause: Error }
 
-export type ResolverResult<T> = Success<T> | Failure<ResolverFailure>
+export type ResolverResult<T> = Result<T, ResolverFailure>
