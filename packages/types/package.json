@@ -8,10 +8,15 @@
     "url": "https://byteslice.co"
   },
   "exports": {
-    ".": {
-      "import": "./dist/types.mjs",
-      "types": "./dist/types.d.ts",
-      "require": "./dist/types.js"
+    "./result": {
+      "import": "./dist/result.mjs",
+      "types": "./dist/result.d.ts",
+      "require": "./dist/result.js"
+    },
+    "./utils": {
+      "import": "./dist/utils.mjs",
+      "types": "./dist/utils.d.ts",
+      "require": "./dist/utils.js"
     }
   },
   "scripts": {
