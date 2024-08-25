@@ -1,0 +1,26 @@
+{
+  "name": "@deepdish/types",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Shared DeepDish types",
+  "author": {
+    "name": "ByteSlice, LLC",
+    "url": "https://byteslice.co"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/types.mjs",
+      "types": "./dist/types.d.ts",
+      "require": "./dist/types.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch"
+  },
+  "devDependencies": {
+    "@tsconfig/node20": "20.1.4",
+    "tsup": "8.2.4",
+    "typescript": "5.5.4"
+  }
+}
