@@ -17,16 +17,24 @@ export async function DeepDish<V>(props: {
 
   try {
     const { key } = props.deepdish
+    // TODO: handle missing contract
     const contract = getContract(props.type)
 
     const result = await contract.resolver.read({ key })
     if (result.failure) {
-      // TODO: handle "missing" or "invalid" data
-      return
+      switch (result.failure.type) {
+        case 'DATA_MISSING':
+          // TODO: handle missing data
+          break
+        case 'DATA_INVALID':
+          // TODO: handle invalid data
+          break
+      }
+      return props.render(props.fallback)
     }
 
     return props.render(result.data as V)
   } catch (ex) {
-    // TODO: handle error
+    // TODO: handle exception
   }
 }
