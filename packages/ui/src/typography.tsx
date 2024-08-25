@@ -1,19 +1,43 @@
 import 'server-only'
 
 import type { TypographyValue } from '@deepdish/config/schemas'
+import { type ContentFormat, sanitizeContent } from './content'
 import { DeepDish } from './deepdish'
 import type { ElementProps, IntrinsicElement } from './types'
 
-type TypographyProps<E extends IntrinsicElement> = ElementProps<E, string>
+type TypographyProps<E extends IntrinsicElement> = ElementProps<E, string> & {
+  format?: ContentFormat
+}
+
+function renderWithFormatting<E extends IntrinsicElement>(
+  props: TypographyProps<E>,
+  Element: React.ElementType,
+) {
+  return async (content: string) => {
+    const { children, deepdish, format, ...rest } = props
+
+    if (format === 'html' || format === 'markdown') {
+      const sanitizedContent = await sanitizeContent(content, format)
+
+      return (
+        <Element
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: setting the inner HTML here is required
+          dangerouslySetInnerHTML={{ __html: sanitizedContent }}
+          {...rest}
+        />
+      )
+    }
+
+    return <Element {...rest}>{content}</Element>
+  }
+}
 
 export function BlockQuote(props: TypographyProps<'blockquote'>) {
   return (
     <DeepDish<TypographyValue>
       deepdish={props.deepdish}
       fallback={props.children}
-      render={(content) => {
-        return <blockquote {...props}>{content}</blockquote>
-      }}
+      render={renderWithFormatting(props, 'blockquote')}
       type="typography"
     />
   )
@@ -24,9 +48,7 @@ export function Bold(props: TypographyProps<'b'>) {
     <DeepDish<TypographyValue>
       deepdish={props.deepdish}
       fallback={props.children}
-      render={(content) => {
-        return <b {...props}>{content}</b>
-      }}
+      render={renderWithFormatting(props, 'b')}
       type="typography"
     />
   )
@@ -37,9 +59,7 @@ export function Div(props: TypographyProps<'div'>) {
     <DeepDish<TypographyValue>
       deepdish={props.deepdish}
       fallback={props.children}
-      render={(content) => {
-        return <div {...props}>{content}</div>
-      }}
+      render={renderWithFormatting(props, 'div')}
       type="typography"
     />
   )
@@ -50,9 +70,7 @@ export function Emphasize(props: TypographyProps<'em'>) {
     <DeepDish<TypographyValue>
       deepdish={props.deepdish}
       fallback={props.children}
-      render={(content) => {
-        return <em {...props}>{content}</em>
-      }}
+      render={renderWithFormatting(props, 'em')}
       type="typography"
     />
   )
@@ -75,15 +93,12 @@ export function Heading(
   props: TypographyProps<HeadingType> & { level: HeadingLevel },
 ) {
   const { level, ...rest } = props
-  const Component = headings[level]
 
   return (
     <DeepDish<TypographyValue>
       deepdish={props.deepdish}
       fallback={props.children}
-      render={(content) => {
-        return <Component {...rest}>{content}</Component>
-      }}
+      render={renderWithFormatting(rest, headings[level])}
       type="typography"
     />
   )
@@ -118,9 +133,7 @@ export function Italicize(props: TypographyProps<'i'>) {
     <DeepDish<TypographyValue>
       deepdish={props.deepdish}
       fallback={props.children}
-      render={(content) => {
-        return <i {...props}>{content}</i>
-      }}
+      render={renderWithFormatting(props, 'i')}
       type="typography"
     />
   )
@@ -131,9 +144,7 @@ export function Paragraph(props: TypographyProps<'p'>) {
     <DeepDish<TypographyValue>
       deepdish={props.deepdish}
       fallback={props.children}
-      render={(content) => {
-        return <p {...props}>{content}</p>
-      }}
+      render={renderWithFormatting(props, 'p')}
       type="typography"
     />
   )
@@ -144,9 +155,7 @@ export function Span(props: TypographyProps<'span'>) {
     <DeepDish<TypographyValue>
       deepdish={props.deepdish}
       fallback={props.children}
-      render={(content) => {
-        return <span {...props}>{content}</span>
-      }}
+      render={renderWithFormatting(props, 'span')}
       type="typography"
     />
   )
@@ -157,9 +166,7 @@ export function Strong(props: TypographyProps<'strong'>) {
     <DeepDish<TypographyValue>
       deepdish={props.deepdish}
       fallback={props.children}
-      render={(content) => {
-        return <strong {...props}>{content}</strong>
-      }}
+      render={renderWithFormatting(props, 'strong')}
       type="typography"
     />
   )
@@ -170,9 +177,7 @@ export function Underline(props: TypographyProps<'u'>) {
     <DeepDish<TypographyValue>
       deepdish={props.deepdish}
       fallback={props.children}
-      render={(content) => {
-        return <u {...props}>{content}</u>
-      }}
+      render={renderWithFormatting(props, 'u')}
       type="typography"
     />
   )
