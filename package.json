@@ -10,6 +10,7 @@
     "build:packages": "turbo build --filter './packages/*'",
     "ci:publish": "bun run build:packages && changeset publish && git push --follow-tags",
     "ci:version": "changeset version",
+    "clean": "rimraf --glob **/.next **/.turbo **/dist **/node_modules",
     "dev": "turbo dev",
     "format-and-lint": "biome check . & bun sort-manifests --check",
     "format-and-lint:fix": "biome check --write . & bun sort-manifests",
@@ -21,6 +22,7 @@
     "@changesets/changelog-git": "0.2.0",
     "@changesets/cli": "2.27.7",
     "cspell": "8.13.3",
+    "rimraf": "6.0.1",
     "sort-package-json": "2.10.0",
     "turbo": "2.0.12"
   },
