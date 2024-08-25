@@ -13,7 +13,7 @@ function renderWithFormatting<E extends IntrinsicElement>(
   props: TypographyProps<E>,
   Element: React.ElementType,
 ) {
-  return async (content: string) => {
+  return async (content: TypographyValue) => {
     const { children, deepdish, format, ...rest } = props
 
     if (format === 'html' || format === 'markdown') {
