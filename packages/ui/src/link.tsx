@@ -13,7 +13,7 @@ export function Link(props: ElementProps<'a', string>) {
         href: props.href,
         title: props.title,
       }}
-      render={(content) => {
+      render={async (content) => {
         return (
           <a {...props} href={content?.href} title={content?.title}>
             {content?.destination}
