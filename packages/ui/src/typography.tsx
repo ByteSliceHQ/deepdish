@@ -1,48 +1,12 @@
 import 'server-only'
 
 import type { TypographyValue } from '@deepdish/config/schemas'
-import rehypeParse from 'rehype-parse'
-import rehypeSanitize from 'rehype-sanitize'
-import rehypeStringify from 'rehype-stringify'
-import remarkParse from 'remark-parse'
-import remarkRehype from 'remark-rehype'
-import { unified } from 'unified'
 import { DeepDish } from './deepdish'
+import { type ContentFormat, sanitizeContent } from './content'
 import type { ElementProps, IntrinsicElement } from './types'
-
-type ContentFormat = 'plain' | 'markdown' | 'html'
 
 type TypographyProps<E extends IntrinsicElement> = ElementProps<E, string> & {
   format?: ContentFormat
-}
-
-async function sanitizeContent(content: string, format: ContentFormat) {
-  if (format === 'html') {
-    const output = await unified()
-      .use(rehypeParse)
-      .use(rehypeSanitize, {
-        attributes: {
-          '*': ['className'],
-        },
-      })
-      .use(rehypeStringify)
-      .process(content)
-
-    return output.toString()
-  }
-
-  if (format === 'markdown') {
-    const output = await unified()
-      .use(remarkParse)
-      .use(remarkRehype)
-      .use(rehypeSanitize)
-      .use(rehypeStringify)
-      .process(content)
-
-    return output.toString()
-  }
-
-  return content
 }
 
 function renderWithFormatting<E extends IntrinsicElement>(
