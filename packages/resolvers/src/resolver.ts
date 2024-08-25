@@ -1,13 +1,13 @@
 import type { ZodTypeAny, z } from 'zod'
-import type { Context, Result } from './types'
+import type { Context, ResolverResult } from './types'
 
 type Read<T> = (context: Context) => Promise<T>
 
 type Write<T, V> = (context: Context, value: V) => Promise<T>
 
 export type Resolver<V> = {
-  read: Read<Result<V>>
-  write: Write<Result<void>, V>
+  read: Read<ResolverResult<V>>
+  write: Write<ResolverResult<void>, V>
 }
 
 function handleException(ex: unknown): Error {

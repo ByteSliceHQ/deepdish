@@ -18,4 +18,4 @@ type ResolverFailure =
   | { type: 'READ'; cause: Error }
   | { type: 'WRITE'; cause: Error }
 
-export type Result<T> = Success<T> | Failure<ResolverFailure>
+export type ResolverResult<T> = Success<T> | Failure<ResolverFailure>
