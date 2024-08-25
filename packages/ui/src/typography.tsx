@@ -1,8 +1,8 @@
 import 'server-only'
 
 import type { TypographyValue } from '@deepdish/config/schemas'
-import { DeepDish } from './deepdish'
 import { type ContentFormat, sanitizeContent } from './content'
+import { DeepDish } from './deepdish'
 import type { ElementProps, IntrinsicElement } from './types'
 
 type TypographyProps<E extends IntrinsicElement> = ElementProps<E, string> & {
