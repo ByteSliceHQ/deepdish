@@ -11,7 +11,7 @@
       "persistent": true
     },
     "build": {
-      "outputs": ["dist/**"],
+      "outputs": [".next/**", "!.next/cache/**", "dist/**"],
       "dependsOn": ["^build"],
       "env": ["DEEPDISH_SECRET_KEY", "DEEPDISH_URL"]
     },
