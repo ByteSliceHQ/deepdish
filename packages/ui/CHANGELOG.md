@@ -1,5 +1,11 @@
 # @deepdish/ui
 
+## 0.5.0
+
+### Minor Changes
+
+- 3cceffd: Added Markdown and HTML formatting to the typography components.
+
 ## 0.4.0
 
 ### Minor Changes
