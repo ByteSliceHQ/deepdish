@@ -1,11 +1,10 @@
 import type { Result } from '@deepdish/types/result'
 
 type ResolverFailure =
-  | { type: 'UNEXPECTED'; cause: Error }
+  | { type: 'DATA_INVALID'; error: Error }
   | { type: 'DATA_MISSING' }
-  | { type: 'DATA_INVALID'; cause: Error }
-  | { type: 'READ'; cause: Error }
-  | { type: 'WRITE'; cause: Error }
+  | { type: 'READ'; error: Error }
+  | { type: 'WRITE'; error: Error }
 
 export type ResolverResult<T> = Result<T, ResolverFailure>
 
@@ -15,18 +14,11 @@ function handleException(ex: unknown): Error {
 
 export async function withResult<T>(
   input: T | Promise<T>,
-  type: ResolverFailure['type'],
+  onException: (error: Error) => ResolverFailure,
 ): Promise<ResolverResult<T>> {
   try {
-    return {
-      data: await input,
-    }
+    return { data: await input }
   } catch (ex) {
-    return {
-      failure: {
-        type,
-        cause: handleException(ex),
-      },
-    }
+    return { failure: onException(handleException(ex)) }
   }
 }
