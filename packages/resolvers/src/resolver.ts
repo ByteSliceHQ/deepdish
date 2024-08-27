@@ -1,5 +1,5 @@
 import type { ZodTypeAny, z } from 'zod'
-import type { ResolverResult } from './result'
+import { type ResolverResult, handleException, withResult } from './result'
 
 type Context = { key: string }
 
@@ -12,10 +12,6 @@ export type Resolver<V> = {
   write: Write<ResolverResult<void>, V>
 }
 
-function handleException(ex: unknown): Error {
-  return ex instanceof Error ? ex : Error('Something went wrong')
-}
-
 export function createResolver<S extends ZodTypeAny>(schema: S) {
   type Value = z.infer<S>
 
@@ -23,8 +19,23 @@ export function createResolver<S extends ZodTypeAny>(schema: S) {
     return {
       async read(context) {
         try {
-          const data = await read(context)
-          schema.parse(data)
+          const readResult = await withResult(read(context), 'READ')
+          if (readResult.failure) {
+            return readResult
+          }
+
+          const { data } = readResult
+          if (!data) {
+            return { failure: { type: 'DATA_MISSING' } }
+          }
+
+          const parseResult = await withResult(
+            schema.parse(data),
+            'DATA_INVALID',
+          )
+          if (parseResult.failure) {
+            return parseResult
+          }
 
           return { data }
         } catch (ex) {
@@ -40,7 +51,11 @@ export function createResolver<S extends ZodTypeAny>(schema: S) {
         'use server'
 
         try {
-          await write(context, value)
+          const writeResult = await withResult(write(context, value), 'WRITE')
+          if (writeResult.failure) {
+            return writeResult
+          }
+
           return { data: undefined }
         } catch (ex) {
           return {
