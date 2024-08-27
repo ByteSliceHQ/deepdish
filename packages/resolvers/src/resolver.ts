@@ -1,5 +1,5 @@
 import type { ZodTypeAny, z } from 'zod'
-import { type ResolverResult, handleException, withResult } from './result'
+import { type ResolverResult, withResult } from './result'
 
 type Context = { key: string }
 
@@ -18,53 +18,32 @@ export function createResolver<S extends ZodTypeAny>(schema: S) {
   return (read: Read<unknown>, write: Write<void, Value>): Resolver<Value> => {
     return {
       async read(context) {
-        try {
-          const readResult = await withResult(read(context), 'READ')
-          if (readResult.failure) {
-            return readResult
-          }
-
-          const { data } = readResult
-          if (!data) {
-            return { failure: { type: 'DATA_MISSING' } }
-          }
-
-          const parseResult = await withResult(
-            schema.parse(data),
-            'DATA_INVALID',
-          )
-          if (parseResult.failure) {
-            return parseResult
-          }
-
-          return { data }
-        } catch (ex) {
-          return {
-            failure: {
-              type: 'UNEXPECTED',
-              cause: handleException(ex),
-            },
-          }
+        const readResult = await withResult(read(context), 'READ')
+        if (readResult.failure) {
+          return readResult
         }
+
+        const { data } = readResult
+        if (!data) {
+          return { failure: { type: 'DATA_MISSING' } }
+        }
+
+        const parseResult = await withResult(schema.parse(data), 'DATA_INVALID')
+        if (parseResult.failure) {
+          return parseResult
+        }
+
+        return { data }
       },
       async write(context, value) {
         'use server'
 
-        try {
-          const writeResult = await withResult(write(context, value), 'WRITE')
-          if (writeResult.failure) {
-            return writeResult
-          }
-
-          return { data: undefined }
-        } catch (ex) {
-          return {
-            failure: {
-              type: 'UNEXPECTED',
-              cause: handleException(ex),
-            },
-          }
+        const writeResult = await withResult(write(context, value), 'WRITE')
+        if (writeResult.failure) {
+          return writeResult
         }
+
+        return { data: undefined }
       },
     }
   }

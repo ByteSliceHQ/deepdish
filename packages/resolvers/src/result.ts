@@ -9,7 +9,7 @@ type ResolverFailure =
 
 export type ResolverResult<T> = Result<T, ResolverFailure>
 
-export function handleException(ex: unknown): Error {
+function handleException(ex: unknown): Error {
   return ex instanceof Error ? ex : Error('Something went wrong')
 }
 
