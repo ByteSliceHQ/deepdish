@@ -1,5 +1,7 @@
 import type { ZodTypeAny, z } from 'zod'
-import type { Context, ResolverResult } from './types'
+import type { ResolverResult } from './result'
+
+type Context = { key: string }
 
 type Read<T> = (context: Context) => Promise<T>
 

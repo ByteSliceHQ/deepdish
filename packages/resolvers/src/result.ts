@@ -1,9 +1,5 @@
 import type { Result } from '@deepdish/types/result'
 
-export type Context = {
-  key: string
-}
-
 type ResolverFailure =
   | { type: 'UNEXPECTED'; cause: Error }
   | { type: 'DATA_MISSING' }
