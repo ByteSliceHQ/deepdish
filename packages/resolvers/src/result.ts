@@ -13,11 +13,11 @@ function handleException(ex: unknown): Error {
 }
 
 export async function withResult<T>(
-  input: T | Promise<T>,
+  operation: T | Promise<T>,
   onException: (error: Error) => ResolverFailure,
 ): Promise<ResolverResult<T>> {
   try {
-    return { data: await input }
+    return { data: await operation }
   } catch (ex) {
     return { failure: onException(handleException(ex)) }
   }
