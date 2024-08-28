@@ -2,4 +2,4 @@
 "@deepdish/ui": patch
 ---
 
-Handled potential resolver read failures.
+Conditionally rendered fallback content during read failure.

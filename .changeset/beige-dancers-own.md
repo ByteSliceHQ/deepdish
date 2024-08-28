@@ -2,4 +2,4 @@
 "@deepdish/resolvers": minor
 ---
 
-Defined failure states for resolver operations.
+Implemented operation result states.
