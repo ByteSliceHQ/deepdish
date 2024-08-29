@@ -1,4 +1,5 @@
 import type { Resolver } from '@deepdish/resolvers'
+import type { ConfigResult } from './result'
 import type {
   AudioValue,
   ImageValue,
