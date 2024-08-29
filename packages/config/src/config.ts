@@ -30,23 +30,29 @@ type Config = {
 
 let config: Config
 
-export function configure(input: Config): void {
+export function configure(input: Config): ConfigResult<void> {
   if (config) {
-    throw new Error('Configuration has already been initialized')
+    console.error('Configuration has already been initialized')
+    return { failure: { type: 'INITIALIZED' } }
   }
 
   config = Object.freeze(input)
+  return { data: undefined }
 }
 
-export function getContract<T extends ValueType>(type: T): Contract<T> {
+export function getContract<T extends ValueType>(
+  type: T,
+): ConfigResult<Contract<T>> {
   if (!config) {
-    throw new Error('Configuration has not been initialized')
+    console.error('Configuration has not been initialized')
+    return { failure: { type: 'UNINITIALIZED' } }
   }
 
   const contract = config.contracts[type]
   if (!contract) {
-    throw new Error(`Missing "${type}" contract`)
+    console.error(`Missing "${type}" contract`)
+    return { failure: { type: 'CONTRACT_MISSING', contract: type } }
   }
 
-  return contract
+  return { data: contract }
 }
