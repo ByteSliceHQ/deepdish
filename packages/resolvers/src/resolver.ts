@@ -1,17 +1,15 @@
 import type { ZodTypeAny, z } from 'zod'
-import type { Context, Result } from './types'
+import { type ResolverResult, withResult } from './result'
+
+type Context = { key: string }
 
 type Read<T> = (context: Context) => Promise<T>
 
 type Write<T, V> = (context: Context, value: V) => Promise<T>
 
 export type Resolver<V> = {
-  read: Read<Result<V>>
-  write: Write<Result<void>, V>
-}
-
-function handleException(ex: unknown): Error {
-  return ex instanceof Error ? ex : Error('Something went wrong')
+  read: Read<ResolverResult<V>>
+  write: Write<ResolverResult<void>, V>
 }
 
 export function createResolver<S extends ZodTypeAny>(schema: S) {
@@ -19,25 +17,39 @@ export function createResolver<S extends ZodTypeAny>(schema: S) {
 
   return (read: Read<unknown>, write: Write<void, Value>): Resolver<Value> => {
     return {
-      read: async (context) => {
-        try {
-          const data = await read(context)
-          schema.parse(data)
-
-          return { data }
-        } catch (ex) {
-          return { error: handleException(ex) }
+      async read(context) {
+        const readResult = await withResult(read(context), (error) => {
+          return { type: 'READ', error }
+        })
+        if (readResult.failure) {
+          return readResult
         }
+
+        const { data } = readResult
+        if (!data) {
+          return { failure: { type: 'DATA_MISSING' } }
+        }
+
+        const parseResult = await withResult(schema.parse(data), (error) => {
+          return { type: 'DATA_INVALID', error }
+        })
+        if (parseResult.failure) {
+          return parseResult
+        }
+
+        return { data }
       },
-      write: async (context, value) => {
+      async write(context, value) {
         'use server'
 
-        try {
-          await write(context, value)
-          return { data: undefined }
-        } catch (ex) {
-          return { error: handleException(ex) }
+        const writeResult = await withResult(write(context, value), (error) => {
+          return { type: 'WRITE', error }
+        })
+        if (writeResult.failure) {
+          return writeResult
         }
+
+        return { data: undefined }
       },
     }
   }
