@@ -32,7 +32,7 @@ let config: Config
 
 export function configure(input: Config): void {
   if (config) {
-    throw Error('Configuration has already been initialized')
+    throw new Error('Configuration has already been initialized')
   }
 
   config = Object.freeze(input)
@@ -40,12 +40,12 @@ export function configure(input: Config): void {
 
 export function getContract<T extends ValueType>(type: T): Contract<T> {
   if (!config) {
-    throw Error('Configuration has not been initialized')
+    throw new Error('Configuration has not been initialized')
   }
 
   const contract = config.contracts[type]
   if (!contract) {
-    throw Error(`Missing "${type}" contract`)
+    throw new Error(`Missing "${type}" contract`)
   }
 
   return contract
