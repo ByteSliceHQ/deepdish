@@ -21,11 +21,11 @@ export async function DeepDish<V>(props: {
   }
 
   const { resolver } = contractResult.data
-  const result = await resolver.read({
+  const readResult = await resolver.read({
     key: props.deepdish.key,
   })
-  if (result.failure) {
-    switch (result.failure.type) {
+  if (readResult.failure) {
+    switch (readResult.failure.type) {
       case 'DATA_MISSING':
         // TODO: handle missing data
         break
@@ -36,5 +36,5 @@ export async function DeepDish<V>(props: {
     return props.render(props.fallback)
   }
 
-  return props.render(result.data as V)
+  return props.render(readResult.data as V)
 }
