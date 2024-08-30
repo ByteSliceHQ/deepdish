@@ -3,12 +3,12 @@ type Success<T> = {
   data: T
 }
 
+type Failure<T> = {
+  failure: T
+}
+
 type FailureCase = {
   type: string
 }
 
-type Failure<T extends FailureCase> = {
-  failure: T
-}
-
-export type Result<S, F extends FailureCase> = Success<S> | Failure<F>
+export type Result<S, F extends FailureCase | Error> = Success<S> | Failure<F>
