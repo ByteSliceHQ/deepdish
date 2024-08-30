@@ -2,4 +2,4 @@
 "@deepdish/types": patch
 ---
 
-Permitted failure property to be an error object.
+Permitted failure result to contain an error or failure case.
