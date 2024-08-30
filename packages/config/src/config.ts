@@ -32,8 +32,9 @@ let config: Config
 
 export function configure(input: Config): ConfigResult<void> {
   if (config) {
-    console.error('Configuration has already been initialized')
-    return { failure: { type: 'INITIALIZED' } }
+    const error = new Error('Configuration has already been initialized')
+    console.error(error.message)
+    return { failure: error }
   }
 
   config = Object.freeze(input)
@@ -44,14 +45,16 @@ export function getContract<T extends ValueType>(
   type: T,
 ): ConfigResult<Contract<T>> {
   if (!config) {
-    console.error('Configuration has not been initialized')
-    return { failure: { type: 'UNINITIALIZED' } }
+    const error = new Error('Configuration has not been initialized')
+    console.error(error.message)
+    return { failure: error }
   }
 
   const contract = config.contracts[type]
   if (!contract) {
-    console.error(`Missing "${type}" contract`)
-    return { failure: { type: 'CONTRACT_MISSING', contract: type } }
+    const error = new Error(`Missing "${type}" contract`)
+    console.error(error.message)
+    return { failure: error }
   }
 
   return { data: contract }
