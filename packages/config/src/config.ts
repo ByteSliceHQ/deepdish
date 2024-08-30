@@ -52,7 +52,7 @@ export function getContract<T extends ValueType>(
 
   const contract = config.contracts[type]
   if (!contract) {
-    const error = new Error(`Missing "${type}" contract`)
+    const error = new Error(`Missing contract: ${type}`)
     console.error(error.message)
     return { failure: error }
   }
