@@ -1,5 +1,5 @@
 import type { Resolver } from '@deepdish/resolvers'
-import type { ConfigResult } from './result'
+import type { Result } from '@deepdish/types/result'
 import type {
   AudioValue,
   ImageValue,
@@ -30,7 +30,7 @@ type Config = {
 
 let config: Config
 
-export function configure(input: Config): ConfigResult<void> {
+export function configure(input: Config): Result<void, Error> {
   if (config) {
     const error = new Error('Configuration has already been initialized')
     console.error(error.message)
@@ -43,7 +43,7 @@ export function configure(input: Config): ConfigResult<void> {
 
 export function getContract<T extends ValueType>(
   type: T,
-): ConfigResult<Contract<T>> {
+): Result<Contract<T>, Error> {
   if (!config) {
     const error = new Error('Configuration has not been initialized')
     console.error(error.message)
