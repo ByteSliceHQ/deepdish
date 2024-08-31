@@ -1,5 +1,16 @@
 # @deepdish/resolvers
 
+## 0.4.0
+
+### Minor Changes
+
+- e230409: Implemented operation result states.
+
+### Patch Changes
+
+- Updated dependencies [2db9038]
+  - @deepdish/types@0.1.0
+
 ## 0.3.0
 
 ### Minor Changes

@@ -1,5 +1,14 @@
 # @deepdish/ui
 
+## 0.5.1
+
+### Patch Changes
+
+- 2db9038: Conditionally rendered fallback content when unable to retrieve contract.
+- e230409: Conditionally rendered fallback content during read failure.
+- Updated dependencies [2db9038]
+  - @deepdish/config@0.2.0
+
 ## 0.5.0
 
 ### Minor Changes
