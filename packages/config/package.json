@@ -24,7 +24,6 @@
   },
   "dependencies": {
     "@deepdish/resolvers": "*",
-    "@deepdish/types": "*",
     "zod": "3.23.8"
   },
   "devDependencies": {
