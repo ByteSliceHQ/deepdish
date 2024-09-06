@@ -1,5 +1,5 @@
+import { type Result, withResult } from '@byteslice/result'
 import type { ZodTypeAny, z } from 'zod'
-import { type ResolverResult, withResult } from './result'
 
 type Context = { key: string }
 
@@ -7,9 +7,15 @@ type Read<T> = (context: Context) => Promise<T>
 
 type Write<T, V> = (context: Context, value: V) => Promise<T>
 
+type ResolverFailure =
+  | { type: 'DATA_INVALID'; error: Error }
+  | { type: 'DATA_MISSING' }
+  | { type: 'READ'; error: Error }
+  | { type: 'WRITE'; error: Error }
+
 export type Resolver<V> = {
-  read: Read<ResolverResult<V>>
-  write: Write<ResolverResult<void>, V>
+  read: Read<Result<V, ResolverFailure>>
+  write: Write<Result<void, ResolverFailure>, V>
 }
 
 export function createResolver<S extends ZodTypeAny>(schema: S) {
@@ -18,9 +24,10 @@ export function createResolver<S extends ZodTypeAny>(schema: S) {
   return (read: Read<unknown>, write: Write<void, Value>): Resolver<Value> => {
     return {
       async read(context) {
-        const readResult = await withResult(read(context), (error) => {
-          return { type: 'READ', error }
-        })
+        const readResult = await withResult<unknown, ResolverFailure>(
+          read(context),
+          (error) => ({ type: 'READ', error }),
+        )
         if (readResult.failure) {
           return readResult
         }
@@ -30,9 +37,10 @@ export function createResolver<S extends ZodTypeAny>(schema: S) {
           return { failure: { type: 'DATA_MISSING' } }
         }
 
-        const parseResult = await withResult(schema.parse(data), (error) => {
-          return { type: 'DATA_INVALID', error }
-        })
+        const parseResult = await withResult<unknown, ResolverFailure>(
+          schema.parse(data),
+          (error) => ({ type: 'DATA_INVALID', error }),
+        )
         if (parseResult.failure) {
           return parseResult
         }
@@ -42,9 +50,10 @@ export function createResolver<S extends ZodTypeAny>(schema: S) {
       async write(context, value) {
         'use server'
 
-        const writeResult = await withResult(write(context, value), (error) => {
-          return { type: 'WRITE', error }
-        })
+        const writeResult = await withResult<void, ResolverFailure>(
+          write(context, value),
+          (error) => ({ type: 'WRITE', error }),
+        )
         if (writeResult.failure) {
           return writeResult
         }

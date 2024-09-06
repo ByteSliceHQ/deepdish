@@ -23,8 +23,8 @@
     "dev": "tsup --watch"
   },
   "dependencies": {
+    "@byteslice/result": "0.0.1",
     "@deepdish/resolvers": "*",
-    "@deepdish/types": "*",
     "zod": "3.23.8"
   },
   "devDependencies": {
