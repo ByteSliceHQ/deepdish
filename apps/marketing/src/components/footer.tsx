@@ -1,4 +1,4 @@
-import { Heading2 } from '@deepdish/ui/typography'
+import { Heading2 } from '@deepdish/ui/elements'
 
 export default function Footer() {
   return (

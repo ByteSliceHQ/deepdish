@@ -1,4 +1,4 @@
-import { Heading2, Paragraph } from '@deepdish/ui/typography'
+import { Heading2, Paragraph } from '@deepdish/ui/elements'
 import {
   CameraIcon,
   CloudArrowUpIcon,
@@ -28,12 +28,12 @@ const features = [
   },
 ]
 
-const afterDeepDishSnippet = `import { 
-  Heading1, 
+const afterDeepDishSnippet = `import {
+  Heading1,
+  Image,
+  Link,
   Paragraph,
-} from '@deepdish/ui/typography'
-import { Image } from '@deepdish/ui/media'
-import { Link } from '@deepdish/ui/link'
+} from '@deepdish/ui/elements'
 
 function HeroBanner() {
   return (
