@@ -4,9 +4,9 @@ export default defineConfig({
   entry: [
     'src/config.ts',
     'src/deepdish.tsx',
-    'src/link.tsx',
-    'src/media.tsx',
-    'src/typography.tsx',
+    'src/elements/link.tsx',
+    'src/elements/media.tsx',
+    'src/elements/typography.tsx',
   ],
   format: ['cjs', 'esm'],
   sourcemap: true,
