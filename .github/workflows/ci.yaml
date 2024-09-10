@@ -5,25 +5,22 @@ on:
   workflow_dispatch:
 
 jobs:
-  biome:
-    name: Format & lint
+  check:
+    name: Check code
     runs-on: ubuntu-latest
     steps:
       - name: Access repo
         uses: actions/checkout@v4
 
-      - name: Set up Biome CLI
-        uses: biomejs/setup-biome@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
-      - name: Run code analysis
-        run: biome ci .
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version-file: package.json
 
-  cspell:
-    name: Check spelling
-    runs-on: ubuntu-latest
-    steps:
-      - name: Access repo
-        uses: actions/checkout@v4
-
-      - name: Run spell check
-        uses: streetsidesoftware/cspell-action@v6
+      - name: Run code check
+        run: bun run ci:check
