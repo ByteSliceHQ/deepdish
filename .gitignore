@@ -6,7 +6,7 @@ node_modules/
 *.pem
 
 # outputs
-dist
+dist/
 
 # secrets
 .env*.local
@@ -14,11 +14,7 @@ dist
 # turborepo
 .turbo/
 
-# typescript
-next-env.d.ts
-
 # vercel
 .next/
-.vercel
-
-
+.vercel/
+next-env.d.ts
