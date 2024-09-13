@@ -1,4 +1,4 @@
-import { Heading1 } from '@deepdish/ui/elements'
+import { Heading1 } from '@deepdish/ui/typography'
 import { DeepDishLogo } from './logo'
 
 export function Header() {

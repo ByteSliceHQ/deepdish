@@ -1,4 +1,4 @@
-import { Heading1, Paragraph } from '@deepdish/ui/elements'
+import { Heading1, Paragraph } from '@deepdish/ui/typography'
 import { Button } from './ui/button'
 
 export default function Hero() {

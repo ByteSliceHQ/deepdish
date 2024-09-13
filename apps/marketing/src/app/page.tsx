@@ -18,7 +18,7 @@ const beforeDeepDishSnippet = `function HeroBanner() {
 
 `
 
-const afterDeepDishSnippet = `import { Heading1, Paragraph } from '@deepdish/ui/elements'
+const afterDeepDishSnippet = `import { Heading1, Paragraph } from '@deepdish/ui/typography'
 
 function HeroBanner() {
   return (
