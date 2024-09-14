@@ -1,8 +1,8 @@
 import 'server-only'
 
 import type { LinkValue } from '@deepdish/config/schemas'
-import { DeepDish } from './deepdish'
-import type { ElementProps } from './types'
+import { DeepDish } from '../deepdish'
+import type { ElementProps } from '../types'
 
 export function Link(props: ElementProps<'a', string>) {
   return (
