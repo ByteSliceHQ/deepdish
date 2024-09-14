@@ -9,19 +9,19 @@
   },
   "exports": {
     "./link": {
-      "import": "./dist/link.mjs",
-      "types": "./dist/link.d.ts",
-      "require": "./dist/link.js"
+      "import": "./dist/elements/link.mjs",
+      "types": "./dist/elements/link.d.ts",
+      "require": "./dist/elements/link.js"
     },
     "./media": {
-      "import": "./dist/media.mjs",
-      "types": "./dist/media.d.ts",
-      "require": "./dist/media.js"
+      "import": "./dist/elements/media.mjs",
+      "types": "./dist/elements/media.d.ts",
+      "require": "./dist/elements/media.js"
     },
     "./typography": {
-      "import": "./dist/typography.mjs",
-      "types": "./dist/typography.d.ts",
-      "require": "./dist/typography.js"
+      "import": "./dist/elements/typography.mjs",
+      "types": "./dist/elements/typography.d.ts",
+      "require": "./dist/elements/typography.js"
     }
   },
   "scripts": {
