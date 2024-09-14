@@ -1,1 +1,5 @@
+clsx
+heroicons
+lucide
+tailwindcss
 waitlist

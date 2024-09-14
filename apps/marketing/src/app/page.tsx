@@ -3,8 +3,9 @@ import Footer from '@/components/footer'
 import { Header } from '@/components/header'
 import Hero from '@/components/hero'
 import Subscribe from '@/components/subscribe'
-import { Code } from 'bright'
+// import { Code } from 'bright'
 
+/*
 const beforeDeepDishSnippet = `function HeroBanner() {
   return (
     <div>
@@ -47,6 +48,7 @@ function CodeSnippet(props: CodeSnippetProps) {
     </Code>
   )
 }
+*/
 
 export const dynamic = 'force-dynamic'
 

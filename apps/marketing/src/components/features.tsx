@@ -1,7 +1,6 @@
 import { Heading2, Paragraph } from '@deepdish/ui/typography'
 import {
   CameraIcon,
-  CloudArrowUpIcon,
   CodeBracketIcon,
   CursorArrowRaysIcon,
 } from '@heroicons/react/20/solid'
