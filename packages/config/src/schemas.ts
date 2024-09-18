@@ -41,3 +41,5 @@ export type ValueMap = {
   typography: TypographyValue
   video: VideoValue
 }
+
+export type ValueType = keyof ValueMap
