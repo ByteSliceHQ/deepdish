@@ -1,10 +1,6 @@
 import type { Result } from '@byteslice/result'
-import type { Resolver } from '@deepdish/resolvers'
-import type { ValueMap, ValueType } from './schemas'
-
-type Contract<T extends ValueType> = {
-  readonly resolver: Resolver<ValueMap[T]>
-}
+import type { Contract } from './contract'
+import type { ValueType } from './schemas'
 
 type Config = {
   contracts: {
