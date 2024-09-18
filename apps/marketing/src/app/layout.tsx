@@ -4,6 +4,7 @@ import { cms } from '@/cms'
 import { cn } from '@/lib/utils'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import { ClerkProvider } from '@clerk/nextjs'
 
 cms(process.env.DEEPDISH_URL, process.env.DEEPDISH_SECRET_KEY)
 
@@ -26,7 +27,7 @@ export default function RootLayout(props: Props) {
           fontSans.variable,
         )}
       >
-        {props.children}
+        <ClerkProvider>{props.children}</ClerkProvider>
       </body>
     </html>
   )
