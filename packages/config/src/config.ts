@@ -1,20 +1,6 @@
 import type { Result } from '@byteslice/result'
 import type { Resolver } from '@deepdish/resolvers'
-import type {
-  AudioValue,
-  ImageValue,
-  LinkValue,
-  TypographyValue,
-  VideoValue,
-} from './schemas'
-
-type ValueMap = {
-  audio: AudioValue
-  image: ImageValue
-  link: LinkValue
-  typography: TypographyValue
-  video: VideoValue
-}
+import type { ValueMap } from './schemas'
 
 export type ValueType = keyof ValueMap
 
