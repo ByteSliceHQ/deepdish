@@ -1,26 +1,6 @@
 import type { Result } from '@byteslice/result'
-import type { Resolver } from '@deepdish/resolvers'
-import type {
-  AudioValue,
-  ImageValue,
-  LinkValue,
-  TypographyValue,
-  VideoValue,
-} from './schemas'
-
-type ValueMap = {
-  audio: AudioValue
-  image: ImageValue
-  link: LinkValue
-  typography: TypographyValue
-  video: VideoValue
-}
-
-export type ValueType = keyof ValueMap
-
-type Contract<T extends ValueType> = {
-  readonly resolver: Resolver<ValueMap[T]>
-}
+import type { Contract } from './contract'
+import type { ValueType } from './schemas'
 
 type Config = {
   contracts: {
@@ -30,11 +10,14 @@ type Config = {
 
 let config: Config
 
+function failure(message: string) {
+  console.error(message)
+  return { failure: new Error(message) }
+}
+
 export function configure(input: Config): Result<void> {
   if (config) {
-    const error = new Error('Configuration has already been initialized')
-    console.error(error.message)
-    return { failure: error }
+    return failure('Configuration has already been initialized')
   }
 
   config = Object.freeze(input)
@@ -44,16 +27,12 @@ export function configure(input: Config): Result<void> {
 
 export function getContract<T extends ValueType>(type: T): Result<Contract<T>> {
   if (!config) {
-    const error = new Error('Configuration has not been initialized')
-    console.error(error.message)
-    return { failure: error }
+    return failure('Configuration has not been initialized')
   }
 
   const contract = config.contracts[type]
   if (!contract) {
-    const error = new Error(`Missing contract: ${type}`)
-    console.error(error.message)
-    return { failure: error }
+    return failure(`Missing contract: ${type}`)
   }
 
   return { data: contract }
