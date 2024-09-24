@@ -15,9 +15,9 @@
   "dependencies": {
     "@clerk/nextjs": "5.4.1",
     "@deepdish-cloud/resolvers": "0.0.4",
-    "@deepdish/config": "*",
-    "@deepdish/resolvers": "*",
-    "@deepdish/ui": "*",
+    "@deepdish/config": "workspace:0.2.0",
+    "@deepdish/resolvers": "workspace:0.4.0",
+    "@deepdish/ui": "workspace:0.5.1",
     "@heroicons/react": "2.1.5",
     "@radix-ui/react-slot": "1.0.2",
     "@tailwindcss/forms": "0.5.7",
