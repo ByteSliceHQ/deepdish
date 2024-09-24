@@ -4,3 +4,6 @@ exact = true
 [install.scopes]
 "@deepdish" = { token = "$NPM_TOKEN_DEEPDISH", url = "https://registry.npmjs.org/" }
 "@deepdish-cloud" = { token = "$NPM_TOKEN_DEEPDISH_CLOUD", url = "https://registry.npmjs.org/" }
+
+[test]
+preload = "./happydom.ts"
