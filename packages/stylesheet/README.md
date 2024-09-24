@@ -48,6 +48,8 @@ export function Button({ children }: { children: React.ReactNode }) {
 You can quickly create a UI primitive using the `.element` method on a `Stylesheet`. The method supports [Class Variance Authority](https://cva.style/docs), which makes it trivial to create UI variants.
 
 ```tsx
+import { cva } from "class-variance-authority";
+
 // the stylesheet we created above
 import { stylesheet } from "./stylesheet";
 
