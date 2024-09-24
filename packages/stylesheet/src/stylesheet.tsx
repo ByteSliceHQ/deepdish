@@ -89,7 +89,7 @@ class Stylesheet {
           })
           .join('\n')
 
-        const psuedoDeclarations = Object.entries(pseudos).map(
+        const pseudoDeclarations = Object.entries(pseudos).map(
           ([pseudo, properties]) => {
             const nestedDeclarations = Object.entries(properties)
               .map(([property, value]) => {
@@ -101,7 +101,7 @@ class Stylesheet {
           },
         )
 
-        return `${selector} {\n${plainDeclarations}\n\n${psuedoDeclarations}\n}`
+        return `${selector} {\n${plainDeclarations}\n\n${pseudoDeclarations}\n}`
       })
       .join('\n\n')
   }
