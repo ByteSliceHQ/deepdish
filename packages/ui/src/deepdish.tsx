@@ -2,7 +2,7 @@
 
 import 'server-only'
 
-import { getDraft, getContract } from '@deepdish/config'
+import { getContract, getDraft } from '@deepdish/config'
 import type { ValueType } from '@deepdish/config/schemas'
 import type { DeepDishProps } from './types'
 
