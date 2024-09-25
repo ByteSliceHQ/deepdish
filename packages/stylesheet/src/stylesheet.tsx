@@ -107,7 +107,7 @@ class Stylesheet {
   }
 }
 
-export function makeStylesheet(name: string) {
+export function makeStyleSheet(name: string) {
   return new Stylesheet(name)
 }
 

@@ -1,14 +1,14 @@
 import { describe, expect, it } from 'bun:test'
-import { makeStylesheet } from './stylesheet'
+import { makeStyleSheet } from './stylesheet'
 
 describe('stylesheet', () => {
   it('should create a stylesheet', () => {
-    const stylesheet = makeStylesheet('test')
+    const stylesheet = makeStyleSheet('test')
     expect(stylesheet.rules).toEqual([])
   })
 
   it('should add a rule to the stylesheet', () => {
-    const stylesheet = makeStylesheet('test')
+    const stylesheet = makeStyleSheet('test')
 
     stylesheet.addRule({
       selector: '.my-class',
@@ -40,7 +40,7 @@ describe('stylesheet', () => {
   })
 
   it('should add a rule using the style utility', () => {
-    const stylesheet = makeStylesheet('test')
+    const stylesheet = makeStyleSheet('test')
 
     const className = stylesheet.style(
       {
@@ -66,7 +66,7 @@ describe('stylesheet', () => {
   })
 
   it('should render the stylesheet as a string', () => {
-    const stylesheet = makeStylesheet('test')
+    const stylesheet = makeStyleSheet('test')
 
     stylesheet.addRule({
       selector: '.my-class',
@@ -82,7 +82,7 @@ describe('stylesheet', () => {
   })
 
   it('should mount the stylesheet to the document head', () => {
-    const stylesheet = makeStylesheet('test')
+    const stylesheet = makeStyleSheet('test')
 
     stylesheet.addRule({
       selector: '.my-class',
@@ -105,7 +105,7 @@ describe('stylesheet', () => {
   })
 
   it('should mount the stylesheet to a shadow root', () => {
-    const stylesheet = makeStylesheet('test')
+    const stylesheet = makeStyleSheet('test')
 
     stylesheet.addRule({
       selector: '.my-class',

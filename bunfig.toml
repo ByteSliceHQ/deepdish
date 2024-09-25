@@ -6,4 +6,4 @@ exact = true
 "@deepdish-cloud" = { token = "$NPM_TOKEN_DEEPDISH_CLOUD", url = "https://registry.npmjs.org/" }
 
 [test]
-preload = "./happydom.ts"
+preload = "./test/happydom.ts"

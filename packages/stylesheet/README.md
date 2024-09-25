@@ -6,12 +6,12 @@ A bare-bones CSS-in-TS solution that gives full control over the resultant CSS s
 
 ### Initializing a `Stylesheet`
 
-A `Stylesheet` is a simple class that collects CSS rules. The `makeStylesheet` function accepts a name, which is used to prefix generated CSS classes.
+A `Stylesheet` is a simple class that collects CSS rules. The `makeStyleSheet` function accepts a name, which is used to prefix generated CSS classes.
 
 ```ts
-import { makeStylesheet } from "@deepdish/stylesheet";
+import { makeStyleSheet } from "@deepdish/stylesheet";
 
-export const stylesheet = makeStylesheet("amazing-stylesheet");
+export const stylesheet = makeStyleSheet("amazing-stylesheet");
 ```
 
 ### Creating a style
@@ -36,6 +36,7 @@ export const button = stylesheet.style({
 The `button` variable from the above example is a string representing a unique CSS class. The CSS rule generated from `stylesheet.style` is automatically collected in the `Stylesheet`'s rules. The class selector can be applied like you'd expect:
 
 ```tsx
+// a collection of button styles co-located in a separate file
 import { button } from "./button-styles";
 
 export function Button({ children }: { children: React.ReactNode }) {
@@ -52,8 +53,6 @@ import { cva } from "class-variance-authority";
 
 // the stylesheet we created above
 import { stylesheet } from "./stylesheet";
-
-// the styles that we defined in a separate file
 import * as styles from "./button-styles";
 
 export const Button = stylesheet.element(
