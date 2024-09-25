@@ -1,5 +1,13 @@
 # @deepdish/ui
 
+## 0.5.2
+
+### Patch Changes
+
+- Updated dependencies [5f4b22b]
+- Updated dependencies [e6014aa]
+  - @deepdish/config@0.2.1
+
 ## 0.5.1
 
 ### Patch Changes
