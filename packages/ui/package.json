@@ -28,7 +28,6 @@
     "dev": "tsup --watch"
   },
   "dependencies": {
-    "@deepdish/config": "workspace:0.2.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "rehype-parse": "9.0.0",
@@ -40,6 +39,7 @@
     "unified": "11.0.5"
   },
   "devDependencies": {
+    "@deepdish/config": "workspace:0.2.0", 
     "@tsconfig/create-react-app": "2.0.5",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",

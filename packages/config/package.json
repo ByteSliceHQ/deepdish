@@ -24,10 +24,10 @@
   },
   "dependencies": {
     "@byteslice/result": "0.0.1",
-    "@deepdish/resolvers": "workspace:0.4.0",
     "zod": "3.23.8"
   },
   "devDependencies": {
+    "@deepdish/resolvers": "workspace:0.4.0",
     "@tsconfig/node20": "20.1.4",
     "tsup": "8.2.4",
     "typescript": "5.5.4"
