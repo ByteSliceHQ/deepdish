@@ -39,7 +39,7 @@
     "unified": "11.0.5"
   },
   "devDependencies": {
-    "@deepdish/config": "workspace:0.2.1", 
+    "@deepdish/config": "workspace:0.2.1",
     "@tsconfig/create-react-app": "2.0.5",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
