@@ -1,5 +1,8 @@
 biomejs
+dashify
 lockb
+happydom
+registrator
 rehype
 tsup
 turborepo
