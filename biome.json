@@ -12,6 +12,9 @@
       },
       "performance": {
         "noBarrelFile": "warn"
+      },
+      "a11y": {
+        "noSvgWithoutTitle": "off"
       }
     }
   },
