@@ -26,12 +26,16 @@ type StyleOptions = {
   selector: string
 }
 
+type Vars = Record<string, string>
+
 class Stylesheet {
   name: string
+  vars: Vars = {}
   rules: Rule[] = []
 
-  constructor(name: string) {
+  constructor(name: string, vars?: Vars) {
     this.name = name
+    this.vars = vars || {}
   }
 
   addRule(rule: Rule) {
@@ -79,7 +83,7 @@ class Stylesheet {
   }
 
   toString() {
-    return this.rules
+    const classes = this.rules
       .map((rule) => {
         const { selector, properties, pseudos = {} } = rule
 
@@ -89,8 +93,8 @@ class Stylesheet {
           })
           .join('\n')
 
-        const pseudoDeclarations = Object.entries(pseudos).map(
-          ([pseudo, properties]) => {
+        const pseudoDeclarations = Object.entries(pseudos)
+          .map(([pseudo, properties]) => {
             const nestedDeclarations = Object.entries(properties)
               .map(([property, value]) => {
                 return `\t\t${dashify(property)}: ${value};`
@@ -98,17 +102,30 @@ class Stylesheet {
               .join('\n')
 
             return `\t&${pseudo} {\n${nestedDeclarations}\n\t}`
-          },
-        )
+          })
+          .join('\n\n')
 
         return `${selector} {\n${plainDeclarations}\n\n${pseudoDeclarations}\n}`
       })
       .join('\n\n')
+
+    const vars = Object.entries(this.vars)
+      .map(([name, value]) => {
+        return `\t--${dashify(name)}: ${value};`
+      })
+      .join('\n')
+
+    return `* {\n${vars}\n}\n\n${classes}`
+  }
+
+  var(name: string) {
+    // TODO: validate whether this is a real variable
+    return `var(--${dashify(name)})`
   }
 }
 
-export function makeStyleSheet(name: string) {
-  return new Stylesheet(name)
+export function makeStyleSheet(name: string, vars?: Vars) {
+  return new Stylesheet(name, vars)
 }
 
 function generateSelector(stylesheetName: string, block: Block) {
