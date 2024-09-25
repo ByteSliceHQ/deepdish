@@ -1,5 +1,11 @@
 # @deepdish/resolvers
 
+## 0.4.1
+
+### Patch Changes
+
+- e6014aa: Utilized external package for result pattern.
+
 ## 0.4.0
 
 ### Minor Changes

@@ -1,6 +1,6 @@
 {
   "name": "@deepdish/config",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "DeepDish configuration and schemas",
   "author": {
     "name": "ByteSlice, LLC",
@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@byteslice/result": "0.0.1",
-    "@deepdish/resolvers": "workspace:0.4.0",
+    "@deepdish/resolvers": "workspace:0.4.1",
     "zod": "3.23.8"
   },
   "devDependencies": {
