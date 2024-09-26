@@ -123,7 +123,14 @@ class Stylesheet {
   }
 
   var(name: string) {
-    // TODO: validate whether this is a real variable
+    if (!this.vars[name]) {
+      console.warn(
+        `Variable "${name}" is not defined in stylesheet "${this.name}".`,
+      )
+
+      return ''
+    }
+
     return `var(--${dashify(name)})`
   }
 }
