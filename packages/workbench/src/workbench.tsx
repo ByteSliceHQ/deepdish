@@ -1,4 +1,4 @@
-import { getDraft } from '@deepdish/config'
+import { getDraft } from '@deepdish/ui/config'
 import { Client } from './client'
 
 type WorkbenchProps = {

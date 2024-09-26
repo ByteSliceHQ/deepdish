@@ -2,9 +2,10 @@ import '../globals.css'
 
 import { cms } from '@/cms'
 import { cn } from '@/lib/utils'
-import { ClerkProvider } from '@clerk/nextjs'
+import { ClerkProvider, SignInButton, SignOutButton } from '@clerk/nextjs'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import { Workbench as DeepDishWorkbench } from '@deepdish/workbench'
 
 cms(process.env.DEEPDISH_URL, process.env.DEEPDISH_SECRET_KEY)
 
@@ -27,8 +28,20 @@ export default function RootLayout(props: Props) {
           fontSans.variable,
         )}
       >
-        <ClerkProvider>{props.children}</ClerkProvider>
+        <ClerkProvider>
+          {props.children}
+          <Workbench />
+        </ClerkProvider>
       </body>
     </html>
+  )
+}
+
+function Workbench() {
+  return (
+    <DeepDishWorkbench
+      signInButton={SignInButton}
+      signOutButton={SignOutButton}
+    />
   )
 }

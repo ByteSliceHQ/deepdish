@@ -8,7 +8,7 @@
     "url": "https://byteslice.co"
   },
   "exports": {
-    ".": "./src/stylesheet.tsx"
+    ".": "./src/stylesheet.ts"
   },
   "dependencies": {
     "class-variance-authority": "0.7.0",

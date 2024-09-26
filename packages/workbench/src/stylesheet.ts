@@ -3,6 +3,7 @@
 import { makeStyleSheet } from '@deepdish/stylesheet'
 
 export const stylesheet = makeStyleSheet('workbench', {
+  // https://tailwindcss.com/docs/customizing-colors
   slate50: '#f8fafc',
   slate100: '#f1f5f9',
   slate200: '#e2e8f0',
@@ -15,6 +16,7 @@ export const stylesheet = makeStyleSheet('workbench', {
   slate900: '#0f172a',
   slate950: '#09142b',
 
+  // https://tailwindcss.com/docs/font-size
   fontSizeXs: '0.75rem',
   fontSizeSm: '0.875rem',
   fontSizeBase: '1rem',
