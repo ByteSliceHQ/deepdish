@@ -1,5 +1,11 @@
 # @deepdish/ui
 
+## 0.5.4
+
+### Patch Changes
+
+- f0f0635: Fixed configuration singleton issue.
+
 ## 0.5.3
 
 ### Patch Changes
