@@ -1,5 +1,12 @@
 # @deepdish/config
 
+## 0.2.2
+
+### Patch Changes
+
+- 88a2137: Added draft mode.
+- 01c9add: Moved internal dependencies to dev dependency list.
+
 ## 0.2.1
 
 ### Patch Changes
