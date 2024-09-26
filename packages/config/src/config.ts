@@ -6,6 +6,9 @@ type Config = {
   contracts: {
     readonly [T in ValueType]?: Contract<T>
   }
+  draft: {
+    auth: () => boolean | Promise<boolean>
+  }
 }
 
 let config: Config
@@ -36,4 +39,12 @@ export function getContract<T extends ValueType>(type: T): Result<Contract<T>> {
   }
 
   return { data: contract }
+}
+
+export function getDraft(): Result<Config['draft']> {
+  if (!config) {
+    return failure('Configuration has not been initialized')
+  }
+
+  return { data: config.draft }
 }

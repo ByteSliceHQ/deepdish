@@ -2,6 +2,7 @@ import '../globals.css'
 
 import { cms } from '@/cms'
 import { cn } from '@/lib/utils'
+import { ClerkProvider } from '@clerk/nextjs'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 
@@ -26,7 +27,7 @@ export default function RootLayout(props: Props) {
           fontSans.variable,
         )}
       >
-        {props.children}
+        <ClerkProvider>{props.children}</ClerkProvider>
       </body>
     </html>
   )
