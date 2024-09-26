@@ -1,5 +1,14 @@
 # @deepdish/marketing
 
+## 0.1.4
+
+### Patch Changes
+
+- b9e44ec: Upgraded `@deepdish-cloud/resolvers` dependency.
+- f0f0635: Fixed configuration singleton issue.
+- Updated dependencies [f0f0635]
+  - @deepdish/ui@0.5.4
+
 ## 0.1.3
 
 ### Patch Changes
