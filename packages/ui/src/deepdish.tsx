@@ -2,7 +2,7 @@
 
 import 'server-only'
 
-import { getContract } from '@deepdish/config'
+import { getContract, getDraft } from '@deepdish/config'
 import type { ValueType } from '@deepdish/config/schemas'
 import type { DeepDishProps } from './types'
 
@@ -25,6 +25,7 @@ export async function DeepDish<V>(props: {
   const readResult = await resolver.read({
     key: props.deepdish.key,
   })
+
   if (readResult.failure) {
     switch (readResult.failure.type) {
       case 'DATA_MISSING':
@@ -34,8 +35,24 @@ export async function DeepDish<V>(props: {
         // TODO: handle invalid data
         break
     }
+
     return props.render(props.fallback)
   }
 
+  if (process.env.DEEPDISH_MODE !== 'draft') {
+    return props.render(readResult.data as V)
+  }
+
+  const draftResult = getDraft()
+  if (draftResult.failure) {
+    // TODO: handle missing draft data
+    return props.render(readResult.data as V)
+  }
+
+  if (!(await draftResult.data.auth())) {
+    return props.render(readResult.data as V)
+  }
+
+  // TODO: wrap with context menu
   return props.render(readResult.data as V)
 }
