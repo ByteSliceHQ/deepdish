@@ -7,6 +7,11 @@
     "url": "https://byteslice.co"
   },
   "exports": {
+    "./config": {
+      "import": "./dist/config.mjs",
+      "types": "./dist/config.d.ts",
+      "require": "./dist/config.js"
+    },
     "./link": {
       "import": "./dist/elements/link.mjs",
       "types": "./dist/elements/link.d.ts",

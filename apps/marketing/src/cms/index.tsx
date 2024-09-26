@@ -1,6 +1,6 @@
 import { auth } from '@clerk/nextjs/server'
 import { createTypographyResolver } from '@deepdish-cloud/resolvers/typography'
-import { configure } from '@deepdish/config'
+import { configure } from '@deepdish/ui/config'
 
 export function cms(url: string, apiKey: string) {
   configure({

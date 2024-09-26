@@ -2,8 +2,8 @@
 
 import 'server-only'
 
-import { getContract, getDraft } from '@deepdish/config'
 import type { ValueType } from '@deepdish/config/schemas'
+import { configure, getContract, getDraft } from './config'
 import type { DeepDishProps } from './types'
 
 export async function DeepDish<V>(props: {
@@ -56,3 +56,5 @@ export async function DeepDish<V>(props: {
   // TODO: wrap with context menu
   return props.render(readResult.data as V)
 }
+
+export { configure, getContract, getDraft }
