@@ -1,5 +1,15 @@
 # @deepdish/marketing
 
+## 0.1.3
+
+### Patch Changes
+
+- 88a2137: Implemented Clerk middleware.
+- Updated dependencies [88a2137]
+- Updated dependencies [01c9add]
+  - @deepdish/config@0.2.2
+  - @deepdish/ui@0.5.3
+
 ## 0.1.2
 
 ### Patch Changes
