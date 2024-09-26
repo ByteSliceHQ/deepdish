@@ -3,9 +3,9 @@ import '../globals.css'
 import { cms } from '@/cms'
 import { cn } from '@/lib/utils'
 import { ClerkProvider, SignInButton, SignOutButton } from '@clerk/nextjs'
+import { Workbench as DeepDishWorkbench } from '@deepdish/workbench'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import { Workbench as DeepDishWorkbench } from '@deepdish/workbench'
 
 cms(process.env.DEEPDISH_URL, process.env.DEEPDISH_SECRET_KEY)
 
