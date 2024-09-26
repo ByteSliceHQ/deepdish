@@ -43,9 +43,7 @@ export function getContract<T extends ValueType>(type: T): Result<Contract<T>> {
 
 export function getDraft(): Result<Config['draft']> {
   if (!config) {
-    const error = new Error('Configuration has not been initialized')
-    console.error(error.message)
-    return { failure: error }
+    return failure('Configuration has not been initialized')
   }
 
   return { data: config.draft }
