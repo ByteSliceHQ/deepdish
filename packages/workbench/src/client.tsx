@@ -19,7 +19,6 @@ type ClientProps = {
   signOutButton: WorkbenchProviderProps['signOutButton']
 }
 
-// TODO: use Workbench provider to reduce prop drilling
 export function Client(props: ClientProps) {
   return (
     <Scope
