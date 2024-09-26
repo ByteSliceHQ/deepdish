@@ -1,3 +1,3 @@
-import { configure, getDraft, getContract } from '@deepdish/config'
+import { configure, getContract, getDraft } from '@deepdish/config'
 
 export { configure, getDraft, getContract }
