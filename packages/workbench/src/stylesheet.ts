@@ -1,3 +1,5 @@
+'use client'
+
 import { makeStyleSheet } from '@deepdish/stylesheet'
 
 export const stylesheet = makeStyleSheet('workbench', {

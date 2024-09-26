@@ -1,21 +1,33 @@
+'use client'
+
 import { createContext, useContext } from 'react'
 
-type WorkbenchContext = {
+type AuthButton = React.FunctionComponent<{ children: JSX.Element }>
+
+export type WorkbenchContext = {
   authenticated: boolean
+  signInButton: AuthButton
+  signOutButton: AuthButton
 }
 
-type WorkbenchProviderProps = {
+export type WorkbenchProviderProps = {
   authenticated: boolean
   children: React.ReactNode
+  signInButton: AuthButton
+  signOutButton: AuthButton
 }
 
 export const WorkbenchContext = createContext<WorkbenchContext | null>(null)
 
 export function WorkbenchProvider(props: WorkbenchProviderProps) {
-  console.log('workbench provider:', props.authenticated)
-
   return (
-    <WorkbenchContext.Provider value={{ authenticated: props.authenticated }}>
+    <WorkbenchContext.Provider
+      value={{
+        authenticated: props.authenticated,
+        signInButton: props.signInButton,
+        signOutButton: props.signOutButton,
+      }}
+    >
       {props.children}
     </WorkbenchContext.Provider>
   )

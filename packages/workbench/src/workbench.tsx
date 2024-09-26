@@ -9,7 +9,7 @@ type WorkbenchProps = {
 export async function Workbench(props: WorkbenchProps) {
   const draftResult = getDraft()
   if (draftResult.failure) {
-    // TODO: ensure this is the correct behavior
+    // TODO: handle failure case
     return null
   }
 

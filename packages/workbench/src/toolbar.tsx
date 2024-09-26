@@ -1,3 +1,5 @@
+'use client'
+
 import { useWorkbench } from './context'
 import { stylesheet } from './stylesheet'
 import { Button } from './ui/button'
@@ -21,17 +23,11 @@ const group = stylesheet.style({
   gap: '10px',
 })
 
-// https://github.com/facebook/create-react-app/pull/8177... fix types here and make sure passed in component supports asChild
-type ToolbarProps = {
-  signInButton: React.FunctionComponent<{ children: JSX.Element }>
-  signOutButton: React.FunctionComponent<{ children: JSX.Element }>
-}
-
-export function Toolbar(props: ToolbarProps) {
+export function Toolbar() {
   const workbench = useWorkbench()
 
-  const SignInButton = props.signInButton
-  const SignOutButton = props.signOutButton
+  const SignInButton = workbench.signInButton
+  const SignOutButton = workbench.signOutButton
 
   return (
     <div className={wrapper}>
