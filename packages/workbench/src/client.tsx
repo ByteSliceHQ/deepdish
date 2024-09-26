@@ -1,9 +1,9 @@
 'use client'
 
-import { Scope, type CustomIntrinsicElement } from 'react-shadow-scope'
+import { type CustomIntrinsicElement, Scope } from 'react-shadow-scope'
+import { WorkbenchProvider } from './context'
 import { stylesheet } from './stylesheet'
 import { Toolbar } from './toolbar'
-import { WorkbenchProvider } from './context'
 
 declare global {
   namespace ReactShadowScope {

@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@deepdish/config": "workspace:0.2,0",
-    "@deepdish/stylesheet": "workspace:0.0.0",
+    "@deepdish/stylesheet": "workspace:0.0.1",
     "class-variance-authority": "0.7.0",
     "react-shadow-scope": "1.0.5"
   },
