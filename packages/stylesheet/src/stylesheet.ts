@@ -109,13 +109,17 @@ class Stylesheet {
       })
       .join('\n\n')
 
-    const vars = Object.entries(this.vars)
-      .map(([name, value]) => {
-        return `\t--${dashify(name)}: ${value};`
-      })
-      .join('\n')
+    if (Object.keys(this.vars).length) {
+      const vars = Object.entries(this.vars)
+        .map(([name, value]) => {
+          return `\t--${dashify(name)}: ${value};`
+        })
+        .join('\n')
 
-    return `* {\n${vars}\n}\n\n${classes}`
+      return `* {\n${vars}\n}\n\n${classes}`
+    }
+
+    return classes
   }
 
   var(name: string) {

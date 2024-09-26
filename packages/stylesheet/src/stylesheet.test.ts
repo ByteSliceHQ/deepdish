@@ -81,6 +81,24 @@ describe('stylesheet', () => {
     )
   })
 
+  it('should render the stylesheet as a string with global variables', () => {
+    const stylesheet = makeStyleSheet('test', {
+      globalTestVariable: 'red',
+    })
+
+    stylesheet.addRule({
+      selector: '.my-class',
+      properties: {
+        color: 'red',
+        fontSize: '16px',
+      },
+    })
+
+    expect(stylesheet.toString()).toBe(
+      '* {\n\t--global-test-variable: red;\n}\n\n.my-class {\n\tcolor: red;\n\tfont-size: 16px;\n\n\n}',
+    )
+  })
+
   it('should mount the stylesheet to the document head', () => {
     const stylesheet = makeStyleSheet('test')
 
