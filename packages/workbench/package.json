@@ -19,6 +19,7 @@
     "dev": "tsup --watch"
   },
   "dependencies": {
+    "@byteslice/result": "0.0.1",
     "@deepdish/stylesheet": "workspace:0.0.1",
     "@deepdish/ui": "workspace:0.5.4",
     "class-variance-authority": "0.7.0",

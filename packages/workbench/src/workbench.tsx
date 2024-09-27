@@ -1,4 +1,5 @@
 import { getDraft } from '@deepdish/ui/config'
+import { withResult } from '@byteslice/result'
 import { Client } from './client'
 
 type WorkbenchProps = {
@@ -13,11 +14,18 @@ export async function Workbench(props: WorkbenchProps) {
     return null
   }
 
-  const authenticated = await draftResult.data.auth()
+  const authResult = await withResult(
+    draftResult.data.auth(),
+    (err) => new Error(`Failed to authenticate: ${err.message}`),
+  )
+  if (authResult.failure) {
+    // TODO: handle failure case
+    return null
+  }
 
   return (
     <Client
-      authenticated={authenticated}
+      authenticated={authResult.data}
       signInButton={props.signInButton}
       signOutButton={props.signOutButton}
     />
