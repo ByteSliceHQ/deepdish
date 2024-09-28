@@ -3,6 +3,7 @@ dashify
 happydom
 lockb
 logtape
+nextjs
 registrator
 rehype
 tsup
