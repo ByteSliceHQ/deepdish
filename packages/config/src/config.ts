@@ -17,26 +17,34 @@ type Config = {
 
 let config: Config
 
-function failure(message: string) {
+function configured() {
+  const message = 'DeepDish has already been configured.'
+  logger.warn(message)
+  return { failure: new Error(message) }
+}
+
+function unconfigured() {
+  const message = 'DeepDish has not been configured.'
   logger.error(message)
   return { failure: new Error(message) }
 }
 
 export function configure(input: Config): Result<void> {
   if (config) {
-    return failure('Configuration has already been initialized.')
+    return configured()
   }
 
   config = Object.freeze(input)
 
   configureLogging()
 
+  logger.info('DeepDish configured successfully.')
   return { data: undefined }
 }
 
 export function getContract<T extends ValueType>(type: T): Result<Contract<T>> {
   if (!config) {
-    return failure('Configuration has not been initialized.')
+    return unconfigured()
   }
 
   const contract = config.contracts[type]
@@ -50,7 +58,7 @@ export function getContract<T extends ValueType>(type: T): Result<Contract<T>> {
 
 export function getDraft(): Result<Config['draft']> {
   if (!config) {
-    return failure('Configuration has not been initialized.')
+    return unconfigured()
   }
 
   return { data: config.draft }
