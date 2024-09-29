@@ -1,6 +1,7 @@
 import type { Result } from '@byteslice/result'
 import { getLogger } from '@logtape/logtape'
 import type { Contract } from './contract'
+import { configureLogging } from './logging'
 import type { ValueType } from './schemas'
 
 const logger = getLogger(['deepdish', 'config'])
@@ -27,6 +28,8 @@ export function configure(input: Config): Result<void> {
   }
 
   config = Object.freeze(input)
+
+  configureLogging()
 
   return { data: undefined }
 }
