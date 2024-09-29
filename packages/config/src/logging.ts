@@ -9,6 +9,11 @@ export function configureLogging() {
     },
     loggers: [
       {
+        category: ['logtape', 'meta'],
+        sinks: isDevelopment ? ['console'] : [],
+        level: 'warning',
+      },
+      {
         category: ['deepdish'],
         sinks: isDevelopment ? ['console'] : [],
         level: isDevelopment ? 'debug' : 'info',
