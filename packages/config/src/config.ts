@@ -25,7 +25,7 @@ function configured() {
 
 function unconfigured() {
   const message = 'DeepDish has not been configured.'
-  logger.error(message)
+  console.error(message)
   return { failure: new Error(message) }
 }
 
