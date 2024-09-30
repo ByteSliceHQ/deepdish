@@ -4,8 +4,8 @@ import * as ContextMenu from '@radix-ui/react-context-menu'
 import * as Dialog from '@radix-ui/react-dialog'
 import { Scope } from 'react-shadow-scope'
 import { Editor } from './editor'
-import { stylesheet } from './stylesheet'
 import * as styles from './menu.css'
+import { stylesheet } from './stylesheet'
 
 type MenuProps = {
   children: React.ReactNode
