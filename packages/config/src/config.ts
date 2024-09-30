@@ -29,14 +29,14 @@ function unconfigured() {
   return { failure: new Error(message) }
 }
 
-export function configure(input: Config): Result<void> {
+export async function configure(input: Config): Promise<Result<void>> {
   if (config) {
     return configured()
   }
 
   config = Object.freeze(input)
 
-  configureLogging()
+  await configureLogging()
 
   logger.info('DeepDish configured successfully.')
   return { data: undefined }

@@ -2,8 +2,8 @@ import { configure, getConsoleSink } from '@logtape/logtape'
 
 const isDevelopment = process.env.NODE_ENV === 'development'
 
-export function configureLogging() {
-  configure({
+export async function configureLogging() {
+  await configure({
     sinks: {
       console: getConsoleSink(),
     },
