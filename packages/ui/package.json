@@ -33,8 +33,12 @@
     "dev": "tsup --watch"
   },
   "dependencies": {
+    "@radix-ui/react-context-menu": "2.2.1",
+    "@radix-ui/react-dialog": "1.1.1",
+    "class-variance-authority": "0.7.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
+    "react-shadow-scope": "1.0.5",
     "rehype-parse": "9.0.0",
     "rehype-sanitize": "6.0.0",
     "rehype-stringify": "10.0.0",
@@ -45,6 +49,7 @@
   },
   "devDependencies": {
     "@deepdish/config": "workspace:0.2.2",
+    "@deepdish/stylesheet": "workspace:0.0.1",
     "@tsconfig/create-react-app": "2.0.5",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
