@@ -22,6 +22,5 @@
     ".turbo",
     ".vercel"
   ],
-  "ignoreWords": ["unconfigured"],
   "words": ["byteslice", "deepdish"]
 }

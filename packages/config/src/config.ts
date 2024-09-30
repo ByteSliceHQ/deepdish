@@ -23,7 +23,7 @@ function configured() {
   return { failure: new Error(message) }
 }
 
-function unconfigured() {
+function notConfigured() {
   const message = 'DeepDish has not been configured.'
   console.error(message)
   return { failure: new Error(message) }
@@ -44,7 +44,7 @@ export async function configure(input: Config): Promise<Result<void>> {
 
 export function getContract<T extends ValueType>(type: T): Result<Contract<T>> {
   if (!config) {
-    return unconfigured()
+    return notConfigured()
   }
 
   const contract = config.contracts[type]
@@ -58,7 +58,7 @@ export function getContract<T extends ValueType>(type: T): Result<Contract<T>> {
 
 export function getDraft(): Result<Config['draft']> {
   if (!config) {
-    return unconfigured()
+    return notConfigured()
   }
 
   return { data: config.draft }
