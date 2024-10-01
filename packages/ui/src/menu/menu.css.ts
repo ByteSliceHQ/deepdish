@@ -11,23 +11,32 @@ export const content = stylesheet.style({
 
 export const item = stylesheet.style({
   display: 'flex',
-  padding: '0 5px',
+  alignItems: 'center',
+  padding: `${stylesheet.var('spacingXs')} ${stylesheet.var('spacingSm')}`,
   position: 'relative',
   paddingLeft: '25px',
   outline: 'none',
+  color: stylesheet.var('slate600'),
+  borderRadius: stylesheet.var('radiusSm'),
+  fontSize: stylesheet.var('fontSizeSm'),
+  cursor: 'default',
 
-  // TODO: add support for selectors
-  // '&': {
-  //   '[data-disabled]': {
-  //     color: 'var(--mauve-8)',
-  //     pointerEvents: 'none',
-  //   },
+  nested: {
+    '&[data-highlighted]': {
+      backgroundColor: stylesheet.var('slate100'),
+      color: stylesheet.var('slate700'),
+    },
 
-  //   '[data-highlighted]': {
-  //     backgroundColor: 'var(--violet-9)',
-  //     color: 'var(--violet-1)',
-  //   },
-  // }
+    '&[data-state="open"]:not([data-highlighted], [data-disabled])': {
+      backgroundColor: stylesheet.var('slate100'),
+      color: stylesheet.var('slate700'),
+    },
+  },
+})
+
+export const key = stylesheet.style({
+  margin: `${stylesheet.var('spacingSm')} 0`,
+  padding: 0,
 })
 
 export const label = stylesheet.style({
@@ -37,32 +46,8 @@ export const label = stylesheet.style({
   color: '#4b5563',
 })
 
-// TODO: move into separate dialog styles file
-export const overlay = stylesheet.style({
-  backgroundColor: 'rgba(0, 0, 0, 0.3)',
-  position: 'fixed',
-  inset: 0,
-  animation: 'overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1)',
-})
-
-export const dialogContent = stylesheet.style({
-  backgroundColor: 'white',
-  borderRadius: '6px',
-  boxShadow:
-    'hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px',
-  position: 'fixed',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: '90vw',
-  maxWidth: '450px',
-  maxHeight: '85vh',
-  padding: '25px',
-  animation: 'contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1)',
-
-  '&': {
-    ':focus': {
-      outline: 'none',
-    },
-  },
+export const rightSlot = stylesheet.style({
+  marginLeft: 'auto',
+  color: stylesheet.var('slate600'),
+  display: 'flex',
 })

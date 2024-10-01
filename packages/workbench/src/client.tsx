@@ -23,7 +23,7 @@ export function Client(props: ClientProps) {
   return (
     <Scope
       tag="deepdish-workbench"
-      stylesheet={stylesheet.toString()}
+      stylesheet={stylesheet.render()}
       config={{ dsd: 'emulated' }}
     >
       <WorkbenchProvider

@@ -3,14 +3,22 @@ import { stylesheet } from './stylesheet'
 export const wrapper = stylesheet.style({
   display: 'flex',
   flexDirection: 'column',
-  gap: '8px',
+  gap: stylesheet.var('spacingSm'),
+  padding: stylesheet.var('spacingXs'),
 })
 
-// TODO: global variables
 export const textarea = stylesheet.style({
-  padding: '6px 8px',
-  border: '1px solid #cbd5e1',
-  borderRadius: '4px',
+  padding: `${stylesheet.var('spacingSm')} ${stylesheet.var('spacingMd')}`,
+  border: `1px solid ${stylesheet.var('slate300')}`,
+  borderRadius: stylesheet.var('radiusMd'),
   lineHeight: '1',
-  fontSize: '13px',
+  fontSize: stylesheet.var('fontSizeSm'),
+
+  pseudos: {
+    ':focus': {
+      outline: 'none',
+      borderColor: stylesheet.var('slate600'),
+      boxShadow: `0 0 0 2px ${stylesheet.var('slate200')}`,
+    },
+  },
 })

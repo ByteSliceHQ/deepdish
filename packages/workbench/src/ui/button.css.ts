@@ -12,7 +12,7 @@ export const primary = stylesheet.style({
   color: stylesheet.var('slate600'),
   border: `1px solid ${stylesheet.var('slate300')}`,
 
-  '&': {
+  pseudos: {
     ':hover': {
       background: stylesheet.var('slate200'),
     },
@@ -27,7 +27,7 @@ export const secondary = stylesheet.style({
   color: 'gray',
   border: 'gray',
 
-  '&': {
+  pseudos: {
     ':hover': {
       background: 'red',
     },
