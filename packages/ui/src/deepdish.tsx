@@ -15,20 +15,18 @@ export async function DeepDish<V>(props: {
   render(value?: V): Promise<React.ReactElement>
   type: ValueType
 }) {
-  const logger = uiLogger.with({
-    key: props.deepdish?.key,
-    type: props.type,
-  })
-
   if (!props.deepdish) {
-    logger.debug('Rendering fallback {type} content.')
     return props.render(props.fallback)
   }
+
+  const logger = uiLogger.with({
+    key: props.deepdish.key,
+    type: props.type,
+  })
 
   const contractResult = getContract(props.type)
   if (contractResult.failure) {
     logger.warn('Unable to access configured {type} contract for {key}.')
-    logger.debug('Rendering fallback {type} content for {key}.')
     return props.render(props.fallback)
   }
   const { resolver } = contractResult.data
@@ -43,7 +41,6 @@ export async function DeepDish<V>(props: {
         // TODO: handle read failure
         break
       case 'DATA_MISSING':
-        logger.warn('Missing resolver data for {key}.')
         // TODO: handle missing data
         break
       case 'DATA_INVALID':
@@ -52,30 +49,24 @@ export async function DeepDish<V>(props: {
         break
     }
 
-    logger.debug('Rendering fallback {type} content for {key}.')
     return props.render(props.fallback)
   }
 
   if (process.env.DEEPDISH_MODE !== 'draft') {
-    logger.info('Rendering {type} content for {key}.')
     return props.render(readResult.data as V)
   }
 
   const draftResult = getDraft()
   if (draftResult.failure) {
     logger.warn('Unable to access configured draft.')
-    logger.info('Rendering {type} content for {key}.')
     // TODO: handle missing draft data
     return props.render(readResult.data as V)
   }
 
   if (!(await draftResult.data.auth())) {
-    logger.debug('Not authorized to use draft mode.')
-    logger.info('Rendering {type} content for {key}.')
     return props.render(readResult.data as V)
   }
 
-  logger.info('Rendering {type} content for {key} with context menu.')
   // TODO: wrap with context menu
   return props.render(readResult.data as V)
 }
