@@ -38,14 +38,9 @@ export async function DeepDish<V>(props: {
     switch (readResult.failure.type) {
       case 'READ':
         logger.warn('Unable to read resolver data for {key}.')
-        // TODO: handle read failure
-        break
-      case 'DATA_MISSING':
-        // TODO: handle missing data
         break
       case 'DATA_INVALID':
         logger.warn('Invalid resolver data for {key}.')
-        // TODO: handle invalid data
         break
     }
 
