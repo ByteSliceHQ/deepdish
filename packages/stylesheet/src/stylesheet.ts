@@ -1,9 +1,9 @@
 import type { VariantProps, cva } from 'class-variance-authority'
 import type { Properties, Pseudos } from 'csstype'
 import { type ComponentPropsWithoutRef, createElement, forwardRef } from 'react'
+import { type Rule, makeRule } from './rule'
 import { spaces } from './utils'
 import { dashify, hash } from './utils'
-import { type Rule, makeRule } from './rule'
 
 /** https://developer.mozilla.org/en-US/docs/Web/CSS/Syntax#css_declaration_blocks */
 type Block = Properties & {

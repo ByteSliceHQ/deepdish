@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'bun:test'
 import dedent from 'dedent'
-import { makeStyleSheet } from './stylesheet'
 import { makeRule } from './rule'
+import { makeStyleSheet } from './stylesheet'
 
 describe('stylesheet', () => {
   it('should create a stylesheet', () => {
