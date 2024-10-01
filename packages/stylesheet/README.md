@@ -107,7 +107,7 @@ const css = stylesheet.render();
 
 ### Nested selectors
 
-You can nest selectors by passing an object to the `selectors` property.
+You can nest selectors by passing an object to the `nested` property.
 
 ```ts
 // the stylesheet we created above
