@@ -1,24 +1,20 @@
 import type { VariantProps, cva } from 'class-variance-authority'
 import type { Properties, Pseudos } from 'csstype'
 import { type ComponentPropsWithoutRef, createElement, forwardRef } from 'react'
+import { type Rule, makeRule } from './rule'
+import { spaces } from './utils'
 import { dashify, hash } from './utils'
-
-/** https://developer.mozilla.org/en-US/docs/Web/CSS/Syntax#css_rulesets */
-type Rule = {
-  selector: string
-  properties: Properties
-
-  /** https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes */
-  pseudos?: {
-    [key in Pseudos]?: Properties
-  }
-}
 
 /** https://developer.mozilla.org/en-US/docs/Web/CSS/Syntax#css_declaration_blocks */
 type Block = Properties & {
   /** https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes */
-  '&'?: {
+  pseudos?: {
     [key in Pseudos]?: Properties
+  }
+
+  /** https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_nesting */
+  nested?: {
+    [key in string]?: Properties
   }
 }
 
@@ -62,57 +58,13 @@ class Stylesheet {
     })
   }
 
-  mount(root: HTMLElement | ShadowRoot = document.head) {
-    const style = document.createElement('style')
-    style.textContent = this.toString()
-
-    root.appendChild(style)
-  }
-
-  style(block: Block, options?: StyleOptions) {
-    const selector = options?.selector || generateSelector(this.name, block)
-    const { '&': pseudos, ...properties } = block
-
-    this.addRule({
-      selector,
-      properties,
-      pseudos,
-    })
-
-    return makeClassNameFromSelector(selector)
-  }
-
-  toString() {
-    const classes = this.rules
-      .map((rule) => {
-        const { selector, properties, pseudos = {} } = rule
-
-        const plainDeclarations = Object.entries(properties)
-          .map(([property, value]) => {
-            return `\t${dashify(property)}: ${value};`
-          })
-          .join('\n')
-
-        const pseudoDeclarations = Object.entries(pseudos)
-          .map(([pseudo, properties]) => {
-            const nestedDeclarations = Object.entries(properties)
-              .map(([property, value]) => {
-                return `\t\t${dashify(property)}: ${value};`
-              })
-              .join('\n')
-
-            return `\t&${pseudo} {\n${nestedDeclarations}\n\t}`
-          })
-          .join('\n\n')
-
-        return `${selector} {\n${plainDeclarations}\n\n${pseudoDeclarations}\n}`
-      })
-      .join('\n\n')
+  render() {
+    const classes = this.rules.map((rule) => rule.render()).join('\n\n')
 
     if (Object.keys(this.vars).length) {
       const vars = Object.entries(this.vars)
         .map(([name, value]) => {
-          return `\t--${dashify(name)}: ${value};`
+          return `${spaces(2)}--${dashify(name)}: ${value};`
         })
         .join('\n')
 
@@ -120,6 +72,31 @@ class Stylesheet {
     }
 
     return classes
+  }
+
+  style(block: Block, options?: StyleOptions) {
+    const selector = options?.selector || generateSelector(this.name, block)
+    const { pseudos, nested, ...properties } = block
+
+    const nestedRules = Object.entries(nested || {}).map(
+      ([childSelector, childProperties = {}]) => {
+        return makeRule({
+          selectors: [childSelector],
+          properties: childProperties,
+        })
+      },
+    )
+
+    this.addRule(
+      makeRule({
+        selectors: [selector],
+        properties,
+        pseudos,
+        nested: nestedRules,
+      }),
+    )
+
+    return makeClassNameFromSelector(selector)
   }
 
   var(name: string) {
@@ -146,3 +123,6 @@ function generateSelector(stylesheetName: string, block: Block) {
 function makeClassNameFromSelector(selector: string) {
   return selector.substring(1, selector.length)
 }
+
+// NB: declaration file generation requires all package types to be resolvable
+export type { Rule }
