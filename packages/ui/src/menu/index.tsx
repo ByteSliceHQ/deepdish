@@ -1,7 +1,7 @@
 'use client'
 
 import * as ContextMenu from '@radix-ui/react-context-menu'
-import { ChevronRightIcon } from '@radix-ui/react-icons'
+import { ChevronRight } from 'lucide-react'
 import { Scope } from 'react-shadow-scope'
 import { Editor } from './editor'
 import * as styles from './menu.css'
@@ -13,6 +13,10 @@ type MenuProps = {
   deepdishKey: string
   // TODO: this should be typed to the resolver schema
   value?: string | null
+}
+
+function SubMenuChevron() {
+  return <ChevronRight size="1rem" />
 }
 
 export function Menu(props: MenuProps) {
@@ -32,7 +36,7 @@ export function Menu(props: MenuProps) {
               <ContextMenu.SubTrigger className={styles.item}>
                 Quick edit
                 <div className={styles.rightSlot}>
-                  <ChevronRightIcon />
+                  <SubMenuChevron />
                 </div>
               </ContextMenu.SubTrigger>
               <ContextMenu.Portal>
