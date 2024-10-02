@@ -25,7 +25,8 @@ export const base = stylesheet.style({
 })
 
 export const loading = stylesheet.style({
-  marginRight: stylesheet.var('spacingSm'),
+  background: stylesheet.var('slate50'),
+  color: stylesheet.var('slate600'),
 })
 
 export const loader = stylesheet.style({
