@@ -7,6 +7,15 @@ export const content = stylesheet.style({
   overflow: 'hidden',
   padding: '5px',
   border: '1px solid #e5e7eb',
+
+  nested: {
+    '&[data-state="open"]': {
+      animation: 'enter 150ms cubic-bezier(0.16, 1, 0.3, 1)',
+    },
+    '&[data-state="closed"]': {
+      animation: 'exit 150ms cubic-bezier(0.16, 1, 0.3, 1)',
+    },
+  },
 })
 
 export const item = stylesheet.style({

@@ -1,14 +1,17 @@
 import { stylesheet } from './stylesheet'
 
 export const base = stylesheet.style({
+  background: stylesheet.var('slate100'),
+  color: stylesheet.var('slate800'),
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
   fontSize: stylesheet.var('fontSizeSm'),
   borderRadius: stylesheet.var('radiusMd'),
+  border: 'none',
   cursor: 'pointer',
   outline: 'none',
   transition: '0.1s ease-in-out',
-  background: stylesheet.var('slate100'),
-  border: 'none',
-  color: stylesheet.var('slate800'),
   padding: `${stylesheet.var('spacingSm')} ${stylesheet.var('spacingMd')}`,
 
   pseudos: {
@@ -19,4 +22,15 @@ export const base = stylesheet.style({
       background: stylesheet.var('slate300'),
     },
   },
+})
+
+export const loading = stylesheet.style({
+  marginRight: stylesheet.var('spacingSm'),
+})
+
+export const loader = stylesheet.style({
+  height: '1rem',
+  width: '1rem',
+  marginRight: stylesheet.var('spacingSm'),
+  animation: 'spin 1s linear infinite',
 })

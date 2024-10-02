@@ -11,35 +11,37 @@ type EditorProps = {
 }
 
 export function Editor(props: EditorProps) {
-  const [value, setValue] = useState<string>(props.value || '')
   const router = useRouter()
-
-  // TODO: add loading variant to button
+  const [value, setValue] = useState<string>(props.value || '')
   const [loading, setLoading] = useState<boolean>(false)
 
-  const handleUpdate = async () => {
+  const handleUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
     try {
       setLoading(true)
       await props.onUpdate(value)
       router.refresh()
-    } catch {
-      // TODO: handle error case
+    } catch (err) {
+      // TODO: log error properly
+      // TODO: show error in global DeepDish toast
+      console.error('Failed to save content:', err)
     } finally {
       setLoading(false)
     }
   }
 
   return (
-    <div className={styles.wrapper}>
+    <form className={styles.wrapper} onSubmit={handleUpdate}>
       <textarea
         value={value}
         disabled={loading}
         className={styles.textarea}
         onChange={(e) => setValue(e.currentTarget.value)}
       />
-      <Button type="submit" disabled={loading} onClick={handleUpdate}>
-        Save
+      <Button type="submit" disabled={loading} loading={loading}>
+        {loading ? 'Saving...' : 'Save'}
       </Button>
-    </div>
+    </form>
   )
 }
