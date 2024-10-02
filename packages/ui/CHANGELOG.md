@@ -1,5 +1,11 @@
 # @deepdish/ui
 
+## 0.5.5
+
+### Patch Changes
+
+- 0f7596f: Added the context menu with content editing capabilities.
+
 ## 0.5.4
 
 ### Patch Changes

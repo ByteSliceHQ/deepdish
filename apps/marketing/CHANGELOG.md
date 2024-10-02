@@ -1,5 +1,15 @@
 # @deepdish/marketing
 
+## 0.1.5
+
+### Patch Changes
+
+- c40cf9d: Integrated DeepDish Workbench.
+- Updated dependencies [0f7596f]
+- Updated dependencies [c40cf9d]
+  - @deepdish/ui@0.5.5
+  - @deepdish/workbench@0.0.1
+
 ## 0.1.4
 
 ### Patch Changes
