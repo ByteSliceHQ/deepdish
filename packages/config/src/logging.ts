@@ -1,11 +1,20 @@
-import { configure, getConsoleSink } from '@logtape/logtape'
+import {
+  configure,
+  getAnsiColorFormatter,
+  getConsoleSink,
+} from '@logtape/logtape'
 
 const isDevelopment = process.env.NODE_ENV === 'development'
 
 export async function configureLogging() {
   await configure({
     sinks: {
-      console: getConsoleSink(),
+      console: getConsoleSink({
+        formatter: getAnsiColorFormatter({
+          level: 'full',
+          levelStyle: 'italic',
+        }),
+      }),
     },
     loggers: [
       {
