@@ -33,6 +33,7 @@
     "dev": "tsup --watch"
   },
   "dependencies": {
+    "@logtape/logtape": "0.6.2",
     "@radix-ui/react-context-menu": "2.2.1",
     "class-variance-authority": "0.7.0",
     "lucide-react": "0.447.0",
