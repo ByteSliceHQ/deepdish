@@ -48,12 +48,11 @@ export function createResolver<S extends ZodTypeAny>(schema: S) {
         return { data }
       },
       async write(context, value) {
-        'use server'
-
         const writeResult = await withResult<void, ResolverFailure>(
           write(context, value),
           (error) => ({ type: 'WRITE', error }),
         )
+
         if (writeResult.failure) {
           return writeResult
         }
