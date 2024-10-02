@@ -21,3 +21,7 @@ export function dashify(value: string, condense?: boolean) {
     .replace(/-{2,}/g, (m) => (condense ? '-' : m))
     .toLowerCase()
 }
+
+export function spaces(n: number) {
+  return ' '.repeat(n)
+}

@@ -4,6 +4,7 @@ import 'server-only'
 
 import type { ValueType } from '@deepdish/config/schemas'
 import { configure, getContract, getDraft } from './config'
+import { Menu } from './menu'
 import type { DeepDishProps } from './types'
 
 export async function DeepDish<V>(props: {
@@ -53,8 +54,44 @@ export async function DeepDish<V>(props: {
     return props.render(readResult.data as V)
   }
 
-  // TODO: wrap with context menu
-  return props.render(readResult.data as V)
+  async function handleUpdate(value: string | null) {
+    'use server'
+
+    if (!props.deepdish) {
+      return
+    }
+
+    const contractResult = getContract(props.type)
+    if (contractResult.failure) {
+      return
+    }
+
+    const { resolver } = contractResult.data
+
+    const writeResult = await resolver.write(
+      {
+        key: props.deepdish.key,
+      },
+      value || '',
+    )
+
+    if (writeResult.failure) {
+      // TODO: log error properly
+      console.error('Failed to save content:', writeResult.failure)
+      return
+    }
+  }
+
+  return (
+    // TODO: remove string type coercion once we support more resolver types
+    <Menu
+      deepdishKey={props.deepdish.key}
+      value={readResult.data as string}
+      onUpdate={handleUpdate}
+    >
+      {props.render(readResult.data as V)}
+    </Menu>
+  )
 }
 
 export { configure, getContract, getDraft }

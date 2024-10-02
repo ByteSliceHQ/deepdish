@@ -17,6 +17,7 @@
   "devDependencies": {
     "@happy-dom/global-registrator": "15.7.4",
     "@tsconfig/create-react-app": "2.0.5",
-    "@types/bun": "1.1.10"
+    "@types/bun": "1.1.10",
+    "dedent": "1.5.3"
   }
 }
