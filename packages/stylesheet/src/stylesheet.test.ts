@@ -53,9 +53,21 @@ describe('stylesheet', () => {
     )
   })
 
-  it('should render the stylesheet as a string with global variables', () => {
+  it('should render the stylesheet as a string with global rules', () => {
     const stylesheet = makeStyleSheet('test', {
-      globalTestVariable: 'red',
+      vars: {
+        globalTestVariable: 'red',
+      },
+      keyframes: {
+        spin: {
+          from: {
+            transform: 'rotate(0deg)',
+          },
+          to: {
+            transform: 'rotate(360deg)',
+          },
+        },
+      },
     })
 
     stylesheet.addRule(
@@ -74,6 +86,15 @@ describe('stylesheet', () => {
       dedent(/* CSS */ `
         * {
           --global-test-variable: red;
+        }
+
+        @keyframes spin {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
         }
 
         .my-class {

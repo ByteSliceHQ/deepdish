@@ -24,14 +24,23 @@ type StyleOptions = {
 
 type Vars = Record<string, string>
 
+type Keyframes = {
+  [percentage in string]: Properties
+}
+
+type Globals = {
+  vars?: Vars
+  keyframes?: Record<string, Keyframes>
+}
+
 class Stylesheet {
   name: string
-  vars: Vars = {}
+  globals: Globals
   rules: Rule[] = []
 
-  constructor(name: string, vars?: Vars) {
+  constructor(name: string, globals?: Globals) {
     this.name = name
-    this.vars = vars || {}
+    this.globals = globals || {}
   }
 
   addRule(rule: Rule) {
@@ -61,17 +70,45 @@ class Stylesheet {
   render() {
     const classes = this.rules.map((rule) => rule.render()).join('\n\n')
 
-    if (Object.keys(this.vars).length) {
-      const vars = Object.entries(this.vars)
-        .map(([name, value]) => {
-          return `${spaces(2)}--${dashify(name)}: ${value};`
-        })
-        .join('\n')
+    let globals = ''
 
-      return `* {\n${vars}\n}\n\n${classes}`
+    const vars = this.globals.vars
+      ? Object.entries(this.globals.vars)
+          .map(([name, value]) => {
+            return `${spaces(2)}--${dashify(name)}: ${value};`
+          })
+          .join('\n')
+      : ''
+
+    const keyframes = this.globals.keyframes
+      ? Object.entries(this.globals.keyframes)
+          .map(([animationName, keyframes]) => {
+            const percentages = Object.keys(keyframes)
+
+            const keyframeBlocks = percentages.map((percentage) => {
+              const properties = Object.entries(keyframes[percentage])
+                .map(([property, value]) => {
+                  return `${spaces(4)}${dashify(property)}: ${value};`
+                })
+                .join('\n')
+
+              return `${spaces(2)}${percentage} {\n${properties}\n${spaces(2)}}`
+            })
+
+            return `@keyframes ${animationName} {\n${keyframeBlocks.join('\n')}\n}`
+          })
+          .join('\n\n')
+      : ''
+
+    if (vars) {
+      globals += `* {\n${vars}\n}\n\n`
     }
 
-    return classes
+    if (keyframes) {
+      globals += `${keyframes}\n\n`
+    }
+
+    return globals + classes
   }
 
   style(block: Block, options?: StyleOptions) {
@@ -100,7 +137,7 @@ class Stylesheet {
   }
 
   var(name: string) {
-    if (!this.vars[name]) {
+    if (!this.globals.vars?.[name]) {
       console.warn(
         `Variable "${name}" is not defined in stylesheet "${this.name}".`,
       )
@@ -112,8 +149,8 @@ class Stylesheet {
   }
 }
 
-export function makeStyleSheet(name: string, vars?: Vars) {
-  return new Stylesheet(name, vars)
+export function makeStyleSheet(name: string, globals?: Globals) {
+  return new Stylesheet(name, globals)
 }
 
 function generateSelector(stylesheetName: string, block: Block) {
