@@ -3,9 +3,12 @@
 import 'server-only'
 
 import type { ValueType } from '@deepdish/config/schemas'
+import { getLogger } from '@logtape/logtape'
 import { configure, getContract, getDraft } from './config'
 import { Menu } from './menu'
 import type { DeepDishProps } from './types'
+
+const uiLogger = getLogger(['deepdish', 'ui'])
 
 export async function DeepDish<V>(props: {
   deepdish?: DeepDishProps
@@ -17,23 +20,32 @@ export async function DeepDish<V>(props: {
     return props.render(props.fallback)
   }
 
+  const logger = uiLogger.with({
+    key: props.deepdish.key,
+    type: props.type,
+  })
+
   const contractResult = getContract(props.type)
   if (contractResult.failure) {
+    logger.warn('Unable to access configured {type} contract for {key}.')
     return props.render(props.fallback)
   }
-
   const { resolver } = contractResult.data
+
   const readResult = await resolver.read({
     key: props.deepdish.key,
   })
-
   if (readResult.failure) {
     switch (readResult.failure.type) {
-      case 'DATA_MISSING':
-        // TODO: handle missing data
+      case 'READ':
+        logger.warn('Unable to read {type} data for {key}: {reason}', {
+          reason: readResult.failure.error.message,
+        })
         break
       case 'DATA_INVALID':
-        // TODO: handle invalid data
+        logger.warn('Invalid {type} data for {key}: {reason}', {
+          reason: readResult.failure.error.message,
+        })
         break
     }
 
@@ -46,6 +58,7 @@ export async function DeepDish<V>(props: {
 
   const draftResult = getDraft()
   if (draftResult.failure) {
+    logger.warn('Unable to access configured draft mode.')
     // TODO: handle missing draft data
     return props.render(readResult.data as V)
   }
