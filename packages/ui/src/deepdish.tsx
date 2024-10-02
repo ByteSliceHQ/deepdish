@@ -30,7 +30,7 @@ export async function DeepDish<V>(props: {
   if (readResult.failure) {
     switch (readResult.failure.type) {
       case 'DATA_MISSING':
-        // TODO: handle missing data (will need to wrap with context menu as well)
+        // TODO: handle missing data
         break
       case 'DATA_INVALID':
         // TODO: handle invalid data
@@ -68,17 +68,22 @@ export async function DeepDish<V>(props: {
 
     const { resolver } = contractResult.data
 
-    // TODO: handle failure case
-    await resolver.write(
+    const writeResult = await resolver.write(
       {
         key: props.deepdish.key,
       },
       value || '',
     )
+
+    if (writeResult.failure) {
+      // TODO: log error properly
+      console.error('Failed to save content:', writeResult.failure)
+      return
+    }
   }
 
   return (
-    // TODO: remove string type coercion
+    // TODO: remove string type coercion once we support more resolver types
     <Menu
       deepdishKey={props.deepdish.key}
       value={readResult.data as string}
