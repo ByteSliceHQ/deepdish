@@ -24,7 +24,7 @@ export const button = stylesheet.style({
   color: 'red';
   // ... other CSS styles (these properties are fully typed)
 
-  '&': {
+  'pseudos': {
     ':hover': {
       color: 'blue'
       // ... pseudo CSS styles (these properties are fully typed as well)
@@ -100,5 +100,59 @@ You can generate the CSS by simply invoking the `.toString()` method on a `Style
 // the stylesheet we created above
 import { stylesheet } from "./stylesheet";
 
-const css = stylesheet.toString();
+const css = stylesheet.render();
+```
+
+## Advanced
+
+### Nested selectors
+
+You can nest selectors by passing an object to the `nested` property.
+
+```ts
+// the stylesheet we created above
+import { stylesheet } from "./stylesheet";
+
+export const exampleWithNestedSelectors = stylesheet.style({
+  color: "red",
+  fontSize: "16px",
+
+  nested: {
+    ".child": {
+      color: "green",
+
+      pseudos: {
+        ":hover": {
+          color: "blue",
+        },
+      },
+    },
+
+    '&[data-test="foo"]': {
+      // these properties are fully typed
+      color: "blue",
+    },
+  },
+});
+```
+
+The resulting CSS will be:
+
+```css
+.example-with-nested-selectors {
+  color: red;
+  font-size: 16px;
+
+  .child {
+    color: green;
+
+    &:hover {
+      color: blue;
+    }
+  }
+
+  &[data-test="foo"] {
+    color: blue;
+  }
+}
 ```
