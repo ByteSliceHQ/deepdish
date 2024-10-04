@@ -58,7 +58,6 @@ export async function DeepDish<V>(props: {
 
   const draftResult = getDraft()
   if (draftResult.failure) {
-    logger.warn('Unable to access configured draft mode.')
     // TODO: handle missing draft data
     return props.render(readResult.data as V)
   }
