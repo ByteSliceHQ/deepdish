@@ -1,5 +1,12 @@
 # @deepdish/ui
 
+## 0.5.6
+
+### Patch Changes
+
+- c144cf3: Fixed context menu editor accessibility controls.
+- 6df662b: Implemented logger.
+
 ## 0.5.5
 
 ### Patch Changes

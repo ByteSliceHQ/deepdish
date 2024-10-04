@@ -1,5 +1,12 @@
 # @deepdish/config
 
+## 0.2.3
+
+### Patch Changes
+
+- 6df662b: Implemented logger.
+- 6df662b: Configured logging.
+
 ## 0.2.2
 
 ### Patch Changes
