@@ -10,6 +10,20 @@ import type { DeepDishProps } from './types'
 
 const uiLogger = getLogger(['deepdish', 'ui'])
 
+async function canEdit() {
+  if (process.env.DEEPDISH_MODE !== 'draft') {
+    return false
+  }
+
+  const draftResult = getDraft()
+  if (draftResult.failure) {
+    // TODO: handle missing draft data
+    return false
+  }
+
+  return await draftResult.data.auth()
+}
+
 export async function DeepDish<V>(props: {
   deepdish?: DeepDishProps
   fallback?: V
@@ -52,17 +66,7 @@ export async function DeepDish<V>(props: {
     return props.render(props.fallback)
   }
 
-  if (process.env.DEEPDISH_MODE !== 'draft') {
-    return props.render(readResult.data as V)
-  }
-
-  const draftResult = getDraft()
-  if (draftResult.failure) {
-    // TODO: handle missing draft data
-    return props.render(readResult.data as V)
-  }
-
-  if (!(await draftResult.data.auth())) {
+  if (!(await canEdit())) {
     return props.render(readResult.data as V)
   }
 
