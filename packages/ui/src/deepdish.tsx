@@ -24,6 +24,26 @@ async function canEdit() {
   return await draftResult.data.auth()
 }
 
+function handleUpdate(key: DeepDishProps['key'], type: ValueType) {
+  return async (value: string | null) => {
+    'use server'
+
+    const contractResult = getContract(type)
+    if (contractResult.failure) {
+      return
+    }
+
+    const { resolver } = contractResult.data
+
+    const writeResult = await resolver.write({ key }, value || '')
+    if (writeResult.failure) {
+      // TODO: log error properly
+      console.error('Failed to save content:', writeResult.failure)
+      return
+    }
+  }
+}
+
 export async function DeepDish<V>(props: {
   deepdish?: DeepDishProps
   fallback?: V
@@ -70,40 +90,12 @@ export async function DeepDish<V>(props: {
     return props.render(readResult.data as V)
   }
 
-  async function handleUpdate(value: string | null) {
-    'use server'
-
-    if (!props.deepdish) {
-      return
-    }
-
-    const contractResult = getContract(props.type)
-    if (contractResult.failure) {
-      return
-    }
-
-    const { resolver } = contractResult.data
-
-    const writeResult = await resolver.write(
-      {
-        key: props.deepdish.key,
-      },
-      value || '',
-    )
-
-    if (writeResult.failure) {
-      // TODO: log error properly
-      console.error('Failed to save content:', writeResult.failure)
-      return
-    }
-  }
-
   return (
     // TODO: remove string type coercion once we support more resolver types
     <Menu
       deepdishKey={props.deepdish.key}
       value={readResult.data as string}
-      onUpdate={handleUpdate}
+      onUpdate={handleUpdate(props.deepdish.key, props.type)}
     >
       {props.render(readResult.data as V)}
     </Menu>
