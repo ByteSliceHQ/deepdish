@@ -29,7 +29,7 @@ function getResolver(type: ValueType) {
   return result.failure ? null : result.data.resolver
 }
 
-function handleUpdate(key: DeepDishProps['key'], type: ValueType) {
+function handleUpdate(type: ValueType, key: DeepDishProps['key']) {
   return async (value: string | null) => {
     'use server'
 
@@ -90,7 +90,7 @@ export async function DeepDish<V>(props: {
             <Menu
               deepdishKey={props.deepdish.key}
               value={props.fallback as string}
-              onUpdate={handleUpdate(props.deepdish.key, props.type)}
+              onUpdate={handleUpdate(props.type, props.deepdish.key)}
             >
               {props.render(props.fallback)}
             </Menu>
@@ -111,7 +111,7 @@ export async function DeepDish<V>(props: {
     <Menu
       deepdishKey={props.deepdish.key}
       value={readResult.data as string}
-      onUpdate={handleUpdate(props.deepdish.key, props.type)}
+      onUpdate={handleUpdate(props.type, props.deepdish.key)}
     >
       {props.render(readResult.data as V)}
     </Menu>
