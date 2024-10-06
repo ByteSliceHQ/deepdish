@@ -24,16 +24,19 @@ async function canEdit() {
   return await draftResult.data.auth()
 }
 
+function getResolver(type: ValueType) {
+  const result = getContract(type)
+  return result.failure ? null : result.data.resolver
+}
+
 function handleUpdate(key: DeepDishProps['key'], type: ValueType) {
   return async (value: string | null) => {
     'use server'
 
-    const contractResult = getContract(type)
-    if (contractResult.failure) {
+    const resolver = getResolver(type)
+    if (!resolver) {
       return
     }
-
-    const { resolver } = contractResult.data
 
     const writeResult = await resolver.write({ key }, value || '')
     if (writeResult.failure) {
@@ -59,12 +62,10 @@ export async function DeepDish<V>(props: {
     type: props.type,
   })
 
-  const contractResult = getContract(props.type)
-  if (contractResult.failure) {
-    logger.warn('Unable to access configured {type} contract for {key}.')
+  const resolver = getResolver(props.type)
+  if (!resolver) {
     return props.render(props.fallback)
   }
-  const { resolver } = contractResult.data
 
   const readResult = await resolver.read({
     key: props.deepdish.key,
