@@ -5,17 +5,16 @@ type Context = { key: string }
 
 type Read<T> = (context: Context) => Promise<T>
 
-type Write<T, V> = (context: Context, value: V) => Promise<T>
-
-type ResolverFailure =
+type ReadFailure =
   | { type: 'DATA_INVALID'; error: Error }
   | { type: 'DATA_MISSING' }
   | { type: 'READ'; error: Error }
-  | { type: 'WRITE'; error: Error }
+
+type Write<T, V> = (context: Context, value: V) => Promise<T>
 
 export type Resolver<V> = {
-  read: Read<Result<V, ResolverFailure>>
-  write: Write<Result<void, ResolverFailure>, V>
+  read: Read<Result<V, ReadFailure>>
+  write: Write<Result<void>, V>
 }
 
 export function createResolver<S extends ZodTypeAny>(schema: S) {
@@ -24,7 +23,7 @@ export function createResolver<S extends ZodTypeAny>(schema: S) {
   return (read: Read<unknown>, write: Write<void, Value>): Resolver<Value> => {
     return {
       async read(context) {
-        const readResult = await withResult<unknown, ResolverFailure>(
+        const readResult = await withResult<unknown, ReadFailure>(
           read(context),
           (error) => ({ type: 'READ', error }),
         )
@@ -37,7 +36,7 @@ export function createResolver<S extends ZodTypeAny>(schema: S) {
           return { failure: { type: 'DATA_MISSING' } }
         }
 
-        const parseResult = await withResult<unknown, ResolverFailure>(
+        const parseResult = await withResult<unknown, ReadFailure>(
           schema.parse(data),
           (error) => ({ type: 'DATA_INVALID', error }),
         )
@@ -48,9 +47,9 @@ export function createResolver<S extends ZodTypeAny>(schema: S) {
         return { data }
       },
       async write(context, value) {
-        const writeResult = await withResult<void, ResolverFailure>(
+        const writeResult = await withResult<void>(
           write(context, value),
-          (error) => ({ type: 'WRITE', error }),
+          (error) => error,
         )
 
         if (writeResult.failure) {
