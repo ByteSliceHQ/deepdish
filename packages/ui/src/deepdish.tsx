@@ -38,7 +38,7 @@ function handleUpdate(key: DeepDishProps['key'], type: ValueType) {
       return
     }
 
-    const writeResult = await resolver.write({ key }, value || '')
+    const writeResult = await resolver.write({ key }, value ?? '')
     if (writeResult.failure) {
       logger.error('Unable to save {type} content for {key}: {reason}', {
         type,
