@@ -6,8 +6,8 @@ type Context = { key: string }
 type Read<T> = (context: Context) => Promise<T>
 
 type ReadFailure =
-  | { type: 'DATA_INVALID'; error: Error }
-  | { type: 'DATA_MISSING' }
+  | { type: 'CONTENT_INVALID'; error: Error }
+  | { type: 'CONTENT_MISSING' }
   | { type: 'READ'; error: Error }
 
 type Write<T, V> = (context: Context, value: V) => Promise<T>
@@ -33,12 +33,12 @@ export function createResolver<S extends ZodTypeAny>(schema: S) {
 
         const { data } = readResult
         if (!data) {
-          return { failure: { type: 'DATA_MISSING' } }
+          return { failure: { type: 'CONTENT_MISSING' } }
         }
 
         const parseResult = await withResult<unknown, ReadFailure>(
           schema.parse(data),
-          (error) => ({ type: 'DATA_INVALID', error }),
+          (error) => ({ type: 'CONTENT_INVALID', error }),
         )
         if (parseResult.failure) {
           return parseResult
