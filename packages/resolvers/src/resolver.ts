@@ -24,7 +24,7 @@ export function createResolver<S extends ZodTypeAny>(schema: S) {
     return {
       async read(context) {
         const readResult = await withResult<unknown, ReadFailure>(
-          read(context),
+          () => read(context),
           (error) => ({ type: 'READ', error }),
         )
         if (readResult.failure) {
@@ -37,7 +37,7 @@ export function createResolver<S extends ZodTypeAny>(schema: S) {
         }
 
         const parseResult = await withResult<unknown, ReadFailure>(
-          schema.parse(data),
+          () => schema.parse(data),
           (error) => ({ type: 'CONTENT_INVALID', error }),
         )
         if (parseResult.failure) {
@@ -48,7 +48,7 @@ export function createResolver<S extends ZodTypeAny>(schema: S) {
       },
       async write(context, value) {
         const writeResult = await withResult<void>(
-          write(context, value),
+          () => write(context, value),
           (error) => error,
         )
 
