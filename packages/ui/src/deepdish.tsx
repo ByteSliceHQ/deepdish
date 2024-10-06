@@ -84,6 +84,19 @@ export async function DeepDish<V>(props: {
           reason: readResult.failure.error.message,
         })
         break
+      case 'DATA_MISSING':
+        if (await canEdit()) {
+          return (
+            <Menu
+              deepdishKey={props.deepdish.key}
+              value={props.fallback as string}
+              onUpdate={handleUpdate(props.deepdish.key, props.type)}
+            >
+              {props.render(props.fallback)}
+            </Menu>
+          )
+        }
+        break
     }
 
     return props.render(props.fallback)
