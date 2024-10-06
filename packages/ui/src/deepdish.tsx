@@ -40,8 +40,11 @@ function handleUpdate(key: DeepDishProps['key'], type: ValueType) {
 
     const writeResult = await resolver.write({ key }, value || '')
     if (writeResult.failure) {
-      // TODO: log error properly
-      console.error('Failed to save content:', writeResult.failure)
+      logger.error('Unable to save {type} data for {key}: {reason}', {
+        type,
+        key,
+        reason: writeResult.failure,
+      })
       return
     }
   }
