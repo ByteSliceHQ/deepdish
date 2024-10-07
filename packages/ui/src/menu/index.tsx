@@ -3,6 +3,7 @@
 import * as ContextMenu from '@radix-ui/react-context-menu'
 import { ChevronRight } from 'lucide-react'
 import { Scope } from 'react-shadow-scope'
+import type { DeepDishProps } from '../types'
 import { Editor } from './editor'
 import * as styles from './menu.css'
 import { stylesheet } from './stylesheet'
@@ -10,7 +11,7 @@ import { stylesheet } from './stylesheet'
 type MenuProps = {
   children: React.ReactNode
   onUpdate: (value: string | null) => Promise<void>
-  deepdishKey: string
+  deepdishKey: DeepDishProps['key']
   // TODO: this should be typed to the resolver schema
   value?: string | null
 }
