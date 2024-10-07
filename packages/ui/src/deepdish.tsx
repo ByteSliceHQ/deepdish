@@ -8,7 +8,47 @@ import { configure, getContract, getDraft } from './config'
 import { Menu } from './menu'
 import type { DeepDishProps } from './types'
 
-const uiLogger = getLogger(['deepdish', 'ui'])
+const logger = getLogger(['deepdish', 'ui'])
+
+async function canEdit() {
+  if (process.env.DEEPDISH_MODE !== 'draft') {
+    return false
+  }
+
+  const draftResult = getDraft()
+  if (draftResult.failure) {
+    // TODO: handle missing draft data
+    return false
+  }
+
+  return await draftResult.data.auth()
+}
+
+function getResolver(type: ValueType) {
+  const result = getContract(type)
+  return result.failure ? null : result.data.resolver
+}
+
+function handleUpdate(type: ValueType, key: DeepDishProps['key']) {
+  return async (value: string | null) => {
+    'use server'
+
+    const resolver = getResolver(type)
+    if (!resolver) {
+      return
+    }
+
+    const writeResult = await resolver.write({ key }, value ?? '')
+    if (writeResult.failure) {
+      logger.error('Unable to save {type} content for {key}: {reason}', {
+        type,
+        key,
+        reason: writeResult.failure,
+      })
+      return
+    }
+  }
+}
 
 export async function DeepDish<V>(props: {
   deepdish?: DeepDishProps
@@ -20,17 +60,10 @@ export async function DeepDish<V>(props: {
     return props.render(props.fallback)
   }
 
-  const logger = uiLogger.with({
-    key: props.deepdish.key,
-    type: props.type,
-  })
-
-  const contractResult = getContract(props.type)
-  if (contractResult.failure) {
-    logger.warn('Unable to access configured {type} contract for {key}.')
+  const resolver = getResolver(props.type)
+  if (!resolver) {
     return props.render(props.fallback)
   }
-  const { resolver } = contractResult.data
 
   const readResult = await resolver.read({
     key: props.deepdish.key,
@@ -38,61 +71,39 @@ export async function DeepDish<V>(props: {
   if (readResult.failure) {
     switch (readResult.failure.type) {
       case 'READ':
-        logger.warn('Unable to read {type} data for {key}: {reason}', {
+        logger.warn('Unable to read {type} content for {key}: {reason}', {
+          type: props.type,
+          key: props.deepdish.key,
           reason: readResult.failure.error.message,
         })
         break
-      case 'DATA_INVALID':
-        logger.warn('Invalid {type} data for {key}: {reason}', {
+      case 'CONTENT_INVALID':
+        logger.warn('Invalid {type} content for {key}: {reason}', {
+          type: props.type,
+          key: props.deepdish.key,
           reason: readResult.failure.error.message,
         })
+        break
+      case 'CONTENT_MISSING':
+        if (await canEdit()) {
+          return (
+            <Menu
+              deepdishKey={props.deepdish.key}
+              value={props.fallback as string}
+              onUpdate={handleUpdate(props.type, props.deepdish.key)}
+            >
+              {props.render(props.fallback)}
+            </Menu>
+          )
+        }
         break
     }
 
     return props.render(props.fallback)
   }
 
-  if (process.env.DEEPDISH_MODE !== 'draft') {
+  if (!(await canEdit())) {
     return props.render(readResult.data as V)
-  }
-
-  const draftResult = getDraft()
-  if (draftResult.failure) {
-    logger.warn('Unable to access configured draft mode.')
-    // TODO: handle missing draft data
-    return props.render(readResult.data as V)
-  }
-
-  if (!(await draftResult.data.auth())) {
-    return props.render(readResult.data as V)
-  }
-
-  async function handleUpdate(value: string | null) {
-    'use server'
-
-    if (!props.deepdish) {
-      return
-    }
-
-    const contractResult = getContract(props.type)
-    if (contractResult.failure) {
-      return
-    }
-
-    const { resolver } = contractResult.data
-
-    const writeResult = await resolver.write(
-      {
-        key: props.deepdish.key,
-      },
-      value || '',
-    )
-
-    if (writeResult.failure) {
-      // TODO: log error properly
-      console.error('Failed to save content:', writeResult.failure)
-      return
-    }
   }
 
   return (
@@ -100,7 +111,7 @@ export async function DeepDish<V>(props: {
     <Menu
       deepdishKey={props.deepdish.key}
       value={readResult.data as string}
-      onUpdate={handleUpdate}
+      onUpdate={handleUpdate(props.type, props.deepdish.key)}
     >
       {props.render(readResult.data as V)}
     </Menu>
