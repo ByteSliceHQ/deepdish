@@ -1,5 +1,5 @@
 import { type Result, withResult } from '@byteslice/result'
-import type { ZodTypeAny, z } from 'zod'
+import { ZodError, type ZodTypeAny, type z } from 'zod'
 
 type Context = { key: string }
 
@@ -39,6 +39,15 @@ export function createResolver<S extends ZodTypeAny>(schema: S) {
         const parseResult = await withResult<unknown, ReadFailure>(
           () => schema.parse(data),
           (error) => ({ type: 'CONTENT_INVALID', error }),
+          {
+            onException(ex) {
+              if (ex instanceof ZodError) {
+                // TODO: format ZodError
+              }
+
+              return new Error('Unable to validate content.')
+            },
+          },
         )
         if (parseResult.failure) {
           return parseResult
