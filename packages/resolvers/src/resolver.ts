@@ -42,7 +42,8 @@ export function createResolver<S extends ZodTypeAny>(schema: S) {
           {
             onException(ex) {
               if (ex instanceof ZodError) {
-                // TODO: format ZodError
+                const message = [ex.flatten().formErrors].join('; ')
+                return new Error(message)
               }
 
               return new Error('Unable to validate content.')
