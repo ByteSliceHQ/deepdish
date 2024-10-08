@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
+  "$schema": "https://biomejs.dev/schemas/1.9.3/schema.json",
   "files": {
     "ignore": ["**/package.json", ".next/", ".turbo/", "dist/", ".tsup/"]
   },
@@ -12,6 +12,9 @@
       },
       "performance": {
         "noBarrelFile": "warn"
+      },
+      "suspicious": {
+        "useAwait": "error"
       }
     }
   },
@@ -26,5 +29,17 @@
       "quoteStyle": "single",
       "semicolons": "asNeeded"
     }
-  }
+  },
+  "overrides": [
+    {
+      "include": ["**/*.tsx"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "useAwait": "off"
+          }
+        }
+      }
+    }
+  ]
 }
