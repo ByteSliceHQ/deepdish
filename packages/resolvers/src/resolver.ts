@@ -1,5 +1,5 @@
 import { type Result, withResult } from '@byteslice/result'
-import { ZodError, type ZodTypeAny, type z } from 'zod'
+import { type ZodTypeAny as Schema, ZodError, type z } from 'zod'
 
 type Context = { key: string }
 
@@ -22,7 +22,7 @@ function formatValidationError(error: ZodError) {
   return new Error(message)
 }
 
-function validateContent(schema: ZodTypeAny, content: unknown) {
+function validateContent(schema: Schema, content: unknown) {
   return withResult<unknown, ReadFailure>(
     () => schema.parse(content),
     (error) => ({ type: 'CONTENT_INVALID', error }),
@@ -38,8 +38,8 @@ function validateContent(schema: ZodTypeAny, content: unknown) {
   )
 }
 
-export function createResolver<S extends ZodTypeAny>(schema: S) {
-  type Value = z.infer<S>
+export function createResolver(schema: Schema) {
+  type Value = z.infer<Schema>
 
   return (read: Read<unknown>, write: Write<void, Value>): Resolver<Value> => {
     return {
