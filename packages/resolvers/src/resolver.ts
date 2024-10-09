@@ -22,6 +22,22 @@ function formatValidationError(error: ZodError) {
   return new Error(message)
 }
 
+function validateContent(schema: ZodTypeAny, content: unknown) {
+  return withResult<unknown, ReadFailure>(
+    () => schema.parse(content),
+    (error) => ({ type: 'CONTENT_INVALID', error }),
+    {
+      onException(ex) {
+        if (ex instanceof ZodError) {
+          return formatValidationError(ex)
+        }
+
+        return new Error('Unable to validate content.')
+      },
+    },
+  )
+}
+
 export function createResolver<S extends ZodTypeAny>(schema: S) {
   type Value = z.infer<S>
 
@@ -41,19 +57,7 @@ export function createResolver<S extends ZodTypeAny>(schema: S) {
           return { failure: { type: 'CONTENT_MISSING' } }
         }
 
-        const parseResult = await withResult<unknown, ReadFailure>(
-          () => schema.parse(data),
-          (error) => ({ type: 'CONTENT_INVALID', error }),
-          {
-            onException(ex) {
-              if (ex instanceof ZodError) {
-                return formatValidationError(ex)
-              }
-
-              return new Error('Unable to validate content.')
-            },
-          },
-        )
+        const parseResult = await validateContent(schema, data)
         if (parseResult.failure) {
           return parseResult
         }
