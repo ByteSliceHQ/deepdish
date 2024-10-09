@@ -1,16 +1,96 @@
-import { auth } from '@clerk/nextjs/server'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { createTypographyResolver } from '@deepdish-cloud/resolvers/typography'
 import { configure } from '@deepdish/ui/config'
+import { createJsonResolver } from '@deepdish/resolvers/json'
+import { typographySchema } from '@deepdish/config/schemas'
+import { headers } from 'next/headers'
+import { NextRequest } from 'next/server'
+import { redirect } from 'next/navigation'
+import { cookies } from 'next/headers'
 
-export function cms(url: string, apiKey: string) {
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+const jsonPath = path.resolve(__dirname, './data.json')
+
+function extractDeepdishCookie(request: NextRequest) {
+  const cookieHeader = request.headers.get('cookie') || ''
+  const cookies = cookieHeader.split('; ')
+
+  const cookie = cookies.find((cookie) =>
+    cookie.startsWith('__deepdish_secret='),
+  )
+
+  if (!cookie) {
+    return null
+  }
+
+  return cookie.split('=')[1]
+}
+
+type Config = {
+  contentUrl: string
+  oauthUrl: string
+  secretKey: string
+}
+
+export function cms(config: Config) {
+  const jsonResolver = createJsonResolver(typographySchema, jsonPath)
+
+  const cloudTypographyResolver = createTypographyResolver(
+    config.contentUrl,
+    config.secretKey,
+  )
+
   configure({
     contracts: {
       typography: {
-        resolver: createTypographyResolver(url, apiKey),
+        resolver:
+          process.env.DEEPDISH_RESOLVER === 'cloud'
+            ? cloudTypographyResolver
+            : jsonResolver,
       },
     },
     draft: {
-      auth: () => Boolean(auth().userId),
+      auth: async () => {
+        const request = new NextRequest('https://dashboard.deepdish.app', {
+          headers: headers(),
+        })
+
+        const secret = extractDeepdishCookie(request)
+
+        if (!secret) {
+          return false
+        }
+
+        const response = await fetch(`${config.oauthUrl}/oauth/userinfo`, {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${secret}`,
+            'X-DEEPDISH-SECRET-KEY': config.secretKey,
+          },
+        })
+
+        return response.status === 200
+      },
+      onSignIn: async () => {
+        // TODO: don't use public variable
+        // TODO: clerk domain environment variable
+        await redirect(
+          `https://native-pony-6.clerk.accounts.dev/oauth/authorize?client_id=aUsw8GkUPJbUEHj9&state=${process.env.NEXT_PUBLIC_DEEPDISH_DRAFT_URL}&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2F%2foauth%2Fcallback&response_type=code&scope=profile`,
+        )
+      },
+      onSignOut: async () => {
+        const cookie = cookies().get('__deepdish_secret')
+
+        if (!cookie) {
+          // TODO: what to do here?
+          return
+        }
+
+        await redirect(
+          `${config.oauthUrl}/oauth/revoke?access_token=${cookie.value}`,
+        )
+      },
     },
   })
 }

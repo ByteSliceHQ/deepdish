@@ -8,6 +8,7 @@ export default defineConfig([
     sourcemap: true,
     dts: true,
     bundle: false,
+    target: 'esnext',
   },
   {
     entry: ['src/client.tsx'],

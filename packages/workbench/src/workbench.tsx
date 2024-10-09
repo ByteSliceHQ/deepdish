@@ -2,12 +2,31 @@ import { withResult } from '@byteslice/result'
 import { getDraft } from '@deepdish/ui/config'
 import { Client } from './client'
 
-type WorkbenchProps = {
-  signInButton: React.FunctionComponent
-  signOutButton: React.FunctionComponent
+async function handleSignIn() {
+  'use server'
+
+  const draftResult = getDraft()
+  if (draftResult.failure) {
+    // TODO: handle failure case
+    return
+  }
+
+  await draftResult.data.onSignIn()
 }
 
-export async function Workbench(props: WorkbenchProps) {
+async function handleSignOut() {
+  'use server'
+
+  const draftResult = getDraft()
+  if (draftResult.failure) {
+    // TODO: handle failure case
+    return
+  }
+
+  await draftResult.data.onSignOut()
+}
+
+export async function Workbench() {
   const draftResult = getDraft()
   if (draftResult.failure) {
     // TODO: handle failure case
@@ -26,8 +45,8 @@ export async function Workbench(props: WorkbenchProps) {
   return (
     <Client
       authenticated={authResult.data}
-      signInButton={props.signInButton}
-      signOutButton={props.signOutButton}
+      onSignIn={handleSignIn}
+      onSignOut={handleSignOut}
     />
   )
 }

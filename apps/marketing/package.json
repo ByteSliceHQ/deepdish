@@ -9,11 +9,10 @@
   },
   "scripts": {
     "build": "next build",
-    "dev": "next dev"
+    "dev": "next dev --port 3002"
   },
   "dependencies": {
-    "@clerk/nextjs": "5.4.1",
-    "@deepdish-cloud/resolvers": "0.0.7",
+    "@deepdish-cloud/resolvers": "0.0.11",
     "@deepdish/config": "workspace:0.2.3",
     "@deepdish/resolvers": "workspace:0.4.1",
     "@deepdish/ui": "workspace:0.5.6",
@@ -21,6 +20,7 @@
     "@heroicons/react": "2.1.5",
     "@radix-ui/react-slot": "1.0.2",
     "@tailwindcss/forms": "0.5.7",
+    "@trpc/client": "10.45.2",
     "bright": "0.8.5",
     "class-variance-authority": "0.7.0",
     "clsx": "2.1.1",
