@@ -52,7 +52,7 @@ export function createResolver<S extends ZodTypeAny>(schema: S) {
           return readResult
         }
 
-        const { data: content } = readResult
+        const content = readResult.data
         if (!content) {
           return { failure: { type: 'CONTENT_MISSING' } }
         }
