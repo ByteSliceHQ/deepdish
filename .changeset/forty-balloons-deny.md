@@ -2,4 +2,4 @@
 "@deepdish/resolvers": patch
 ---
 
-Formatted content validation error(s).
+Formatted content validation error.

@@ -17,6 +17,11 @@ export type Resolver<V> = {
   write: Write<Result<void>, V>
 }
 
+function formatValidationError(error: ZodError) {
+  const message = [error.flatten().formErrors].join('; ')
+  return new Error(message)
+}
+
 export function createResolver<S extends ZodTypeAny>(schema: S) {
   type Value = z.infer<S>
 
@@ -42,8 +47,7 @@ export function createResolver<S extends ZodTypeAny>(schema: S) {
           {
             onException(ex) {
               if (ex instanceof ZodError) {
-                const message = [ex.flatten().formErrors].join('; ')
-                return new Error(message)
+                return formatValidationError(ex)
               }
 
               return new Error('Unable to validate content.')
