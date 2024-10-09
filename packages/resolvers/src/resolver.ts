@@ -52,17 +52,17 @@ export function createResolver<S extends ZodTypeAny>(schema: S) {
           return readResult
         }
 
-        const { data } = readResult
-        if (!data) {
+        const { data: content } = readResult
+        if (!content) {
           return { failure: { type: 'CONTENT_MISSING' } }
         }
 
-        const parseResult = await validateContent(schema, data)
-        if (parseResult.failure) {
-          return parseResult
+        const validateResult = await validateContent(schema, content)
+        if (validateResult.failure) {
+          return validateResult
         }
 
-        return { data }
+        return { data: content }
       },
       async write(context, value) {
         const writeResult = await withResult<void>(
