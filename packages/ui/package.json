@@ -33,6 +33,7 @@
     "dev": "tsup --watch"
   },
   "dependencies": {
+    "@byteslice/result": "0.1.0",
     "@logtape/logtape": "0.6.2",
     "@radix-ui/react-context-menu": "2.2.1",
     "class-variance-authority": "0.7.0",
@@ -46,10 +47,11 @@
     "remark-parse": "11.0.0",
     "remark-rehype": "11.1.0",
     "server-only": "0.0.1",
-    "unified": "11.0.5"
+    "unified": "11.0.5",
+    "zod": "3.23.8"
   },
   "devDependencies": {
-    "@deepdish/config": "workspace:0.2.3",
+    "@deepdish/resolvers": "workspace:0.4.1",
     "@deepdish/stylesheet": "workspace:0.1.0",
     "@tsconfig/create-react-app": "2.0.5",
     "@types/react": "18.3.3",
