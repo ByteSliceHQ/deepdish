@@ -1,6 +1,6 @@
 import 'server-only'
 
-import type { LinkValue } from '@deepdish/config/schemas'
+import type { LinkValue } from '../schemas'
 import { DeepDish } from '../deepdish'
 import type { ElementProps } from '../types'
 

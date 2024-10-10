@@ -2,9 +2,9 @@
 
 import 'server-only'
 
-import type { ValueType } from '@deepdish/config/schemas'
+import type { ValueType } from './schemas'
 import { getLogger } from '@logtape/logtape'
-import { configure, getContract, getDraft } from './config'
+import { configure, getContract, getDraft } from './config/config'
 import { Menu } from './menu'
 import type { DeepDishProps } from './types'
 

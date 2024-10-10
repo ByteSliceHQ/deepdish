@@ -1,10 +1,6 @@
 import 'server-only'
 
-import type {
-  AudioValue,
-  ImageValue,
-  VideoValue,
-} from '@deepdish/config/schemas'
+import type { AudioValue, ImageValue, VideoValue } from '../schemas'
 import { DeepDish } from '../deepdish'
 import type { ElementProps } from '../types'
 
