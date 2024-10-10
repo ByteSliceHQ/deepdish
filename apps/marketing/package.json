@@ -14,7 +14,6 @@
   "dependencies": {
     "@clerk/nextjs": "5.4.1",
     "@deepdish-cloud/resolvers": "0.0.7",
-    "@deepdish/config": "workspace:0.2.3",
     "@deepdish/resolvers": "workspace:0.4.1",
     "@deepdish/ui": "workspace:0.5.6",
     "@deepdish/workbench": "workspace:0.0.2",
