@@ -11,6 +11,8 @@ import { NextRequest } from 'next/server'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const jsonPath = path.resolve(__dirname, './data.json')
 
+const DEEPDISH_COOKIE_NAME = '__deepdish_secret'
+
 function extractDeepdishCookie(request: NextRequest) {
   const cookieHeader = request.headers.get('cookie') || ''
   const cookies = cookieHeader.split('; ')
@@ -72,14 +74,27 @@ export function cms(config: Config) {
         return response.status === 200
       },
       onSignIn: async () => {
-        // TODO: don't use public variable
-        // TODO: clerk domain environment variable
+        const origin = headers().get('origin')
+
+        if (!origin) {
+          // TODO: what to do here?
+          return
+        }
+
+        const queryParams = new URLSearchParams({
+          client_id: process.env.CLERK_OAUTH_CLIENT_ID,
+          state: origin,
+          redirect_uri: process.env.CLERK_OAUTH_REDIRECT_URL,
+          response_type: 'code',
+          scope: 'profile',
+        })
+
         await redirect(
-          `https://native-pony-6.clerk.accounts.dev/oauth/authorize?client_id=aUsw8GkUPJbUEHj9&state=${process.env.NEXT_PUBLIC_DEEPDISH_DRAFT_URL}&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2F%2foauth%2Fcallback&response_type=code&scope=profile`,
+          `${process.env.CLERK_URL}/oauth/authorize?${queryParams}`,
         )
       },
       onSignOut: async () => {
-        const cookie = cookies().get('__deepdish_secret')
+        const cookie = cookies().get(DEEPDISH_COOKIE_NAME)
 
         if (!cookie) {
           // TODO: what to do here?
@@ -97,7 +112,7 @@ export function cms(config: Config) {
           console.error('Failed to revoke access token:', response.status)
         }
 
-        await cookies().delete('__deepdish_secret')
+        await cookies().delete(DEEPDISH_COOKIE_NAME)
       },
     },
   })
