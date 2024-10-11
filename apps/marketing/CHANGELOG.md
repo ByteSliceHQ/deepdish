@@ -1,5 +1,12 @@
 # @deepdish/marketing
 
+## 0.1.10
+
+### Patch Changes
+
+- Updated dependencies [08075bc]
+  - @deepdish/workbench@0.1.0
+
 ## 0.1.9
 
 ### Patch Changes

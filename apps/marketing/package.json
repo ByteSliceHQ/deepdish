@@ -1,6 +1,6 @@
 {
   "name": "@deepdish/marketing",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "private": true,
   "description": "DeepDish marketing site",
   "author": {
@@ -15,7 +15,7 @@
     "@deepdish-cloud/resolvers": "0.0.7",
     "@deepdish/resolvers": "workspace:0.5.0",
     "@deepdish/ui": "workspace:0.6.1",
-    "@deepdish/workbench": "workspace:0.0.5",
+    "@deepdish/workbench": "workspace:0.1.0",
     "@heroicons/react": "2.1.5",
     "@radix-ui/react-slot": "1.0.2",
     "@tailwindcss/forms": "0.5.7",
