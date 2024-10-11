@@ -1,5 +1,11 @@
 # @deepdish/ui
 
+## 0.6.1
+
+### Patch Changes
+
+- b61ca70: Added authentication callbacks to draft mode config.
+
 ## 0.6.0
 
 ### Minor Changes

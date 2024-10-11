@@ -1,5 +1,12 @@
 # @deepdish/workbench
 
+## 0.0.5
+
+### Patch Changes
+
+- Updated dependencies [b61ca70]
+  - @deepdish/ui@0.6.1
+
 ## 0.0.4
 
 ### Patch Changes
