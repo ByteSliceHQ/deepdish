@@ -22,7 +22,7 @@ function formatValidationError(error: ZodError) {
   return new Error(message)
 }
 
-function validateContent<S extends ZodTypeAny>(schema: S, content: unknown) {
+function validateContent(schema: ZodTypeAny, content: unknown) {
   return withResult<unknown, ReadFailure>(
     () => schema.parse(content),
     (error) => ({ type: 'CONTENT_INVALID', error }),
