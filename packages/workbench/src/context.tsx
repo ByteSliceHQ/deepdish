@@ -2,19 +2,17 @@
 
 import { createContext, useContext } from 'react'
 
-type AuthButton = React.FunctionComponent<{ children: JSX.Element }>
-
 export type WorkbenchContext = {
   authenticated: boolean
-  signInButton: AuthButton
-  signOutButton: AuthButton
+  onSignIn: () => Promise<void>
+  onSignOut: () => Promise<void>
 }
 
 export type WorkbenchProviderProps = {
   authenticated: boolean
   children: React.ReactNode
-  signInButton: AuthButton
-  signOutButton: AuthButton
+  onSignIn: () => Promise<void>
+  onSignOut: () => Promise<void>
 }
 
 export const WorkbenchContext = createContext<WorkbenchContext | null>(null)
@@ -24,8 +22,8 @@ export function WorkbenchProvider(props: WorkbenchProviderProps) {
     <WorkbenchContext.Provider
       value={{
         authenticated: props.authenticated,
-        signInButton: props.signInButton,
-        signOutButton: props.signOutButton,
+        onSignIn: props.onSignIn,
+        onSignOut: props.onSignOut,
       }}
     >
       {props.children}

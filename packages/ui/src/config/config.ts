@@ -12,6 +12,8 @@ type Config = {
   }
   draft: {
     auth: () => boolean | Promise<boolean>
+    onSignIn: () => Promise<void>
+    onSignOut: () => Promise<void>
   }
 }
 
