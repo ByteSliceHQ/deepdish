@@ -4,10 +4,9 @@ import { createTypographyResolver } from '@deepdish-cloud/resolvers/typography'
 import { configure } from '@deepdish/ui/config'
 import { createJsonResolver } from '@deepdish/resolvers/json'
 import { typographySchema } from '@deepdish/config/schemas'
-import { headers } from 'next/headers'
+import { cookies, headers } from 'next/headers'
 import { NextRequest } from 'next/server'
 import { redirect } from 'next/navigation'
-import { cookies } from 'next/headers'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const jsonPath = path.resolve(__dirname, './data.json')
