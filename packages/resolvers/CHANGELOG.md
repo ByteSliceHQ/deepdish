@@ -1,5 +1,17 @@
 # @deepdish/resolvers
 
+## 0.5.0
+
+### Minor Changes
+
+- f8f4e4e: Separated read-specific failure cases.
+
+### Patch Changes
+
+- f8f4e4e: Used content term instead of data.
+- f153fcb: Formatted content validation error.
+- 3557f78: Updated result wrapper calls.
+
 ## 0.4.1
 
 ### Patch Changes

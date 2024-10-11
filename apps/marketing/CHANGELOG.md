@@ -1,5 +1,19 @@
 # @deepdish/marketing
 
+## 0.1.7
+
+### Patch Changes
+
+- Updated dependencies [f8f4e4e]
+- Updated dependencies [f153fcb]
+- Updated dependencies [3557f78]
+- Updated dependencies [f8f4e4e]
+- Updated dependencies [f8f4e4e]
+- Updated dependencies [bdb541d]
+  - @deepdish/resolvers@0.5.0
+  - @deepdish/workbench@0.0.3
+  - @deepdish/ui@0.6.0
+
 ## 0.1.6
 
 ### Patch Changes
