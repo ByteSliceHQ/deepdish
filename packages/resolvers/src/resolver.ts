@@ -1,5 +1,5 @@
 import { type Result, withResult } from '@byteslice/result'
-import { type ZodTypeAny, ZodError, type z } from 'zod'
+import { ZodError, type ZodTypeAny, type z } from 'zod'
 
 type Context = { key: string }
 
