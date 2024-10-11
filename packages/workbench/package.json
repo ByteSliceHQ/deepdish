@@ -1,6 +1,6 @@
 {
   "name": "@deepdish/workbench",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "private": true,
   "description": "DeepDish workbench",
   "author": {
@@ -21,7 +21,7 @@
   "dependencies": {
     "@byteslice/result": "0.1.0",
     "@deepdish/stylesheet": "workspace:0.1.0",
-    "@deepdish/ui": "workspace:0.6.0",
+    "@deepdish/ui": "workspace:0.6.1",
     "class-variance-authority": "0.7.0",
     "react-shadow-scope": "1.0.5"
   },
