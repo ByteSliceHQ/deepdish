@@ -87,9 +87,18 @@ export function cms(config: Config) {
           return
         }
 
-        await redirect(
-          `${config.oauthUrl}/oauth/revoke?access_token=${cookie.value}`,
-        )
+        const response = await fetch(`${config.oauthUrl}/oauth/revoke`, {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${cookie.value}`,
+          },
+        })
+
+        if (!response.ok) {
+          console.error('Failed to revoke access token:', response.status)
+        }
+
+        await cookies().delete('__deepdish_secret')
       },
     },
   })
