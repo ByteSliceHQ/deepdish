@@ -1,5 +1,11 @@
 # @deepdish/workbench
 
+## 0.0.4
+
+### Patch Changes
+
+- bb10fb9: Implemented Workbench authentication callbacks.
+
 ## 0.0.3
 
 ### Patch Changes
