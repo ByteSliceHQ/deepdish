@@ -1,5 +1,11 @@
 # @deepdish/workbench
 
+## 0.1.0
+
+### Minor Changes
+
+- 08075bc: Released deepdish workbench.
+
 ## 0.0.5
 
 ### Patch Changes
