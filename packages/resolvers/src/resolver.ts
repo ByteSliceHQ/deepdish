@@ -1,5 +1,5 @@
 import { type Result, withResult } from '@byteslice/result'
-import type { ZodTypeAny, z } from 'zod'
+import { type ZodTypeAny as Schema, ZodError, type z } from 'zod'
 
 type Context = { key: string }
 
@@ -17,8 +17,29 @@ export type Resolver<V> = {
   write: Write<Result<void>, V>
 }
 
-export function createResolver<S extends ZodTypeAny>(schema: S) {
-  type Value = z.infer<S>
+function formatValidationError(error: ZodError) {
+  const message = [error.flatten().formErrors].join('; ')
+  return new Error(message)
+}
+
+function validateContent(schema: Schema, content: unknown) {
+  return withResult<unknown, ReadFailure>(
+    () => schema.parse(content),
+    (error) => ({ type: 'CONTENT_INVALID', error }),
+    {
+      onException(ex) {
+        if (ex instanceof ZodError) {
+          return formatValidationError(ex)
+        }
+
+        return new Error('Unable to validate content.')
+      },
+    },
+  )
+}
+
+export function createResolver(schema: Schema) {
+  type Value = z.infer<Schema>
 
   return (read: Read<unknown>, write: Write<void, Value>): Resolver<Value> => {
     return {
@@ -31,20 +52,17 @@ export function createResolver<S extends ZodTypeAny>(schema: S) {
           return readResult
         }
 
-        const { data } = readResult
-        if (!data) {
+        const content = readResult.data
+        if (!content) {
           return { failure: { type: 'CONTENT_MISSING' } }
         }
 
-        const parseResult = await withResult<unknown, ReadFailure>(
-          () => schema.parse(data),
-          (error) => ({ type: 'CONTENT_INVALID', error }),
-        )
-        if (parseResult.failure) {
-          return parseResult
+        const validateResult = await validateContent(schema, content)
+        if (validateResult.failure) {
+          return validateResult
         }
 
-        return { data }
+        return { data: content }
       },
       async write(context, value) {
         const writeResult = await withResult<void>(
