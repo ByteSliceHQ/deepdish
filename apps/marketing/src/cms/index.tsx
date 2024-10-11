@@ -30,6 +30,8 @@ function extractDeepdishCookie(request: NextRequest) {
 
 type Config = {
   contentUrl: string
+  oauthClientId: string
+  oauthRedirectUrl: string
   oauthUrl: string
   secretKey: string
 }
@@ -82,9 +84,9 @@ export function cms(config: Config) {
         }
 
         const queryParams = new URLSearchParams({
-          client_id: process.env.CLERK_OAUTH_CLIENT_ID,
+          client_id: config.oauthClientId,
           state: origin,
-          redirect_uri: process.env.CLERK_OAUTH_REDIRECT_URL,
+          redirect_uri: config.oauthRedirectUrl,
           response_type: 'code',
           scope: 'profile',
         })

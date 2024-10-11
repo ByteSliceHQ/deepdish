@@ -8,6 +8,8 @@ import { Inter } from 'next/font/google'
 
 cms({
   contentUrl: process.env.DEEPDISH_URL,
+  oauthClientId: process.env.CLERK_OAUTH_CLIENT_ID,
+  oauthRedirectUrl: process.env.CLERK_OAUTH_REDIRECT_URL,
   oauthUrl: process.env.DEEPDISH_OAUTH_URL,
   secretKey: process.env.DEEPDISH_SECRET_KEY,
 })
