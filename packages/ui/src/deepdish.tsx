@@ -2,10 +2,10 @@
 
 import 'server-only'
 
-import type { ValueType } from './schemas'
 import { getLogger } from '@logtape/logtape'
 import { configure, getContract, getDraft } from './config/config'
 import { Menu } from './menu'
+import type { ValueType } from './schemas'
 import type { DeepDishProps } from './types'
 
 const logger = getLogger(['deepdish', 'ui'])

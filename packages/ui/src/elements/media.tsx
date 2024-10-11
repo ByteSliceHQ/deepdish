@@ -1,7 +1,7 @@
 import 'server-only'
 
-import type { AudioValue, ImageValue, VideoValue } from '../schemas'
 import { DeepDish } from '../deepdish'
+import type { AudioValue, ImageValue, VideoValue } from '../schemas'
 import type { ElementProps } from '../types'
 
 export function Audio(props: ElementProps<'audio', string>) {
