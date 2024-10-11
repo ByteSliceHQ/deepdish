@@ -1,7 +1,6 @@
 {
   "name": "@deepdish/workbench",
   "version": "0.0.5",
-  "private": true,
   "description": "DeepDish workbench",
   "author": {
     "name": "ByteSlice, LLC",
@@ -32,5 +31,8 @@
     "@types/react-dom": "18.3.0",
     "tsup": "8.2.4",
     "typescript": "5.5.4"
+  },
+  "publishConfig": {
+    "access": "restricted"
   }
 }
