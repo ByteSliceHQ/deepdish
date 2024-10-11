@@ -1,7 +1,7 @@
 'use client'
 
 import { type CustomIntrinsicElement, Scope } from 'react-shadow-scope'
-import { WorkbenchProvider, type WorkbenchProviderProps } from './context'
+import { WorkbenchProvider } from './context'
 import { stylesheet } from './stylesheet'
 import { Toolbar } from './toolbar'
 
@@ -15,8 +15,8 @@ declare global {
 
 type ClientProps = {
   authenticated: boolean
-  signInButton: WorkbenchProviderProps['signInButton']
-  signOutButton: WorkbenchProviderProps['signOutButton']
+  onSignIn: () => Promise<void>
+  onSignOut: () => Promise<void>
 }
 
 export function Client(props: ClientProps) {
@@ -28,8 +28,8 @@ export function Client(props: ClientProps) {
     >
       <WorkbenchProvider
         authenticated={props.authenticated}
-        signInButton={props.signInButton}
-        signOutButton={props.signOutButton}
+        onSignIn={props.onSignIn}
+        onSignOut={props.onSignOut}
       >
         <Toolbar />
       </WorkbenchProvider>

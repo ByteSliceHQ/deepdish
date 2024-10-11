@@ -9,10 +9,9 @@
   },
   "scripts": {
     "build": "next build",
-    "dev": "next dev"
+    "dev": "next dev --port 3002"
   },
   "dependencies": {
-    "@clerk/nextjs": "5.4.1",
     "@deepdish-cloud/resolvers": "0.0.7",
     "@deepdish/resolvers": "workspace:0.5.0",
     "@deepdish/ui": "workspace:0.6.0",

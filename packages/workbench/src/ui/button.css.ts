@@ -2,6 +2,7 @@ import { stylesheet } from '../stylesheet'
 
 export const base = stylesheet.style({
   borderRadius: '4px',
+  border: 'none',
   cursor: 'pointer',
   outline: 'none',
   transition: '0.1s ease-in-out',
@@ -9,8 +10,7 @@ export const base = stylesheet.style({
 
 export const primary = stylesheet.style({
   background: stylesheet.var('slate100'),
-  color: stylesheet.var('slate600'),
-  border: `1px solid ${stylesheet.var('slate300')}`,
+  color: stylesheet.var('slate700'),
 
   pseudos: {
     ':hover': {
@@ -25,7 +25,6 @@ export const primary = stylesheet.style({
 export const secondary = stylesheet.style({
   background: 'white',
   color: 'gray',
-  border: 'gray',
 
   pseudos: {
     ':hover': {
