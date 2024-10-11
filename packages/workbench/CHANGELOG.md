@@ -1,5 +1,14 @@
 # @deepdish/workbench
 
+## 0.0.3
+
+### Patch Changes
+
+- 3557f78: Updated result wrapper calls.
+- Updated dependencies [f8f4e4e]
+- Updated dependencies [bdb541d]
+  - @deepdish/ui@0.6.0
+
 ## 0.0.2
 
 ### Patch Changes
