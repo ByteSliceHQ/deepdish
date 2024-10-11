@@ -1,12 +1,12 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { createTypographyResolver } from '@deepdish-cloud/resolvers/typography'
-import { configure } from '@deepdish/ui/config'
-import { createJsonResolver } from '@deepdish/resolvers/json'
 import { typographySchema } from '@deepdish/config/schemas'
+import { createJsonResolver } from '@deepdish/resolvers/json'
+import { configure } from '@deepdish/ui/config'
 import { cookies, headers } from 'next/headers'
-import { NextRequest } from 'next/server'
 import { redirect } from 'next/navigation'
+import { NextRequest } from 'next/server'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const jsonPath = path.resolve(__dirname, './data.json')
