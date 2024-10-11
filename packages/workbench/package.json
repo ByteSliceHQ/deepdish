@@ -1,0 +1,36 @@
+{
+  "name": "@deepdish/workbench",
+  "version": "0.0.2",
+  "private": true,
+  "description": "DeepDish workbench",
+  "author": {
+    "name": "ByteSlice, LLC",
+    "url": "https://byteslice.co"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/workbench.mjs",
+      "types": "./dist/workbench.d.ts",
+      "require": "./dist/workbench.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch"
+  },
+  "dependencies": {
+    "@byteslice/result": "0.1.0",
+    "@deepdish/stylesheet": "workspace:0.1.0",
+    "@deepdish/ui": "workspace:0.5.6",
+    "class-variance-authority": "0.7.0",
+    "react-shadow-scope": "1.0.5"
+  },
+  "devDependencies": {
+    "@tsconfig/create-react-app": "2.0.5",
+    "@types/bun": "1.1.9",
+    "@types/react": "18.3.3",
+    "@types/react-dom": "18.3.0",
+    "tsup": "8.2.4",
+    "typescript": "5.5.4"
+  }
+}

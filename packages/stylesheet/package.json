@@ -1,6 +1,6 @@
 {
   "name": "@deepdish/stylesheet",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "description": "CSS-in-TS style sheet",
   "author": {
@@ -8,7 +8,7 @@
     "url": "https://byteslice.co"
   },
   "exports": {
-    ".": "./src/stylesheet.tsx"
+    ".": "./src/stylesheet.ts"
   },
   "dependencies": {
     "class-variance-authority": "0.7.0",
@@ -17,6 +17,7 @@
   "devDependencies": {
     "@happy-dom/global-registrator": "15.7.4",
     "@tsconfig/create-react-app": "2.0.5",
-    "@types/bun": "1.1.10"
+    "@types/bun": "1.1.10",
+    "dedent": "1.5.3"
   }
 }

@@ -1,7 +1,9 @@
 biomejs
 dashify
-lockb
 happydom
+lockb
+logtape
+nextjs
 registrator
 rehype
 tsup

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
+  "$schema": "https://biomejs.dev/schemas/1.9.3/schema.json",
   "files": {
     "ignore": ["**/package.json", ".next/", ".turbo/", "dist/", ".tsup/"]
   },
@@ -13,8 +13,13 @@
       "performance": {
         "noBarrelFile": "warn"
       },
+<<<<<<< HEAD
       "a11y": {
         "noSvgWithoutTitle": "off"
+=======
+      "suspicious": {
+        "useAwait": "error"
+>>>>>>> f153fcb9a840dc5e2eb0ad4d8c9f8bc967eb142b
       }
     }
   },
@@ -29,5 +34,17 @@
       "quoteStyle": "single",
       "semicolons": "asNeeded"
     }
-  }
+  },
+  "overrides": [
+    {
+      "include": ["**/*.tsx"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "useAwait": "off"
+          }
+        }
+      }
+    }
+  ]
 }

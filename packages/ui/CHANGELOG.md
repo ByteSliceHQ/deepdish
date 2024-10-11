@@ -1,5 +1,39 @@
 # @deepdish/ui
 
+## 0.5.6
+
+### Patch Changes
+
+- c144cf3: Fixed context menu editor accessibility controls.
+- 6df662b: Implemented logger.
+
+## 0.5.5
+
+### Patch Changes
+
+- 0f7596f: Added the context menu with content editing capabilities.
+
+## 0.5.4
+
+### Patch Changes
+
+- f0f0635: Fixed configuration singleton issue.
+
+## 0.5.3
+
+### Patch Changes
+
+- 88a2137: Added draft mode.
+- 01c9add: Moved internal dependencies to dev dependency list.
+
+## 0.5.2
+
+### Patch Changes
+
+- Updated dependencies [5f4b22b]
+- Updated dependencies [e6014aa]
+  - @deepdish/config@0.2.1
+
 ## 0.5.1
 
 ### Patch Changes

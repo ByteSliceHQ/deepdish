@@ -1,5 +1,55 @@
 # @deepdish/marketing
 
+## 0.1.6
+
+### Patch Changes
+
+- Updated dependencies [c144cf3]
+- Updated dependencies [6df662b]
+- Updated dependencies [6df662b]
+  - @deepdish/ui@0.5.6
+  - @deepdish/config@0.2.3
+  - @deepdish/workbench@0.0.2
+
+## 0.1.5
+
+### Patch Changes
+
+- c40cf9d: Integrated DeepDish Workbench.
+- Updated dependencies [0f7596f]
+- Updated dependencies [c40cf9d]
+  - @deepdish/ui@0.5.5
+  - @deepdish/workbench@0.0.1
+
+## 0.1.4
+
+### Patch Changes
+
+- b9e44ec: Upgraded `@deepdish-cloud/resolvers` dependency.
+- f0f0635: Fixed configuration singleton issue.
+- Updated dependencies [f0f0635]
+  - @deepdish/ui@0.5.4
+
+## 0.1.3
+
+### Patch Changes
+
+- 88a2137: Implemented Clerk middleware.
+- Updated dependencies [88a2137]
+- Updated dependencies [01c9add]
+  - @deepdish/config@0.2.2
+  - @deepdish/ui@0.5.3
+
+## 0.1.2
+
+### Patch Changes
+
+- Updated dependencies [5f4b22b]
+- Updated dependencies [e6014aa]
+  - @deepdish/config@0.2.1
+  - @deepdish/resolvers@0.4.1
+  - @deepdish/ui@0.5.2
+
 ## 0.1.1
 
 ### Patch Changes

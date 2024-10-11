@@ -1,47 +1,48 @@
 {
-  "name": "@deepdish/marketing",
-  "version": "0.1.1",
-  "private": true,
-  "description": "DeepDish marketing site",
-  "author": {
-    "name": "ByteSlice, LLC",
-    "url": "https://byteslice.co"
-  },
-  "scripts": {
-    "build": "next build",
-    "dev": "next dev"
-  },
-  "dependencies": {
-    "@deepdish-cloud/resolvers": "0.0.4",
-    "@deepdish/config": "workspace:0.2.0",
-    "@deepdish/resolvers": "workspace:0.4.0",
-    "@deepdish/ui": "workspace:0.5.1",
-    "@headlessui/react": "2.1.8",
-    "@heroicons/react": "2.1.5",
-    "@radix-ui/react-slot": "1.0.2",
-    "@tailwindcss/forms": "0.5.7",
-    "bright": "0.8.5",
-    "class-variance-authority": "0.7.0",
-    "clsx": "2.1.1",
-    "diff": "5.2.0",
-    "framer-motion": "11.6.0",
-    "lucide-react": "0.395.0",
-    "next": "14.2.4",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
-    "react-use-measure": "2.1.1",
-    "tailwind-merge": "2.3.0",
-    "tailwindcss-animate": "1.0.7"
-  },
-  "devDependencies": {
-    "@tsconfig/next": "2.0.3",
-    "@types/diff": "5.2.1",
-    "@types/node": "20.14.2",
-    "@types/react": "18.3.3",
-    "@types/react-dom": "18.3.0",
-    "autoprefixer": "10.4.19",
-    "postcss": "8.4.38",
-    "tailwindcss": "3.4.4",
-    "typescript": "5.5.4"
-  }
+	"name": "@deepdish/marketing",
+	"version": "0.1.6",
+	"private": true,
+	"description": "DeepDish marketing site",
+	"author": {
+		"name": "ByteSlice, LLC",
+		"url": "https://byteslice.co"
+	},
+	"scripts": {
+		"build": "next build",
+		"dev": "next dev"
+	},
+	"dependencies": {
+		"@clerk/nextjs": "5.4.1",
+		"@deepdish-cloud/resolvers": "0.0.7",
+		"@deepdish/config": "workspace:0.2.3",
+		"@deepdish/resolvers": "workspace:0.4.1",
+		"@deepdish/ui": "workspace:0.5.6",
+		"@deepdish/workbench": "workspace:0.0.2",
+		"@heroicons/react": "2.1.5",
+		"@radix-ui/react-slot": "1.0.2",
+		"@tailwindcss/forms": "0.5.7",
+		"bright": "0.8.5",
+		"class-variance-authority": "0.7.0",
+		"clsx": "2.1.1",
+		"diff": "5.2.0",
+		"framer-motion": "11.6.0",
+		"lucide-react": "0.395.0",
+		"next": "14.2.4",
+		"react": "18.3.1",
+		"react-dom": "18.3.1",
+		"react-use-measure": "2.1.1",
+		"tailwind-merge": "2.3.0",
+		"tailwindcss-animate": "1.0.7"
+	},
+	"devDependencies": {
+		"@tsconfig/next": "2.0.3",
+		"@types/diff": "5.2.1",
+		"@types/node": "20.14.2",
+		"@types/react": "18.3.3",
+		"@types/react-dom": "18.3.0",
+		"autoprefixer": "10.4.19",
+		"postcss": "8.4.38",
+		"tailwindcss": "3.4.4",
+		"typescript": "5.5.4"
+	}
 }

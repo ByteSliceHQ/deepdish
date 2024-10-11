@@ -1,59 +1,75 @@
 import { type Result, withResult } from '@byteslice/result'
-import type { ZodTypeAny, z } from 'zod'
+import { type ZodTypeAny as Schema, ZodError, type z } from 'zod'
 
 type Context = { key: string }
 
 type Read<T> = (context: Context) => Promise<T>
 
+type ReadFailure =
+  | { type: 'CONTENT_INVALID'; error: Error }
+  | { type: 'CONTENT_MISSING' }
+  | { type: 'READ'; error: Error }
+
 type Write<T, V> = (context: Context, value: V) => Promise<T>
 
-type ResolverFailure =
-  | { type: 'DATA_INVALID'; error: Error }
-  | { type: 'DATA_MISSING' }
-  | { type: 'READ'; error: Error }
-  | { type: 'WRITE'; error: Error }
-
 export type Resolver<V> = {
-  read: Read<Result<V, ResolverFailure>>
-  write: Write<Result<void, ResolverFailure>, V>
+  read: Read<Result<V, ReadFailure>>
+  write: Write<Result<void>, V>
 }
 
-export function createResolver<S extends ZodTypeAny>(schema: S) {
-  type Value = z.infer<S>
+function formatValidationError(error: ZodError) {
+  const message = [error.flatten().formErrors].join('; ')
+  return new Error(message)
+}
+
+function validateContent(schema: Schema, content: unknown) {
+  return withResult<unknown, ReadFailure>(
+    () => schema.parse(content),
+    (error) => ({ type: 'CONTENT_INVALID', error }),
+    {
+      onException(ex) {
+        if (ex instanceof ZodError) {
+          return formatValidationError(ex)
+        }
+
+        return new Error('Unable to validate content.')
+      },
+    },
+  )
+}
+
+export function createResolver(schema: Schema) {
+  type Value = z.infer<Schema>
 
   return (read: Read<unknown>, write: Write<void, Value>): Resolver<Value> => {
     return {
       async read(context) {
-        const readResult = await withResult<unknown, ResolverFailure>(
-          read(context),
+        const readResult = await withResult<unknown, ReadFailure>(
+          () => read(context),
           (error) => ({ type: 'READ', error }),
         )
         if (readResult.failure) {
           return readResult
         }
 
-        const { data } = readResult
-        if (!data) {
-          return { failure: { type: 'DATA_MISSING' } }
+        const content = readResult.data
+        if (!content) {
+          return { failure: { type: 'CONTENT_MISSING' } }
         }
 
-        const parseResult = await withResult<unknown, ResolverFailure>(
-          schema.parse(data),
-          (error) => ({ type: 'DATA_INVALID', error }),
-        )
-        if (parseResult.failure) {
-          return parseResult
+        const validateResult = await validateContent(schema, content)
+        if (validateResult.failure) {
+          return validateResult
         }
 
-        return { data }
+        return { data: content }
       },
       async write(context, value) {
-        'use server'
-
-        const writeResult = await withResult<void, ResolverFailure>(
-          write(context, value),
-          (error) => ({ type: 'WRITE', error }),
+        const writeResult = await withResult<void>(
+          () => write(context, value),
+          (error) => error,
         )
+
         if (writeResult.failure) {
           return writeResult
         }

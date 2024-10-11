@@ -1,6 +1,6 @@
 {
   "name": "@deepdish/config",
-  "version": "0.2.0",
+  "version": "0.2.3",
   "description": "DeepDish configuration and schemas",
   "author": {
     "name": "ByteSlice, LLC",
@@ -23,11 +23,12 @@
     "dev": "tsup --watch"
   },
   "dependencies": {
-    "@byteslice/result": "0.0.1",
-    "@deepdish/resolvers": "workspace:0.4.0",
+    "@byteslice/result": "0.1.0",
+    "@logtape/logtape": "0.6.2",
     "zod": "3.23.8"
   },
   "devDependencies": {
+    "@deepdish/resolvers": "workspace:0.4.1",
     "@tsconfig/node20": "20.1.4",
     "tsup": "8.2.4",
     "typescript": "5.5.4"

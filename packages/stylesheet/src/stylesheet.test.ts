@@ -1,42 +1,12 @@
 import { describe, expect, it } from 'bun:test'
+import dedent from 'dedent'
+import { makeRule } from './rule'
 import { makeStyleSheet } from './stylesheet'
 
 describe('stylesheet', () => {
   it('should create a stylesheet', () => {
     const stylesheet = makeStyleSheet('test')
     expect(stylesheet.rules).toEqual([])
-  })
-
-  it('should add a rule to the stylesheet', () => {
-    const stylesheet = makeStyleSheet('test')
-
-    stylesheet.addRule({
-      selector: '.my-class',
-      properties: {
-        color: 'red',
-        fontSize: '16px',
-      },
-      pseudos: {
-        ':hover': {
-          color: 'blue',
-        },
-      },
-    })
-
-    expect(stylesheet.rules).toEqual([
-      {
-        selector: '.my-class',
-        properties: {
-          color: 'red',
-          fontSize: '16px',
-        },
-        pseudos: {
-          ':hover': {
-            color: 'blue',
-          },
-        },
-      },
-    ])
   })
 
   it('should add a rule using the style utility', () => {
@@ -46,9 +16,14 @@ describe('stylesheet', () => {
       {
         color: 'red',
         fontSize: '16px',
-        '&': {
+        pseudos: {
           ':hover': {
             color: 'blue',
+          },
+        },
+        nested: {
+          '&[data-test="foo"]': {
+            color: 'green',
           },
         },
       },
@@ -60,74 +35,73 @@ describe('stylesheet', () => {
     expect(stylesheet.rules).toHaveLength(1)
     expect(className).toBe('my-class')
 
-    expect(stylesheet.toString()).toBe(
-      '.my-class {\n\tcolor: red;\n\tfont-size: 16px;\n\n\t&:hover {\n\t\tcolor: blue;\n\t}\n}',
+    expect(stylesheet.render()).toBe(
+      dedent(/* CSS */ `
+        .my-class {
+          color: red;
+          font-size: 16px;
+
+          &:hover {
+            color: blue;
+          }
+
+          &[data-test="foo"] {
+            color: green;
+          }
+        }
+      `),
     )
   })
 
-  it('should render the stylesheet as a string', () => {
-    const stylesheet = makeStyleSheet('test')
-
-    stylesheet.addRule({
-      selector: '.my-class',
-      properties: {
-        color: 'red',
-        fontSize: '16px',
+  it('should render the stylesheet as a string with global rules', () => {
+    const stylesheet = makeStyleSheet('test', {
+      vars: {
+        globalTestVariable: 'red',
+      },
+      keyframes: {
+        spin: {
+          from: {
+            transform: 'rotate(0deg)',
+          },
+          to: {
+            transform: 'rotate(360deg)',
+          },
+        },
       },
     })
 
-    expect(stylesheet.toString()).toBe(
-      '.my-class {\n\tcolor: red;\n\tfont-size: 16px;\n\n\n}',
+    stylesheet.addRule(
+      makeRule({
+        selectors: ['.my-class'],
+        properties: {
+          color: 'red',
+          fontSize: '16px',
+        },
+        pseudos: {},
+        nested: [],
+      }),
     )
-  })
 
-  it('should mount the stylesheet to the document head', () => {
-    const stylesheet = makeStyleSheet('test')
+    expect(stylesheet.render()).toBe(
+      dedent(/* CSS */ `
+        * {
+          --global-test-variable: red;
+        }
 
-    stylesheet.addRule({
-      selector: '.my-class',
-      properties: {
-        color: 'red',
-        fontSize: '16px',
-      },
-    })
+        @keyframes spin {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
 
-    stylesheet.mount()
-
-    const style = document.head.querySelector('style')
-    expect(style).toBeTruthy()
-
-    if (style) {
-      expect(style.textContent).toBe(
-        '.my-class {\n\tcolor: red;\n\tfont-size: 16px;\n\n\n}',
-      )
-    }
-  })
-
-  it('should mount the stylesheet to a shadow root', () => {
-    const stylesheet = makeStyleSheet('test')
-
-    stylesheet.addRule({
-      selector: '.my-class',
-      properties: {
-        color: 'red',
-        fontSize: '16px',
-      },
-    })
-
-    const shadowRoot = document
-      .createElement('div')
-      .attachShadow({ mode: 'open' })
-
-    stylesheet.mount(shadowRoot)
-
-    const style = shadowRoot.querySelector('style')
-    expect(style).toBeTruthy()
-
-    if (style) {
-      expect(style.textContent).toBe(
-        '.my-class {\n\tcolor: red;\n\tfont-size: 16px;\n\n\n}',
-      )
-    }
+        .my-class {
+          color: red;
+          font-size: 16px;
+        }
+      `),
+    )
   })
 })
