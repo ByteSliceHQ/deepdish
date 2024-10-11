@@ -1,5 +1,12 @@
 # @deepdish/ui
 
+## 0.6.0
+
+### Minor Changes
+
+- f8f4e4e: Enabled editing of missing content.
+- bdb541d: Subsumed configuration into ui package.
+
 ## 0.5.6
 
 ### Patch Changes
