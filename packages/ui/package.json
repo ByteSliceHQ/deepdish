@@ -8,24 +8,24 @@
   },
   "exports": {
     "./config": {
-      "import": "./dist/config.mjs",
-      "types": "./dist/config.d.ts",
-      "require": "./dist/config.js"
+      "import": "./dist/config/config.mjs",
+      "types": "./dist/config/config.d.mts"
     },
     "./link": {
       "import": "./dist/elements/link.mjs",
-      "types": "./dist/elements/link.d.ts",
-      "require": "./dist/elements/link.js"
+      "types": "./dist/elements/link.d.mts"
     },
     "./media": {
       "import": "./dist/elements/media.mjs",
-      "types": "./dist/elements/media.d.ts",
-      "require": "./dist/elements/media.js"
+      "types": "./dist/elements/media.d.mts"
+    },
+    "./schemas": {
+      "import": "./dist/schemas.mjs",
+      "types": "./dist/schemas.d.mts"
     },
     "./typography": {
       "import": "./dist/elements/typography.mjs",
-      "types": "./dist/elements/typography.d.ts",
-      "require": "./dist/elements/typography.js"
+      "types": "./dist/elements/typography.d.mts"
     }
   },
   "scripts": {
@@ -33,6 +33,7 @@
     "dev": "tsup --watch"
   },
   "dependencies": {
+    "@byteslice/result": "0.1.0",
     "@logtape/logtape": "0.6.2",
     "@radix-ui/react-context-menu": "2.2.1",
     "class-variance-authority": "0.7.0",
@@ -46,10 +47,11 @@
     "remark-parse": "11.0.0",
     "remark-rehype": "11.1.0",
     "server-only": "0.0.1",
-    "unified": "11.0.5"
+    "unified": "11.0.5",
+    "zod": "3.23.8"
   },
   "devDependencies": {
-    "@deepdish/config": "workspace:0.2.3",
+    "@deepdish/resolvers": "workspace:0.4.1",
     "@deepdish/stylesheet": "workspace:0.1.0",
     "@tsconfig/create-react-app": "2.0.5",
     "@types/react": "18.3.3",
