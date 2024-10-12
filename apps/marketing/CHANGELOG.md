@@ -1,5 +1,13 @@
 # @deepdish/marketing
 
+## 0.1.12
+
+### Patch Changes
+
+- Updated dependencies [ad024b1]
+  - @deepdish/ui@0.6.3
+  - @deepdish/workbench@0.1.2
+
 ## 0.1.11
 
 ### Patch Changes
