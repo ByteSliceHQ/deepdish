@@ -50,7 +50,7 @@ export async function Workbench(props: WorkbenchProps) {
   }
 
   const authResult = await withResult(
-    draftResult.data.auth,
+    () => draftResult.data.auth(),
     (err) => new Error(`Failed to authenticate: ${err.message}`),
   )
   if (authResult.failure) {
