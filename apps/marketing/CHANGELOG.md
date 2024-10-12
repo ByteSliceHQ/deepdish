@@ -1,5 +1,15 @@
 # @deepdish/marketing
 
+## 0.1.11
+
+### Patch Changes
+
+- Updated dependencies [44cd522]
+- Updated dependencies [378a8e0]
+  - @deepdish/resolvers@0.5.1
+  - @deepdish/ui@0.6.2
+  - @deepdish/workbench@0.1.1
+
 ## 0.1.10
 
 ### Patch Changes

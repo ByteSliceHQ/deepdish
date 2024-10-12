@@ -1,6 +1,6 @@
 {
   "name": "@deepdish/ui",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "DeepDish UI components",
   "author": {
     "name": "ByteSlice, LLC",
@@ -51,7 +51,7 @@
     "zod": "3.23.8"
   },
   "devDependencies": {
-    "@deepdish/resolvers": "workspace:0.5.0",
+    "@deepdish/resolvers": "workspace:0.5.1",
     "@deepdish/stylesheet": "workspace:0.1.0",
     "@tsconfig/create-react-app": "2.0.5",
     "@types/react": "18.3.3",
