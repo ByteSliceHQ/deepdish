@@ -19,12 +19,12 @@
   },
   "dependencies": {
     "@byteslice/result": "0.1.0",
-    "@deepdish/stylesheet": "workspace:0.1.0",
-    "@deepdish/ui": "workspace:0.6.3",
     "class-variance-authority": "0.7.0",
     "react-shadow-scope": "1.0.5"
   },
   "devDependencies": {
+    "@deepdish/stylesheet": "workspace:0.1.0",
+    "@deepdish/ui": "workspace:0.6.3",
     "@tsconfig/create-react-app": "2.0.5",
     "@types/bun": "1.1.9",
     "@types/react": "18.3.3",
