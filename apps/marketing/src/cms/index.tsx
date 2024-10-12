@@ -33,6 +33,7 @@ type Config = {
   oauthClientId: string
   oauthRedirectUrl: string
   oauthUrl: string
+  projectAlias: string
   secretKey: string
 }
 
@@ -42,6 +43,7 @@ export function cms(config: Config) {
   const cloudTypographyResolver = createTypographyResolver(
     config.contentUrl,
     config.secretKey,
+    config.projectAlias,
   )
 
   configure({
@@ -69,6 +71,7 @@ export function cms(config: Config) {
           method: 'GET',
           headers: {
             Authorization: `Bearer ${secret}`,
+            'X-DEEPDISH-PROJECT-ALIAS': config.projectAlias,
             'X-DEEPDISH-SECRET-KEY': config.secretKey,
           },
         })

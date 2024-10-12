@@ -94,7 +94,7 @@ function Demo() {
 
 ### Generate the CSS
 
-You can generate the CSS by simply invoking the `.toString()` method on a `Stylesheet` instance:
+You can generate the CSS by simply invoking the `.render()` method on a `Stylesheet` instance:
 
 ```ts
 // the stylesheet we created above
