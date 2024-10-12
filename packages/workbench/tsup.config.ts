@@ -4,7 +4,7 @@ export default defineConfig([
   {
     entry: ['src/workbench.tsx'],
     external: ['react', 'react-dom'],
-    format: ['cjs', 'esm'],
+    format: ['esm'],
     sourcemap: true,
     dts: true,
     bundle: false,
@@ -13,7 +13,7 @@ export default defineConfig([
   {
     entry: ['src/client.tsx'],
     external: ['react', 'react-dom'],
-    format: ['cjs', 'esm'],
+    format: ['esm'],
     sourcemap: true,
     dts: true,
     esbuildOptions(options) {

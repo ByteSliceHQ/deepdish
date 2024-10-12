@@ -9,8 +9,7 @@
   "exports": {
     ".": {
       "import": "./dist/workbench.mjs",
-      "types": "./dist/workbench.d.ts",
-      "require": "./dist/workbench.js"
+      "types": "./dist/workbench.d.mts"
     }
   },
   "scripts": {

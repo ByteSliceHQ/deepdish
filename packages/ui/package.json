@@ -9,8 +9,7 @@
   "exports": {
     "./config": {
       "import": "./dist/config/config.mjs",
-      "types": "./dist/config/config.d.ts",
-      "require": "./dist/config/config.js"
+      "types": "./dist/config/config.d.mts"
     },
     "./link": {
       "import": "./dist/elements/link.mjs",
@@ -22,8 +21,7 @@
     },
     "./schemas": {
       "import": "./dist/schemas.mjs",
-      "types": "./dist/schemas.d.ts",
-      "require": "./dist/schemas.js"
+      "types": "./dist/schemas.d.mts"
     },
     "./typography": {
       "import": "./dist/elements/typography.mjs",

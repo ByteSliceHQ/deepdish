@@ -9,13 +9,11 @@
   "exports": {
     ".": {
       "import": "./dist/resolver.mjs",
-      "types": "./dist/resolver.d.ts",
-      "require": "./dist/resolver.js"
+      "types": "./dist/resolver.d.mts"
     },
     "./json": {
       "import": "./dist/json.mjs",
-      "types": "./dist/json.d.ts",
-      "require": "./dist/json.js"
+      "types": "./dist/json.d.mts"
     }
   },
   "scripts": {
