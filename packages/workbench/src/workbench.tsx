@@ -26,7 +26,23 @@ async function handleSignOut() {
   await draftResult.data.onSignOut()
 }
 
-export async function Workbench() {
+async function handleAuthorize(token: string) {
+  'use server'
+
+  const draftResult = getDraft()
+  if (draftResult.failure) {
+    // TODO: handle failure case
+    return
+  }
+
+  await draftResult.data.authorize(token)
+}
+
+type WorkbenchProps = {
+  onInit: () => Promise<string>
+}
+
+export async function Workbench(props: WorkbenchProps) {
   const draftResult = getDraft()
   if (draftResult.failure) {
     // TODO: handle failure case
@@ -45,6 +61,8 @@ export async function Workbench() {
   return (
     <Client
       authenticated={authResult.data}
+      onAuthorize={handleAuthorize}
+      onInit={props.onInit}
       onSignIn={handleSignIn}
       onSignOut={handleSignOut}
     />
