@@ -1,5 +1,11 @@
 # @deepdish/resolvers
 
+## 0.5.3
+
+### Patch Changes
+
+- 8864e64: Replaced node base tsconfig.
+
 ## 0.5.2
 
 ### Patch Changes
