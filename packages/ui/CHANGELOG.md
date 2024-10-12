@@ -1,5 +1,11 @@
 # @deepdish/ui
 
+## 0.6.2
+
+### Patch Changes
+
+- 378a8e0: Included CommonJS format for config and schemas.
+
 ## 0.6.1
 
 ### Patch Changes

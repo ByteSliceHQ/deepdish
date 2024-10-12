@@ -1,5 +1,5 @@
 import { readFile, writeFile } from 'node:fs/promises'
-import type { ZodTypeAny as Schema } from 'zod'
+import type { ZodTypeAny } from 'zod'
 import { createResolver } from './resolver'
 
 async function parseJson(path: string) {
@@ -14,7 +14,10 @@ async function updateJson<V>(path: string, key: string, value: V) {
 }
 
 /** Creates a resolver to asynchronously read/write values of a JSON file. */
-export function createJsonResolver(schema: Schema, path: string) {
+export function createJsonResolver<S extends ZodTypeAny>(
+  schema: S,
+  path: string,
+) {
   return createResolver(schema)(
     async ({ key }) => {
       const data = await parseJson(path)
