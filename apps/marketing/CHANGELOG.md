@@ -1,5 +1,14 @@
 # @deepdish/marketing
 
+## 0.1.17
+
+### Patch Changes
+
+- 0bde9ac: Added token introspection flow.
+- Updated dependencies [0bde9ac]
+  - @deepdish/workbench@0.2.2
+  - @deepdish/ui@0.6.5
+
 ## 0.1.16
 
 ### Patch Changes

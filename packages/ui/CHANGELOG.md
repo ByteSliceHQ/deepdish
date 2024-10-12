@@ -1,5 +1,11 @@
 # @deepdish/ui
 
+## 0.6.5
+
+### Patch Changes
+
+- 0bde9ac: Added token introspection flow.
+
 ## 0.6.4
 
 ### Patch Changes
