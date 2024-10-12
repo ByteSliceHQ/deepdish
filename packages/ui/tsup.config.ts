@@ -2,14 +2,8 @@ import { defineConfig } from 'tsup'
 
 export default defineConfig([
   {
-    entry: ['src/content.ts'],
+    entry: ['src/config/config.ts', 'src/content.ts', 'src/schemas.ts'],
     format: ['esm'],
-    sourcemap: true,
-    dts: true,
-  },
-  {
-    entry: ['src/config/config.ts', 'src/schemas.ts'],
-    format: ['cjs', 'esm'],
     sourcemap: true,
     dts: true,
   },
