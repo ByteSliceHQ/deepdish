@@ -1,5 +1,11 @@
 # @deepdish/workbench
 
+## 0.2.0
+
+### Minor Changes
+
+- 8cf994b: Bundled workbench dev dependencies.
+
 ## 0.1.2
 
 ### Patch Changes
