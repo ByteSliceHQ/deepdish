@@ -1,5 +1,11 @@
 # @deepdish/workbench
 
+## 0.2.1
+
+### Patch Changes
+
+- df264ca: Exported ES modules only.
+
 ## 0.2.0
 
 ### Minor Changes
