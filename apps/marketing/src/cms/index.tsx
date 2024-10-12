@@ -78,6 +78,9 @@ export function cms(config: Config) {
 
         return response.status === 200
       },
+      authorize: async (token: string) => {
+        cookies().set(DEEPDISH_COOKIE_NAME, token)
+      },
       onSignIn: async () => {
         const origin = headers().get('origin')
 
