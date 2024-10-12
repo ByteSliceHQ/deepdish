@@ -1,5 +1,11 @@
 # @deepdish/marketing
 
+## 0.1.15
+
+### Patch Changes
+
+- 1dc20db: Added required project alias config.
+
 ## 0.1.14
 
 ### Patch Changes
