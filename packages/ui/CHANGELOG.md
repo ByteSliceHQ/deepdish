@@ -1,5 +1,11 @@
 # @deepdish/ui
 
+## 0.6.3
+
+### Patch Changes
+
+- ad024b1: Exported CommonJS for config and schemas.
+
 ## 0.6.2
 
 ### Patch Changes
