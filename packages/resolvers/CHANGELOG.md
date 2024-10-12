@@ -1,5 +1,11 @@
 # @deepdish/resolvers
 
+## 0.5.1
+
+### Patch Changes
+
+- 44cd522: Enabled resolver schema inference.
+
 ## 0.5.0
 
 ### Minor Changes
