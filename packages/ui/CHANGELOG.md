@@ -1,5 +1,11 @@
 # @deepdish/ui
 
+## 0.6.4
+
+### Patch Changes
+
+- df264ca: Exported ES modules only.
+
 ## 0.6.3
 
 ### Patch Changes

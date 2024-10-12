@@ -1,5 +1,14 @@
 # @deepdish/marketing
 
+## 0.1.14
+
+### Patch Changes
+
+- Updated dependencies [df264ca]
+  - @deepdish/resolvers@0.5.2
+  - @deepdish/workbench@0.2.1
+  - @deepdish/ui@0.6.4
+
 ## 0.1.13
 
 ### Patch Changes
