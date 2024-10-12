@@ -1,5 +1,11 @@
 # @deepdish/workbench
 
+## 0.2.2
+
+### Patch Changes
+
+- 0bde9ac: Added token introspection flow.
+
 ## 0.2.1
 
 ### Patch Changes
