@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useRef } from 'react'
 import { type CustomIntrinsicElement, Scope } from 'react-shadow-scope'
 import { WorkbenchProvider } from './context'
 import { stylesheet } from './stylesheet'
@@ -15,11 +16,27 @@ declare global {
 
 type ClientProps = {
   authenticated: boolean
+  onAuthorize: (token: string) => Promise<void>
   onSignIn: () => Promise<void>
   onSignOut: () => Promise<void>
+  onInit: () => Promise<string>
 }
 
 export function Client(props: ClientProps) {
+  const mounted = useRef(false)
+
+  useEffect(() => {
+    if (mounted.current) {
+      return
+    }
+
+    mounted.current = true
+
+    props.onInit().then((token) => {
+      props.onAuthorize(token)
+    })
+  }, [props.onInit, props.onAuthorize])
+
   return (
     <Scope
       tag="deepdish-workbench"

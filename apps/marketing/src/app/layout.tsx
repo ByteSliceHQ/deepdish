@@ -1,6 +1,7 @@
 import '../globals.css'
 
 import { cms } from '@/cms'
+import { init } from '@/lib/init'
 import { cn } from '@/lib/utils'
 import { Workbench } from '@deepdish/workbench'
 import type { Metadata } from 'next'
@@ -35,7 +36,7 @@ export default function RootLayout(props: Props) {
         )}
       >
         {props.children}
-        <Workbench />
+        <Workbench onInit={init} />
       </body>
     </html>
   )
