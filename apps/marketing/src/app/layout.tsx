@@ -12,6 +12,7 @@ cms({
   oauthRedirectUrl: process.env.CLERK_OAUTH_REDIRECT_URL,
   oauthUrl: process.env.DEEPDISH_OAUTH_URL,
   secretKey: process.env.DEEPDISH_SECRET_KEY,
+  projectAlias: process.env.DEEPDISH_PROJECT_ALIAS,
 })
 
 const fontSans = Inter({ subsets: ['latin'], variable: '--font-sans' })
