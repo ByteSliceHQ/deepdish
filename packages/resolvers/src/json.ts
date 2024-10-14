@@ -17,10 +17,7 @@ async function updateJson<V>(path: string, key: string, value: V) {
 function loadValues(path: string) {
   return async (keys: readonly string[]) => {
     const data = await parseJson(path)
-
-    return keys.map((key) => {
-      return data[key] || new Error(`No value found for key: ${key}`)
-    })
+    return keys.map((key) => data[key] ?? undefined)
   }
 }
 
