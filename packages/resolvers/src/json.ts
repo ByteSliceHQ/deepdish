@@ -34,6 +34,7 @@ export function createJsonResolver<S extends ZodTypeAny>(
     },
     async ({ key }, value) => {
       await updateJson(path, key, value)
+      loader.clear(key)
     },
   )
 }
