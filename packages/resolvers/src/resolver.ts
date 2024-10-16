@@ -4,18 +4,14 @@ import { ZodError, type ZodTypeAny, type z } from 'zod'
 
 type Context = { key: string }
 
-type Read<T> = (context: Context) => Promise<T>
-
 type ReadFailure =
   | { type: 'CONTENT_INVALID'; error: Error }
   | { type: 'CONTENT_MISSING' }
   | { type: 'READ'; error: Error }
 
-type Write<T, V> = (context: Context, value: V) => Promise<T>
-
 export type Resolver<V> = {
-  read: Read<Result<V, ReadFailure>>
-  write: Write<Result<void>, V>
+  read: (ctx: Context) => Promise<Result<V, ReadFailure>>
+  write: (ctx: Context, value: V) => Promise<Result<void>>
 }
 
 function formatValidationError(error: ZodError) {
