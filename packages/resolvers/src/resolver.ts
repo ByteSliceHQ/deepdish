@@ -1,20 +1,17 @@
 import { type Result, withResult } from '@byteslice/result'
+import DataLoader, { type BatchLoadFn } from 'dataloader'
 import { ZodError, type ZodTypeAny, type z } from 'zod'
 
 type Context = { key: string }
-
-type Read<T> = (context: Context) => Promise<T>
 
 type ReadFailure =
   | { type: 'CONTENT_INVALID'; error: Error }
   | { type: 'CONTENT_MISSING' }
   | { type: 'READ'; error: Error }
 
-type Write<T, V> = (context: Context, value: V) => Promise<T>
-
 export type Resolver<V> = {
-  read: Read<Result<V, ReadFailure>>
-  write: Write<Result<void>, V>
+  read: (ctx: Context) => Promise<Result<V, ReadFailure>>
+  write: (ctx: Context, value: V) => Promise<Result<void>>
 }
 
 function formatValidationError(error: ZodError) {
@@ -39,13 +36,19 @@ function validateContent<S extends ZodTypeAny>(schema: S, content: unknown) {
 }
 
 export function createResolver<S extends ZodTypeAny>(schema: S) {
+  type Key = string
   type Value = z.infer<S>
 
-  return (read: Read<unknown>, write: Write<void, Value>): Resolver<Value> => {
+  return (
+    loadValues: BatchLoadFn<Key, unknown>,
+    updateValue: (key: Key, value: Value) => Promise<void>,
+  ): Resolver<Value> => {
+    const loader = new DataLoader(loadValues)
+
     return {
-      async read(context) {
+      async read(ctx) {
         const readResult = await withResult<unknown, ReadFailure>(
-          () => read(context),
+          () => loader.load(ctx.key),
           (error) => ({ type: 'READ', error }),
         )
         if (readResult.failure) {
@@ -64,9 +67,12 @@ export function createResolver<S extends ZodTypeAny>(schema: S) {
 
         return { data: content }
       },
-      async write(context, value) {
+      async write(ctx, value) {
         const writeResult = await withResult<void>(
-          () => write(context, value),
+          async () => {
+            await updateValue(ctx.key, value)
+            loader.clear(ctx.key)
+          },
           (error) => error,
         )
 
