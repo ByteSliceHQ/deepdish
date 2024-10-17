@@ -51,7 +51,7 @@
     "zod": "3.23.8"
   },
   "devDependencies": {
-    "@deepdish/resolvers": "workspace:0.5.3",
+    "@deepdish/resolvers": "workspace:0.6.0",
     "@deepdish/stylesheet": "workspace:0.1.0",
     "@tsconfig/create-react-app": "2.0.5",
     "@types/react": "18.3.3",
