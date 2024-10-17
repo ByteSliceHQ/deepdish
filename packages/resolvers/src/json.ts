@@ -1,9 +1,9 @@
+import type { PathLike as Path } from 'node:fs'
 import { readFile, writeFile } from 'node:fs/promises'
 import type { ZodTypeAny } from 'zod'
 import { createResolver } from './resolver'
 
 type Key = string
-type Path = string
 
 async function parseJson(path: Path) {
   const json = await readFile(path, { encoding: 'utf-8' })
