@@ -1,5 +1,11 @@
 # @deepdish/resolvers
 
+## 0.6.0
+
+### Minor Changes
+
+- 231f4de: Implemented DataLoader utility to batch and cache resolver reads.
+
 ## 0.5.3
 
 ### Patch Changes
