@@ -1,7 +1,7 @@
 import '../globals.css'
 
-import { cms } from '@/cms'
-import { init } from '@/lib/init'
+import { cms } from '@deepdish-cloud/config'
+import { init } from '@deepdish-cloud/config/client'
 import { cn } from '@/lib/utils'
 import { Workbench } from '@deepdish/workbench'
 import type { Metadata } from 'next'
