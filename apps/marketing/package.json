@@ -12,6 +12,7 @@
     "dev": "next dev --port 3002"
   },
   "dependencies": {
+    "@deepdish-cloud/config": "0.5.0",
     "@deepdish-cloud/resolvers": "0.1.0",
     "@deepdish/resolvers": "workspace:0.6.0",
     "@deepdish/ui": "workspace:0.6.5",
