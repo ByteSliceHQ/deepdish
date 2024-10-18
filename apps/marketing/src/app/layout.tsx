@@ -1,8 +1,8 @@
 import '../globals.css'
 
+import { cn } from '@/lib/utils'
 import { cms } from '@deepdish-cloud/config'
 import { init } from '@deepdish-cloud/config/client'
-import { cn } from '@/lib/utils'
 import { Workbench } from '@deepdish/workbench'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
