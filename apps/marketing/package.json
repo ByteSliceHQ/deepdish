@@ -13,8 +13,6 @@
   },
   "dependencies": {
     "@deepdish-cloud/config": "0.6.0",
-    "@deepdish-cloud/resolvers": "0.1.0",
-    "@deepdish/resolvers": "workspace:0.6.0",
     "@deepdish/ui": "workspace:0.6.5",
     "@deepdish/workbench": "workspace:0.2.2",
     "@heroicons/react": "2.1.5",
@@ -23,8 +21,6 @@
     "bright": "0.8.5",
     "class-variance-authority": "0.7.0",
     "clsx": "2.1.1",
-    "diff": "5.2.0",
-    "lucide-react": "0.395.0",
     "next": "14.2.4",
     "react": "18.3.1",
     "react-dom": "18.3.1",
@@ -33,7 +29,6 @@
   },
   "devDependencies": {
     "@tsconfig/next": "2.0.3",
-    "@types/diff": "5.2.1",
     "@types/node": "20.14.2",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
