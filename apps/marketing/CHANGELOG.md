@@ -1,5 +1,18 @@
 # @deepdish/marketing
 
+## 0.2.0
+
+### Minor Changes
+
+- 586ea91: Utilized cloud configuration to initialize cms.
+
+### Patch Changes
+
+- b6b988f: Utilized cloud configuration.
+- Updated dependencies [b6b988f]
+  - @deepdish/ui@0.6.6
+  - @deepdish/workbench@0.2.2
+
 ## 0.1.18
 
 ### Patch Changes
