@@ -6,7 +6,7 @@ import { configureLogging } from './logging'
 
 const logger = getLogger(['deepdish', 'config'])
 
-type Config = {
+export type Config = {
   contracts: {
     readonly [T in ValueType]?: Contract<T>
   }
