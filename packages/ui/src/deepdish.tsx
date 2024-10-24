@@ -3,7 +3,7 @@
 import 'server-only'
 
 import { getLogger } from '@logtape/logtape'
-import { configure, getContract, getDraft } from './config/config'
+import { getContract, getDraft } from './config/config'
 import { Menu } from './menu'
 import type { ValueType } from './schemas'
 import type { DeepDishProps } from './types'
@@ -117,5 +117,3 @@ export async function DeepDish<V>(props: {
     </Menu>
   )
 }
-
-export { configure, getContract, getDraft }
