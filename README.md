@@ -17,45 +17,64 @@ We are temporarily only focused on Next.js apps—they are one of the only frame
 
 ## Installation
 
-The easiest way to get started is by using the [DeepDish Cloud](https://dashboard.deepdish.app) hosted service for free. Alternatively, you can build your own resolver pattern and deploy it to your own infrastructure.
+The easiest way to get started is by using the [DeepDish Cloud](https://dashboard.deepdish.app) service for free. Alternatively, you can build your own resolver pattern and deploy it to your own infrastructure.
 
 ```sh
-bun add @deepdish-cloud/config @deepdish/ui @deepdish/workbench
+bun add @deepdish/ui @deepdish/workbench @deepdish-cloud/config
 ```
 
 ## Configure your project
 
-Once installed, you can configure your project to use the [DeepDish Cloud](https://dashboard.deepdish.app) hosted resolvers.
-In your `app/layout.tsx` file, import the `cms` function and configure it with your project alias and secret key from the [DeepDish Cloud](https://dashboard.deepdish.app) dashboard.
+Once installed, you can configure your project to use the [DeepDish Cloud](https://dashboard.deepdish.app) resolvers.
+In your `app/layout.tsx` file, import `cloudConfig` from `@deepdish-cloud/config` and `configure` from `@deepdish/ui/config` and initialize the configuration with your project alias and secret key from the [DeepDish Cloud](https://dashboard.deepdish.app) dashboard.
 
 ```ts
-import { cms } from "@deepdish-cloud/config";
-import { init } from "@deepdish-cloud/config/client";
+import { cloudConfig } from "@deepdish-cloud/config";
+import { configure } from "@deepdish/ui/config";
 
-cms({
-	secretKey: process.env.DEEPDISH_SECRET_KEY,
-	projectAlias: process.env.DEEPDISH_PROJECT_ALIAS,
-});
+configure(
+	cloudConfig({
+		secretKey: process.env.DEEPDISH_SECRET_KEY,
+		projectAlias: process.env.DEEPDISH_PROJECT_ALIAS,
+	}),
+)
 ```
 
-## Add a DeepDish Workbench
+## Add the DeepDish Workbench
 
 To enable the DeepDish Workbench, import the `Workbench` component and include it at the bottom of your `body` tag.
 Workbench can be passed an `onInit` callback that can handle the initial authentication flow.
 For this example, we're using the `init` function from the `@deepdish-cloud/config/client` package.
 
+A full example of the `app/layout.tsx` file with the DeepDish Workbench:
+
 ```tsx
 import { Workbench } from "@deepdish/workbench";
 import { init } from "@deepdish-cloud/config/client";
 
-function App() {
-  return (
-    <html>
-      <body>
-        <Workbench onInit={init} />
-      </body>
-    </html>
-  );
+import { cloudConfig } from "@deepdish-cloud/config";
+import { configure } from "@deepdish/ui/config";
+
+configure(
+	cloudConfig({
+		secretKey: process.env.DEEPDISH_SECRET_KEY,
+		projectAlias: process.env.DEEPDISH_PROJECT_ALIAS,
+	}),
+)
+
+export default function RootLayout({
+	children,
+}: Readonly<{
+	children: React.ReactNode;
+}>) {
+	return (
+		<html>
+			<body>
+				{children}
+				<Workbench onInit={init} />
+			</body>
+		</html>
+	);
 }
 ```
 
