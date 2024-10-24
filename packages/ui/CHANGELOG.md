@@ -1,5 +1,11 @@
 # @deepdish/ui
 
+## 0.6.6
+
+### Patch Changes
+
+- b6b988f: Exported configuration type.
+
 ## 0.6.5
 
 ### Patch Changes
