@@ -42,14 +42,20 @@ describe('resolver', () => {
     expect(result.failure?.type).toBe('CONTENT_INVALID')
   })
 
-  it('should read key and return value', async () => {
+  it('should write to and read from key', async () => {
     const resolver = createJsonResolver(schema, path)
-    await fs.writeFile(path, JSON.stringify({ [key]: value }))
+    await fs.writeFile(path, JSON.stringify({}))
 
-    const result = await resolver.read({ key })
-    expect(result.failure).toBeUndefined()
-    if (!result.failure) {
-      expect(result.data).toBe(value)
+    const writeResult = await resolver.write({ key }, value)
+    expect(writeResult.failure).toBeUndefined()
+    if (!writeResult.failure) {
+      expect(writeResult.data).toBeUndefined()
+    }
+
+    const readResult = await resolver.read({ key })
+    expect(readResult.failure).toBeUndefined()
+    if (!readResult.failure) {
+      expect(readResult.data).toBe(value)
     }
   })
 })
