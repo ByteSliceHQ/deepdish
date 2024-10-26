@@ -3,13 +3,13 @@ import fs from 'node:fs/promises'
 import { z } from 'zod'
 import { createJsonResolver } from './json'
 
-describe('resolver', () => {
-  const path = './test.json'
-  const empty = JSON.stringify({})
-  const schema = z.string()
-  const key = 'foo'
-  const value = 'bar'
+const path = './test.json'
+const empty = JSON.stringify({})
+const schema = z.string()
+const key = 'foo'
+const value = 'bar'
 
+describe('resolver', () => {
   beforeAll(async () => {
     await fs.writeFile(path, empty)
   })
