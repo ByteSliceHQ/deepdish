@@ -5,12 +5,13 @@ import { createJsonResolver } from './json'
 
 describe('resolver', () => {
   const path = './test.json'
+  const empty = JSON.stringify({})
   const schema = z.string()
   const key = 'foo'
   const value = 'bar'
 
   beforeAll(async () => {
-    await fs.writeFile(path, '{}')
+    await fs.writeFile(path, empty)
   })
 
   afterAll(async () => {
@@ -44,7 +45,7 @@ describe('resolver', () => {
 
   it('should write to and read from key', async () => {
     const resolver = createJsonResolver(schema, path)
-    await fs.writeFile(path, JSON.stringify({}))
+    await fs.writeFile(path, empty)
 
     const writeResult = await resolver.write({ key }, value)
     expect(writeResult.failure).toBeUndefined()
