@@ -49,5 +49,11 @@ jobs:
         with:
           bun-version-file: package.json
 
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+        env:
+          NPM_TOKEN_DEEPDISH: ${{ secrets.NPM_TOKEN_DEEPDISH }}
+          NPM_TOKEN_DEEPDISH_CLOUD: ${{ secrets.NPM_TOKEN_DEEPDISH_CLOUD }}
+
       - name: Run tests
         run: bun test --coverage
