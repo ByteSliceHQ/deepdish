@@ -16,7 +16,7 @@ export type Resolver<V> = {
 
 function formatValidationError(error: ZodError) {
   const message = [error.flatten().formErrors].join('; ')
-  return new Error(message)
+  return new Error(message, { cause: error })
 }
 
 function validateContent<S extends ZodTypeAny>(schema: S, content: unknown) {
@@ -29,7 +29,7 @@ function validateContent<S extends ZodTypeAny>(schema: S, content: unknown) {
           return formatValidationError(ex)
         }
 
-        return new Error('Unable to validate content.')
+        return new Error('Unable to validate content.', { cause: ex })
       },
     },
   )
