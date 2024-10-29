@@ -14,7 +14,7 @@ function updateJson<V>(path: Path) {
   return async (key: Key, value: V) => {
     const data = await parseJson(path)
     data[key] = value
-    return writeFile(path, JSON.stringify(data), { encoding: 'utf-8' })
+    await writeFile(path, JSON.stringify(data), { encoding: 'utf-8' })
   }
 }
 
