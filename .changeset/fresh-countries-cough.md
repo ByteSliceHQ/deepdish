@@ -2,4 +2,4 @@
 "@deepdish/ui": patch
 ---
 
-Included errors in log statement properties.
+Included error in applicable log statements.
