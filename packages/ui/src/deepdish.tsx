@@ -43,7 +43,8 @@ function handleUpdate(type: ValueType, key: DeepDishProps['key']) {
       logger.error('Unable to save {type} content for {key}: {reason}', {
         type,
         key,
-        reason: writeResult.failure,
+        error: writeResult.failure,
+        reason: writeResult.failure.message,
       })
       return
     }
@@ -74,6 +75,7 @@ export async function DeepDish<V>(props: {
         logger.warn('Unable to read {type} content for {key}: {reason}', {
           type: props.type,
           key: props.deepdish.key,
+          error: readResult.failure.error,
           reason: readResult.failure.error.message,
         })
         break
@@ -81,6 +83,7 @@ export async function DeepDish<V>(props: {
         logger.warn('Invalid {type} content for {key}: {reason}', {
           type: props.type,
           key: props.deepdish.key,
+          error: readResult.failure.error,
           reason: readResult.failure.error.message,
         })
         break
