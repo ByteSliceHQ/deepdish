@@ -2,4 +2,4 @@
 "@deepdish/marketing": patch
 ---
 
-Updated Next.js dependency.
+Upgraded Next.js version.
