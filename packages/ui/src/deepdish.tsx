@@ -40,10 +40,11 @@ function handleUpdate(type: ValueType, key: DeepDishProps['key']) {
 
     const writeResult = await resolver.write({ key }, value ?? '')
     if (writeResult.failure) {
-      logger.error('Unable to save {type} content for {key}: {error.message}', {
+      logger.error('Unable to save {type} content for {key}: {reason}', {
         type,
         key,
         error: writeResult.failure,
+        reason: writeResult.failure.message,
       })
       return
     }
@@ -71,20 +72,19 @@ export async function DeepDish<V>(props: {
   if (readResult.failure) {
     switch (readResult.failure.type) {
       case 'READ':
-        logger.warn(
-          'Unable to read {type} content for {key}: {error.message}',
-          {
-            type: props.type,
-            key: props.deepdish.key,
-            error: readResult.failure.error,
-          },
-        )
-        break
-      case 'CONTENT_INVALID':
-        logger.warn('Invalid {type} content for {key}: {error.message}', {
+        logger.warn('Unable to read {type} content for {key}: {reason}', {
           type: props.type,
           key: props.deepdish.key,
           error: readResult.failure.error,
+          reason: readResult.failure.error.message,
+        })
+        break
+      case 'CONTENT_INVALID':
+        logger.warn('Invalid {type} content for {key}: {reason}', {
+          type: props.type,
+          key: props.deepdish.key,
+          error: readResult.failure.error,
+          reason: readResult.failure.error.message,
         })
         break
       case 'CONTENT_MISSING':
