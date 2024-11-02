@@ -1,7 +1,7 @@
 import type { PathLike as Path } from 'node:fs'
 import { readFile, writeFile } from 'node:fs/promises'
 import type { ZodTypeAny } from 'zod'
-import { createResolver, type ResolverOptions } from './resolver'
+import { type ResolverOptions, createResolver } from './resolver'
 
 type Key = string
 
