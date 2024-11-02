@@ -19,7 +19,7 @@ describe('resolver', () => {
   })
 
   it('should fail to read if file does not exist', async () => {
-    const resolver = createJsonResolver(schema, './does-not-exist.json')
+    const resolver = createJsonResolver('./does-not-exist.json', schema)
 
     const result = await resolver.read({ key })
     expect(result.failure).toBeDefined()
@@ -27,7 +27,7 @@ describe('resolver', () => {
   })
 
   it('should fail to read if content is missing', async () => {
-    const resolver = createJsonResolver(schema, path)
+    const resolver = createJsonResolver(path, schema)
 
     const result = await resolver.read({ key })
     expect(result.failure).toBeDefined()
@@ -35,7 +35,7 @@ describe('resolver', () => {
   })
 
   it('should fail to read if content is invalid', async () => {
-    const resolver = createJsonResolver(schema, path)
+    const resolver = createJsonResolver(path, schema)
     await fs.writeFile(path, JSON.stringify({ [key]: 1 }))
 
     const result = await resolver.read({ key })
@@ -44,7 +44,7 @@ describe('resolver', () => {
   })
 
   it('should write to and read from key', async () => {
-    const resolver = createJsonResolver(schema, path, { maxBatchSize: 1 })
+    const resolver = createJsonResolver(path, schema, { maxBatchSize: 1 })
     await fs.writeFile(path, empty)
 
     const writeResult = await resolver.write({ key }, value)

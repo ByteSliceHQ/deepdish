@@ -27,8 +27,8 @@ function loadValues(path: Path) {
 
 /** Creates a resolver to asynchronously read/write values of a JSON file. */
 export function createJsonResolver<S extends ZodTypeAny>(
-  schema: S,
   path: Path,
+  schema: S,
   options?: ResolverOptions,
 ) {
   return createResolver(schema, options)(loadValues(path), updateJson(path))
