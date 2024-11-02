@@ -2,4 +2,4 @@
 "@deepdish/resolvers": minor
 ---
 
-Exposed configurable resolver options.
+Permitted configurable batch load size.
