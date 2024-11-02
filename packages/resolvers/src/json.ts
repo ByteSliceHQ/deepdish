@@ -1,7 +1,7 @@
 import type { PathLike as Path } from 'node:fs'
 import { readFile, writeFile } from 'node:fs/promises'
 import type { ZodTypeAny } from 'zod'
-import { createResolver } from './resolver'
+import { type ResolverOptions, createResolver } from './resolver'
 
 type Key = string
 
@@ -27,8 +27,9 @@ function loadValues(path: Path) {
 
 /** Creates a resolver to asynchronously read/write values of a JSON file. */
 export function createJsonResolver<S extends ZodTypeAny>(
-  schema: S,
   path: Path,
+  schema: S,
+  options?: ResolverOptions,
 ) {
-  return createResolver(schema)(loadValues(path), updateJson(path))
+  return createResolver(schema, options)(loadValues(path), updateJson(path))
 }
