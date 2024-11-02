@@ -14,6 +14,10 @@ export type Resolver<V> = {
   write: (ctx: Context, value: V) => Promise<Result<void>>
 }
 
+type ResolverOptions = {
+  maxBatchSize?: number
+}
+
 function formatValidationError(error: ZodError) {
   const message = [error.flatten().formErrors].join('; ')
   return new Error(message, { cause: error })
@@ -35,7 +39,10 @@ function validateContent<S extends ZodTypeAny>(schema: S, content: unknown) {
   )
 }
 
-export function createResolver<S extends ZodTypeAny>(schema: S) {
+export function createResolver<S extends ZodTypeAny>(
+  schema: S,
+  options?: ResolverOptions,
+) {
   type Key = string
   type Value = z.infer<S>
 
@@ -43,7 +50,9 @@ export function createResolver<S extends ZodTypeAny>(schema: S) {
     loadValues: BatchLoadFn<Key, unknown>,
     updateValue: (key: Key, value: Value) => Promise<void>,
   ): Resolver<Value> => {
-    const loader = new DataLoader(loadValues)
+    const loader = new DataLoader(loadValues, {
+      maxBatchSize: options?.maxBatchSize,
+    })
 
     return {
       async read(ctx) {
