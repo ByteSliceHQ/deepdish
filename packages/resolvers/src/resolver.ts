@@ -14,7 +14,7 @@ export type Resolver<V> = {
   write: (ctx: Context, value: V) => Promise<Result<void>>
 }
 
-type ResolverOptions = {
+export type ResolverOptions = {
   maxBatchSize?: number
 }
 

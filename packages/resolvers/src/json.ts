@@ -1,7 +1,7 @@
 import type { PathLike as Path } from 'node:fs'
 import { readFile, writeFile } from 'node:fs/promises'
 import type { ZodTypeAny } from 'zod'
-import { createResolver } from './resolver'
+import { createResolver, type ResolverOptions } from './resolver'
 
 type Key = string
 
@@ -29,6 +29,7 @@ function loadValues(path: Path) {
 export function createJsonResolver<S extends ZodTypeAny>(
   schema: S,
   path: Path,
+  options?: ResolverOptions,
 ) {
-  return createResolver(schema)(loadValues(path), updateJson(path))
+  return createResolver(schema, options)(loadValues(path), updateJson(path))
 }

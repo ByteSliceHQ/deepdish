@@ -44,7 +44,7 @@ describe('resolver', () => {
   })
 
   it('should write to and read from key', async () => {
-    const resolver = createJsonResolver(schema, path)
+    const resolver = createJsonResolver(schema, path, { maxBatchSize: 1 })
     await fs.writeFile(path, empty)
 
     const writeResult = await resolver.write({ key }, value)
