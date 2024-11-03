@@ -56,6 +56,16 @@ describe('resolver', () => {
     expect(result.failure?.type).toBe('CONTENT_INVALID')
   })
 
+  it('should fail to write if update fails', async () => {
+    const resolver = createResolver(schema)(
+      () => Promise.resolve([]),
+      () => Promise.reject(error),
+    )
+
+    const writeResult = await resolver.write({ key }, value)
+    expect(writeResult.failure).toBe(error)
+  })
+
   it('should write to and read from key', async () => {
     const resolver = createJsonResolver(path, schema, { maxBatchSize: 1 })
     await fs.writeFile(path, empty)
