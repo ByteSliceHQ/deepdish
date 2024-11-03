@@ -18,25 +18,13 @@ export type ResolverOptions = {
   maxBatchSize?: number
 }
 
-function formatValidationError(error: ZodError) {
-  const message = [error.flatten().formErrors].join('; ')
-  return new Error(message, { cause: error })
-}
+function handleValidationException(ex: unknown) {
+  if (ex instanceof ZodError) {
+    const message = [ex.flatten().formErrors].join('; ')
+    return new Error(message, { cause: ex })
+  }
 
-function validateContent<S extends ZodTypeAny>(schema: S, content: unknown) {
-  return withResult<unknown, ReadFailure>(
-    () => schema.parse(content),
-    (error) => ({ type: 'CONTENT_INVALID', error }),
-    {
-      onException(ex) {
-        if (ex instanceof ZodError) {
-          return formatValidationError(ex)
-        }
-
-        return new Error('Unable to validate content.', { cause: ex })
-      },
-    },
-  )
+  return new Error('Unable to validate content.', { cause: ex })
 }
 
 export function createResolver<S extends ZodTypeAny>(
@@ -69,7 +57,11 @@ export function createResolver<S extends ZodTypeAny>(
           return { failure: { type: 'CONTENT_MISSING' } }
         }
 
-        const validateResult = await validateContent(schema, content)
+        const validateResult = await withResult<unknown, ReadFailure>(
+          () => schema.parse(content),
+          (error) => ({ type: 'CONTENT_INVALID', error }),
+          { onException: handleValidationException },
+        )
         if (validateResult.failure) {
           return validateResult
         }
