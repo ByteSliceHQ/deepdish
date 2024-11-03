@@ -2,12 +2,14 @@ import { afterAll, beforeAll, describe, expect, it } from 'bun:test'
 import fs from 'node:fs/promises'
 import { z } from 'zod'
 import { createJsonResolver } from './json'
+import { createResolver } from './resolver'
 
 const path = './test.json'
 const empty = JSON.stringify({})
 const schema = z.string()
 const key = 'foo'
 const value = 'bar'
+const error = new Error('uh-oh')
 
 describe('resolver', () => {
   beforeAll(async () => {
@@ -24,6 +26,17 @@ describe('resolver', () => {
     const result = await resolver.read({ key })
     expect(result.failure).toBeDefined()
     expect(result.failure?.type).toBe('READ')
+  })
+
+  it('should fail to read if load fails', async () => {
+    const resolver = createResolver(schema)(
+      () => Promise.reject(error),
+      () => Promise.resolve(),
+    )
+
+    const readResult = await resolver.read({ key })
+    expect(readResult.failure).toBeDefined()
+    expect(readResult.failure?.type).toBe('READ')
   })
 
   it('should fail to read if content is missing', async () => {
