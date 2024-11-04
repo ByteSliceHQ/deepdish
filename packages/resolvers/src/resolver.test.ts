@@ -37,7 +37,7 @@ describe('resolver', () => {
     expect(result.failure?.type).toBe('READ')
   })
 
-  it('should fail to read if load fails', async () => {
+  it('should fail to read if loading fails', async () => {
     const resolver = createResolver(schema)(
       () => Promise.reject(error),
       () => Promise.resolve(),
@@ -66,7 +66,7 @@ describe('resolver', () => {
     expect(result.failure?.type).toBe('CONTENT_INVALID')
   })
 
-  it('should fail to write if update fails', async () => {
+  it('should fail to write if updating fails', async () => {
     const resolver = createResolver(schema)(
       () => Promise.resolve([]),
       () => Promise.reject(error),
