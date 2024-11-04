@@ -20,8 +20,17 @@ describe('resolver', () => {
     await fs.unlink(path)
   })
 
-  it('should fail to read if file does not exist', async () => {
+  it('should fail to read if source does not exist', async () => {
     const resolver = createJsonResolver('./does-not-exist.json', schema)
+
+    const result = await resolver.read({ key })
+    expect(result.failure).toBeDefined()
+    expect(result.failure?.type).toBe('READ')
+  })
+
+  it('should fail to read if source is invalid', async () => {
+    const resolver = createJsonResolver(path, schema)
+    await fs.writeFile(path, 'invalid')
 
     const result = await resolver.read({ key })
     expect(result.failure).toBeDefined()
