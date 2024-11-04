@@ -50,6 +50,7 @@ describe('resolver', () => {
 
   it('should fail to read if content is missing', async () => {
     const resolver = createJsonResolver(path, schema)
+    await fs.writeFile(path, empty)
 
     const result = await resolver.read({ key })
     expect(result.failure).toBeDefined()
