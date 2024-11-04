@@ -76,7 +76,6 @@ export function createResolver<S extends ZodTypeAny>(
           },
           (error) => error,
         )
-
         if (writeResult.failure) {
           return writeResult
         }
