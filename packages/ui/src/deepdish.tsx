@@ -36,6 +36,10 @@ function handleUpdate(type: ValueType, key: DeepDishProps['key']) {
 
     const resolver = getResolver(type)
     if (!resolver) {
+      logger.error(
+        'Unable to save {type} content for {key}: missing resolver.',
+        { type, key },
+      )
       return
     }
 
