@@ -91,7 +91,7 @@ export async function DeepDish<V>(props: {
         if (await canEdit()) {
           return (
             <Menu
-              deepdishKey={props.deepdish.key}
+              deepdish={props.deepdish}
               value={props.fallback as string}
               onUpdate={handleUpdate(props.type, props.deepdish.key)}
             >
@@ -112,7 +112,7 @@ export async function DeepDish<V>(props: {
   return (
     // TODO: remove string type coercion once we support more resolver types
     <Menu
-      deepdishKey={props.deepdish.key}
+      deepdish={props.deepdish}
       value={readResult.data as string}
       onUpdate={handleUpdate(props.type, props.deepdish.key)}
     >
