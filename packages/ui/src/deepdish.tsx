@@ -17,7 +17,6 @@ async function canEdit() {
 
   const draftResult = getDraft()
   if (draftResult.failure) {
-    // TODO: handle missing draft data
     return false
   }
 
