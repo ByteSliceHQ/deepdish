@@ -18,6 +18,7 @@ export function Editor(props: EditorProps) {
   const handleUpdate = async () => {
     setLoading(true)
     await props.onUpdate(value)
+    // TODO: conditionally refresh if update was unsuccessful
     router.refresh()
     setLoading(false)
   }
