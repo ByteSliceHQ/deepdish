@@ -17,7 +17,6 @@ async function canEdit() {
 
   const draftResult = getDraft()
   if (draftResult.failure) {
-    // TODO: handle missing draft data
     return false
   }
 
@@ -30,14 +29,20 @@ function getResolver(type: ValueType) {
 }
 
 function handleUpdate(type: ValueType, key: DeepDishProps['key']) {
+  // TODO: type of `value` should be based on data contract
   return async (value: string | null) => {
     'use server'
 
     const resolver = getResolver(type)
     if (!resolver) {
+      logger.error(
+        'Unable to save {type} content for {key}: missing resolver.',
+        { type, key },
+      )
       return
     }
 
+    // TODO: handle `value` "fallback" based on data contract
     const writeResult = await resolver.write({ key }, value ?? '')
     if (writeResult.failure) {
       logger.error('Unable to save {type} content for {key}: {reason}', {
@@ -91,7 +96,7 @@ export async function DeepDish<V>(props: {
         if (await canEdit()) {
           return (
             <Menu
-              deepdishKey={props.deepdish.key}
+              deepdish={props.deepdish}
               value={props.fallback as string}
               onUpdate={handleUpdate(props.type, props.deepdish.key)}
             >
@@ -112,7 +117,7 @@ export async function DeepDish<V>(props: {
   return (
     // TODO: remove string type coercion once we support more resolver types
     <Menu
-      deepdishKey={props.deepdish.key}
+      deepdish={props.deepdish}
       value={readResult.data as string}
       onUpdate={handleUpdate(props.type, props.deepdish.key)}
     >

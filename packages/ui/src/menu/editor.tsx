@@ -16,17 +16,11 @@ export function Editor(props: EditorProps) {
   const [loading, setLoading] = useState<boolean>(false)
 
   const handleUpdate = async () => {
-    try {
-      setLoading(true)
-      await props.onUpdate(value)
-      router.refresh()
-    } catch (err) {
-      // TODO: log error properly
-      // TODO: show error in global DeepDish toast
-      console.error('Failed to save content:', err)
-    } finally {
-      setLoading(false)
-    }
+    setLoading(true)
+    await props.onUpdate(value)
+    // TODO: conditionally refresh if update was unsuccessful
+    router.refresh()
+    setLoading(false)
   }
 
   return (
