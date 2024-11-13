@@ -11,7 +11,7 @@ import { stylesheet } from './stylesheet'
 type MenuProps = {
   children: React.ReactNode
   onUpdate: (value: string | null) => Promise<void>
-  deepdishKey: DeepDishProps['key']
+  deepdish: DeepDishProps
   // TODO: this should be typed to the resolver schema
   value?: string | null
 }
@@ -30,7 +30,7 @@ export function Menu(props: MenuProps) {
         <Scope stylesheet={stylesheet.render()}>
           <ContextMenu.Content className={styles.content}>
             <ContextMenu.Label className={styles.label}>
-              <pre className={styles.key}>{props.deepdishKey}</pre>
+              <pre className={styles.key}>{props.deepdish.key}</pre>
             </ContextMenu.Label>
 
             <ContextMenu.Sub>
