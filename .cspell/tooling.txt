@@ -1,5 +1,6 @@
 biomejs
 dashify
+filenaming
 happydom
 lockb
 logtape
