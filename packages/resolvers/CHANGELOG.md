@@ -1,5 +1,18 @@
 # @deepdish/resolvers
 
+## 0.7.0
+
+### Minor Changes
+
+- 2667363: Permitted configurable batch load size.
+
+### Patch Changes
+
+- 13a81da: Extracted validation exception handler.
+- 7ef7613: Expanded test suite.
+- 9a163e0: Included original cause of each new error.
+- 6bc0d4c: Added tests using JSON factory.
+
 ## 0.6.0
 
 ### Minor Changes

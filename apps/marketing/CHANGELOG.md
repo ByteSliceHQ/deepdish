@@ -1,5 +1,16 @@
 # @deepdish/marketing
 
+## 0.2.1
+
+### Patch Changes
+
+- 42cfea6: Upgraded Next.js version.
+- Updated dependencies [9abb6a3]
+- Updated dependencies [9a163e0]
+- Updated dependencies [61ed2d1]
+  - @deepdish/ui@0.6.7
+  - @deepdish/workbench@0.2.3
+
 ## 0.2.0
 
 ### Minor Changes

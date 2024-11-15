@@ -1,5 +1,12 @@
 # @deepdish/ui
 
+## 0.6.7
+
+### Patch Changes
+
+- 9abb6a3: Included error in applicable log statements.
+- 61ed2d1: Added log to indicate that a missing resolver prevents content updates.
+
 ## 0.6.6
 
 ### Patch Changes
