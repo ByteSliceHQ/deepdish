@@ -1,5 +1,11 @@
 # @deepdish/workbench
 
+## 0.2.3
+
+### Patch Changes
+
+- 9a163e0: Included original cause of each new error.
+
 ## 0.2.2
 
 ### Patch Changes

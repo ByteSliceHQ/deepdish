@@ -1,6 +1,6 @@
 {
   "name": "@deepdish/workbench",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "DeepDish workbench",
   "author": {
     "name": "ByteSlice, LLC",
@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "@deepdish/stylesheet": "workspace:0.1.0",
-    "@deepdish/ui": "workspace:0.6.6",
+    "@deepdish/ui": "workspace:0.6.7",
     "@tsconfig/create-react-app": "2.0.5",
     "@types/bun": "1.1.9",
     "@types/react": "18.3.3",
