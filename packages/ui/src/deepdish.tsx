@@ -132,21 +132,16 @@ async function DeepDishCollection<V>(props: {
   render(value?: V): Promise<React.ReactElement>
   type: ValueType
 }) {
-  return (
-    // TODO: support wrapper component, but fallback to fragment
-    <>
-      {props.deepdish.keys.map((key) => (
-        <DeepDishElement
-          key={key}
-          deepdish={{ ...props.deepdish, key }}
-          fallback={props.fallback}
-          render={props.render}
-          type={props.type}
-          // TODO: inCollection={true}
-        />
-      ))}
-    </>
-  )
+  return props.deepdish.keys.map((key) => (
+    <DeepDishElement
+      key={key}
+      deepdish={{ ...props.deepdish, key }}
+      fallback={props.fallback}
+      render={props.render}
+      type={props.type}
+      // TODO: inCollection={true}
+    />
+  ))
 }
 
 export async function DeepDish<V>(props: {
