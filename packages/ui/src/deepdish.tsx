@@ -7,9 +7,9 @@ import { getContract, getDraft } from './config/config'
 import { Menu } from './menu'
 import type { ValueType } from './schemas'
 import type {
-  DeepDishProps,
   DeepDishCollectionProps,
   DeepDishElementProps,
+  DeepDishProps,
 } from './types'
 
 const logger = getLogger(['deepdish', 'ui'])
