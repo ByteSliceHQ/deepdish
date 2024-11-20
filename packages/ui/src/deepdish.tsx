@@ -133,7 +133,7 @@ async function DeepDishCollection<V>(props: {
   render(value?: V): Promise<React.ReactElement>
   type: ValueType
 }) {
-  return props.deepdish.keys.map((key) => (
+  return props.deepdish.collection.map((key) => (
     <DeepDishElement
       key={key}
       deepdish={{ ...props.deepdish, key }}
@@ -155,10 +155,10 @@ export async function DeepDish<V>(props: {
     return props.render(props.fallback)
   }
 
-  if (props.deepdish.keys) {
+  if (props.deepdish.collection) {
     return (
       <DeepDishCollection
-        deepdish={{ ...props.deepdish, keys: props.deepdish.keys }}
+        deepdish={{ ...props.deepdish, collection: props.deepdish.collection }}
         fallback={props.fallback}
         render={props.render}
         type={props.type}

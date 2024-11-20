@@ -1,5 +1,5 @@
 export type DeepDishCollectionProps = {
-  keys: string[]
+  collection: string[]
 }
 
 export type DeepDishElementProps = {
@@ -8,7 +8,7 @@ export type DeepDishElementProps = {
 
 export type DeepDishProps = {
   key?: string
-  keys?: string[]
+  collection?: string[]
 }
 
 export type ElementProps<
