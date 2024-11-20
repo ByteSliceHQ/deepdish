@@ -6,7 +6,11 @@ import { getLogger } from '@logtape/logtape'
 import { getContract, getDraft } from './config/config'
 import { Menu } from './menu'
 import type { ValueType } from './schemas'
-import type { DeepDishProps } from './types'
+import type {
+  DeepDishProps,
+  DeepDishCollectionProps,
+  DeepDishElementProps,
+} from './types'
 
 const logger = getLogger(['deepdish', 'ui'])
 
@@ -28,7 +32,7 @@ function getResolver(type: ValueType) {
   return result.failure ? null : result.data.resolver
 }
 
-function handleUpdate(type: ValueType, key: DeepDishProps['key']) {
+function handleUpdate(type: ValueType, key: DeepDishElementProps['key']) {
   // TODO: type of `value` should be based on data contract
   return async (value: string | null) => {
     'use server'
@@ -56,16 +60,12 @@ function handleUpdate(type: ValueType, key: DeepDishProps['key']) {
   }
 }
 
-export async function DeepDish<V>(props: {
-  deepdish?: DeepDishProps
+async function DeepDishElement<V>(props: {
+  deepdish: DeepDishElementProps
   fallback?: V
   render(value?: V): Promise<React.ReactElement>
   type: ValueType
 }) {
-  if (!props.deepdish) {
-    return props.render(props.fallback)
-  }
-
   const resolver = getResolver(props.type)
   if (!resolver) {
     return props.render(props.fallback)
@@ -123,5 +123,68 @@ export async function DeepDish<V>(props: {
     >
       {props.render(readResult.data as V)}
     </Menu>
+  )
+}
+
+async function DeepDishCollection<V>(props: {
+  deepdish: DeepDishCollectionProps
+  fallback?: V
+  render(value?: V): Promise<React.ReactElement>
+  type: ValueType
+}) {
+  return (
+    // TODO: support wrapper component, but fallback to fragment
+    <>
+      {props.deepdish.keys.map((key) => (
+        <DeepDishElement
+          key={key}
+          deepdish={{ ...props.deepdish, key }}
+          fallback={props.fallback}
+          render={props.render}
+          type={props.type}
+          // TODO: inCollection={true}
+        />
+      ))}
+    </>
+  )
+}
+
+export async function DeepDish<V>(props: {
+  deepdish?: DeepDishProps
+  fallback?: V
+  render(value?: V): Promise<React.ReactElement>
+  type: ValueType
+}) {
+  if (!props.deepdish) {
+    return props.render(props.fallback)
+  }
+
+  // TODO: support no explicit keys and a filter function instead
+  if (props.deepdish.keys) {
+    return (
+      <DeepDishCollection
+        deepdish={{ ...props.deepdish, keys: props.deepdish.keys }}
+        fallback={props.fallback}
+        render={props.render}
+        type={props.type}
+      />
+    )
+  }
+
+  if (!props.deepdish.key) {
+    return props.render(props.fallback)
+  }
+
+  return (
+    <DeepDishElement
+      // TODO: cleaner way to instruct TypeScript that `key` is indeed defined here
+      deepdish={{
+        ...props.deepdish,
+        key: props.deepdish.key,
+      }}
+      fallback={props.fallback}
+      render={props.render}
+      type={props.type}
+    />
   )
 }

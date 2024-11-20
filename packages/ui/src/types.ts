@@ -1,5 +1,15 @@
-export type DeepDishProps = {
+// TODO: keys should be optional and should support filtering
+export type DeepDishCollectionProps = {
+  keys: string[]
+}
+
+export type DeepDishElementProps = {
   key: string
+}
+
+export type DeepDishProps = {
+  key?: string
+  keys?: string[]
 }
 
 export type ElementProps<
