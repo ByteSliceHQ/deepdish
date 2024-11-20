@@ -155,10 +155,12 @@ export async function DeepDish<V>(props: {
     return props.render(props.fallback)
   }
 
-  if (props.deepdish.collection) {
+  const { key, collection } = props.deepdish
+
+  if (collection) {
     return (
       <DeepDishCollection
-        deepdish={{ ...props.deepdish, collection: props.deepdish.collection }}
+        deepdish={{ ...props.deepdish, collection }}
         fallback={props.fallback}
         render={props.render}
         type={props.type}
@@ -166,16 +168,15 @@ export async function DeepDish<V>(props: {
     )
   }
 
-  if (!props.deepdish.key) {
+  if (!key) {
     return props.render(props.fallback)
   }
 
   return (
     <DeepDishElement
-      // TODO: cleaner way to instruct TypeScript that `key` is indeed defined here
       deepdish={{
         ...props.deepdish,
-        key: props.deepdish.key,
+        key,
       }}
       fallback={props.fallback}
       render={props.render}
