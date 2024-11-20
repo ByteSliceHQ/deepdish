@@ -63,6 +63,7 @@ function handleUpdate(type: ValueType, key: DeepDishElementProps['key']) {
 async function DeepDishElement<V>(props: {
   deepdish: DeepDishElementProps
   fallback?: V
+  inCollection?: boolean
   render(value?: V): Promise<React.ReactElement>
   type: ValueType
 }) {
@@ -139,7 +140,7 @@ async function DeepDishCollection<V>(props: {
       fallback={props.fallback}
       render={props.render}
       type={props.type}
-      // TODO: inCollection={true}
+      inCollection
     />
   ))
 }
@@ -154,7 +155,6 @@ export async function DeepDish<V>(props: {
     return props.render(props.fallback)
   }
 
-  // TODO: support no explicit keys and a filter function instead
   if (props.deepdish.keys) {
     return (
       <DeepDishCollection

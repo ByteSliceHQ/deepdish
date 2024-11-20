@@ -1,4 +1,3 @@
-// TODO: keys should be optional and should support filtering
 export type DeepDishCollectionProps = {
   keys: string[]
 }
