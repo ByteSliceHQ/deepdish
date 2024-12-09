@@ -12,7 +12,7 @@
     "dev": "next dev --port 3002"
   },
   "dependencies": {
-    "@deepdish-cloud/config": "0.7.0",
+    "@deepdish-cloud/config": "0.7.1",
     "@deepdish/ui": "workspace:0.6.7",
     "@deepdish/workbench": "workspace:0.2.3",
     "@heroicons/react": "2.1.5",
