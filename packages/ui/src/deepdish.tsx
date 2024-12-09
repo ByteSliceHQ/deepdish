@@ -1,5 +1,3 @@
-/// <reference types="react/experimental" />
-
 import 'server-only'
 
 import { getLogger } from '@logtape/logtape'
