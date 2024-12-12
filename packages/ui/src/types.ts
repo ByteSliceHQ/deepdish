@@ -3,13 +3,11 @@ export type DeepDishCollectionProps = {
 }
 
 export type DeepDishElementProps = {
+  collection?: never
   key: string
 }
 
-export type DeepDishProps = {
-  key?: string
-  collection?: string[]
-}
+export type DeepDishProps = DeepDishElementProps | DeepDishCollectionProps
 
 export type ElementProps<
   E extends IntrinsicElement,

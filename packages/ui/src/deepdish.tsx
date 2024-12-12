@@ -133,16 +133,20 @@ async function DeepDishCollection<V>(props: {
   render(value?: V): Promise<React.ReactElement>
   type: ValueType
 }) {
-  return props.deepdish.collection.map((key) => (
-    <DeepDishElement
-      key={key}
-      deepdish={{ ...props.deepdish, key }}
-      fallback={props.fallback}
-      render={props.render}
-      type={props.type}
-      inCollection
-    />
-  ))
+  return props.deepdish.collection.map((key) => {
+    const { collection, ...rest } = props.deepdish
+
+    return (
+      <DeepDishElement
+        key={key}
+        deepdish={{ ...rest, key }}
+        fallback={props.fallback}
+        render={props.render}
+        type={props.type}
+        inCollection
+      />
+    )
+  })
 }
 
 export async function DeepDish<V>(props: {
@@ -155,12 +159,10 @@ export async function DeepDish<V>(props: {
     return props.render(props.fallback)
   }
 
-  const { key, collection } = props.deepdish
-
-  if (collection) {
+  if (props.deepdish.collection) {
     return (
       <DeepDishCollection
-        deepdish={{ ...props.deepdish, collection }}
+        deepdish={props.deepdish}
         fallback={props.fallback}
         render={props.render}
         type={props.type}
@@ -168,16 +170,9 @@ export async function DeepDish<V>(props: {
     )
   }
 
-  if (!key) {
-    return props.render(props.fallback)
-  }
-
   return (
     <DeepDishElement
-      deepdish={{
-        ...props.deepdish,
-        key,
-      }}
+      deepdish={props.deepdish}
       fallback={props.fallback}
       render={props.render}
       type={props.type}
