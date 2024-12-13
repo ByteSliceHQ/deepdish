@@ -1,6 +1,13 @@
-export type DeepDishProps = {
+export type DeepDishCollectionProps = {
+  collection: string[]
+}
+
+export type DeepDishElementProps = {
+  collection?: never
   key: string
 }
+
+export type DeepDishProps = DeepDishElementProps | DeepDishCollectionProps
 
 export type ElementProps<
   E extends IntrinsicElement,

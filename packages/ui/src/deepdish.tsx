@@ -4,7 +4,11 @@ import { getLogger } from '@logtape/logtape'
 import { getContract, getDraft } from './config/config'
 import { Menu } from './menu'
 import type { ValueType } from './schemas'
-import type { DeepDishProps } from './types'
+import type {
+  DeepDishCollectionProps,
+  DeepDishElementProps,
+  DeepDishProps,
+} from './types'
 
 const logger = getLogger(['deepdish', 'ui'])
 
@@ -26,7 +30,7 @@ function getResolver(type: ValueType) {
   return result.failure ? null : result.data.resolver
 }
 
-function handleUpdate(type: ValueType, key: DeepDishProps['key']) {
+function handleUpdate(type: ValueType, key: DeepDishElementProps['key']) {
   // TODO: type of `value` should be based on data contract
   return async (value: string | null) => {
     'use server'
@@ -54,16 +58,13 @@ function handleUpdate(type: ValueType, key: DeepDishProps['key']) {
   }
 }
 
-export async function DeepDish<V>(props: {
-  deepdish?: DeepDishProps
+async function DeepDishElement<V>(props: {
+  deepdish: DeepDishElementProps
   fallback?: V
+  inCollection?: boolean
   render(value?: V): Promise<React.ReactElement>
   type: ValueType
 }) {
-  if (!props.deepdish) {
-    return props.render(props.fallback)
-  }
-
   const resolver = getResolver(props.type)
   if (!resolver) {
     return props.render(props.fallback)
@@ -121,5 +122,58 @@ export async function DeepDish<V>(props: {
     >
       {props.render(readResult.data as V)}
     </Menu>
+  )
+}
+
+async function DeepDishCollection<V>(props: {
+  deepdish: DeepDishCollectionProps
+  fallback?: V
+  render(value?: V): Promise<React.ReactElement>
+  type: ValueType
+}) {
+  return props.deepdish.collection.map((key) => {
+    const { collection, ...rest } = props.deepdish
+
+    return (
+      <DeepDishElement
+        key={key}
+        deepdish={{ ...rest, key }}
+        fallback={props.fallback}
+        render={props.render}
+        type={props.type}
+        inCollection
+      />
+    )
+  })
+}
+
+export async function DeepDish<V>(props: {
+  deepdish?: DeepDishProps
+  fallback?: V
+  render(value?: V): Promise<React.ReactElement>
+  type: ValueType
+}) {
+  if (!props.deepdish) {
+    return props.render(props.fallback)
+  }
+
+  if (props.deepdish.collection) {
+    return (
+      <DeepDishCollection
+        deepdish={props.deepdish}
+        fallback={props.fallback}
+        render={props.render}
+        type={props.type}
+      />
+    )
+  }
+
+  return (
+    <DeepDishElement
+      deepdish={props.deepdish}
+      fallback={props.fallback}
+      render={props.render}
+      type={props.type}
+    />
   )
 }
