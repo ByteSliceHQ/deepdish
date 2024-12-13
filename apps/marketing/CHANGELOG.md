@@ -1,5 +1,14 @@
 # @deepdish/marketing
 
+## 0.2.2
+
+### Patch Changes
+
+- 7e0e911: Updated cloud configuration dependency.
+- Updated dependencies [d1453b8]
+  - @deepdish/ui@0.7.0
+  - @deepdish/workbench@0.2.3
+
 ## 0.2.1
 
 ### Patch Changes

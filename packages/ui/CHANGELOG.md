@@ -1,5 +1,11 @@
 # @deepdish/ui
 
+## 0.7.0
+
+### Minor Changes
+
+- d1453b8: Added static collections.
+
 ## 0.6.7
 
 ### Patch Changes
