@@ -6,14 +6,14 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "turbo build",
-    "build:packages": "turbo build --filter './packages/*'",
+    "build": "turbo run build",
+    "build:packages": "turbo run build --filter './packages/*'",
     "ci:publish": "bun run build:packages && changeset publish && git push --follow-tags",
     "ci:version": "changeset version",
     "clean": "rimraf --glob **/.next **/.turbo **/dist **/node_modules",
     "code:check": "bun install --frozen-lockfile && biome ci . & bun run sort-manifests --check & cspell --dot .",
     "code:fix": "biome check --write . & bun run sort-manifests",
-    "dev": "turbo dev",
+    "dev": "turbo run dev",
     "sort-manifests": "sort-package-json package.json apps/**/package.json packages/**/package.json"
   },
   "devDependencies": {
