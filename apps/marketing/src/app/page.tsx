@@ -1,8 +1,8 @@
-import Image from 'next/image'
-import Link from 'next/link'
+import { DeepDishLogo } from '@/components/logo'
 import { Button } from '@/components/ui/button'
 import { ArrowRight, Github } from 'lucide-react'
-import { DeepDishLogo } from '@/components/logo'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Home() {
   return (

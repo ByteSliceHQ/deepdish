@@ -30,7 +30,7 @@
   .btn-primary {
     @apply bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition-colors duration-300;
   }
-  
+
   .btn-secondary {
     @apply bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded transition-colors duration-300;
   }
@@ -41,4 +41,3 @@
     @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500;
   }
 }
-
