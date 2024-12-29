@@ -7,15 +7,13 @@ export default function TermsOfService() {
       <Header />
 
       <div className="mx-auto max-w-4xl px-4 py-8 font-sans text-white">
-        {/* Page Header */}
         <h1 className="mb-4 text-3xl font-bold">
-          ByteSlice, LLC – DeepDish Terms of Service
+          ByteSlice, LLC — DeepDish Terms of Service
         </h1>
         <p className="mb-8 text-sm text-gray-500">
           Last Updated: December 29th 2024
         </p>
 
-        {/* Intro Paragraph */}
         <p className="mb-6">
           These Terms of Service (<strong>“Terms”</strong>) govern your access
           to and use of DeepDish (the <strong>“Service”</strong>), provided by
@@ -25,7 +23,6 @@ export default function TermsOfService() {
           agree, you may not access or use the Service.
         </p>
 
-        {/* Section 1: Description of the Service */}
         <h2 className="mb-2 text-xl font-semibold">
           1. Description of the Service
         </h2>
@@ -36,7 +33,6 @@ export default function TermsOfService() {
           subject to these Terms.
         </p>
 
-        {/* Section 2: Eligibility */}
         <h2 className="mb-2 text-xl font-semibold">2. Eligibility</h2>
         <p className="mb-6">
           You must be at least 18 years of age, or the age of legal majority in
@@ -44,7 +40,6 @@ export default function TermsOfService() {
           the Service, you represent and warrant that you meet this requirement.
         </p>
 
-        {/* Section 3: Account Registration */}
         <h2 className="mb-2 text-xl font-semibold">3. Account Registration</h2>
         <p className="mb-6">
           To use certain features of the Service, you may be required to create
@@ -55,7 +50,6 @@ export default function TermsOfService() {
           any unauthorized use of your account.
         </p>
 
-        {/* Section 4: License and Intellectual Property */}
         <h2 className="mb-2 text-xl font-semibold">
           4. License and Intellectual Property
         </h2>
@@ -77,7 +71,6 @@ export default function TermsOfService() {
           </p>
         </div>
 
-        {/* Section 5: User Content */}
         <h2 className="mb-2 text-xl font-semibold">5. User Content</h2>
         <p className="mb-6">
           You may upload, submit, or otherwise transmit data or other materials
@@ -91,7 +84,6 @@ export default function TermsOfService() {
           User Content does not infringe the rights of any third party.
         </p>
 
-        {/* Section 6: Acceptable Use Policy */}
         <h2 className="mb-2 text-xl font-semibold">6. Acceptable Use Policy</h2>
         <p className="mb-4">
           You agree not to engage in any of the following prohibited activities:
@@ -120,7 +112,6 @@ export default function TermsOfService() {
           </li>
         </ul>
 
-        {/* Section 7: Fees and Payment */}
         <h2 className="mb-2 text-xl font-semibold">7. Fees and Payment</h2>
         <p className="mb-6">
           Certain features of the Service may require payment of fees. All
@@ -130,7 +121,6 @@ export default function TermsOfService() {
           terminate your access to the Service.
         </p>
 
-        {/* Section 8: Privacy */}
         <h2 className="mb-2 text-xl font-semibold">8. Privacy</h2>
         <p className="mb-6">
           Our Privacy Policy explains how we collect, use, and protect your
@@ -139,7 +129,6 @@ export default function TermsOfService() {
           by reference into these Terms.
         </p>
 
-        {/* Section 9: Confidentiality */}
         <h2 className="mb-2 text-xl font-semibold">9. Confidentiality</h2>
         <p className="mb-6">
           Any confidential information shared between you and ByteSlice,
@@ -149,7 +138,6 @@ export default function TermsOfService() {
           the disclosing party, except as required by law.
         </p>
 
-        {/* Section 10: Termination */}
         <h2 className="mb-2 text-xl font-semibold">10. Termination</h2>
         <p className="mb-6">
           We may terminate or suspend your access to the Service at any time,
@@ -159,7 +147,6 @@ export default function TermsOfService() {
           termination shall remain in effect.
         </p>
 
-        {/* Section 11: Disclaimer of Warranties */}
         <h2 className="mb-2 text-xl font-semibold">
           11. Disclaimer of Warranties
         </h2>
@@ -174,7 +161,6 @@ export default function TermsOfService() {
           </strong>
         </p>
 
-        {/* Section 12: Limitation of Liability */}
         <h2 className="mb-2 text-xl font-semibold">
           12. Limitation of Liability
         </h2>
@@ -189,7 +175,6 @@ export default function TermsOfService() {
           USE, OR ALTERATION OF YOUR TRANSMISSIONS OR CONTENT.
         </p>
 
-        {/* Section 13: Indemnification */}
         <h2 className="mb-2 text-xl font-semibold">13. Indemnification</h2>
         <p className="mb-6">
           You agree to defend, indemnify, and hold harmless ByteSlice from and
@@ -199,7 +184,6 @@ export default function TermsOfService() {
           or your breach of these Terms.
         </p>
 
-        {/* Section 14: Governing Law and Dispute Resolution */}
         <h2 className="mb-2 text-xl font-semibold">
           14. Governing Law and Dispute Resolution
         </h2>
@@ -212,7 +196,6 @@ export default function TermsOfService() {
           and ByteSlice consent to the personal jurisdiction of such courts.
         </p>
 
-        {/* Section 15: Changes to These Terms */}
         <h2 className="mb-2 text-xl font-semibold">
           15. Changes to These Terms
         </h2>
@@ -224,7 +207,6 @@ export default function TermsOfService() {
           the revised Terms.
         </p>
 
-        {/* Section 16: Miscellaneous */}
         <h2 className="mb-2 text-xl font-semibold">16. Miscellaneous</h2>
         <div className="mb-6 space-y-3">
           <p>
@@ -249,7 +231,6 @@ export default function TermsOfService() {
           </p>
         </div>
 
-        {/* Contact Us */}
         <h2 className="mb-2 text-xl font-semibold">Contact Us</h2>
         <p className="mb-6">
           If you have any questions about these Terms, you can contact us at:
@@ -263,6 +244,7 @@ export default function TermsOfService() {
           </a>
         </p>
       </div>
+
       <Footer />
     </div>
   )

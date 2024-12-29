@@ -1,6 +1,9 @@
 import type React from 'react'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { Prism, type SyntaxHighlighterProps } from 'react-syntax-highlighter'
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism'
+
+const SyntaxHighlighter =
+  Prism as unknown as typeof React.Component<SyntaxHighlighterProps>
 
 interface CodeBlockProps {
   language: string
