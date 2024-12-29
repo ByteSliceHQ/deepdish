@@ -11,14 +11,13 @@ export default function Home() {
         <div className="container mx-auto flex justify-between items-center">
           <div className="flex items-center space-x-2">
             <Image
-              src="/logo.svg"
+              src="/deepdish-logo-color.png"
               alt="DeepDish Logo"
               width={40}
               height={40}
               className="text-red-500"
             />
-            <DeepDishLogo />
-            <span className="text-2xl font-bold bg-gradient-to-r from-red-400 to-orange-500 text-transparent bg-clip-text">
+            <span className="text-2xl leading-normal font-bold bg-gradient-to-r from-red-400 to-orange-500 text-transparent bg-clip-text">
               DeepDish
             </span>
           </div>
@@ -29,15 +28,7 @@ export default function Home() {
                   href="#features"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
-                  Features
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#about"
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  About
+                  Github
                 </Link>
               </li>
               <li>
@@ -45,7 +36,7 @@ export default function Home() {
                   href="https://github.com/ByteSliceHQ/deepdish"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
-                  Docs
+                  Login
                 </Link>
               </li>
             </ul>
@@ -56,12 +47,12 @@ export default function Home() {
       <main className="flex-grow">
         <section className="py-20 px-4 sm:px-6 lg:px-8">
           <div className="container mx-auto text-center">
-            <h1 className="text-5xl sm:text-6xl font-bold mb-6 bg-gradient-to-r from-red-400 to-orange-500 text-transparent bg-clip-text">
-              The Next-Gen CMS for React Developers
+            <h1 className="text-5xl leading-normal font-bold mb-6 bg-gradient-to-r from-red-400 to-orange-500 text-transparent bg-clip-text">
+              A data management framework for Next.js
             </h1>
             <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
-              DeepDish: A flexible and powerful content management system built
-              on React server components, designed for the modern web.
+              DeepDish is an alternative to traditional CMS systems. Start your
+              project and start managing data with React server components.
             </p>
             <div className="flex justify-center space-x-4">
               <Button
