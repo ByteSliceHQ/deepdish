@@ -1,20 +1,18 @@
-# DeepDish CMS
+# DeepDish
 
-Welcome to DeepDish CMS, a flexible and feature-rich content management system designed to empower developers and content creators alike.
+Welcome to DeepDish, a flexible and feature-rich data management system designed to empower developers and content creators alike.
 
-DeepDish is built on top of React server components.
-We are temporarily only focused on Next.js apps—they are one of the only frameworks that supports server components out-of-the-box—but this will change as server components become more widely adopted.
+DeepDish is built on top of React server components and specifically designed for Next.js.
 
 ## Features
 
-- **Preview URLs**: Share links to unpublished content for review and collaboration before going live.
-- **Admin Portal**: A user-friendly admin portal for seamless content management.
-- **Authorization**: Robust security features to keep your content safe.
-- **Persistent Storage of Assets**: Reliable storage solutions for your digital assets.
+- **Flexible Architecture**: Adaptable to various content structures and management needs.
+- **Intuitive Interface**: Seamless integration with the Next.js app router, leveraging server-side rendering capabilities.
+- **Developer Experience**: Built with performance and scalability in mind.
 
 ## Installation
 
-The easiest way to get started is by using the [DeepDish Cloud](https://dashboard.deepdish.app) service for free. Alternatively, you can build your own resolver pattern and deploy it to your own infrastructure.
+To get started, create an account on [DeepDish](https://dashboard.deepdish.app), and then install the DeepDish packages using your preferred package manager.
 
 ```sh
 npm install @deepdish/ui @deepdish/workbench @deepdish-cloud/config
@@ -26,7 +24,7 @@ bun add @deepdish/ui @deepdish/workbench @deepdish-cloud/config
 
 ## Configure your project
 
-Once installed, you can configure your project to use the [DeepDish Cloud](https://dashboard.deepdish.app) resolvers.
+Once installed, you can configure your project to use [DeepDish Cloud](https://dashboard.deepdish.app).
 In your `app/layout.tsx` file, import `cloudConfig` from `@deepdish-cloud/config` and `configure` from `@deepdish/ui/config` and initialize the configuration with your project alias and secret key from the [DeepDish Cloud](https://dashboard.deepdish.app) dashboard.
 
 ```ts
@@ -89,7 +87,7 @@ import { Header1 } from "@deepdish/ui/typography";
 function Home() {
   return (
     <div>
-      <Header1 deepdish={{ key: "title", value: "Home" }} />
+      <Header1 deepdish={{ key: "title" }}>Default value</Header1>
     </div>
   );
 }
@@ -97,15 +95,15 @@ function Home() {
 
 ## Editing Content
 
-Content creators can edit content directly on the page by selecting the content they want to edit, after authenticating with the DeepDish Workbench.
+Content creators can edit content directly on the page by selecting the content they want to edit, after authenticating with DeepDish.
 
 ## Active Development
 
-The team at [ByteSlice](https://byteslice.co) is working hard to bring you a stable and feature-rich content management system. We would love to hear your feedback and suggestions. Please feel free to open an issue or [reach out to us directly](https://byteslice.co/contact).
+The team at [ByteSlice](https://byteslice.co) is working hard to bring you a stable and feature-rich data management system. We would love to hear your feedback and suggestions. Please feel free to open an issue or [reach out to us directly](https://byteslice.co/contact).
 
 ## Contribution Guidelines
 
-We welcome contributions from the community! If you're interested in helping improve DeepDish CMS, here are ways you can contribute:
+We welcome contributions from the community! If you're interested in helping improve DeepDish, here are ways you can contribute:
 
 - **Reporting Bugs**: Report bugs by opening issues.
 - **Feature Suggestions**: Have ideas for new features? Open an issue to suggest them.
@@ -118,4 +116,4 @@ Please refer to this [contribution guide](./CONTRIBUTE.md) for more details.
 
 ## License
 
-See the [LICENSE](LICENSE) file for details.
+See the [LICENSE.md](LICENSE.md) file for details.

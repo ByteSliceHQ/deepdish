@@ -1,48 +1,14 @@
-import { DeepDishLogo } from '@/components/logo'
+import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ArrowRight, Github } from 'lucide-react'
-import Image from 'next/image'
-import Link from 'next/link'
+import { CodeBlock } from '@/components/code-block'
+import Footer from '@/components/footer'
+import Header from '@/components/header'
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white">
-      <header className="py-6 px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto flex justify-between items-center">
-          <div className="flex items-center space-x-2">
-            <Image
-              src="/deepdish-logo-color.png"
-              alt="DeepDish Logo"
-              width={40}
-              height={40}
-              className="text-red-500"
-            />
-            <span className="text-2xl leading-normal font-bold bg-gradient-to-r from-red-400 to-orange-500 text-transparent bg-clip-text">
-              DeepDish
-            </span>
-          </div>
-          <nav>
-            <ul className="flex space-x-6">
-              <li>
-                <Link
-                  href="#features"
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  Github
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="https://github.com/ByteSliceHQ/deepdish"
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  Login
-                </Link>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </header>
+      <Header />
 
       <main className="flex-grow">
         <section className="py-20 px-4 sm:px-6 lg:px-8">
@@ -61,10 +27,10 @@ export default function Home() {
                 className="bg-red-500 hover:bg-red-600 text-white"
               >
                 <Link
-                  href="https://github.com/ByteSliceHQ/deepdish"
+                  href="https://dashboard.deepdish.app"
                   className="flex items-center"
                 >
-                  Get Started <ArrowRight className="ml-2 h-5 w-5" />
+                  Get started <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
               <Button
@@ -88,24 +54,24 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-b from-red-500/10 to-orange-500/10 opacity-30" />
           <div className="container mx-auto relative z-10">
             <h2 className="text-3xl font-bold mb-12 text-center">
-              Why Choose DeepDish?
+              Why use DeepDish?
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
                 {
-                  title: 'React Server Components',
+                  title: 'React server components',
                   description:
-                    'Built on cutting-edge React technology for optimal performance and developer experience.',
+                    'Built on top of RSCs for optimal performance and developer experience.',
                   icon: '🚀',
                 },
                 {
-                  title: 'Next.js Integration',
+                  title: 'Next.js integration',
                   description:
-                    'Seamless integration with Next.js apps, leveraging server-side rendering capabilities.',
+                    'Seamless integration with the Next.js app router, leveraging server-side rendering capabilities.',
                   icon: '⚡',
                 },
                 {
-                  title: 'Flexible Architecture',
+                  title: 'Flexible architecture',
                   description:
                     'Adaptable to various content structures and management needs.',
                   icon: '🔧',
@@ -129,48 +95,69 @@ export default function Home() {
         <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900">
           <div className="container mx-auto">
             <h2 className="text-3xl font-bold mb-8 text-center">
-              About DeepDish CMS
+              About DeepDish
             </h2>
             <div className="bg-gray-800 p-8 rounded-lg shadow-lg">
               <p className="text-xl text-gray-300 mb-6">
-                DeepDish CMS is built to empower developers and content creators
-                with a modern, flexible content management system. Our focus on
-                React server components and Next.js integration provides a solid
-                foundation for building scalable and performant web
-                applications.
+                We were frustrated with existing CMS systems and wanted to build
+                a framework that worked for development and marketing teams
+                alike. DeepDish empowers both devs and content creators with a
+                modern, flexible data management system.
               </p>
               <ul className="list-disc list-inside text-gray-300 space-y-2">
-                <li>Optimized for React and Next.js projects</li>
-                <li>Built with performance and scalability in mind</li>
                 <li>Flexible content modeling</li>
-                <li>Developer-friendly API</li>
+                <li>Delightful developer experience</li>
+                <li>Intuitive interface for editing content</li>
               </ul>
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="code-example"
+          className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900"
+        >
+          <div className="container mx-auto">
+            <h2 className="text-3xl font-bold mb-8 text-center">
+              Get started with DeepDish
+            </h2>
+            <div className="bg-gray-800 p-8 rounded-lg shadow-lg">
+              <h3 className="text-xl font-semibold mb-4">
+                1. Install DeepDish packages
+              </h3>
+              <CodeBlock language="bash" code={'npm install @deepdish/ui'} />
+
+              <h3 className="text-xl font-semibold mt-8 mb-4">
+                2. Use DeepDish in your app
+              </h3>
+              <CodeBlock
+                language="typescript"
+                code={`import { Header1 } from "@deepdish/ui/typography";
+
+export default function Home() {
+  return (
+    <div>
+      <Header1 deepdish={{ key: "title" }}>Default value</Header1>
+    </div>
+  );
+}`}
+              />
+
+              <h3 className="text-xl font-semibold mb-4 mt-8">
+                3. For a full getting started guide, visit the{' '}
+                <Link
+                  href="https://github.com/ByteSliceHQ/deepdish"
+                  className="text-orange-500"
+                >
+                  <span className="underline">Github repo</span>
+                </Link>
+              </h3>
             </div>
           </div>
         </section>
       </main>
 
-      <footer className="bg-gray-900 py-8 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
-        <div className="container mx-auto flex justify-between items-center">
-          <p className="text-gray-400">
-            &copy; {new Date().getFullYear()} DeepDish CMS. All rights reserved.
-          </p>
-          <div className="flex space-x-6">
-            <Link
-              href="#"
-              className="text-gray-400 hover:text-white transition-colors"
-            >
-              Privacy Policy
-            </Link>
-            <Link
-              href="#"
-              className="text-gray-400 hover:text-white transition-colors"
-            >
-              Terms of Service
-            </Link>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }

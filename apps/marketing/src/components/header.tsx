@@ -1,27 +1,44 @@
-import { Heading1 } from '@deepdish/ui/typography'
-import { DeepDishLogo } from './logo'
+import Image from 'next/image'
+import Link from 'next/link'
 
-export function Header() {
+export default function Header() {
   return (
-    <header className="flex items-center justify-between mx-auto py-3 px-4 border border-gray-700 rounded-t-xl">
-      <div className="flex items-center">
-        <DeepDishLogo />
-        <Heading1
-          deepdish={{ key: 'product-name' }}
-          className="text-lg font-semibold ml-4"
-        >
-          DeepDish
-        </Heading1>
-      </div>
-      <div className="flex items-center gap-2">
-        {/* <Button variant="link" disabled>Docs</Button>
-        <Button variant="link">Enterprise</Button>
-        <Button variant="link">Templates</Button>
-        <Button variant="link">Demo</Button>
-        <Button variant="link">Changelog</Button>
-        <Button className="ml-6" size="sm">
-          Launch
-        </Button> */}
+    <header className="py-6 px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto flex justify-between items-center">
+        <div className="flex items-center space-x-2">
+          <Link href="/" className="flex items-center gap-x-2">
+            <Image
+              src="/deepdish-logo-color.png"
+              alt="DeepDish Logo"
+              width={40}
+              height={40}
+              className="text-red-500"
+            />
+            <span className="text-2xl leading-normal font-bold bg-gradient-to-r from-red-400 to-orange-500 text-transparent bg-clip-text">
+              DeepDish
+            </span>
+          </Link>
+        </div>
+        <nav>
+          <ul className="flex space-x-6">
+            <li>
+              <Link
+                href="https://github.com/ByteSliceHQ/deepdish"
+                className="text-gray-300 hover:text-white transition-colors"
+              >
+                Docs
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="https://dashboard.deepdish.app"
+                className="text-gray-300 hover:text-white transition-colors"
+              >
+                Login
+              </Link>
+            </li>
+          </ul>
+        </nav>
       </div>
     </header>
   )
