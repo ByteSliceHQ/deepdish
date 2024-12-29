@@ -1,8 +1,8 @@
-import Image from 'next/image'
-import Link from 'next/link'
+import { DeepDishLogo } from '@/components/logo'
 import { Button } from '@/components/ui/button'
 import { ArrowRight, Github } from 'lucide-react'
-import { DeepDishLogo } from '@/components/logo'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Home() {
   return (
@@ -110,9 +110,9 @@ export default function Home() {
                     'Adaptable to various content structures and management needs.',
                   icon: '🔧',
                 },
-              ].map((feature, index) => (
+              ].map((feature) => (
                 <div
-                  key={index}
+                  key={feature.title}
                   className="bg-gray-800 p-6 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105"
                 >
                   <div className="text-4xl mb-4">{feature.icon}</div>
