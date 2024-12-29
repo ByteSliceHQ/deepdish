@@ -1,9 +1,9 @@
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
-import { ArrowRight, Github } from 'lucide-react'
 import { CodeBlock } from '@/components/code-block'
 import Footer from '@/components/footer'
 import Header from '@/components/header'
+import { Button } from '@/components/ui/button'
+import { ArrowRight, Github } from 'lucide-react'
+import Link from 'next/link'
 
 export default function Home() {
   return (
