@@ -3,8 +3,6 @@
 Welcome to DeepDish CMS, a flexible and feature-rich content management system designed to empower developers and content creators alike.
 
 DeepDish is built on top of React server components.
-<!-- Next.js is one of the only frameworks that supports server components out of the box with their app router.
-We are temporarily only focused on Next.js apps, but this will change as server components become more widely adopted. -->
 We are temporarily only focused on Next.js apps—they are one of the only frameworks that supports server components out-of-the-box—but this will change as server components become more widely adopted.
 
 ## Features
@@ -13,13 +11,16 @@ We are temporarily only focused on Next.js apps—they are one of the only frame
 - **Admin Portal**: A user-friendly admin portal for seamless content management.
 - **Authorization**: Robust security features to keep your content safe.
 - **Persistent Storage of Assets**: Reliable storage solutions for your digital assets.
-- **Next.js Templates**: Jump-start your project with our Next.js frontend template examples.
 
 ## Installation
 
 The easiest way to get started is by using the [DeepDish Cloud](https://dashboard.deepdish.app) service for free. Alternatively, you can build your own resolver pattern and deploy it to your own infrastructure.
 
 ```sh
+npm install @deepdish/ui @deepdish/workbench @deepdish-cloud/config
+# or
+yarn add @deepdish/ui @deepdish/workbench @deepdish-cloud/config
+# or
 bun add @deepdish/ui @deepdish/workbench @deepdish-cloud/config
 ```
 
@@ -100,7 +101,7 @@ Content creators can edit content directly on the page by selecting the content 
 
 ## Active Development
 
-The team at [ByteSlice](https://byteslice.co) is working hard to bring you a stable and feature-rich open-source content management system. We would love to hear your feedback and suggestions. Please feel free to open an issue or [reach out to us directly](https://byteslice.co/contact).
+The team at [ByteSlice](https://byteslice.co) is working hard to bring you a stable and feature-rich content management system. We would love to hear your feedback and suggestions. Please feel free to open an issue or [reach out to us directly](https://byteslice.co/contact).
 
 ## Contribution Guidelines
 
@@ -117,4 +118,4 @@ Please refer to this [contribution guide](./CONTRIBUTE.md) for more details.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+See the [LICENSE](LICENSE) file for details.
