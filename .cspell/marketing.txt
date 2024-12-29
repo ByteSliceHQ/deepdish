@@ -1,5 +1,7 @@
 clsx
+decompiling
 heroicons
 lucide
+roadmaps
 tailwindcss
 waitlist
