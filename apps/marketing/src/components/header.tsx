@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-export default function Header() {
+export function Header() {
   return (
     <header className="py-4">
       <div className="container mx-auto flex justify-between items-center">
