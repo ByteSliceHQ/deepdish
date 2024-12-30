@@ -10,6 +10,10 @@ turbo.version = "2.3.3"
 on-activate = '''
   echo "📦 Installing dependencies..."
   bun install --frozen-lockfile
+
+  echo -e "\n🚀 Development Commands"
+  echo -e "- Run all tasks\t\t\033[34mbun dev\033[0m"
+  echo -e "- Start marketing site\t\033[34mbun dev:marketing\033[0m"
 '''
 
 [options]
