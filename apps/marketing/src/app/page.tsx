@@ -18,7 +18,7 @@ export default function Home() {
             </h1>
             <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
               DeepDish is an alternative to traditional CMS systems. Start your
-              project and start managing data with React server components.
+              project today and manage data with React server components.
             </p>
             <div className="flex justify-center space-x-4">
               <Button
