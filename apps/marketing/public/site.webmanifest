@@ -1,6 +1,6 @@
 {
-  "name": "",
-  "short_name": "",
+  "name": "DeepDish - A data management framework for Next.js",
+  "short_name": "DeepDish",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
