@@ -32,10 +32,10 @@ import { cloudConfig } from "@deepdish-cloud/config";
 import { configure } from "@deepdish/ui/config";
 
 configure(
-	cloudConfig({
-		secretKey: process.env.DEEPDISH_SECRET_KEY,
-		projectAlias: process.env.DEEPDISH_PROJECT_ALIAS,
-	}),
+  cloudConfig({
+    secretKey: process.env.DEEPDISH_SECRET_KEY,
+    projectAlias: process.env.DEEPDISH_PROJECT_ALIAS,
+  }),
 )
 ```
 
@@ -55,25 +55,25 @@ import { cloudConfig } from "@deepdish-cloud/config";
 import { configure } from "@deepdish/ui/config";
 
 configure(
-	cloudConfig({
-		secretKey: process.env.DEEPDISH_SECRET_KEY,
-		projectAlias: process.env.DEEPDISH_PROJECT_ALIAS,
-	}),
+  cloudConfig({
+    secretKey: process.env.DEEPDISH_SECRET_KEY,
+    projectAlias: process.env.DEEPDISH_PROJECT_ALIAS,
+  }),
 )
 
 export default function RootLayout({
-	children,
+  children,
 }: Readonly<{
-	children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-	return (
-		<html>
-			<body>
-				{children}
-				<Workbench onInit={init} />
-			</body>
-		</html>
-	);
+  return (
+    <html>
+      <body>
+        {children}
+        <Workbench onInit={init} />
+      </body>
+    </html>
+  );
 }
 ```
 
