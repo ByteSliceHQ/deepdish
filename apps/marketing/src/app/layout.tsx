@@ -1,5 +1,6 @@
 import '@/styles/globals.css'
 import { Inter } from 'next/font/google'
+import AppLayout from './app-layout'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -31,7 +32,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.className} antialiased`}>{children}</body>
+      <body className={`${inter.className} antialiased`}>
+        <AppLayout>{children}</AppLayout>
+      </body>
     </html>
   )
 }
