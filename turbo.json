@@ -11,13 +11,11 @@
     },
     "build": {
       "outputs": [".next/**", "!.next/cache/**", "dist/**"],
-      "dependsOn": ["^build"],
-      "env": ["DEEPDISH_SECRET_KEY", "DEEPDISH_URL"]
+      "dependsOn": ["^build"]
     },
     "start": {
       "cache": false,
-      "persistent": true,
-      "env": ["DEEPDISH_SECRET_KEY", "DEEPDISH_URL"]
+      "persistent": true
     }
   }
 }
