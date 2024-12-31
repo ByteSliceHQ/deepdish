@@ -110,6 +110,10 @@ We welcome contributions from the community! If you're interested in helping imp
 - **Code Contributions**: Submit a pull request with new features or bug fixes.
 - **Documentation**: Help improve our docs for better understanding and usage.
 
+### Getting Started
+
+Install [Flox](https://flox.dev/) and run `flox activate` in the root directory. This will activate the `deepdish` development environment and install necessary dependencies.
+
 ### How to Contribute
 
 Please refer to this [contribution guide](./CONTRIBUTE.md) for more details.
