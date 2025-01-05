@@ -25,5 +25,8 @@
     "rimraf": "6.0.1",
     "sort-package-json": "2.10.1"
   },
-  "packageManager": "bun@1.1.42"
+  "packageManager": "bun@1.1.42",
+  "engines": {
+    "node": ">=18.18"
+  }
 }
