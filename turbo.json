@@ -5,13 +5,17 @@
     "//#code:fix": {
       "cache": false
     },
+    "build": {
+      "outputs": [".next/**", "!.next/cache/**", "dist/**"],
+      "dependsOn": ["^build"]
+    },
     "dev": {
       "cache": false,
       "persistent": true
     },
-    "build": {
-      "outputs": [".next/**", "!.next/cache/**", "dist/**"],
-      "dependsOn": ["^build"]
+    "start": {
+      "cache": false,
+      "persistent": true
     }
   }
 }
