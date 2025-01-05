@@ -5,8 +5,6 @@ bun.pkg-path = "bun"
 bun.version = "1.1.42"
 nodejs.pkg-path = "nodejs"
 nodejs.version = "22.11.0"
-turbo.pkg-path = "turbo"
-turbo.version = "2.3.3"
 
 [hook]
 on-activate = '''
