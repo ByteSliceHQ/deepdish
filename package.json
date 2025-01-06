@@ -14,7 +14,7 @@
     "code:check": "bun install --frozen-lockfile && biome ci . & bun run sort-manifests --check & cspell --dot .",
     "code:fix": "biome check --write . & bun run sort-manifests",
     "dev": "turbo run dev",
-    "dev:marketing": "turbo run --filter=@deepdish/marketing dev",
+    "dev:marketing": "turbo run dev --filter=@deepdish/marketing",
     "sort-manifests": "sort-package-json package.json apps/**/package.json packages/**/package.json"
   },
   "devDependencies": {
@@ -23,7 +23,11 @@
     "@changesets/cli": "2.27.9",
     "cspell": "8.16.0",
     "rimraf": "6.0.1",
-    "sort-package-json": "2.10.1"
+    "sort-package-json": "2.10.1",
+    "turbo": "2.2.3"
   },
-  "packageManager": "bun@1.1.42"
+  "packageManager": "bun@1.1.42",
+  "engines": {
+    "node": ">=18.18"
+  }
 }

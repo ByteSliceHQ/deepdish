@@ -9,10 +9,10 @@
   },
   "scripts": {
     "build": "next build",
-    "dev": "next dev --port 3002"
+    "dev": "next dev --port 3002",
+    "start": "next start"
   },
   "dependencies": {
-    "@deepdish-cloud/config": "0.7.1",
     "@deepdish/ui": "workspace:0.7.0",
     "@deepdish/workbench": "workspace:0.2.3",
     "@heroicons/react": "2.1.5",
