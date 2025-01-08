@@ -1,5 +1,12 @@
 # @deepdish/marketing
 
+## 0.3.0
+
+### Minor Changes
+
+- 53843a2: Implemented mobile ready marketing site.
+- 2764899: Revamped structure and added privacy and terms pages.
+
 ## 0.2.2
 
 ### Patch Changes
