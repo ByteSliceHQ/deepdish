@@ -2,20 +2,43 @@ import {
   type DeepdishMiddlewareConfig,
   deepdishMiddleware,
 } from '@deepdish/nextjs'
-import { NextResponse } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
 
-// TODO: configure these defaults
-const verify = () => true
+const COOKIE_NAME = '__deepdish_secret'
 
-const client_id = process.env.DEEPDISH_CLOUD_OAUTH_CLIENT_ID || ''
+const clientId = process.env.DEEPDISH_CLOUD_OAUTH_CLIENT_ID || ''
 const state = process.env.DEEPDISH_CLOUD_STATE || ''
-const redirect_uri = process.env.DEEPDISH_CLOUD_OAUTH_REDIRECT_URI || ''
+const redirectUri = process.env.DEEPDISH_CLOUD_OAUTH_REDIRECT_URI || ''
+const secretKey = process.env.DEEPDISH_SECRET_KEY || ''
+const projectAlias = process.env.DEEPDISH_PROJECT_ALIAS || ''
+
+async function verify(request: NextRequest) {
+  const cookie = request.cookies.get(COOKIE_NAME)
+
+  if (!cookie) {
+    return false
+  }
+
+  const response = await fetch(
+    `${process.env.DEEPDISH_CLOUD_ENDPOINT}/oauth/userinfo`,
+    {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${cookie.value}`,
+        'X-DEEPDISH-SECRET-KEY': secretKey,
+        'X-DEEPDISH-PROJECT-ALIAS': projectAlias,
+      },
+    },
+  )
+
+  return response.status === 200
+}
 
 function signIn(): NextResponse<unknown> {
   const queryParams = new URLSearchParams({
-    client_id,
+    client_id: clientId,
     state,
-    redirect_uri,
+    redirect_uri: redirectUri,
     response_type: 'code',
     scope: 'profile',
   })
