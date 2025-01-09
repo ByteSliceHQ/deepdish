@@ -3,7 +3,7 @@ import 'server-only'
 import { getLogger } from '@logtape/logtape'
 // TODO: should `next` be a peer dependency?
 import { headers } from 'next/headers'
-import { getContract, getBaseUrl } from './config/config'
+import { getBaseUrl, getContract } from './config/config'
 import { Menu } from './menu'
 import type { ValueType } from './schemas'
 import type {

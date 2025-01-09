@@ -1,8 +1,8 @@
 'use client'
 
-import { type CustomIntrinsicElement, Scope } from 'react-shadow-scope'
-import { useEffect, useRef, useState } from 'react'
 import { withResult } from '@byteslice/result'
+import { useEffect, useRef, useState } from 'react'
+import { type CustomIntrinsicElement, Scope } from 'react-shadow-scope'
 import { WorkbenchProvider } from './context'
 import { stylesheet } from './stylesheet'
 import { Toolbar } from './toolbar'
