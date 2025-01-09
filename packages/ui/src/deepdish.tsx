@@ -1,7 +1,9 @@
 import 'server-only'
 
 import { getLogger } from '@logtape/logtape'
-import { getContract, getDraft } from './config/config'
+// TODO: should `next` be a peer dependency?
+import { headers } from 'next/headers'
+import { getBaseUrl, getContract } from './config/config'
 import { Menu } from './menu'
 import type { ValueType } from './schemas'
 import type {
@@ -17,12 +19,23 @@ async function canEdit() {
     return false
   }
 
-  const draftResult = getDraft()
-  if (draftResult.failure) {
+  const baseUrl = getBaseUrl()
+
+  if (baseUrl.failure) {
     return false
   }
 
-  return await draftResult.data.auth()
+  const response = await fetch(`${baseUrl.data}/__deepdish/verify`, {
+    method: 'POST',
+    headers: await headers(),
+  })
+
+  if (response.ok) {
+    const body = await response.json()
+    return body.signedIn
+  }
+
+  return false
 }
 
 function getResolver(type: ValueType) {

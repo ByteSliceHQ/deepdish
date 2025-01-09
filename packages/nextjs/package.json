@@ -1,0 +1,32 @@
+{
+  "name": "@deepdish/nextjs",
+  "version": "0.0.0",
+  "description": "DeepDish Next.js utilities",
+  "author": {
+    "name": "ByteSlice, LLC",
+    "url": "https://byteslice.co"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/middleware.mjs",
+      "types": "./dist/middleware.d.mts"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch"
+  },
+  "devDependencies": {
+    "@tsconfig/create-react-app": "2.0.5",
+    "@types/bun": "1.1.9",
+    "@types/node": "20.9.0",
+    "tsup": "8.2.4",
+    "typescript": "5.5.4"
+  },
+  "peerDependencies": {
+    "next": "^15"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  }
+}

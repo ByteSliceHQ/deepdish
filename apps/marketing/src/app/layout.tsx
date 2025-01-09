@@ -1,5 +1,6 @@
 import '@/styles/globals.css'
 import { AppLayout } from '@/components/app-layout'
+import { Workbench } from '@deepdish/workbench'
 import { Inter } from 'next/font/google'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -34,6 +35,7 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.className} antialiased`}>
         <AppLayout>{children}</AppLayout>
+        <Workbench />
       </body>
     </html>
   )

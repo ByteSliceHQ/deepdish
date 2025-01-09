@@ -26,23 +26,14 @@ const group = stylesheet.style({
 export function Toolbar() {
   const workbench = useWorkbench()
 
-  function handleSignIn() {
-    workbench.onSignIn()
-  }
-
-  async function handleSignOut() {
-    await workbench.onSignOut()
-    window.location.reload()
-  }
-
   return (
     <div className={wrapper}>
       <div className={group}>
         <div>DeepDish</div>
         {workbench.authenticated ? (
-          <Button onClick={handleSignOut}>Sign Out</Button>
+          <Button onClick={workbench.onSignOut}>Sign Out</Button>
         ) : (
-          <Button onClick={handleSignIn}>Sign In</Button>
+          <Button onClick={workbench.onSignIn}>Sign In</Button>
         )}
       </div>
     </div>

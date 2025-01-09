@@ -1,6 +1,7 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { withResult } from '@byteslice/result'
+import { useEffect, useRef, useState } from 'react'
 import { type CustomIntrinsicElement, Scope } from 'react-shadow-scope'
 import { WorkbenchProvider } from './context'
 import { stylesheet } from './stylesheet'
@@ -14,15 +15,28 @@ declare global {
   }
 }
 
-type ClientProps = {
-  authenticated: boolean
-  onAuthorize: (token: string) => Promise<void>
-  onSignIn: () => Promise<void>
-  onSignOut: () => Promise<void>
-  onInit: () => Promise<string>
+async function authenticate() {
+  const verification = await withResult(
+    async () => {
+      const response = await fetch('/__deepdish/verify', {
+        method: 'POST',
+      })
+
+      const body = await response.json()
+      return body.signedIn
+    },
+    (error) => new Error('Authentication failed.', { cause: error }),
+  )
+
+  if (verification.failure) {
+    return false
+  }
+
+  return verification.data
 }
 
-export function Client(props: ClientProps) {
+export function Client() {
+  const [authenticated, setAuthenticated] = useState(false)
   const mounted = useRef(false)
 
   useEffect(() => {
@@ -31,11 +45,16 @@ export function Client(props: ClientProps) {
     }
 
     mounted.current = true
+    authenticate().then(setAuthenticated)
+  }, [])
 
-    props.onInit().then((token) => {
-      props.onAuthorize(token)
-    })
-  }, [props.onInit, props.onAuthorize])
+  async function handleSignIn() {
+    window.location.assign('/__deepdish/sign-in')
+  }
+
+  async function handleSignOut() {
+    window.location.assign('/__deepdish/sign-out')
+  }
 
   return (
     <Scope
@@ -44,9 +63,9 @@ export function Client(props: ClientProps) {
       config={{ dsd: 'emulated' }}
     >
       <WorkbenchProvider
-        authenticated={props.authenticated}
-        onSignIn={props.onSignIn}
-        onSignOut={props.onSignOut}
+        authenticated={authenticated}
+        onSignIn={handleSignIn}
+        onSignOut={handleSignOut}
       >
         <Toolbar />
       </WorkbenchProvider>
