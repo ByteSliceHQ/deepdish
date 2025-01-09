@@ -1,5 +1,11 @@
 # @deepdish/ui
 
+## 0.8.0
+
+### Minor Changes
+
+- 0044589: Refactored authentication check.
+
 ## 0.7.0
 
 ### Minor Changes

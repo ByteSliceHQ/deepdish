@@ -1,5 +1,11 @@
 # @deepdish/workbench
 
+## 0.3.0
+
+### Minor Changes
+
+- 0044589: Implemented new authentication lifecycle.
+
 ## 0.2.3
 
 ### Patch Changes

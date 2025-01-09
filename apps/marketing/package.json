@@ -1,6 +1,6 @@
 {
   "name": "@deepdish/marketing",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
   "description": "DeepDish marketing site",
   "author": {
@@ -13,9 +13,9 @@
     "start": "next start"
   },
   "dependencies": {
-    "@deepdish/nextjs": "workspace:0.0.0",
-    "@deepdish/ui": "workspace:0.7.0",
-    "@deepdish/workbench": "workspace:0.2.3",
+    "@deepdish/nextjs": "workspace:0.0.1",
+    "@deepdish/ui": "workspace:0.8.0",
+    "@deepdish/workbench": "workspace:0.3.0",
     "@heroicons/react": "2.1.5",
     "@radix-ui/react-slot": "1.1.1",
     "@tailwindcss/forms": "0.5.7",
