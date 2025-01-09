@@ -1,0 +1,18 @@
+{
+  "name": "@deepdish/nextjs",
+  "version": "0.0.0",
+  "description": "DeepDish Next.js utilities",
+  "author": {
+    "name": "ByteSlice, LLC",
+    "url": "https://byteslice.co"
+  },
+  "exports": {
+    "./middleware": "./src/middleware.ts"
+  },
+  "dependencies": {
+    "next": "15.1.4"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  }
+}
