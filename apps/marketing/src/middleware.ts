@@ -1,7 +1,4 @@
-import {
-  type DeepdishMiddlewareConfig,
-  deepdishMiddleware,
-} from '@deepdish/nextjs'
+import { deepdishMiddleware } from '@deepdish/nextjs'
 import { type NextRequest, NextResponse } from 'next/server'
 
 const COOKIE_NAME = '__deepdish_secret'
@@ -34,7 +31,7 @@ async function verify(request: NextRequest) {
   return response.status === 200
 }
 
-function signIn(): NextResponse<unknown> {
+function signIn() {
   const queryParams = new URLSearchParams({
     client_id: clientId,
     state,
@@ -48,16 +45,14 @@ function signIn(): NextResponse<unknown> {
   )
 }
 
-function signOut(): NextResponse<unknown> {
+function signOut() {
   return NextResponse.redirect(
     `${process.env.DEEPDISH_CLOUD_ENDPOINT}/sign-out`,
   )
 }
 
-const config: DeepdishMiddlewareConfig = {
+export default deepdishMiddleware({
   verify,
   signIn,
   signOut,
-}
-
-export default deepdishMiddleware(config)
+})
