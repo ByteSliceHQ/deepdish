@@ -1,5 +1,20 @@
 # @deepdish/marketing
 
+## 0.4.0
+
+### Minor Changes
+
+- 0044589: Added DeepDish Next.js middleware.
+
+### Patch Changes
+
+- Updated dependencies [0044589]
+- Updated dependencies [0044589]
+- Updated dependencies [0044589]
+  - @deepdish/workbench@0.3.0
+  - @deepdish/ui@0.8.0
+  - @deepdish/nextjs@0.0.1
+
 ## 0.3.0
 
 ### Minor Changes
