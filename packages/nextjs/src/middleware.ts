@@ -30,5 +30,7 @@ export function deepdishMiddleware(
         return NextResponse.json({ signedIn: verified })
       }
     }
+
+    return NextResponse.next()
   }
 }
