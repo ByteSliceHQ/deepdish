@@ -7,14 +7,9 @@ import { configureLogging } from './logging'
 const logger = getLogger(['deepdish', 'config'])
 
 export type Config = {
+  baseUrl: string
   contracts: {
     readonly [T in ValueType]?: Contract<T>
-  }
-  draft: {
-    auth: () => boolean | Promise<boolean>
-    authorize: (token: string) => Promise<void>
-    onSignIn: () => Promise<void>
-    onSignOut: () => Promise<void>
   }
 }
 
@@ -59,10 +54,10 @@ export function getContract<T extends ValueType>(type: T): Result<Contract<T>> {
   return { data: contract }
 }
 
-export function getDraft(): Result<Config['draft']> {
+export function getBaseUrl(): Result<string> {
   if (!config) {
     return notConfigured()
   }
 
-  return { data: config.draft }
+  return { data: config.baseUrl }
 }
