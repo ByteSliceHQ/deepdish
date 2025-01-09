@@ -1,33 +1,33 @@
 import {
-  deepdishMiddleware,
   type DeepdishMiddlewareConfig,
+  deepdishMiddleware,
 } from '@deepdish/nextjs'
 import { NextResponse } from 'next/server'
 
 // TODO: configure these defaults
 const verify = () => true
 
+const client_id = process.env.DEEPDISH_CLOUD_OAUTH_CLIENT_ID || ''
+const state = process.env.DEEPDISH_CLOUD_STATE || ''
+const redirect_uri = process.env.DEEPDISH_CLOUD_OAUTH_REDIRECT_URI || ''
+
 function signIn(): NextResponse<unknown> {
   const queryParams = new URLSearchParams({
-    // client_id: 'ySKP6VdKAVybfChw',
-    client_id: 'aUsw8GkUPJbUEHj9',
-    // TODO: encode state properly
-    state: 'http://localhost:4000',
-    // redirect_uri: 'https://dashboard.deepdish.app/oauth/callback',
-    redirect_uri: 'http://localhost:3000/oauth/callback',
+    client_id,
+    state,
+    redirect_uri,
     response_type: 'code',
     scope: 'profile',
   })
 
   return NextResponse.redirect(
-    // `https://clerk.deepdish.app/oauth/authorize?${queryParams.toString()}`,
-    `https://native-pony-6.clerk.accounts.dev/oauth/authorize?${queryParams.toString()}`,
+    `${process.env.DEEPDISH_CLOUD_ENDPOINT}/oauth/authorize?${queryParams.toString()}`,
   )
 }
 
 function signOut(): NextResponse<unknown> {
   return NextResponse.redirect(
-    'https://native-pony-6.clerk.accounts.dev/sign-out',
+    `${process.env.DEEPDISH_CLOUD_ENDPOINT}/sign-out`,
   )
 }
 
