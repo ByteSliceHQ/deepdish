@@ -3,7 +3,6 @@ import {
   type NextRequest,
   NextResponse,
 } from 'next/server'
-import { defaultDeepdishMiddlewareConfig } from './default-config'
 
 export type DeepdishMiddlewareConfig = {
   verify: (request: NextRequest) => boolean | Promise<boolean>
@@ -12,7 +11,7 @@ export type DeepdishMiddlewareConfig = {
 }
 
 export function deepdishMiddleware(
-  config: DeepdishMiddlewareConfig = defaultDeepdishMiddlewareConfig,
+  config: DeepdishMiddlewareConfig,
 ): NextMiddleware {
   return async (request) => {
     const { url, method } = request
