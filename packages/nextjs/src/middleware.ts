@@ -1,16 +1,19 @@
 import {
-  NextResponse,
   type NextMiddleware,
   type NextRequest,
+  NextResponse,
 } from 'next/server'
+import { defaultDeepdishMiddlewareConfig } from './default-config'
 
-type MiddlewareConfig = {
+export type DeepdishMiddlewareConfig = {
   verify: (request: NextRequest) => boolean | Promise<boolean>
   signIn: (request: NextRequest) => NextResponse | Promise<NextResponse>
   signOut: (request: NextRequest) => NextResponse | Promise<NextResponse>
 }
 
-export function deepdishMiddleware(config: MiddlewareConfig): NextMiddleware {
+export function deepdishMiddleware(
+  config: DeepdishMiddlewareConfig = defaultDeepdishMiddlewareConfig,
+): NextMiddleware {
   return async (request) => {
     const { url, method } = request
 

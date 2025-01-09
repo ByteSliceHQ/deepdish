@@ -35,10 +35,10 @@ export const secondary = stylesheet.style({
 
 export const small = stylesheet.style({
   fontSize: stylesheet.var('fontSizeXs'),
-  padding: '4px 6px',
+  padding: '2px 2px',
 })
 
 export const medium = stylesheet.style({
   fontSize: stylesheet.var('fontSizeSm'),
-  padding: '8px 12px',
+  padding: '6px 6px',
 })

@@ -13,6 +13,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@deepdish/nextjs": "workspace:0.0.0",
     "@deepdish/ui": "workspace:0.7.0",
     "@deepdish/workbench": "workspace:0.2.3",
     "@heroicons/react": "2.1.5",
