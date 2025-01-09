@@ -31,7 +31,6 @@ function signOut(): NextResponse<unknown> {
   )
 }
 
-// TODO: Interesting typescript errors due to [INTERNAL] property on NextResponse
 const config: DeepdishMiddlewareConfig = {
   verify,
   signIn,

@@ -16,15 +16,15 @@
     "build": "tsup",
     "dev": "tsup --watch"
   },
-  "dependencies": {
-    "next": "15.1.4"
-  },
   "devDependencies": {
     "@tsconfig/create-react-app": "2.0.5",
     "@types/bun": "1.1.9",
     "@types/node": "20.9.0",
     "tsup": "8.2.4",
     "typescript": "5.5.4"
+  },
+  "peerDependencies": {
+    "next": "^15"
   },
   "publishConfig": {
     "access": "restricted"
