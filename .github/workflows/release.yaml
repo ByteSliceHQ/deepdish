@@ -42,4 +42,3 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           MESSAGE: "chore(repo): version workspaces"
           NPM_TOKEN: ${{ secrets.NPM_TOKEN_DEEPDISH }}
-          NPM_TOKEN_DEEPDISH_CLOUD: ${{ secrets.NPM_TOKEN_DEEPDISH_CLOUD }}
