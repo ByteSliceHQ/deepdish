@@ -30,6 +30,9 @@
             "filenameCases": ["kebab-case"]
           }
         }
+      },
+      "a11y": {
+        "noSvgWithoutTitle": "off"
       }
     }
   },
