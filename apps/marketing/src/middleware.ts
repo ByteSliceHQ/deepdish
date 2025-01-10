@@ -9,7 +9,13 @@ const redirectUri = process.env.DEEPDISH_CLOUD_OAUTH_REDIRECT_URI || ''
 const secretKey = process.env.DEEPDISH_SECRET_KEY || ''
 const projectAlias = process.env.DEEPDISH_PROJECT_ALIAS || ''
 
+const marketingPreview = process.env.NODE_ENV === 'production'
+
 async function verify(request: NextRequest) {
+  if (marketingPreview) {
+    return true
+  }
+
   const cookie = request.cookies.get(COOKIE_NAME)
 
   if (!cookie) {
@@ -32,6 +38,10 @@ async function verify(request: NextRequest) {
 }
 
 function signIn() {
+  if (marketingPreview) {
+    return NextResponse.next()
+  }
+
   const queryParams = new URLSearchParams({
     client_id: clientId,
     state,
@@ -46,6 +56,10 @@ function signIn() {
 }
 
 function signOut() {
+  if (marketingPreview) {
+    return NextResponse.next()
+  }
+
   return NextResponse.redirect(
     `${process.env.DEEPDISH_CLOUD_ENDPOINT}/sign-out`,
   )
