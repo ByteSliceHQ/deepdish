@@ -63,6 +63,6 @@
     "next": "^15"
   },
   "publishConfig": {
-    "access": "restricted"
+    "access": "public"
   }
 }
