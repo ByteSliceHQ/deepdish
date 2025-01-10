@@ -5,7 +5,7 @@ import { useWorkbench } from './context'
 import { stylesheet } from './stylesheet'
 import { Button } from './ui/button'
 
-const toolbar = stylesheet.style({
+const workbenchWrapper = stylesheet.style({
   position: 'fixed',
   bottom: '16px',
   left: '50%',
@@ -21,27 +21,28 @@ const toolbar = stylesheet.style({
   zIndex: 9999,
 })
 
-const toolbarDivider = stylesheet.style({
+const workbenchDivider = stylesheet.style({
   height: '16px',
   width: '1px',
   backgroundColor: '#e0e0e0',
   margin: '0 8px',
 })
 
-const toolbarIcon = stylesheet.style({
+const workbenchIcon = stylesheet.style({
   width: '16px',
   height: '16px',
   marginRight: '4px',
 })
-export function Toolbar() {
+
+export function Workbench() {
   const workbench = useWorkbench()
   const [isDraftMode, setIsDraftMode] = useState(false)
 
   return (
-    <div className={toolbar}>
+    <div className={workbenchWrapper}>
       <Button>
         <svg
-          className={toolbarIcon}
+          className={workbenchIcon}
           viewBox="0 0 857 890"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -64,10 +65,10 @@ export function Toolbar() {
           />
         </svg>
       </Button>
-      <div className={toolbarDivider} aria-hidden="true" />
+      <div className={workbenchDivider} aria-hidden="true" />
       <Button onClick={() => setIsDraftMode(!isDraftMode)}>
         <svg
-          className={toolbarIcon}
+          className={workbenchIcon}
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -80,11 +81,11 @@ export function Toolbar() {
         </svg>
         {isDraftMode ? 'Editing' : 'Viewing'}
       </Button>
-      <div className={toolbarDivider} aria-hidden="true" />
+      <div className={workbenchDivider} aria-hidden="true" />
       {workbench.authenticated ? (
         <Button onClick={workbench.onSignOut}>
           <svg
-            className={toolbarIcon}
+            className={workbenchIcon}
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -101,7 +102,7 @@ export function Toolbar() {
       ) : (
         <Button onClick={workbench.onSignIn}>
           <svg
-            className={toolbarIcon}
+            className={workbenchIcon}
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
