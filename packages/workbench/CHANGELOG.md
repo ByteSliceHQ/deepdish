@@ -1,5 +1,11 @@
 # @deepdish/workbench
 
+## 0.4.0
+
+### Minor Changes
+
+- 16d5739: Improved workbench user interface and design.
+
 ## 0.3.0
 
 ### Minor Changes

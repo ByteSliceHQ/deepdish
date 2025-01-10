@@ -1,5 +1,16 @@
 # @deepdish/marketing
 
+## 0.5.0
+
+### Minor Changes
+
+- 16d5739: Added example workbench to the marketing site for demonstration.
+
+### Patch Changes
+
+- Updated dependencies [16d5739]
+  - @deepdish/workbench@0.4.0
+
 ## 0.4.0
 
 ### Minor Changes
