@@ -35,6 +35,11 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.className} antialiased`}>
         <AppLayout>{children}</AppLayout>
+        <div className="fixed bottom-14 left-0 right-0 z-50 text-center">
+          <p className="text-xs">
+            An example of the DeepDish Workbench toolbar!
+          </p>
+        </div>
         <Workbench />
       </body>
     </html>

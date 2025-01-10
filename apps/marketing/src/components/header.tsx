@@ -1,5 +1,5 @@
-import Image from 'next/image'
 import Link from 'next/link'
+import { Logo } from './logo'
 
 export function Header() {
   return (
@@ -7,13 +7,7 @@ export function Header() {
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center space-x-2">
           <Link href="/" className="flex items-center gap-x-2">
-            <Image
-              src="/deepdish-logo-color.png"
-              alt="DeepDish Logo"
-              width={40}
-              height={40}
-              className="text-red-500"
-            />
+            <Logo className="h-12 w-12" fill="#F87348" />
             <span className="text-2xl leading-normal font-bold bg-gradient-to-r from-red-400 to-orange-500 text-transparent bg-clip-text">
               DeepDish
             </span>
