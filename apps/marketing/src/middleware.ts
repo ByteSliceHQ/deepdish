@@ -3,6 +3,7 @@ import { type NextRequest, NextResponse } from 'next/server'
 
 const COOKIE_NAME = '__deepdish_secret'
 
+const endpoint = process.env.DEEPDISH_CLOUD_ENDPOINT || ''
 const clientId = process.env.DEEPDISH_CLOUD_OAUTH_CLIENT_ID || ''
 const state = process.env.DEEPDISH_CLOUD_STATE || ''
 const redirectUri = process.env.DEEPDISH_CLOUD_OAUTH_REDIRECT_URI || ''
@@ -22,17 +23,14 @@ async function verify(request: NextRequest) {
     return false
   }
 
-  const response = await fetch(
-    `${process.env.DEEPDISH_CLOUD_ENDPOINT}/oauth/userinfo`,
-    {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${cookie.value}`,
-        'X-DEEPDISH-SECRET-KEY': secretKey,
-        'X-DEEPDISH-PROJECT-ALIAS': projectAlias,
-      },
+  const response = await fetch(`${endpoint}/oauth/userinfo`, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${cookie.value}`,
+      'X-DEEPDISH-SECRET-KEY': secretKey,
+      'X-DEEPDISH-PROJECT-ALIAS': projectAlias,
     },
-  )
+  })
 
   return response.status === 200
 }
@@ -51,7 +49,7 @@ function signIn() {
   })
 
   return NextResponse.redirect(
-    `${process.env.DEEPDISH_CLOUD_ENDPOINT}/oauth/authorize?${queryParams.toString()}`,
+    `${endpoint}/oauth/authorize?${queryParams.toString()}`,
   )
 }
 
@@ -60,9 +58,7 @@ function signOut() {
     return NextResponse.next()
   }
 
-  return NextResponse.redirect(
-    `${process.env.DEEPDISH_CLOUD_ENDPOINT}/sign-out`,
-  )
+  return NextResponse.redirect(`${endpoint}/sign-out`)
 }
 
 export default deepdishMiddleware({
