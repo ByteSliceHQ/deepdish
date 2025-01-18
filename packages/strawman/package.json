@@ -1,0 +1,16 @@
+{
+  "name": "@deepdish/strawman",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Strawman for shared client-side state pattern.",
+  "exports": {
+    ".": "./src/context.tsx"
+  },
+  "dependencies": {
+    "react": "19.0.0"
+  },
+  "devDependencies": {
+    "@tsconfig/create-react-app": "^2",
+    "@types/react": "^18"
+  }
+}
