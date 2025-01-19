@@ -2,11 +2,11 @@
 
 import { createContext, useContext, useState } from 'react'
 import { useStore } from 'zustand'
-import { type Store, createDeepDishStore } from './state'
+import { type Selector, type Store, createDeepDishStore } from './state'
 
 const DeepDishContext = createContext<Store | null>(null)
 
-export function useDeepDish() {
+function useDeepDish<T>(selector: Selector<T>) {
   const store = useContext(DeepDishContext)
 
   if (!store) {
@@ -15,7 +15,11 @@ export function useDeepDish() {
     )
   }
 
-  return useStore(store)
+  return useStore(store, selector)
+}
+
+export function useMode() {
+  return useDeepDish((state) => state.mode)
 }
 
 type DeepDishProviderProps = {
