@@ -1,20 +1,21 @@
 'use client'
 
-import { createContext, useContext } from 'react'
-import { type State, initialState } from './state'
+import { createContext, useContext, useState } from 'react'
+import { useStore } from 'zustand'
+import { type Store, createDeepDishStore } from './state'
 
-const DeepDishContext = createContext<State | null>(null)
+const DeepDishContext = createContext<Store | null>(null)
 
 export function useDeepDish() {
-  const context = useContext(DeepDishContext)
+  const store = useContext(DeepDishContext)
 
-  if (!context) {
+  if (!store) {
     throw new Error(
       'The `useDeepDish` hook must be used within a `DeepDishProvider`.',
     )
   }
 
-  return context
+  return useStore(store)
 }
 
 type DeepDishProviderProps = {
@@ -22,8 +23,10 @@ type DeepDishProviderProps = {
 }
 
 export function DeepDishProvider(props: DeepDishProviderProps) {
+  const [store] = useState(createDeepDishStore)
+
   return (
-    <DeepDishContext.Provider value={initialState}>
+    <DeepDishContext.Provider value={store}>
       {props.children}
     </DeepDishContext.Provider>
   )

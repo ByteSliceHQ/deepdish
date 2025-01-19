@@ -7,7 +7,8 @@
     ".": "./src/context.tsx"
   },
   "dependencies": {
-    "react": "19.0.0"
+    "react": "19.0.0",
+    "zustand": "5.0.3"
   },
   "devDependencies": {
     "@tsconfig/create-react-app": "^2",

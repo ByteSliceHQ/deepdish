@@ -1,9 +1,15 @@
+import { createStore } from 'zustand'
+
 type Mode = 'edit' | 'view'
 
-export type State = {
+type State = {
   mode: Mode
 }
 
-export const initialState: State = {
-  mode: 'view',
+export type Store = ReturnType<typeof createDeepDishStore>
+
+export function createDeepDishStore() {
+  return createStore<State>(() => ({
+    mode: 'view',
+  }))
 }
