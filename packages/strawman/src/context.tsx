@@ -18,6 +18,10 @@ function useDeepDish<T>(selector: Selector<T>) {
   return useStore(store, selector)
 }
 
+export function useActions() {
+  return useDeepDish((state) => state.actions)
+}
+
 export function useMode() {
   return useDeepDish((state) => state.mode)
 }
