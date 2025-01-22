@@ -10,7 +10,7 @@ export default function Demo() {
         >
           DeepDish Demo
         </Paragraph>
-        <Paragraph className="text-gray-700" deepdish={{ key: 'subheadline' }}>
+        <Paragraph className="text-gray-700" deepdish={{ key: 'sub-headline' }}>
           DeepDish is an alternative to traditional CMS systems. The code looks
           like normal React, but every element is editable. First, log in with
           the Workbench below. Then, simply right-click on elements and edit the
