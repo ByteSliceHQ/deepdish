@@ -18,11 +18,9 @@ declare global {
 async function authenticate() {
   const verification = await withResult(
     async () => {
-      const response = await fetch('/__deepdish/verify', {
-        method: 'POST',
-      })
-
+      const response = await fetch('/__deepdish/verify')
       const body = await response.json()
+
       return body.signedIn
     },
     (error) => new Error('Authentication failed.', { cause: error }),

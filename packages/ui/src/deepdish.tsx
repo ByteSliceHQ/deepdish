@@ -1,7 +1,6 @@
 import 'server-only'
 
 import { getLogger } from '@logtape/logtape'
-// TODO: should `next` be a peer dependency?
 import { headers } from 'next/headers'
 import { getBaseUrl, getContract } from './config/config'
 import { Menu } from './menu'
@@ -26,7 +25,6 @@ async function canEdit() {
   }
 
   const response = await fetch(`${baseUrl.data}/__deepdish/verify`, {
-    method: 'POST',
     headers: await headers(),
   })
 
