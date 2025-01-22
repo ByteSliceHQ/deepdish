@@ -1,4 +1,5 @@
 import { cms } from '@/cms'
+import { DeepDishProvider } from '@deepdish/strawman'
 import { Workbench } from '@deepdish/workbench'
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
@@ -33,8 +34,10 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
-        <Workbench />
+        <DeepDishProvider>
+          {children}
+          <Workbench />
+        </DeepDishProvider>
       </body>
     </html>
   )
