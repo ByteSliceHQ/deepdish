@@ -10,4 +10,5 @@ registrator
 rehype
 tsup
 turborepo
+turbopack
 vercel
