@@ -3,12 +3,12 @@ import { type NextRequest, NextResponse } from 'next/server'
 
 const COOKIE_NAME = '__deepdish_secret'
 
-const endpoint = process.env.DEEPDISH_CLOUD_ENDPOINT || ''
-const clientId = process.env.DEEPDISH_CLOUD_OAUTH_CLIENT_ID || ''
-const state = process.env.DEEPDISH_CLOUD_STATE || ''
-const redirectUri = process.env.DEEPDISH_CLOUD_OAUTH_REDIRECT_URI || ''
-const secretKey = process.env.DEEPDISH_SECRET_KEY || ''
-const projectAlias = process.env.DEEPDISH_PROJECT_ALIAS || ''
+const endpoint = process.env.DEEPDISH_CLOUD_ENDPOINT
+const clientId = process.env.DEEPDISH_CLOUD_OAUTH_CLIENT_ID
+const state = process.env.DEEPDISH_CLOUD_STATE
+const redirectUri = process.env.DEEPDISH_CLOUD_OAUTH_REDIRECT_URI
+const secretKey = process.env.DEEPDISH_SECRET_KEY
+const projectAlias = process.env.DEEPDISH_PROJECT_ALIAS
 
 const marketingPreview = process.env.NODE_ENV === 'production'
 
