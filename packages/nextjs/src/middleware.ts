@@ -16,16 +16,16 @@ export function deepdishMiddleware(
   return async (request) => {
     const { url, method } = request
 
-    if (url.includes('/__deepdish/')) {
-      if (url.endsWith('/sign-in') && method === 'GET') {
+    if (url.includes('/__deepdish/') && method === 'GET') {
+      if (url.endsWith('/sign-in')) {
         return config.signIn(request)
       }
 
-      if (url.endsWith('/sign-out') && method === 'GET') {
+      if (url.endsWith('/sign-out')) {
         return config.signOut(request)
       }
 
-      if (url.endsWith('/verify') && method === 'POST') {
+      if (url.endsWith('/verify')) {
         const verified = await config.verify(request)
         return NextResponse.json({ signedIn: verified })
       }
