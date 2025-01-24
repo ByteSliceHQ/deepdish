@@ -3,4 +3,4 @@
 "@deepdish/ui": minor
 ---
 
-Added initial dynamic collections implementation.
+Implemented initial dynamic collections.
