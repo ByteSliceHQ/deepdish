@@ -37,4 +37,11 @@ export default defineConfig([
       }
     },
   },
+  {
+    entry: ['src/shell.tsx'],
+    format: ['esm'],
+    sourcemap: true,
+    dts: true,
+    target: 'esnext',
+  },
 ])
