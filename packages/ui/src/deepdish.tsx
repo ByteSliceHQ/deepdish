@@ -142,7 +142,27 @@ async function DeepDishCollection<V>(props: {
   render(value?: V): Promise<React.ReactElement>
   type: ValueType
 }) {
-  return props.deepdish.collection.map((key) => {
+  let keys: string[]
+
+  if (Array.isArray(props.deepdish.collection)) {
+    keys = props.deepdish.collection
+  } else {
+    const resolver = getResolver(props.type)
+    if (!resolver) {
+      // TODO: handle failure
+      return props.render(props.fallback)
+    }
+
+    const keysResult = await resolver.keys(props.deepdish.collection)
+    if (keysResult.failure) {
+      // TODO: handle failure
+      return props.render(props.fallback)
+    }
+
+    keys = keysResult.data
+  }
+
+  return keys.map((key) => {
     const { collection, ...rest } = props.deepdish
 
     return (
@@ -168,7 +188,7 @@ export async function DeepDish<V>(props: {
     return props.render(props.fallback)
   }
 
-  if (props.deepdish.collection) {
+  if (props.deepdish.collection != null) {
     return (
       <DeepDishCollection
         deepdish={props.deepdish}

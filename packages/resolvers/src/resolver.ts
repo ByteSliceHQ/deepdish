@@ -2,14 +2,19 @@ import { type Result, withResult } from '@byteslice/result'
 import DataLoader, { type BatchLoadFn } from 'dataloader'
 import { ZodError, type ZodTypeAny, type z } from 'zod'
 
-type Context = { key: string }
+type Key = string
+
+type Context = { key: Key }
 
 type ReadFailure =
   | { type: 'CONTENT_INVALID'; error: Error }
   | { type: 'CONTENT_MISSING' }
   | { type: 'READ'; error: Error }
 
+type KeysFailure = { type: 'UNSUPPORTED' } | { type: 'KEYS'; error: Error }
+
 export type Resolver<V> = {
+  keys: (pattern: string) => Promise<Result<Key[], KeysFailure>>
   read: (ctx: Context) => Promise<Result<V, ReadFailure>>
   write: (ctx: Context, value: V) => Promise<Result<void>>
 }
@@ -31,18 +36,30 @@ export function createResolver<S extends ZodTypeAny>(
   schema: S,
   options?: ResolverOptions,
 ) {
-  type Key = string
   type Value = z.infer<S>
 
   return (
     loadValues: BatchLoadFn<Key, unknown>,
     updateValue: (key: Key, value: Value) => Promise<void>,
+    listKeys?: (pattern: string) => Promise<Key[]>,
   ): Resolver<Value> => {
     const loader = new DataLoader(loadValues, {
       maxBatchSize: options?.maxBatchSize,
     })
 
     return {
+      async keys(pattern) {
+        if (!listKeys) {
+          return { failure: { type: 'UNSUPPORTED' } }
+        }
+
+        const keysResult = await withResult<Key[], KeysFailure>(
+          () => listKeys(pattern),
+          (error) => ({ type: 'KEYS', error }),
+        )
+
+        return keysResult
+      },
       async read(ctx) {
         const readResult = await withResult<unknown, ReadFailure>(
           () => loader.load(ctx.key),

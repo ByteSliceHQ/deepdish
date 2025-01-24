@@ -1,5 +1,7 @@
+type Collection = string | string[]
+
 export type DeepDishCollectionProps = {
-  collection: string[]
+  collection: Collection
 }
 
 export type DeepDishElementProps = {
