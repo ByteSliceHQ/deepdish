@@ -158,10 +158,9 @@ async function DeepDishCollection<V>(props: {
       switch (keysResult.failure.type) {
         case 'UNSUPPORTED':
           logger.warn(
-            'The {type} resolvers does not support dynamic collections.',
+            'The {type} content resolver does not support dynamic collections',
             {
               type: props.type,
-              collection: props.deepdish.collection,
             },
           )
           break
