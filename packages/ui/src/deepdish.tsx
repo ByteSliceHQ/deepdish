@@ -209,7 +209,7 @@ export async function DeepDish<V>(props: {
     return props.render(props.fallback)
   }
 
-  if (props.deepdish.collection != null) {
+  if (props.deepdish.collection !== undefined) {
     return (
       <DeepDishCollection
         deepdish={props.deepdish}
