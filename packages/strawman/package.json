@@ -1,8 +1,8 @@
 {
-  "name": "@deepdish/strawman",
+  "name": "@deepdish/straw-man",
   "version": "0.0.0",
   "private": true,
-  "description": "Strawman for shared client-side state pattern.",
+  "description": "Straw-man for shared client-side state pattern.",
   "exports": {
     ".": "./src/context.tsx"
   },

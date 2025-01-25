@@ -1,6 +1,6 @@
 'use client'
 
-import { useActions, useMode } from '@deepdish/strawman'
+import { useActions, useMode } from '@deepdish/straw-man'
 import { useWorkbench } from './context'
 import { stylesheet } from './stylesheet'
 import { Button } from './ui/button'

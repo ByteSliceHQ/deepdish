@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@byteslice/result": "0.1.0",
-    "@deepdish/strawman": "workspace:0.0.0",
+    "@deepdish/straw-man": "workspace:0.0.0",
     "class-variance-authority": "0.7.0",
     "react": "19.0.0",
     "react-shadow-scope": "1.0.5"
