@@ -14,7 +14,8 @@
     "code:check": "bun install --frozen-lockfile && biome ci . & bun run sort-manifests --check & cspell --dot .",
     "code:fix": "biome check --write . & bun run sort-manifests",
     "dev": "turbo run dev",
-    "dev:marketing": "turbo run dev --filter=@deepdish/marketing",
+    "dev:demo": "turbo run dev --filter @deepdish/demo...",
+    "dev:marketing": "turbo run dev --filter @deepdish/marketing...",
     "sort-manifests": "sort-package-json package.json apps/**/package.json packages/**/package.json"
   },
   "devDependencies": {
