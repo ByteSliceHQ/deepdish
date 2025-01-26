@@ -2,7 +2,7 @@ import { type Result, withResult } from '@byteslice/result'
 import DataLoader, { type BatchLoadFn } from 'dataloader'
 import { ZodError, type ZodTypeAny, type z } from 'zod'
 
-type Key = string
+export type Key = string
 
 type Context = { key: Key }
 
