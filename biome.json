@@ -3,6 +3,7 @@
   "files": {
     "ignore": [
       "**/package.json",
+      ".flox/cache/",
       ".next/",
       ".tsup/",
       ".turbo/",

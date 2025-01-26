@@ -9,18 +9,15 @@
   },
   "scripts": {
     "build": "next build",
-    "dev": "next dev --port 3002",
+    "dev": "op run --no-masking --env-file=.env.development -- next dev --port 3002",
     "start": "next start"
   },
   "dependencies": {
     "@deepdish/nextjs": "workspace:0.0.1",
-    "@deepdish/ui": "workspace:0.8.0",
     "@deepdish/workbench": "workspace:0.4.0",
-    "@heroicons/react": "2.1.5",
     "@radix-ui/react-slot": "1.1.1",
     "@radix-ui/react-tooltip": "1.1.6",
     "@tailwindcss/forms": "0.5.7",
-    "bright": "0.8.5",
     "class-variance-authority": "0.7.0",
     "clsx": "2.1.1",
     "next": "15.1.4",

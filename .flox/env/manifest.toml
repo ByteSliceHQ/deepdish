@@ -1,6 +1,8 @@
 version = 1
 
 [install]
+_1password.pkg-path = "_1password"
+_1password.version = "1password-cli-2.30.3"
 bun.pkg-path = "bun"
 bun.version = "1.1.42"
 nodejs.pkg-path = "nodejs"
@@ -13,7 +15,8 @@ on-activate = '''
 
   echo -e "\n🚀 Development Commands"
   echo -e "- Run all tasks\t\t\033[34mbun dev\033[0m"
-  echo -e "- Start marketing site\t\033[34mbun dev:marketing\033[0m"
+  echo -e "- Start demo app\t\033[34mbun dev:demo\033[0m"
+  echo -e "- Start marketing app\t\033[34mbun dev:marketing\033[0m"
 '''
 
 [options]
