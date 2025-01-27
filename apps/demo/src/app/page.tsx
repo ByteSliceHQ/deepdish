@@ -31,7 +31,9 @@ export default function Demo() {
         </div>
         <div>
           <p className="font-bold">Dynamic collection</p>
-          <p>Coming soon!</p>
+          <Paragraph deepdish={{ collection: '*' }}>
+            This is a dynamic collection.
+          </Paragraph>
         </div>
       </div>
     </div>

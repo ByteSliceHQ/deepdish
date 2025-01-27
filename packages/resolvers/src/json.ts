@@ -1,9 +1,7 @@
 import type { PathLike as Path } from 'node:fs'
 import { readFile, writeFile } from 'node:fs/promises'
 import type { ZodTypeAny } from 'zod'
-import { type ResolverOptions, createResolver } from './resolver'
-
-type Key = string
+import { type Key, type ResolverOptions, createResolver } from './resolver'
 
 async function parseJson(path: Path) {
   const json = await readFile(path, { encoding: 'utf-8' })
@@ -25,11 +23,28 @@ function loadValues(path: Path) {
   }
 }
 
+function listKeys(path: Path) {
+  return async (pattern: string) => {
+    const data = await parseJson(path)
+    const allKeys = Object.keys(data)
+
+    if (pattern === '*') {
+      return allKeys
+    }
+
+    return allKeys.filter((key) => key.startsWith(pattern))
+  }
+}
+
 /** Creates a resolver to asynchronously read/write values of a JSON file. */
 export function createJsonResolver<S extends ZodTypeAny>(
   path: Path,
   schema: S,
   options?: ResolverOptions,
 ) {
-  return createResolver(schema, options)(loadValues(path), updateJson(path))
+  return createResolver(schema, options)(
+    loadValues(path),
+    updateJson(path),
+    listKeys(path),
+  )
 }

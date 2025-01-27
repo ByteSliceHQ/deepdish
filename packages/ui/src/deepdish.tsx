@@ -142,7 +142,48 @@ async function DeepDishCollection<V>(props: {
   render(value?: V): Promise<React.ReactElement>
   type: ValueType
 }) {
-  return props.deepdish.collection.map((key) => {
+  const resolver = getResolver(props.type)
+  if (!resolver) {
+    return props.render(props.fallback)
+  }
+
+  let keys: string[]
+
+  if (Array.isArray(props.deepdish.collection)) {
+    keys = props.deepdish.collection
+  } else {
+    const keysResult = await resolver.keys(props.deepdish.collection)
+
+    if (keysResult.failure) {
+      switch (keysResult.failure.type) {
+        case 'UNSUPPORTED':
+          logger.warn(
+            'The {type} content resolver does not support dynamic collections',
+            {
+              type: props.type,
+            },
+          )
+          break
+        case 'KEYS':
+          logger.warn(
+            'Unable to list keys for {type} content for {collection}: {reason}',
+            {
+              type: props.type,
+              collection: props.deepdish.collection,
+              error: keysResult.failure.error,
+              reason: keysResult.failure.error.message,
+            },
+          )
+          break
+      }
+
+      return props.render(props.fallback)
+    }
+
+    keys = keysResult.data
+  }
+
+  return keys.map((key) => {
     const { collection, ...rest } = props.deepdish
 
     return (
@@ -168,7 +209,7 @@ export async function DeepDish<V>(props: {
     return props.render(props.fallback)
   }
 
-  if (props.deepdish.collection) {
+  if (props.deepdish.collection !== undefined) {
     return (
       <DeepDishCollection
         deepdish={props.deepdish}
