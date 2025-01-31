@@ -1,6 +1,6 @@
 'use client'
 
-import { useMode } from '@deepdish/straw-man'
+import { useMode } from '@deepdish/core'
 
 export function Shell(props: {
   children: React.ReactNode

@@ -1,0 +1,23 @@
+{
+  "name": "@deepdish/core",
+  "version": "0.0.0",
+  "description": "DeepDish core functionality",
+  "author": {
+    "name": "ByteSlice, LLC",
+    "url": "https://byteslice.co"
+  },
+  "exports": {
+    ".": "./src/context.tsx"
+  },
+  "dependencies": {
+    "react": "19.0.0",
+    "zustand": "5.0.3"
+  },
+  "devDependencies": {
+    "@tsconfig/create-react-app": "2.0.5",
+    "@types/react": "18.3.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
