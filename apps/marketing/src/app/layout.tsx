@@ -1,6 +1,6 @@
 import '@/styles/globals.css'
 import { AppLayout } from '@/components/app-layout'
-import { DeepDishProvider } from '@deepdish/core'
+import { DeepDishProvider } from '@deepdish/core/context'
 import { Workbench } from '@deepdish/workbench'
 import { Inter } from 'next/font/google'
 

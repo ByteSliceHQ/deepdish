@@ -1,6 +1,6 @@
 'use client'
 
-import { useActions, useMode } from '@deepdish/core'
+import { useActions, useMode } from '@deepdish/core/context'
 import { useWorkbench } from './context'
 import { stylesheet } from './stylesheet'
 import { Button } from './ui/button'

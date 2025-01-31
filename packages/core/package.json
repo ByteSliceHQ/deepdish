@@ -7,7 +7,14 @@
     "url": "https://byteslice.co"
   },
   "exports": {
-    ".": "./src/context.tsx"
+    "./context": {
+      "import": "./dist/context.mjs",
+      "types": "./dist/context.d.mts"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch"
   },
   "dependencies": {
     "react": "19.0.0",
@@ -15,7 +22,8 @@
   },
   "devDependencies": {
     "@tsconfig/create-react-app": "2.0.5",
-    "@types/react": "18.3.3"
+    "@types/react": "18.3.3",
+    "tsup": "8.2.4"
   },
   "publishConfig": {
     "access": "public"

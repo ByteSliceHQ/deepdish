@@ -1,5 +1,5 @@
 import { cms } from '@/cms'
-import { DeepDishProvider } from '@deepdish/core'
+import { DeepDishProvider } from '@deepdish/core/context'
 import { Workbench } from '@deepdish/workbench'
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
