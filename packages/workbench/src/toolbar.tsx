@@ -34,12 +34,12 @@ const toolbarIcon = stylesheet.style({
   marginRight: '4px',
 })
 
-function ModeButton() {
+function ModeButton(props: { disabled: boolean }) {
   const actions = useActions()
   const mode = useMode()
 
   return (
-    <Button onClick={actions.toggleMode}>
+    <Button disabled={props.disabled} onClick={actions.toggleMode}>
       <svg
         className={toolbarIcon}
         viewBox="0 0 24 24"
@@ -88,7 +88,7 @@ export function Toolbar() {
         </svg>
       </Button>
       <div className={toolbarDivider} aria-hidden="true" />
-      <ModeButton />
+      <ModeButton disabled={!workbench.authenticated} />
       <div className={toolbarDivider} aria-hidden="true" />
       {workbench.authenticated ? (
         <Button onClick={workbench.onSignOut}>
