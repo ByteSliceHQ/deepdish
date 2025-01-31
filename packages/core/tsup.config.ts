@@ -2,7 +2,7 @@ import { defineConfig } from 'tsup'
 
 export default defineConfig([
   {
-    entry: ['src/context.tsx'],
+    entry: ['src/context.tsx', 'src/shell.tsx'],
     format: ['esm'],
     sourcemap: true,
     dts: true,

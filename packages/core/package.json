@@ -10,6 +10,10 @@
     "./context": {
       "import": "./dist/context.mjs",
       "types": "./dist/context.d.mts"
+    },
+    "./shell": {
+      "import": "./dist/shell.mjs",
+      "types": "./dist/shell.d.mts"
     }
   },
   "scripts": {

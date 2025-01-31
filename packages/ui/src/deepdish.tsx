@@ -1,11 +1,11 @@
 import 'server-only'
 
+import { Shell } from '@deepdish/core/shell'
 import { getLogger } from '@logtape/logtape'
 import { headers } from 'next/headers'
 import { getBaseUrl, getContract } from './config/config'
 import { Menu } from './menu'
 import type { ValueType } from './schemas'
-import { Shell } from './shell'
 import type {
   DeepDishCollectionProps,
   DeepDishElementProps,
