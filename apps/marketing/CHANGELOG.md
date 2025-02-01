@@ -1,5 +1,23 @@
 # @deepdish/marketing
 
+## 0.6.0
+
+### Minor Changes
+
+- 54b4a38: Added provider with "shared" client-side state.
+
+### Patch Changes
+
+- 23ad29e: Upgraded React version.
+- Updated dependencies [54b4a38]
+- Updated dependencies [54b4a38]
+- Updated dependencies [54b4a38]
+- Updated dependencies [79a5a52]
+- Updated dependencies [54b4a38]
+  - @deepdish/core@0.1.0
+  - @deepdish/workbench@0.5.0
+  - @deepdish/nextjs@0.1.0
+
 ## 0.5.0
 
 ### Minor Changes

@@ -1,5 +1,21 @@
 # @deepdish/ui
 
+## 0.9.0
+
+### Minor Changes
+
+- 3aeded1: Implemented initial dynamic collections.
+- 79a5a52: Added authentication request memoization.
+- 54b4a38: Wrapped "slotted" server components with client component "shell".
+
+### Patch Changes
+
+- 23ad29e: Upgraded React version.
+- Updated dependencies [54b4a38]
+- Updated dependencies [54b4a38]
+- Updated dependencies [54b4a38]
+  - @deepdish/core@0.1.0
+
 ## 0.8.0
 
 ### Minor Changes
