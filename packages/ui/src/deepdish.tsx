@@ -1,5 +1,6 @@
 import 'server-only'
 
+import { Shell } from '@deepdish/core/shell'
 import { getLogger } from '@logtape/logtape'
 import { headers } from 'next/headers'
 import { getBaseUrl, getContract } from './config/config'
@@ -206,26 +207,30 @@ export async function DeepDish<V>(props: {
   type: ValueType
 }) {
   if (!props.deepdish) {
-    return props.render(props.fallback)
+    return <Shell>{props.render(props.fallback)}</Shell>
   }
 
   if (props.deepdish.collection !== undefined) {
     return (
-      <DeepDishCollection
+      <Shell>
+        <DeepDishCollection
+          deepdish={props.deepdish}
+          fallback={props.fallback}
+          render={props.render}
+          type={props.type}
+        />
+      </Shell>
+    )
+  }
+
+  return (
+    <Shell>
+      <DeepDishElement
         deepdish={props.deepdish}
         fallback={props.fallback}
         render={props.render}
         type={props.type}
       />
-    )
-  }
-
-  return (
-    <DeepDishElement
-      deepdish={props.deepdish}
-      fallback={props.fallback}
-      render={props.render}
-      type={props.type}
-    />
+    </Shell>
   )
 }

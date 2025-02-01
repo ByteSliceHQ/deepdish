@@ -13,6 +13,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@deepdish/core": "workspace:0.0.0",
     "@deepdish/nextjs": "workspace:0.0.1",
     "@deepdish/workbench": "workspace:0.4.0",
     "@radix-ui/react-slot": "1.1.1",

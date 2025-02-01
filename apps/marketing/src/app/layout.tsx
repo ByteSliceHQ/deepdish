@@ -1,5 +1,6 @@
 import '@/styles/globals.css'
 import { AppLayout } from '@/components/app-layout'
+import { DeepDishProvider } from '@deepdish/core/context'
 import { Workbench } from '@deepdish/workbench'
 import { Inter } from 'next/font/google'
 
@@ -26,6 +27,14 @@ export const metadata = {
   },
 }
 
+function WorkbenchLabel() {
+  return (
+    <div className="fixed bottom-14 left-0 right-0 z-50 text-center">
+      <p className="text-xs">An example of the DeepDish Workbench toolbar!</p>
+    </div>
+  )
+}
+
 export default function RootLayout({
   children,
 }: {
@@ -34,13 +43,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.className} antialiased`}>
-        <AppLayout>{children}</AppLayout>
-        <div className="fixed bottom-14 left-0 right-0 z-50 text-center">
-          <p className="text-xs">
-            An example of the DeepDish Workbench toolbar!
-          </p>
-        </div>
-        <Workbench />
+        <DeepDishProvider>
+          <AppLayout>{children}</AppLayout>
+          <WorkbenchLabel />
+          <Workbench />
+        </DeepDishProvider>
       </body>
     </html>
   )

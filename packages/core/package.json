@@ -1,0 +1,35 @@
+{
+  "name": "@deepdish/core",
+  "version": "0.0.0",
+  "description": "DeepDish core functionality",
+  "author": {
+    "name": "ByteSlice, LLC",
+    "url": "https://byteslice.co"
+  },
+  "exports": {
+    "./context": {
+      "import": "./dist/context.mjs",
+      "types": "./dist/context.d.mts"
+    },
+    "./shell": {
+      "import": "./dist/shell.mjs",
+      "types": "./dist/shell.d.mts"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch"
+  },
+  "dependencies": {
+    "react": "19.0.0",
+    "zustand": "5.0.3"
+  },
+  "devDependencies": {
+    "@tsconfig/create-react-app": "2.0.5",
+    "@types/react": "18.3.3",
+    "tsup": "8.2.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
