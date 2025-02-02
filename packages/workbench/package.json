@@ -1,6 +1,6 @@
 {
   "name": "@deepdish/workbench",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "DeepDish workbench",
   "author": {
     "name": "ByteSlice, LLC",
@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@byteslice/result": "0.1.0",
-    "@deepdish/core": "workspace:0.0.0",
+    "@deepdish/core": "workspace:0.1.0",
     "class-variance-authority": "0.7.0",
     "react": "19.0.0",
     "react-shadow-scope": "1.0.5"

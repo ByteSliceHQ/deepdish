@@ -1,6 +1,6 @@
 {
   "name": "@deepdish/demo",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "build": "next build",
@@ -8,11 +8,11 @@
     "start": "next start"
   },
   "dependencies": {
-    "@deepdish/core": "workspace:0.0.0",
-    "@deepdish/nextjs": "workspace:0.0.1",
-    "@deepdish/resolvers": "workspace:0.7.0",
-    "@deepdish/ui": "workspace:0.8.0",
-    "@deepdish/workbench": "workspace:0.4.0",
+    "@deepdish/core": "workspace:0.1.0",
+    "@deepdish/nextjs": "workspace:0.1.0",
+    "@deepdish/resolvers": "workspace:0.8.0",
+    "@deepdish/ui": "workspace:0.9.0",
+    "@deepdish/workbench": "workspace:0.5.0",
     "next": "15.1.4",
     "react": "19.0.0",
     "react-dom": "19.0.0"

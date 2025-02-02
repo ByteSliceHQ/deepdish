@@ -1,5 +1,11 @@
 # @deepdish/resolvers
 
+## 0.8.0
+
+### Minor Changes
+
+- 3aeded1: Implemented initial dynamic collections.
+
 ## 0.7.0
 
 ### Minor Changes
