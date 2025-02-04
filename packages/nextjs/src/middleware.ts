@@ -14,6 +14,10 @@ export function deepdishMiddleware(
   config: DeepdishMiddlewareConfig,
 ): NextMiddleware {
   return async (request) => {
+    if (process.env.DEEPDISH_MODE !== 'draft') {
+      return NextResponse.next()
+    }
+
     const { url, method } = request
 
     if (url.includes('/__deepdish/') && method === 'GET') {
