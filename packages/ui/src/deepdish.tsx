@@ -3,7 +3,7 @@ import 'server-only'
 import { Shell } from '@deepdish/core/shell'
 import { getLogger } from '@logtape/logtape'
 import { headers } from 'next/headers'
-import { getBaseUrl, getContract } from './config/config'
+import { getBaseUrl, getContract, getSettings } from './config/config'
 import { Menu } from './menu'
 import type { ValueType } from './schemas'
 import type {
@@ -15,7 +15,13 @@ import type {
 const logger = getLogger(['deepdish', 'ui'])
 
 async function canEdit() {
-  if (process.env.DEEPDISH_MODE !== 'draft') {
+  const settingsResult = getSettings()
+  if (settingsResult.failure) {
+    return false
+  }
+  const settings = settingsResult.data
+
+  if (!settings.draft) {
     return false
   }
 

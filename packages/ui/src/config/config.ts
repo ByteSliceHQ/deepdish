@@ -6,8 +6,13 @@ import { configureLogging } from './logging'
 
 const logger = getLogger(['deepdish', 'config'])
 
+type Settings = {
+  draft: boolean
+}
+
 export type Config = {
   baseUrl: string
+  settings: Settings
   contracts: {
     readonly [T in ValueType]?: Contract<T>
   }
@@ -60,4 +65,12 @@ export function getBaseUrl(): Result<string> {
   }
 
   return { data: config.baseUrl }
+}
+
+export function getSettings(): Result<Settings> {
+  if (!config) {
+    return notConfigured()
+  }
+
+  return { data: config.settings }
 }
