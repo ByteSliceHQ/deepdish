@@ -6,17 +6,19 @@ import { configureLogging } from './logging'
 
 const logger = getLogger(['deepdish', 'config'])
 
-type Settings = {
+type Contracts = Readonly<{
+  [T in ValueType]?: Contract<T>
+}>
+
+type Settings = Readonly<{
   baseUrl: string
   draft: boolean
-}
+}>
 
-export type Config = {
+export type Config = Readonly<{
+  contracts: Contracts
   settings: Settings
-  contracts: {
-    readonly [T in ValueType]?: Contract<T>
-  }
-}
+}>
 
 let config: Config
 
