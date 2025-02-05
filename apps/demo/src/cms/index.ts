@@ -27,7 +27,10 @@ export async function cms() {
   await init()
 
   return await configure({
-    baseUrl: process.env.BASE_URL,
+    settings: {
+      baseUrl: process.env.BASE_URL,
+      draft: process.env.DEEPDISH_MODE === 'draft',
+    },
     contracts: {
       typography: {
         resolver: createJsonResolver(contentPath, typographySchema, {
