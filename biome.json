@@ -59,6 +59,16 @@
           }
         }
       }
+    },
+    {
+      "include": ["packages/**"],
+      "linter": {
+        "rules": {
+          "nursery": {
+            "noProcessEnv": "error"
+          }
+        }
+      }
     }
   ]
 }
