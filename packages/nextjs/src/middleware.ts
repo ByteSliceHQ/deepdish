@@ -5,6 +5,7 @@ import {
 } from 'next/server'
 
 export type DeepdishMiddlewareConfig = {
+  draft: boolean
   verify: (request: NextRequest) => boolean | Promise<boolean>
   signIn: (request: NextRequest) => NextResponse | Promise<NextResponse>
   signOut: (request: NextRequest) => NextResponse | Promise<NextResponse>
@@ -14,7 +15,7 @@ export function deepdishMiddleware(
   config: DeepdishMiddlewareConfig,
 ): NextMiddleware {
   return async (request) => {
-    if (process.env.DEEPDISH_MODE !== 'draft') {
+    if (!config.draft) {
       return NextResponse.next()
     }
 

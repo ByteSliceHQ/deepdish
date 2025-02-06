@@ -1,6 +1,8 @@
 import { deepdishMiddleware } from '@deepdish/nextjs'
 import { NextResponse } from 'next/server'
 
+const draft = process.env.DEEPDISH_MODE === 'draft'
+
 let signedIn = false
 
 async function signIn() {
@@ -23,6 +25,7 @@ async function verify() {
 }
 
 export default deepdishMiddleware({
+  draft,
   signIn,
   signOut,
   verify,
