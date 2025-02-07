@@ -41,7 +41,7 @@ export async function configure(input: Config): Promise<Result<void>> {
 
   config = Object.freeze(input)
 
-  await configureLogging()
+  await configureLogging(true)
 
   logger.info('DeepDish configured successfully.')
   return { data: undefined }
