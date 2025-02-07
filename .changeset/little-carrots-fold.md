@@ -3,4 +3,4 @@
 "@deepdish/demo": patch
 ---
 
-Supplied mode setting to configurable dependencies.
+Supplied environment-specific values to configurable dependencies.
