@@ -10,6 +10,10 @@ type Contracts = Readonly<{
   [T in ValueType]?: Contract<T>
 }>
 
+type Logging = Readonly<{
+  enabled: boolean
+}>
+
 type Settings = Readonly<{
   baseUrl: string
   draft: boolean
@@ -17,6 +21,7 @@ type Settings = Readonly<{
 
 export type Config = Readonly<{
   contracts: Contracts
+  logging: Logging
   settings: Settings
 }>
 
@@ -41,7 +46,7 @@ export async function configure(input: Config): Promise<Result<void>> {
 
   config = Object.freeze(input)
 
-  await configureLogging(true)
+  await configureLogging(config.logging.enabled)
 
   logger.info('DeepDish configured successfully.')
   return { data: undefined }
