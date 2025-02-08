@@ -16,6 +16,9 @@
     "build": "tsup",
     "dev": "tsup --watch"
   },
+  "dependencies": {
+    "@deepdish/ui": "workspace:0.10.0"
+  },
   "devDependencies": {
     "tsup": "8.2.4"
   },
