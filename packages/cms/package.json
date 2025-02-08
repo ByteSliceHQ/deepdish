@@ -17,9 +17,13 @@
     "dev": "tsup --watch"
   },
   "dependencies": {
-    "@deepdish/ui": "workspace:0.10.0"
+    "@deepdish/core": "workspace:0.1.0",
+    "@deepdish/ui": "workspace:0.10.0",
+    "@deepdish/workbench": "workspace:0.6.0",
+    "react": "19.0.0"
   },
   "devDependencies": {
+    "@types/react": "18.3.3",
     "tsup": "8.2.4"
   },
   "publishConfig": {
