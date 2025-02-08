@@ -6,12 +6,24 @@ import { configureLogging } from './logging'
 
 const logger = getLogger(['deepdish', 'config'])
 
-export type Config = {
+type Contracts = Readonly<{
+  [T in ValueType]?: Contract<T>
+}>
+
+type Logging = Readonly<{
+  enabled: boolean
+}>
+
+type Settings = Readonly<{
   baseUrl: string
-  contracts: {
-    readonly [T in ValueType]?: Contract<T>
-  }
-}
+  draft: boolean
+}>
+
+export type Config = Readonly<{
+  contracts: Contracts
+  logging: Logging
+  settings: Settings
+}>
 
 let config: Config
 
@@ -34,7 +46,7 @@ export async function configure(input: Config): Promise<Result<void>> {
 
   config = Object.freeze(input)
 
-  await configureLogging()
+  await configureLogging(config.logging.enabled)
 
   logger.info('DeepDish configured successfully.')
   return { data: undefined }
@@ -54,10 +66,10 @@ export function getContract<T extends ValueType>(type: T): Result<Contract<T>> {
   return { data: contract }
 }
 
-export function getBaseUrl(): Result<string> {
+export function getSettings(): Result<Settings> {
   if (!config) {
     return notConfigured()
   }
 
-  return { data: config.baseUrl }
+  return { data: config.settings }
 }

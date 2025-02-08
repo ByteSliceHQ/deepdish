@@ -7,6 +7,7 @@ const endpoint = process.env.DEEPDISH_CLOUD_ENDPOINT
 const clientId = process.env.DEEPDISH_CLOUD_OAUTH_CLIENT_ID
 const redirectUri = process.env.DEEPDISH_CLOUD_OAUTH_REDIRECT_URI
 const state = process.env.DEEPDISH_CLOUD_STATE
+const draft = process.env.DEEPDISH_MODE === 'draft'
 const projectAlias = process.env.DEEPDISH_PROJECT_ALIAS
 const secretKey = process.env.DEEPDISH_SECRET_KEY
 
@@ -62,6 +63,7 @@ function signOut() {
 }
 
 export default deepdishMiddleware({
+  draft,
   verify,
   signIn,
   signOut,

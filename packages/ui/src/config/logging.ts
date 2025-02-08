@@ -4,9 +4,7 @@ import {
   getConsoleSink,
 } from '@logtape/logtape'
 
-const isDevelopment = process.env.NODE_ENV === 'development'
-
-export async function configureLogging() {
+export async function configureLogging(enabled: boolean) {
   await configure({
     sinks: {
       console: getConsoleSink({
@@ -19,13 +17,13 @@ export async function configureLogging() {
     loggers: [
       {
         category: ['logtape', 'meta'],
-        sinks: isDevelopment ? ['console'] : [],
+        sinks: enabled ? ['console'] : [],
         level: 'warning',
       },
       {
         category: ['deepdish'],
-        sinks: isDevelopment ? ['console'] : [],
-        level: isDevelopment ? 'debug' : 'info',
+        sinks: enabled ? ['console'] : [],
+        level: enabled ? 'debug' : null,
       },
     ],
   })
