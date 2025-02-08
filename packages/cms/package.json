@@ -1,0 +1,25 @@
+{
+  "name": "@deepdish/cms",
+  "version": "0.0.0",
+  "description": "DeepDish content management system utilities",
+  "author": {
+    "name": "ByteSlice, LLC",
+    "url": "https://byteslice.co"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/cms.mjs",
+      "types": "./dist/cms.d.mts"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch"
+  },
+  "devDependencies": {
+    "tsup": "8.2.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
