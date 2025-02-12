@@ -1,5 +1,11 @@
 # @deepdish/workbench
 
+## 0.6.0
+
+### Minor Changes
+
+- 0e2846c: Implemented Tailwind v4 with shadcn/ui components.
+
 ## 0.5.0
 
 ### Minor Changes
