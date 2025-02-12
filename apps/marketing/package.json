@@ -10,6 +10,8 @@
   "scripts": {
     "build": "next build",
     "dev": "op run --no-masking --env-file=.env.development -- next dev --port 3002",
+    "dev:build": "op run --no-masking --env-file=.env.development -- next build",
+    "dev:start": "op run --no-masking --env-file=.env.development -- next start --port 3002",
     "start": "next start"
   },
   "dependencies": {
