@@ -87,7 +87,7 @@ async function DeepDishElement<V>(props: {
 
   const readResult = await resolver.read({
     key: props.deepdish.key,
-    headers: await headers(),
+    // headers: await headers(),
   })
   if (readResult.failure) {
     switch (readResult.failure.type) {
