@@ -4,8 +4,6 @@ import { cookieResolver } from '../resolver'
 
 let configured = false
 
-console.log('base url', getBaseUrl())
-
 export async function cms() {
   if (configured) {
     return
