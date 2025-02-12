@@ -40,8 +40,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mt-[-120px] p-12">
-        <div className="border max-w-4xl mx-auto rounded-xl aspect-w-16 aspect-h-8 shadow-xl bg-white">
+      <section className="mt-[-120px] py-12 px-6 sm:px-10 lg:px-12">
+        <div className="border w-full lg:max-w-4xl mx-auto rounded-xl aspect-w-16 aspect-h-12 sm:aspect-h-10 lg:aspect-h-8 shadow-xl bg-white">
           <video
             title="DeepDish demo"
             className="rounded-xl w-full object-fill"
