@@ -1,36 +1,57 @@
 {
   "name": "@deepdish/workbench",
+  "private": true,
   "version": "0.5.0",
-  "description": "DeepDish workbench",
+  "type": "module",
   "author": {
     "name": "ByteSlice, LLC",
     "url": "https://byteslice.co"
   },
   "exports": {
     ".": {
-      "import": "./dist/workbench.mjs",
-      "types": "./dist/workbench.d.mts"
-    }
+      "import": "./dist/workbench.js",
+      "types": "./dist/workbench.d.ts"
+    },
+    "./css": "./dist/workbench.css.ts"
   },
   "scripts": {
+    "dev": "vite",
     "build": "tsup",
-    "dev": "tsup --watch"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@byteslice/result": "0.1.0",
     "@deepdish/core": "workspace:0.1.0",
-    "class-variance-authority": "0.7.0",
+    "@radix-ui/react-slot": "1.1.2",
+    "@radix-ui/react-tooltip": "1.1.8",
+    "@tailwindcss/postcss": "4.0.3",
+    "@tailwindcss/vite": "4.0.3",
+    "@tanstack/react-query": "5.66.0",
+    "class-variance-authority": "0.7.1",
+    "clsx": "2.1.1",
+    "lucide-react": "0.475.0",
+    "msw": "2.7.0",
+    "postcss": "8.5.1",
     "react": "19.0.0",
-    "react-shadow-scope": "1.0.5"
+    "react-dom": "19.0.0",
+    "react-shadow-scope": "1.0.11",
+    "tailwind-merge": "3.0.1",
+    "tailwindcss": "4.0.3",
+    "tailwindcss-animate": "1.0.7",
+    "valibot": "1.0.0-rc.0"
   },
   "devDependencies": {
-    "@deepdish/stylesheet": "workspace:0.1.0",
-    "@tsconfig/create-react-app": "2.0.5",
     "@types/react": "18.3.3",
-    "tsup": "8.2.4",
-    "typescript": "5.5.4"
+    "@types/react-dom": "18.3.0",
+    "@vitejs/plugin-react-swc": "3.5.0",
+    "globals": "15.14.0",
+    "tsup": "8.3.6",
+    "typescript": "5.7.3",
+    "vite": "6.1.0"
   },
-  "publishConfig": {
-    "access": "public"
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
   }
 }
