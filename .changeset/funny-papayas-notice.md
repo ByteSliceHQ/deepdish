@@ -2,4 +2,4 @@
 "@deepdish/ui": patch
 ---
 
-Downgraded react-shadow-scope dependency.
+Downgraded `react-shadow-scope` dependency.
