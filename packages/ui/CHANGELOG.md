@@ -1,5 +1,15 @@
 # @deepdish/ui
 
+## 0.10.0
+
+### Minor Changes
+
+- 0dbba28: Added `deriveKey` resolver option.
+
+### Patch Changes
+
+- 0dbba28: Downgraded `react-shadow-scope` dependency.
+
 ## 0.9.1
 
 ### Patch Changes
