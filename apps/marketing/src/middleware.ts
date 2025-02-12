@@ -7,7 +7,7 @@ import { createCookie, deleteCookie, hasCookie } from './resolver'
 const draft = process.env.DEEPDISH_MODE === 'draft'
 
 async function signIn() {
-  await new Promise((resolve) => setTimeout(resolve, 1000))
+  await new Promise((resolve) => setTimeout(resolve, 50))
 
   const response = NextResponse.redirect(process.env.BASE_URL)
   createCookie(response)
@@ -16,7 +16,7 @@ async function signIn() {
 }
 
 async function signOut() {
-  await new Promise((resolve) => setTimeout(resolve, 1000))
+  await new Promise((resolve) => setTimeout(resolve, 50))
 
   const response = NextResponse.redirect(process.env.BASE_URL)
   deleteCookie(response)
@@ -25,7 +25,7 @@ async function signOut() {
 }
 
 async function verify(request: NextRequest) {
-  await new Promise((resolve) => setTimeout(resolve, 1000))
+  await new Promise((resolve) => setTimeout(resolve, 50))
   return hasCookie(request)
 }
 

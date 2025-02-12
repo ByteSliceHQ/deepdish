@@ -41,13 +41,19 @@ export default function Home() {
       </section>
 
       <section className="mt-[-120px] p-12">
-        <div className="border border-gray-200 max-w-5xl mx-auto bg-white rounded-xl aspect-w-16 aspect-h-6 shadow-xl">
-          <iframe
-            title="YouTube video player"
-            src="https://www.youtube.com/embed/stNnNjM-Rhk"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            className="rounded-xl border-gray-200"
-          />
+        <div className="border max-w-4xl mx-auto rounded-xl aspect-w-16 aspect-h-8 shadow-xl bg-white">
+          <video
+            title="DeepDish demo"
+            className="rounded-xl w-full object-fill"
+            autoPlay
+            loop
+            playsInline
+            muted
+          >
+            <source src="/deepdish_demo.mp4" type="video/mp4" />
+            <track kind="captions" srcLang="en" label="English" default />
+            Your browser does not support the video tag.
+          </video>
         </div>
       </section>
 
