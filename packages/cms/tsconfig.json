@@ -1,16 +1,3 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
-  "_version": "2.0.0",
-
-  "compilerOptions": {
-    "jsx": "preserve",
-    "lib": ["esnext"],
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "target": "es6",
-
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "strict": true
-  }
+  "extends": "@tsconfig/create-react-app/tsconfig.json"
 }

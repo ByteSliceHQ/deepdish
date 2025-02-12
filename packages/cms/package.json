@@ -23,6 +23,7 @@
     "react": "19.0.0"
   },
   "devDependencies": {
+    "@tsconfig/create-react-app": "2.0.5",
     "@types/react": "18.3.3",
     "tsup": "8.2.4"
   },
