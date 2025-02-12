@@ -1,5 +1,6 @@
 import 'server-only'
 
+import { withResult } from '@byteslice/result'
 import { Shell } from '@deepdish/core/shell'
 import { getLogger } from '@logtape/logtape'
 import { headers } from 'next/headers'
@@ -25,16 +26,26 @@ async function canEdit() {
     return false
   }
 
-  const response = await fetch(`${settings.baseUrl}/__deepdish/verify`, {
-    headers: await headers(),
-  })
+  const response = await withResult(
+    async () => {
+      const res = await fetch(`${settings.baseUrl}/__deepdish/verify`, {
+        headers: new Headers(await headers()),
+      })
 
-  if (response.ok) {
-    const body = await response.json()
-    return body.signedIn
+      const body = await res.json()
+      return body.signedIn
+    },
+    (error) => {
+      logger.error('Verifying edit context failed', { error, settings })
+      return new Error(`Verifying edit context failed: ${error.message}`)
+    },
+  )
+
+  if (response.failure) {
+    return false
   }
 
-  return false
+  return response.data
 }
 
 function getResolver(type: ValueType) {

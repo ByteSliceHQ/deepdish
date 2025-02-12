@@ -1,3 +1,4 @@
+import { getBaseUrl } from '@/lib/get-base-url'
 import { deepdish } from '@deepdish/cms'
 import { cookieResolver } from '../resolver'
 
@@ -20,7 +21,7 @@ export async function cms() {
       enabled: process.env.NODE_ENV === 'development',
     },
     settings: {
-      baseUrl: process.env.BASE_URL,
+      baseUrl: getBaseUrl(),
       draft: process.env.DEEPDISH_MODE === 'draft',
     },
   })

@@ -2,14 +2,16 @@ import { clerkMiddleware } from '@clerk/nextjs/server'
 
 import { deepdishMiddleware } from '@deepdish/nextjs'
 import { type NextRequest, NextResponse } from 'next/server'
+import { getBaseUrl } from './lib/get-base-url'
 import { createCookie, deleteCookie, hasCookie } from './resolver'
 
+const baseUrl = getBaseUrl()
 const draft = process.env.DEEPDISH_MODE === 'draft'
 
 async function signIn() {
   await new Promise((resolve) => setTimeout(resolve, 50))
 
-  const response = NextResponse.redirect(process.env.BASE_URL)
+  const response = NextResponse.redirect(baseUrl)
   createCookie(response)
 
   return response
@@ -18,7 +20,7 @@ async function signIn() {
 async function signOut() {
   await new Promise((resolve) => setTimeout(resolve, 50))
 
-  const response = NextResponse.redirect(process.env.BASE_URL)
+  const response = NextResponse.redirect(baseUrl)
   deleteCookie(response)
 
   return response
