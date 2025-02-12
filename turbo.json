@@ -7,7 +7,18 @@
     },
     "build": {
       "outputs": [".next/**", "!.next/cache/**", "dist/**"],
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build"],
+      "env": [
+        "CLERK_SECRET_KEY",
+        "BASE_URL",
+        "DEEPDISH_CLOUD_ENDPOINT",
+        "DEEPDISH_CLOUD_OAUTH_CLIENT_ID",
+        "DEEPDISH_CLOUD_OAUTH_REDIRECT_URI",
+        "DEEPDISH_CLOUD_STATE",
+        "DEEPDISH_PROJECT_ALIAS",
+        "DEEPDISH_SECRET_KEY",
+        "DEEPDISH_MODE"
+      ]
     },
     "dev": {
       "cache": false,
@@ -15,7 +26,18 @@
     },
     "start": {
       "cache": false,
-      "persistent": true
+      "persistent": true,
+      "env": [
+        "CLERK_SECRET_KEY",
+        "BASE_URL",
+        "DEEPDISH_CLOUD_ENDPOINT",
+        "DEEPDISH_CLOUD_OAUTH_CLIENT_ID",
+        "DEEPDISH_CLOUD_OAUTH_REDIRECT_URI",
+        "DEEPDISH_CLOUD_STATE",
+        "DEEPDISH_PROJECT_ALIAS",
+        "DEEPDISH_SECRET_KEY",
+        "DEEPDISH_MODE"
+      ]
     }
   }
 }
