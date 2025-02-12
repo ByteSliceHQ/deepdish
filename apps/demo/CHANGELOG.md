@@ -1,5 +1,20 @@
 # @deepdish/demo
 
+## 0.2.0
+
+### Minor Changes
+
+- b53b46a: Implemented chainable Next.js middleware.
+
+### Patch Changes
+
+- 5c92e72: Accessed configuration and provider via `@deepdish/cms`.
+- Updated dependencies [b53b46a]
+- Updated dependencies [5c92e72]
+- Updated dependencies [b53b46a]
+  - @deepdish/nextjs@0.3.0
+  - @deepdish/cms@0.1.0
+
 ## 0.1.2
 
 ### Patch Changes
