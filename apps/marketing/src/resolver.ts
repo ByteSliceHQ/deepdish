@@ -1,6 +1,5 @@
 import { type Context, createResolver } from '@deepdish/resolvers'
 import { typographySchema } from '@deepdish/ui/schemas'
-import { headers } from 'next/headers'
 import type { NextRequest, NextResponse } from 'next/server'
 
 const data = new Map<string, string>()
@@ -28,9 +27,23 @@ function getResolverCookie(cookie: string) {
   return resolverCookie.split('=')[1]
 }
 
-// function deriveKey(ctx: Context) {
-//   return ctx.key
-// }
+function deriveKey(ctx: Context) {
+  const { headers } = ctx
+
+  if (!headers) {
+    return ctx.key
+  }
+
+  const cookie = headers.get('cookie')
+
+  if (!cookie) {
+    return ctx.key
+  }
+
+  const value = getResolverCookie(cookie)
+
+  return `${ctx.key}-${value}`
+}
 
 export function createCookie(response: NextResponse) {
   response.cookies.set(resolverCookie, Math.random().toString(36).slice(2))
@@ -46,5 +59,5 @@ export function hasCookie(request: NextRequest) {
 }
 
 export const cookieResolver = createResolver(typographySchema, {
-  // deriveKey,
+  deriveKey,
 })(loadValues, updateValues)
