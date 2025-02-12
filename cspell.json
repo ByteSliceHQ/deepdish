@@ -16,6 +16,7 @@
     "*.lockb",
     "dist",
     "node_modules",
+    "mockServiceWorker.js",
     ".env*",
     ".flox",
     ".git",

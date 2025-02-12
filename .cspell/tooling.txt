@@ -11,4 +11,5 @@ rehype
 tsup
 turborepo
 turbopack
+valibot
 vercel
