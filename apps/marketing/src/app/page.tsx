@@ -14,11 +14,10 @@ export default function Home() {
             deepdish={{ key: 'home/headline' }}
             className="text-4xl font-bold mb-6 bg-gradient-to-r from-red-400 to-orange-500 text-transparent bg-clip-text"
           >
-            Manage your content directly on the page
+            Manage content directly on your pages
           </Heading1>
           <p className="text-xl mb-10 max-w-2xl mx-auto">
-            DeepDish lets you build Next.js apps without worrying about
-            integrating a CMS.
+            DeepDish lets you build Next.js apps without integrating a CMS.
           </p>
           <div className="flex justify-start sm:justify-center space-x-0 sm:space-x-4 flex-wrap space-y-4 sm:space-y-0">
             <Button
@@ -50,7 +49,7 @@ export default function Home() {
             playsInline
             muted
           >
-            <source src="/deepdish_demo.mp4" type="video/mp4" />
+            <source src="/deepdish-demo.mp4" type="video/mp4" />
             <track kind="captions" srcLang="en" label="English" default />
             Your browser does not support the video tag.
           </video>
