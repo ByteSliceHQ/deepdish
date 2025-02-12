@@ -1,9 +1,31 @@
-import { cms } from '@/cms'
+import { contentPath, initContent } from '@/content'
 import { DeepDishProvider } from '@deepdish/core/context'
+import { createJsonResolver } from '@deepdish/resolvers/json'
+import { configure } from '@deepdish/ui/config'
+import { typographySchema } from '@deepdish/ui/schemas'
 import { Workbench } from '@deepdish/workbench'
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import './globals.css'
+
+await initContent()
+
+await configure({
+  contracts: {
+    typography: {
+      resolver: createJsonResolver(contentPath, typographySchema, {
+        maxBatchSize: 10,
+      }),
+    },
+  },
+  logging: {
+    enabled: process.env.NODE_ENV === 'development',
+  },
+  settings: {
+    baseUrl: process.env.BASE_URL,
+    draft: process.env.DEEPDISH_MODE === 'draft',
+  },
+})
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -27,8 +49,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  await cms()
-
   return (
     <html lang="en">
       <body
