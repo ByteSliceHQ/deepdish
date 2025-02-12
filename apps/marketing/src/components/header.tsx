@@ -1,5 +1,5 @@
-import Link from 'next/link'
 import { Github } from 'lucide-react'
+import Link from 'next/link'
 import { Logo } from './logo'
 
 export function Header() {

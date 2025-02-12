@@ -9,11 +9,11 @@ const endpoint = process.env.DEEPDISH_CLOUD_ENDPOINT
 const clientId = process.env.DEEPDISH_CLOUD_OAUTH_CLIENT_ID
 const redirectUri = process.env.DEEPDISH_CLOUD_OAUTH_REDIRECT_URI
 const state = process.env.DEEPDISH_CLOUD_STATE
-const draft = process.env.DEEPDISH_MODE === 'draft'
+const draft = true
 const projectAlias = process.env.DEEPDISH_PROJECT_ALIAS
 const secretKey = process.env.DEEPDISH_SECRET_KEY
 
-const marketingPreview = process.env.NODE_ENV === 'production'
+const marketingPreview = true
 
 async function verify(request: NextRequest) {
   if (marketingPreview) {
@@ -64,7 +64,17 @@ function signOut() {
   return NextResponse.redirect(`${endpoint}/sign-out`)
 }
 
-export default clerkMiddleware()
+export default clerkMiddleware((_auth, request) => {
+  return deepdishMiddleware(
+    {
+      draft,
+      verify,
+      signIn,
+      signOut,
+    },
+    request,
+  )
+})
 
 export const config = {
   matcher: [

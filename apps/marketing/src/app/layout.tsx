@@ -27,14 +27,6 @@ export const metadata = {
   },
 }
 
-function WorkbenchLabel() {
-  return (
-    <div className="fixed bottom-14 left-0 right-0 z-50 text-center">
-      <p className="text-xs">An example of the DeepDish Workbench toolbar!</p>
-    </div>
-  )
-}
-
 export default function RootLayout({
   children,
 }: {
@@ -46,8 +38,7 @@ export default function RootLayout({
         <body className={`${GeistMono.className} antialiased`}>
           <DeepDishProvider>
             <AppLayout>{children}</AppLayout>
-            <WorkbenchLabel />
-            <Workbench />
+            <Workbench title="DeepDish Example Workbench" />
           </DeepDishProvider>
         </body>
       </html>
