@@ -21,7 +21,7 @@ export type Resolver<V> = {
 
 export type ResolverOptions = {
   /** If defined, derives a new key from the context that's used before reading and writing. */
-  deriveKey?: (ctx: Context) => string
+  deriveKey?: (ctx: Context) => Promise<string>
   maxBatchSize?: number
 }
 
@@ -63,7 +63,7 @@ export function createResolver<S extends ZodTypeAny>(
         return keysResult
       },
       async read(ctx) {
-        const key = options?.deriveKey ? options.deriveKey(ctx) : ctx.key
+        const key = options?.deriveKey ? await options.deriveKey(ctx) : ctx.key
 
         const readResult = await withResult<unknown, ReadFailure>(
           () => loader.load(key),
@@ -90,7 +90,7 @@ export function createResolver<S extends ZodTypeAny>(
         return { data: content }
       },
       async write(ctx, value) {
-        const key = options?.deriveKey ? options.deriveKey(ctx) : ctx.key
+        const key = options?.deriveKey ? await options.deriveKey(ctx) : ctx.key
 
         const writeResult = await withResult<void>(
           async () => {

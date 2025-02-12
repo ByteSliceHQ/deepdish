@@ -1,3 +1,4 @@
+import { headers } from 'next/headers'
 import { type Context, createResolver } from '@deepdish/resolvers'
 import { typographySchema } from '@deepdish/ui/schemas'
 import type { NextRequest, NextResponse } from 'next/server'
@@ -27,14 +28,8 @@ function getResolverCookie(cookie: string) {
   return resolverCookie.split('=')[1]
 }
 
-function deriveKey(ctx: Context) {
-  const { headers } = ctx
-
-  if (!headers) {
-    return ctx.key
-  }
-
-  const cookie = headers.get('cookie')
+async function deriveKey(ctx: Context) {
+  const cookie = (await headers()).get('cookie')
 
   if (!cookie) {
     return ctx.key
