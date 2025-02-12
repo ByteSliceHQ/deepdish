@@ -1,7 +1,6 @@
 import '@/styles/globals.css'
 import { AppLayout } from '@/components/app-layout'
-import { DeepDishProvider } from '@deepdish/core/context'
-import { Workbench } from '@deepdish/workbench'
+import { DeepDishProvider } from '@deepdish/cms'
 import { GeistMono } from 'geist/font/mono'
 import { cms } from '@/cms'
 
@@ -41,9 +40,8 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en" className="scroll-smooth">
         <body className={`${GeistMono.className} antialiased`}>
-          <DeepDishProvider>
+          <DeepDishProvider title="DeepDish Example Workbench">
             <AppLayout>{children}</AppLayout>
-            <Workbench title="DeepDish Example Workbench" />
           </DeepDishProvider>
         </body>
       </html>

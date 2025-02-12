@@ -1,4 +1,4 @@
-import { configure } from '@deepdish/ui/config'
+import { deepdish } from '@deepdish/cms'
 import { cookieResolver } from '../resolver'
 
 let configured = false
@@ -10,7 +10,7 @@ export async function cms() {
 
   configured = true
 
-  return await configure({
+  return await deepdish({
     contracts: {
       typography: {
         resolver: cookieResolver,
