@@ -1,5 +1,11 @@
 # @deepdish/ui
 
+## 0.11.0
+
+### Minor Changes
+
+- d9f40bd: Wrapped fetch with withResult.
+
 ## 0.10.0
 
 ### Minor Changes

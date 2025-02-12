@@ -1,5 +1,11 @@
 # @deepdish/resolvers
 
+## 0.10.0
+
+### Minor Changes
+
+- d9f40bd: Fixed headers cannot be modified when using deriveKey function.
+
 ## 0.9.0
 
 ### Minor Changes

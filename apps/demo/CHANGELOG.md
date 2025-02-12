@@ -1,5 +1,15 @@
 # @deepdish/demo
 
+## 0.2.1
+
+### Patch Changes
+
+- Updated dependencies [d9f40bd]
+- Updated dependencies [d9f40bd]
+  - @deepdish/ui@0.11.0
+  - @deepdish/resolvers@0.10.0
+  - @deepdish/cms@0.1.1
+
 ## 0.2.0
 
 ### Minor Changes

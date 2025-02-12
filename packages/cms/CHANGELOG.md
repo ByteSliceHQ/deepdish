@@ -1,5 +1,12 @@
 # @deepdish/cms
 
+## 0.1.1
+
+### Patch Changes
+
+- Updated dependencies [d9f40bd]
+  - @deepdish/ui@0.11.0
+
 ## 0.1.0
 
 ### Minor Changes
