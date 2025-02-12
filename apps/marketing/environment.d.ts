@@ -1,5 +1,6 @@
 namespace NodeJS {
   interface ProcessEnv {
+    BASE_URL: string
     DEEPDISH_CLOUD_ENDPOINT: string
     DEEPDISH_CLOUD_OAUTH_CLIENT_ID: string
     DEEPDISH_CLOUD_OAUTH_REDIRECT_URI: string

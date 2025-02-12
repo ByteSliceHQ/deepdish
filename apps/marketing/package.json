@@ -16,6 +16,8 @@
     "@clerk/nextjs": "6.11.2",
     "@deepdish/core": "workspace:0.1.0",
     "@deepdish/nextjs": "workspace:0.2.0",
+    "@deepdish/resolvers": "workspace:0.9.0",
+    "@deepdish/ui": "workspace:0.10.0",
     "@deepdish/workbench": "workspace:0.6.0",
     "@radix-ui/react-slot": "1.1.1",
     "@radix-ui/react-tooltip": "1.1.6",

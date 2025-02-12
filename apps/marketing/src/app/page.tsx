@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button'
+import { Heading1 } from '@deepdish/ui/typography'
 import { Waitlist } from '@clerk/nextjs'
 import { ArrowRight } from 'lucide-react'
 import Image from 'next/image'
@@ -9,9 +10,12 @@ export default function Home() {
     <main className="flex-grow">
       <section className="pt-16 pb-24 sm:pt-24 sm:pb-32 border-b border-gray-200">
         <div className="container mx-auto text-left sm:text-center max-w-xl">
-          <h1 className="text-4xl font-bold mb-6 bg-gradient-to-r from-red-400 to-orange-500 text-transparent bg-clip-text">
+          <Heading1
+            deepdish={{ key: 'home/headline' }}
+            className="text-4xl font-bold mb-6 bg-gradient-to-r from-red-400 to-orange-500 text-transparent bg-clip-text"
+          >
             The data management framework for Next.js
-          </h1>
+          </Heading1>
           <p className="text-xl mb-10 max-w-2xl mx-auto">
             DeepDish lets you build Next.js apps where you don&apos;t worry
             about integrating a CMS.

@@ -3,6 +3,7 @@ import { AppLayout } from '@/components/app-layout'
 import { DeepDishProvider } from '@deepdish/core/context'
 import { Workbench } from '@deepdish/workbench'
 import { GeistMono } from 'geist/font/mono'
+import { cms } from '@/cms'
 
 import { ClerkProvider } from '@clerk/nextjs'
 
@@ -26,6 +27,8 @@ export const metadata = {
     ],
   },
 }
+
+await cms()
 
 export default function RootLayout({
   children,
