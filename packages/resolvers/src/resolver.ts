@@ -4,7 +4,7 @@ import { ZodError, type ZodTypeAny, type z } from 'zod'
 
 export type Key = string
 
-type Context = { key: Key; headers?: Headers }
+export type Context = { key: Key; headers?: Headers }
 
 type ReadFailure =
   | { type: 'CONTENT_INVALID'; error: Error }
