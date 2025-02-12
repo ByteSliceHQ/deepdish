@@ -1,6 +1,6 @@
 {
   "name": "@deepdish/ui",
-  "version": "0.9.1",
+  "version": "0.10.0",
   "description": "DeepDish UI components",
   "author": {
     "name": "ByteSlice, LLC",
@@ -41,7 +41,7 @@
     "lucide-react": "0.447.0",
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "react-shadow-scope": "1.0.11",
+    "react-shadow-scope": "1.0.5",
     "rehype-parse": "9.0.0",
     "rehype-sanitize": "6.0.0",
     "rehype-stringify": "10.0.0",
@@ -52,7 +52,7 @@
     "zod": "3.23.8"
   },
   "devDependencies": {
-    "@deepdish/resolvers": "workspace:0.8.0",
+    "@deepdish/resolvers": "workspace:0.9.0",
     "@deepdish/stylesheet": "workspace:0.1.0",
     "@tsconfig/create-react-app": "2.0.5",
     "@types/react": "18.3.3",
