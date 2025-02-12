@@ -57,7 +57,10 @@ function handleUpdate(type: ValueType, key: DeepDishElementProps['key']) {
     }
 
     // TODO: handle `value` "fallback" based on data contract
-    const writeResult = await resolver.write({ key }, value ?? '')
+    const writeResult = await resolver.write(
+      { key, headers: await headers() },
+      value ?? '',
+    )
     if (writeResult.failure) {
       logger.error('Unable to save {type} content for {key}: {reason}', {
         type,
@@ -84,6 +87,7 @@ async function DeepDishElement<V>(props: {
 
   const readResult = await resolver.read({
     key: props.deepdish.key,
+    headers: await headers(),
   })
   if (readResult.failure) {
     switch (readResult.failure.type) {
