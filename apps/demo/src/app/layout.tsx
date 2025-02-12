@@ -1,16 +1,14 @@
 import { contentPath, initContent } from '@/content'
-import { DeepDishProvider } from '@deepdish/core/context'
+import { DeepDishProvider, deepdish } from '@deepdish/cms'
 import { createJsonResolver } from '@deepdish/resolvers/json'
-import { configure } from '@deepdish/ui/config'
 import { typographySchema } from '@deepdish/ui/schemas'
-import { Workbench } from '@deepdish/workbench'
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import './globals.css'
 
 await initContent()
 
-await configure({
+await deepdish({
   contracts: {
     typography: {
       resolver: createJsonResolver(contentPath, typographySchema, {
@@ -54,10 +52,7 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <DeepDishProvider>
-          {children}
-          <Workbench />
-        </DeepDishProvider>
+        <DeepDishProvider>{children}</DeepDishProvider>
       </body>
     </html>
   )

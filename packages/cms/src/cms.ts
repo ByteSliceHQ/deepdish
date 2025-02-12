@@ -1,5 +1,4 @@
-import { type Config, configure } from '@deepdish/ui/config'
+import { configure as deepdish } from '@deepdish/ui/config'
+import { Provider as DeepDishProvider } from './provider'
 
-export async function cms(config: Config) {
-  await configure(config)
-}
+export { deepdish, DeepDishProvider }
