@@ -4,7 +4,7 @@ import { ZodError, type ZodTypeAny, type z } from 'zod'
 
 export type Key = string
 
-export type Context = { key: Key; headers?: Headers }
+type Context = { key: Key; headers?: Headers }
 
 type ReadFailure =
   | { type: 'CONTENT_INVALID'; error: Error }
@@ -20,7 +20,7 @@ export type Resolver<V> = {
 }
 
 export type ResolverOptions = {
-  /** If defined, derives a key from the context. */
+  /** If defined, derives a new key from the context that's used before reading and writing. */
   deriveKey?: (ctx: Context) => string
   maxBatchSize?: number
 }
