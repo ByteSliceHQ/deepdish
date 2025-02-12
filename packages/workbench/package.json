@@ -1,12 +1,12 @@
 {
   "name": "@deepdish/workbench",
-  "private": true,
   "version": "0.5.0",
-  "type": "module",
+  "private": true,
   "author": {
     "name": "ByteSlice, LLC",
     "url": "https://byteslice.co"
   },
+  "type": "module",
   "exports": {
     ".": {
       "import": "./dist/workbench.js",
@@ -15,8 +15,8 @@
     "./css": "./dist/workbench.css.ts"
   },
   "scripts": {
-    "dev": "vite",
     "build": "tsup",
+    "dev": "vite",
     "preview": "vite preview"
   },
   "dependencies": {

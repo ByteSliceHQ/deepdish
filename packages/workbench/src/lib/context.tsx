@@ -1,4 +1,4 @@
-import { createContext, type RefObject, useContext } from 'react'
+import { type RefObject, createContext, useContext } from 'react'
 
 export type WorkbenchContext = {
   ref?: RefObject<HTMLElement>

@@ -1,4 +1,6 @@
-import { useAuth, queryClient } from '@/lib/queries'
+import { WorkbenchProvider, useShadowRoot } from '@/lib/context'
+import { queryClient, useAuth } from '@/lib/queries'
+import { useActions, useMode } from '@deepdish/core/context'
 import { QueryClientProvider } from '@tanstack/react-query'
 import {
   ChevronUpIcon,
@@ -7,7 +9,7 @@ import {
   PencilIcon,
   TerminalIcon,
 } from 'lucide-react'
-import { useActions, useMode } from '@deepdish/core/context'
+import type { RefObject } from 'react'
 import { Button } from './ui/button'
 import {
   Tooltip,
@@ -15,8 +17,6 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from './ui/tooltip'
-import { useShadowRoot, WorkbenchProvider } from '@/lib/context'
-import type { RefObject } from 'react'
 
 function Spinner() {
   return <LoaderCircle className="animate-spin" />

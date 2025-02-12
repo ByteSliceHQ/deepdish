@@ -1,5 +1,5 @@
-import { defineConfig } from 'tsup'
 import fs from 'node:fs/promises'
+import { defineConfig } from 'tsup'
 
 function prepareCssForShadowDom(css: string) {
   return css.replaceAll(':root', ':host').replaceAll('\\', '\\\\')

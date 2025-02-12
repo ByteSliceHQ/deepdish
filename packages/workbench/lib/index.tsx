@@ -1,9 +1,9 @@
 'use client'
 
 import '../src/index.css'
+import { Workbench as InternalWorkbench } from '@/components/workbench'
 import { useRef } from 'react'
 import { Tailwind } from 'react-shadow-scope'
-import { Workbench as InternalWorkbench } from '@/components/workbench'
 
 export function Workbench() {
   const ref = useRef<HTMLDivElement>(null)
