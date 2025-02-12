@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button'
-import { Heading1 } from '@deepdish/ui/typography'
 import { Waitlist } from '@clerk/nextjs'
+import { Heading1 } from '@deepdish/ui/typography'
 import { ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'

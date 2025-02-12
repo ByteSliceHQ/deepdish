@@ -1,8 +1,8 @@
 import '@/styles/globals.css'
+import { cms } from '@/cms'
 import { AppLayout } from '@/components/app-layout'
 import { DeepDishProvider } from '@deepdish/cms'
 import { GeistMono } from 'geist/font/mono'
-import { cms } from '@/cms'
 
 import { ClerkProvider } from '@clerk/nextjs'
 
