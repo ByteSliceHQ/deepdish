@@ -2,4 +2,4 @@
 "@deepdish/cms": patch
 ---
 
-Initialized package.
+Initialized package exporting configuration and provider.
