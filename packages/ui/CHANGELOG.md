@@ -1,5 +1,12 @@
 # @deepdish/ui
 
+## 0.9.1
+
+### Patch Changes
+
+- a081592: Removed implicit environment dependencies.
+- 0e2846c: Upgraded react-shadow-scope dependency.
+
 ## 0.9.0
 
 ### Minor Changes
