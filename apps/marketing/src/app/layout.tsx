@@ -1,39 +1,35 @@
 import '@/styles/globals.css'
+import { cms } from '@/cms'
 import { AppLayout } from '@/components/app-layout'
-import { DeepDishProvider } from '@deepdish/core/context'
-import { Workbench } from '@deepdish/workbench'
-import { Inter } from 'next/font/google'
+import { DeepDishProvider } from '@deepdish/cms'
+import { GeistMono } from 'geist/font/mono'
 
-const inter = Inter({ subsets: ['latin'] })
+import { ClerkProvider } from '@clerk/nextjs'
 
 export const metadata = {
-  title: 'DeepDish - A data management framework for Next.js',
-  description: 'DeepDish is an alternative to traditional CMS systems.',
+  title: 'The data management framework for Next.js',
+  description:
+    "Build Next.js apps where you don't worry about integrating a CMS.",
   robots: 'index, follow',
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: 'https://deepdish.app',
-    title: 'DeepDish - A data management framework for Next.js',
-    description: 'DeepDish is an alternative to traditional CMS systems.',
+    title: 'DeepDish',
+    description:
+      "Build Next.js apps where you don't worry about integrating a CMS.",
     images: [
       {
         url: 'https://deepdish.app/og-image.png',
-        width: 500,
-        height: 500,
+        width: 400,
+        height: 200,
         alt: 'DeepDish Logo',
       },
     ],
   },
 }
 
-function WorkbenchLabel() {
-  return (
-    <div className="fixed bottom-14 left-0 right-0 z-50 text-center">
-      <p className="text-xs">An example of the DeepDish Workbench toolbar!</p>
-    </div>
-  )
-}
+await cms()
 
 export default function RootLayout({
   children,
@@ -41,14 +37,14 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className={`${inter.className} antialiased`}>
-        <DeepDishProvider>
-          <AppLayout>{children}</AppLayout>
-          <WorkbenchLabel />
-          <Workbench />
-        </DeepDishProvider>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en" className="scroll-smooth">
+        <body className={`${GeistMono.className} antialiased`}>
+          <DeepDishProvider title="DeepDish Example Workbench">
+            <AppLayout>{children}</AppLayout>
+          </DeepDishProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   )
 }

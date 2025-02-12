@@ -1,70 +1,51 @@
+import { clerkMiddleware } from '@clerk/nextjs/server'
+
 import { deepdishMiddleware } from '@deepdish/nextjs'
 import { type NextRequest, NextResponse } from 'next/server'
+import { createCookie, deleteCookie, hasCookie } from './resolver'
 
-const COOKIE_NAME = '__deepdish_secret'
-
-const endpoint = process.env.DEEPDISH_CLOUD_ENDPOINT
-const clientId = process.env.DEEPDISH_CLOUD_OAUTH_CLIENT_ID
-const redirectUri = process.env.DEEPDISH_CLOUD_OAUTH_REDIRECT_URI
-const state = process.env.DEEPDISH_CLOUD_STATE
 const draft = process.env.DEEPDISH_MODE === 'draft'
-const projectAlias = process.env.DEEPDISH_PROJECT_ALIAS
-const secretKey = process.env.DEEPDISH_SECRET_KEY
 
-const marketingPreview = process.env.NODE_ENV === 'production'
+async function signIn() {
+  await new Promise((resolve) => setTimeout(resolve, 50))
+
+  const response = NextResponse.redirect(process.env.BASE_URL)
+  createCookie(response)
+
+  return response
+}
+
+async function signOut() {
+  await new Promise((resolve) => setTimeout(resolve, 50))
+
+  const response = NextResponse.redirect(process.env.BASE_URL)
+  deleteCookie(response)
+
+  return response
+}
 
 async function verify(request: NextRequest) {
-  if (marketingPreview) {
-    return true
-  }
+  await new Promise((resolve) => setTimeout(resolve, 50))
+  return hasCookie(request)
+}
 
-  const cookie = request.cookies.get(COOKIE_NAME)
-
-  if (!cookie) {
-    return false
-  }
-
-  const response = await fetch(`${endpoint}/oauth/userinfo`, {
-    method: 'GET',
-    headers: {
-      Authorization: `Bearer ${cookie.value}`,
-      'X-DEEPDISH-SECRET-KEY': secretKey,
-      'X-DEEPDISH-PROJECT-ALIAS': projectAlias,
+export default clerkMiddleware((_auth, request) => {
+  return deepdishMiddleware(
+    {
+      draft,
+      verify,
+      signIn,
+      signOut,
     },
-  })
-
-  return response.status === 200
-}
-
-function signIn() {
-  if (marketingPreview) {
-    return NextResponse.next()
-  }
-
-  const queryParams = new URLSearchParams({
-    client_id: clientId,
-    state,
-    redirect_uri: redirectUri,
-    response_type: 'code',
-    scope: 'profile',
-  })
-
-  return NextResponse.redirect(
-    `${endpoint}/oauth/authorize?${queryParams.toString()}`,
+    request,
   )
-}
-
-function signOut() {
-  if (marketingPreview) {
-    return NextResponse.next()
-  }
-
-  return NextResponse.redirect(`${endpoint}/sign-out`)
-}
-
-export default deepdishMiddleware({
-  draft,
-  verify,
-  signIn,
-  signOut,
 })
+
+export const config = {
+  matcher: [
+    // Skip Next.js internals and all static files, unless found in search params
+    '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
+    // Always run for API routes
+    '/(api|trpc)(.*)',
+  ],
+}

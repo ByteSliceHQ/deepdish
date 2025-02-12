@@ -3,7 +3,7 @@ import { Header } from '@/components/header'
 
 export function AppLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white">
+    <div className="flex flex-col min-h-screen bg-white text-zinc-700">
       <Header />
       {children}
       <Footer />

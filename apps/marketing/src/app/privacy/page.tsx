@@ -1,6 +1,6 @@
 export default function PrivacyPolicy() {
   return (
-    <div className="mx-auto max-w-4xl px-4 py-8 font-sans text-white">
+    <div className="mx-auto max-w-4xl px-4 py-8 font-sans">
       <h1 className="mb-4 text-3xl font-bold">
         ByteSlice, LLC – DeepDish Privacy Policy
       </h1>
