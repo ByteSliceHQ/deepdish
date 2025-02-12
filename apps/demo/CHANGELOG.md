@@ -1,5 +1,14 @@
 # @deepdish/demo
 
+## 0.1.2
+
+### Patch Changes
+
+- Updated dependencies [0dbba28]
+- Updated dependencies [0dbba28]
+  - @deepdish/resolvers@0.9.0
+  - @deepdish/ui@0.10.0
+
 ## 0.1.1
 
 ### Patch Changes

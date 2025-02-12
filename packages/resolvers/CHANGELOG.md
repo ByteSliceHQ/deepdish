@@ -1,5 +1,11 @@
 # @deepdish/resolvers
 
+## 0.9.0
+
+### Minor Changes
+
+- 0dbba28: Added `deriveKey` resolver option.
+
 ## 0.8.0
 
 ### Minor Changes
