@@ -26,7 +26,7 @@ async function canEdit() {
   }
 
   const response = await fetch(`${settings.baseUrl}/__deepdish/verify`, {
-    // headers: await headers(),
+    headers: new Headers(await headers()),
   })
 
   if (response.ok) {
