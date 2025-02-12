@@ -7,7 +7,7 @@ import { GeistMono } from 'geist/font/mono'
 import { ClerkProvider } from '@clerk/nextjs'
 
 export const metadata = {
-  title: 'The data management framework for Next.js',
+  title: 'Manage your content directly on the page',
   description:
     "Build Next.js apps where you don't worry about integrating a CMS.",
   robots: 'index, follow',
@@ -16,8 +16,7 @@ export const metadata = {
     locale: 'en_US',
     url: 'https://deepdish.app',
     title: 'DeepDish',
-    description:
-      "Build Next.js apps where you don't worry about integrating a CMS.",
+    description: 'Build Next.js apps without worrying about integrating a CMS.',
     images: [
       {
         url: 'https://deepdish.app/og-image.png',
