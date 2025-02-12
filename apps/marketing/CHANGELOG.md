@@ -1,5 +1,20 @@
 # @deepdish/marketing
 
+## 0.8.0
+
+### Minor Changes
+
+- d9f40bd: Added getBaseUrl function.
+- d9f40bd: Fixed headers cannot be modified when using deriveKey function.
+
+### Patch Changes
+
+- Updated dependencies [d9f40bd]
+- Updated dependencies [d9f40bd]
+  - @deepdish/ui@0.11.0
+  - @deepdish/resolvers@0.10.0
+  - @deepdish/cms@0.1.1
+
 ## 0.7.0
 
 ### Minor Changes
