@@ -2,9 +2,9 @@ import '@/styles/globals.css'
 import { AppLayout } from '@/components/app-layout'
 import { DeepDishProvider } from '@deepdish/core/context'
 import { Workbench } from '@deepdish/workbench'
-import { Inter } from 'next/font/google'
+import { GeistMono } from 'geist/font/mono'
 
-const inter = Inter({ subsets: ['latin'] })
+import { ClerkProvider } from '@clerk/nextjs'
 
 export const metadata = {
   title: 'DeepDish - A data management framework for Next.js',
@@ -41,14 +41,16 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className={`${inter.className} antialiased`}>
-        <DeepDishProvider>
-          <AppLayout>{children}</AppLayout>
-          <WorkbenchLabel />
-          <Workbench />
-        </DeepDishProvider>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en" className="scroll-smooth">
+        <body className={`${GeistMono.className} antialiased`}>
+          <DeepDishProvider>
+            <AppLayout>{children}</AppLayout>
+            <WorkbenchLabel />
+            <Workbench />
+          </DeepDishProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   )
 }
