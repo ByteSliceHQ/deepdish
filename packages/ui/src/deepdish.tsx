@@ -1,9 +1,9 @@
 import 'server-only'
 
+import { withResult } from '@byteslice/result'
 import { Shell } from '@deepdish/core/shell'
 import { getLogger } from '@logtape/logtape'
 import { headers } from 'next/headers'
-import { withResult } from '@byteslice/result'
 import { getContract, getSettings } from './config/config'
 import { Menu } from './menu'
 import type { ValueType } from './schemas'

@@ -1,6 +1,6 @@
+import { getBaseUrl } from '@/lib/get-base-url'
 import { deepdish } from '@deepdish/cms'
 import { cookieResolver } from '../resolver'
-import { getBaseUrl } from '@/lib/getBaseUrl'
 
 let configured = false
 

@@ -2,8 +2,8 @@ import { clerkMiddleware } from '@clerk/nextjs/server'
 
 import { deepdishMiddleware } from '@deepdish/nextjs'
 import { type NextRequest, NextResponse } from 'next/server'
+import { getBaseUrl } from './lib/get-base-url'
 import { createCookie, deleteCookie, hasCookie } from './resolver'
-import { getBaseUrl } from './lib/getBaseUrl'
 
 const baseUrl = getBaseUrl()
 const draft = process.env.DEEPDISH_MODE === 'draft'
