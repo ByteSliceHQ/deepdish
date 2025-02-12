@@ -9,8 +9,10 @@ export function Workbench() {
   const ref = useRef<HTMLDivElement>(null)
 
   return (
-    <Tailwind href="/__deepdish/css" ref={ref}>
-      <InternalWorkbench ref={ref} />
+    <Tailwind href="/__deepdish/css">
+      <div ref={ref} className="deepdish-shadow">
+        <InternalWorkbench ref={ref} />
+      </div>
     </Tailwind>
   )
 }
