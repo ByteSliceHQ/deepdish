@@ -14,13 +14,13 @@ export function Footer() {
         <div className="flex space-x-6">
           <Link
             href="/privacy"
-            className="text-gray-400 hover:text-white transition-colors"
+            className="text-gray-400 hover:text-gray-600 transition-colors"
           >
             Privacy Policy
           </Link>
           <Link
             href="/terms"
-            className="text-gray-400 hover:text-white transition-colors"
+            className="text-gray-400 hover:text-gray-600 transition-colors"
           >
             Terms of Service
           </Link>
