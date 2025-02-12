@@ -8,6 +8,7 @@ logtape
 nextjs
 registrator
 rehype
+shadcn
 tsup
 turborepo
 turbopack
