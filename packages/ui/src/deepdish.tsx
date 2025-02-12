@@ -58,7 +58,10 @@ function handleUpdate(type: ValueType, key: DeepDishElementProps['key']) {
 
     // TODO: handle `value` "fallback" based on data contract
     const writeResult = await resolver.write(
-      { key, headers: await headers() },
+      {
+        key,
+        //headers: await headers()
+      },
       value ?? '',
     )
     if (writeResult.failure) {
