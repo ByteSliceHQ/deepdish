@@ -1,6 +1,7 @@
 {
   "name": "@deepdish/workbench",
   "version": "0.5.0",
+  "description": "DeepDish workbench",
   "author": {
     "name": "ByteSlice, LLC",
     "url": "https://byteslice.co"
