@@ -1,5 +1,16 @@
 # @deepdish/marketing
 
+## 0.6.1
+
+### Patch Changes
+
+- a081592: Supplied environment-specific values to configurable dependencies.
+- Updated dependencies [a081592]
+- Updated dependencies [0e2846c]
+- Updated dependencies [0bb84de]
+  - @deepdish/nextjs@0.2.0
+  - @deepdish/workbench@0.6.0
+
 ## 0.6.0
 
 ### Minor Changes
