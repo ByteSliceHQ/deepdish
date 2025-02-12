@@ -18,6 +18,7 @@
     "node_modules",
     "mockServiceWorker.js",
     ".env*",
+    "*.excalidraw",
     ".flox",
     ".git",
     ".next",
