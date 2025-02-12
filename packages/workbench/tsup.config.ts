@@ -1,25 +1,37 @@
+import fs from 'node:fs/promises'
 import { defineConfig } from 'tsup'
 
-export default defineConfig([
-  {
-    entry: ['src/workbench.tsx'],
-    external: ['react', 'react-dom'],
-    format: ['esm'],
-    sourcemap: true,
-    dts: true,
-    bundle: false,
-    target: 'esnext',
+function prepareCssForShadowDom(css: string) {
+  return css.replaceAll(':root', ':host').replaceAll('\\', '\\\\')
+}
+
+async function createCssGetter() {
+  const css = await fs.readFile('./dist/workbench.css', 'utf-8')
+
+  // TODO: minification and other optimizations
+  const file = `
+    export function getCss() {
+      return \`${prepareCssForShadowDom(css)}\`
+    }
+  `
+
+  await fs.writeFile('./dist/workbench.css.ts', file)
+}
+
+export default defineConfig({
+  entry: {
+    workbench: 'lib/index.tsx',
   },
-  {
-    entry: ['src/client.tsx'],
-    external: ['react', 'react-dom'],
-    format: ['esm'],
-    sourcemap: true,
-    dts: true,
-    esbuildOptions(options) {
-      options.banner = {
-        js: '"use client";',
-      }
-    },
+  external: ['react', 'react-dom'],
+  format: ['esm'],
+  dts: true,
+  clean: true,
+  sourcemap: true,
+  target: 'esnext',
+  esbuildOptions(options) {
+    options.banner = {
+      js: '"use client";',
+    }
   },
-])
+  onSuccess: createCssGetter,
+})
