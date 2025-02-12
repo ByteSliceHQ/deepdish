@@ -11,6 +11,9 @@ export type DeepdishMiddlewareConfig = {
   verify: (request: NextRequest) => boolean | Promise<boolean>
   signIn: (request: NextRequest) => NextResponse | Promise<NextResponse>
   signOut: (request: NextRequest) => NextResponse | Promise<NextResponse>
+  hooks?: {
+    afterVerify?: (request: NextRequest, response: NextResponse) => void
+  }
 }
 
 export function deepdishMiddleware(
@@ -43,7 +46,13 @@ export function deepdishMiddleware(
 
       if (url.endsWith('/verify')) {
         const verified = await config.verify(request)
-        return NextResponse.json({ signedIn: verified })
+        const response = NextResponse.json({ signedIn: verified })
+
+        if (config.hooks?.afterVerify) {
+          config.hooks.afterVerify(request, response)
+        }
+
+        return response
       }
     }
 

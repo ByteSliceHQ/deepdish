@@ -4,7 +4,7 @@ import { ZodError, type ZodTypeAny, type z } from 'zod'
 
 export type Key = string
 
-type Context = { key: Key }
+export type Context = { key: Key; headers?: Headers }
 
 type ReadFailure =
   | { type: 'CONTENT_INVALID'; error: Error }
@@ -20,6 +20,8 @@ export type Resolver<V> = {
 }
 
 export type ResolverOptions = {
+  /** If defined, derives a key from the context. */
+  deriveKey?: (ctx: Context) => string
   maxBatchSize?: number
 }
 
@@ -61,8 +63,10 @@ export function createResolver<S extends ZodTypeAny>(
         return keysResult
       },
       async read(ctx) {
+        const key = options?.deriveKey ? options.deriveKey(ctx) : ctx.key
+
         const readResult = await withResult<unknown, ReadFailure>(
-          () => loader.load(ctx.key),
+          () => loader.load(key),
           (error) => ({ type: 'READ', error }),
         )
         if (readResult.failure) {
@@ -86,10 +90,12 @@ export function createResolver<S extends ZodTypeAny>(
         return { data: content }
       },
       async write(ctx, value) {
+        const key = options?.deriveKey ? options.deriveKey(ctx) : ctx.key
+
         const writeResult = await withResult<void>(
           async () => {
-            await updateValue(ctx.key, value)
-            loader.clear(ctx.key)
+            await updateValue(key, value)
+            loader.clear(key)
           },
           (error) => error,
         )
