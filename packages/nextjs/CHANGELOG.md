@@ -1,5 +1,16 @@
 # @deepdish/nextjs
 
+## 0.3.0
+
+### Minor Changes
+
+- b53b46a: Fixed Next.js chaining middleware compatibility.
+
+### Patch Changes
+
+- Updated dependencies [b53b46a]
+  - @deepdish/workbench@0.7.0
+
 ## 0.2.0
 
 ### Minor Changes

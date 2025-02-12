@@ -1,5 +1,20 @@
 # @deepdish/marketing
 
+## 0.7.0
+
+### Minor Changes
+
+- b53b46a: Implemented initial version of @deepdish/cms.
+- b53b46a: Released waitlist with a demo video of workbench.
+
+### Patch Changes
+
+- Updated dependencies [b53b46a]
+- Updated dependencies [5c92e72]
+- Updated dependencies [b53b46a]
+  - @deepdish/nextjs@0.3.0
+  - @deepdish/cms@0.1.0
+
 ## 0.6.1
 
 ### Patch Changes

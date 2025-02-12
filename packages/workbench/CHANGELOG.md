@@ -1,5 +1,11 @@
 # @deepdish/workbench
 
+## 0.7.0
+
+### Minor Changes
+
+- b53b46a: Improved styling and usability of workbench.
+
 ## 0.6.0
 
 ### Minor Changes
