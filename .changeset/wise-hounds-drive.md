@@ -2,4 +2,4 @@
 "@deepdish/cms": minor
 ---
 
-Added whitelable title prop to cms provider.
+Added white label title prop to cms provider.
