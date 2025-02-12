@@ -1,5 +1,6 @@
 biomejs
 dashify
+excalidraw
 filenaming
 flox
 happydom
