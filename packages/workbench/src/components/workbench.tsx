@@ -11,7 +11,7 @@ import {
   PencilIcon,
   TerminalIcon,
 } from 'lucide-react'
-import type { RefObject } from 'react'
+import type { Dispatch, RefObject, SetStateAction } from 'react'
 import { Button } from './ui/button'
 import {
   Tooltip,
@@ -30,32 +30,32 @@ type ContainerProps = {
   children: React.ReactNode
 }
 
-function Container(props: ContainerProps) {
+function Container({ children, isExpanded = true }: ContainerProps) {
   return (
     <div
       className={cn(
         'fixed bottom-0 right-0 left-0 h-12 w-full flex items-center px-4 justify-between z-9999',
-        props.isExpanded === true
+        isExpanded === true
           ? 'bg-white border-t border-t-gray-200 dark:border-t-gray-600'
           : 'bg-transparent',
       )}
     >
-      {props.children}
+      {children}
     </div>
   )
 }
 
-function ExpandButton({
+function CollapseWorkbench({
   setIsExpanded,
 }: {
-  setIsExpanded: (isExpanded: boolean) => void
+  setIsExpanded: Dispatch<SetStateAction<boolean>>
 }) {
   const host = useShadowRoot()
 
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <Button variant="outline" onMouseDown={setIsExpanded.bind(null, false)}>
+        <Button variant="outline" onMouseDown={() => setIsExpanded(false)}>
           <ChevronDown />
         </Button>
       </TooltipTrigger>
@@ -63,6 +63,31 @@ function ExpandButton({
         <p className="text-xs">Collapse workbench</p>
       </TooltipContent>
     </Tooltip>
+  )
+}
+
+function ExpandWorkbench({
+  setIsExpanded,
+}: {
+  setIsExpanded: Dispatch<SetStateAction<boolean>>
+}) {
+  const host = useShadowRoot()
+
+  return (
+    <Container isExpanded={false}>
+      <div className="flex items-center gap-2 ml-auto">
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button variant="outline" onMouseDown={() => setIsExpanded(true)}>
+              <ChevronUp />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent side="left" portal={host}>
+            <p className="text-xs">Expand workbench</p>
+          </TooltipContent>
+        </Tooltip>
+      </div>
+    </Container>
   )
 }
 
@@ -83,13 +108,13 @@ function Toolbar({
   setIsExpanded,
 }: {
   title?: string
-  setIsExpanded: (isExpanded: boolean) => void
+  setIsExpanded: Dispatch<SetStateAction<boolean>>
 }) {
   const auth = useAuth()
 
   if (auth.isPending) {
     return (
-      <Container isExpanded={true}>
+      <Container>
         <Spinner />
       </Container>
     )
@@ -106,7 +131,7 @@ function Toolbar({
   const signedIn = auth.data?.signedIn
 
   return (
-    <Container isExpanded={true}>
+    <Container>
       <div className="flex items-center gap-2">
         <TerminalIcon className="h-4 w-4" />
         <p className="text-xs">{title ?? 'DeepDish Workbench'}</p>
@@ -122,36 +147,7 @@ function Toolbar({
           </Button>
         )}
         {signedIn ? <ModeButton /> : null}
-        <ExpandButton setIsExpanded={setIsExpanded} />
-      </div>
-    </Container>
-  )
-}
-
-function ExpandWorkbench({
-  setIsExpanded,
-}: {
-  setIsExpanded: (isExpanded: boolean) => void
-}) {
-  const host = useShadowRoot()
-
-  return (
-    <Container isExpanded={false}>
-      <div className="flex items-center gap-2 ml-auto">
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button
-              variant="outline"
-              onMouseDown={setIsExpanded.bind(null, true)}
-            >
-              <ChevronUp />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent side="left" portal={host}>
-            {' '}
-            <p className="text-xs">Expand workbench</p>
-          </TooltipContent>
-        </Tooltip>
+        <CollapseWorkbench setIsExpanded={setIsExpanded} />
       </div>
     </Container>
   )
