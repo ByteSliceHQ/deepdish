@@ -1,4 +1,6 @@
 biomejs
+csvg
+cpath
 dashify
 excalidraw
 filenaming
