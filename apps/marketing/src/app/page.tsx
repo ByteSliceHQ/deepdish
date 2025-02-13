@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button'
 import { Waitlist } from '@clerk/nextjs'
-import { Heading1 } from '@deepdish/ui/typography'
+import { Heading1, Paragraph } from '@deepdish/ui/typography'
 import { ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -16,9 +16,12 @@ export default function Home() {
           >
             Manage content directly on your pages
           </Heading1>
-          <p className="text-xl mb-10 max-w-2xl mx-auto">
+          <Paragraph
+            deepdish={{ key: 'home/sub-headline' }}
+            className="text-xl text-gray-800 mb-10 max-w-2xl mx-auto"
+          >
             DeepDish lets you build Next.js apps without integrating a CMS.
-          </p>
+          </Paragraph>
           <div className="flex justify-start sm:justify-center space-x-0 sm:space-x-4 flex-wrap space-y-4 sm:space-y-0">
             <Button
               asChild
