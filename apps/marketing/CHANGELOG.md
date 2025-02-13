@@ -1,5 +1,11 @@
 # @deepdish/marketing
 
+## 0.9.0
+
+### Minor Changes
+
+- a6c67c2: Updated copy and demo video.
+
 ## 0.8.0
 
 ### Minor Changes
