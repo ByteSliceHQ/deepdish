@@ -1,4 +1,4 @@
 import { configure as deepdish } from '@deepdish/ui/config'
-import { Provider as DeepDishProvider } from './provider'
+import { Settings as DeepDishProvider } from './settings'
 
 export { deepdish, DeepDishProvider }
