@@ -143,6 +143,8 @@ See a full list of available components [here](#typography-components) and how t
 When `draft` mode is enabled, you will be able to interact with the DeepDish Workbench to edit content directly on the page.
 Simply right click on the component and select "Edit" to modify the contents, then click "Save" to save your changes.
 
+https://github.com/user-attachments/assets/ab3e113b-476f-4722-a4e6-6ad13f5a5634
+
 > [!Note]
 > The DeepDish Workbench is only available when `draft` mode is enabled.
 
