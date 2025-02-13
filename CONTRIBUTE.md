@@ -4,6 +4,10 @@ Welcome contributors! 👋
 
 Here you'll find information pertaining to the `deepdish` project and how to contribute effectively.
 
+### Getting Started
+
+Install [Flox](https://flox.dev/) and run `flox activate` in the root directory. This will activate the `deepdish` development environment and install necessary dependencies.
+
 ## Changesets
 
 This project uses [changesets](https://github.com/changesets/changesets) to facilitate contribution documentation.
