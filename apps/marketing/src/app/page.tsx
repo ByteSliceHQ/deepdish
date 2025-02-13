@@ -8,17 +8,16 @@ import Link from 'next/link'
 export default function Home() {
   return (
     <main className="flex-grow">
-      <section className="pt-16 pb-24 sm:pt-24 sm:pb-32 border-b border-gray-200">
+      <section className="pt-16 pb-24 sm:pt-24 sm:pb-32 border-b border-gray-200 bg-textured">
         <div className="container mx-auto text-left sm:text-center max-w-xl">
           <Heading1
             deepdish={{ key: 'home/headline' }}
             className="text-4xl font-bold mb-6 bg-gradient-to-r from-red-400 to-orange-500 text-transparent bg-clip-text"
           >
-            Manage your content directly on the page
+            Manage content directly on your pages
           </Heading1>
           <p className="text-xl mb-10 max-w-2xl mx-auto">
-            DeepDish lets you build Next.js apps without worrying about
-            integrating a CMS.
+            DeepDish lets you build Next.js apps without integrating a CMS.
           </p>
           <div className="flex justify-start sm:justify-center space-x-0 sm:space-x-4 flex-wrap space-y-4 sm:space-y-0">
             <Button
@@ -40,7 +39,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mt-[-120px] py-12 px-6 sm:px-10 lg:px-12">
+      <section className="mt-[-120px] py-12 px-6 sm:px-10 lg:px-12 ">
         <div className="border w-full lg:max-w-4xl mx-auto rounded-xl aspect-w-16 aspect-h-12 sm:aspect-h-10 lg:aspect-h-8 shadow-xl bg-white">
           <video
             title="DeepDish demo"
@@ -50,7 +49,7 @@ export default function Home() {
             playsInline
             muted
           >
-            <source src="/deepdish_demo.mp4" type="video/mp4" />
+            <source src="/deepdish-demo.mp4" type="video/mp4" />
             <track kind="captions" srcLang="en" label="English" default />
             Your browser does not support the video tag.
           </video>
@@ -58,7 +57,7 @@ export default function Home() {
       </section>
 
       <section
-        className="py-16 sm:py-24 border-b border-gray-200"
+        className="py-16 sm:py-24 border-y border-gray-200 bg-textured"
         id="waitlist"
       >
         <div className="container mx-auto text-left sm:text-center max-w-xl">
