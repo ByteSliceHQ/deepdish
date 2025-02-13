@@ -122,7 +122,7 @@ export default deepdishMiddleware(config);
 
 ### Step 5: Add a DeepDish Component
 
-To add a DeepDish component to your page, import the `Header1` component and pass it a `deepdish` object with the `key` and `value` properties.
+To add a DeepDish component to your page, import the `Header1` component and pass it a `deepdish` object with the `key` property set to a unique identifier for the component.
 
 ```tsx
 import { Header1 } from "@deepdish/cms/typography";
@@ -136,7 +136,15 @@ function Home() {
 }
 ```
 
-See a full list of available components [here](#typography-components).
+See a full list of available components [here](#typography-components) and how to use them.
+
+### Step 6: Editing content on the page
+
+When `draft` mode is enabled, you will be able to interact with the DeepDish Workbench to edit content directly on the page.
+Simply right click on the component and select "Edit" to modify the contents, then click "Save" to save your changes.
+
+> [!Note]
+> The DeepDish Workbench is only available when `draft` mode is enabled.
 
 ## Typography components
 
@@ -161,11 +169,13 @@ These components are completely customizable and can replace the default HTML ta
 | Strong | strong |
 | Underline | u |
 
-## Editing Content
+### The DeepDish prop
 
-Content creators can edit content directly on the page by right clicking on the editable content and selecting the "Edit" option.
+All DeepDish components accept a `deepdish` prop, which is an object with a `key` property.
+The `key` value is a unique identifier for the component, and it is used to retrieve the value from the CMS when the component is rendered.
 
-![Editing Content](https://www.deepdish.app/deepdish-demo.mp4)
+> [!TIP]
+> All DeepDish components are editable in the browser when `draft` mode is enabled, enabling you and your team to make changes directly in the page.
 
 ## Contribution Guidelines
 
