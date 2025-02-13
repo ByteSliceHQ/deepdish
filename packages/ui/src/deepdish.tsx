@@ -121,13 +121,15 @@ async function DeepDishElement<V>(props: {
       case 'CONTENT_MISSING':
         if (await canEdit()) {
           return (
-            <Menu
-              deepdish={props.deepdish}
-              value={props.fallback as string}
-              onUpdate={handleUpdate(props.type, props.deepdish.key)}
-            >
-              {props.render(props.fallback)}
-            </Menu>
+            <Shell deepdishKey={props.deepdish.key}>
+              <Menu
+                deepdish={props.deepdish}
+                value={props.fallback as string}
+                onUpdate={handleUpdate(props.type, props.deepdish.key)}
+              >
+                {props.render(props.fallback)}
+              </Menu>
+            </Shell>
           )
         }
         break
@@ -141,14 +143,16 @@ async function DeepDishElement<V>(props: {
   }
 
   return (
-    // TODO: remove string type coercion once we support more resolver types
-    <Menu
-      deepdish={props.deepdish}
-      value={readResult.data as string}
-      onUpdate={handleUpdate(props.type, props.deepdish.key)}
-    >
-      {props.render(readResult.data as V)}
-    </Menu>
+    <Shell deepdishKey={props.deepdish.key}>
+      {/* // TODO: remove string type coercion once we support more resolver types */}
+      <Menu
+        deepdish={props.deepdish}
+        value={readResult.data as string}
+        onUpdate={handleUpdate(props.type, props.deepdish.key)}
+      >
+        {props.render(readResult.data as V)}
+      </Menu>
+    </Shell>
   )
 }
 
@@ -222,30 +226,26 @@ export async function DeepDish<V>(props: {
   type: ValueType
 }) {
   if (!props.deepdish) {
-    return <Shell>{props.render(props.fallback)}</Shell>
+    return <>{props.render(props.fallback)}</>
   }
 
   if (props.deepdish.collection !== undefined) {
     return (
-      <Shell>
-        <DeepDishCollection
-          deepdish={props.deepdish}
-          fallback={props.fallback}
-          render={props.render}
-          type={props.type}
-        />
-      </Shell>
-    )
-  }
-
-  return (
-    <Shell>
-      <DeepDishElement
+      <DeepDishCollection
         deepdish={props.deepdish}
         fallback={props.fallback}
         render={props.render}
         type={props.type}
       />
-    </Shell>
+    )
+  }
+
+  return (
+    <DeepDishElement
+      deepdish={props.deepdish}
+      fallback={props.fallback}
+      render={props.render}
+      type={props.type}
+    />
   )
 }

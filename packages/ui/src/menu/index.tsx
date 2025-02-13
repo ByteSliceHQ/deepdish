@@ -1,5 +1,6 @@
 'use client'
 
+import { useMode } from '@deepdish/core/context'
 import * as ContextMenu from '@radix-ui/react-context-menu'
 import { ChevronRight } from 'lucide-react'
 import { Scope } from 'react-shadow-scope'
@@ -21,6 +22,12 @@ function SubMenuChevron() {
 }
 
 export function Menu(props: MenuProps) {
+  const mode = useMode()
+
+  if (mode === 'view') {
+    return props.children
+  }
+
   return (
     <ContextMenu.Root>
       <ContextMenu.Trigger data-state="open">
