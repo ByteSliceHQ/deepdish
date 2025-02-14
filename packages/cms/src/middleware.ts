@@ -1,5 +1,5 @@
-import { type NextRequest, NextResponse } from 'next/server'
 import { deepdishMiddleware as middleware } from '@deepdish/nextjs'
+import { type NextRequest, NextResponse } from 'next/server'
 import type { DeepDishConfig } from './cms'
 
 async function signIn() {
@@ -16,7 +16,7 @@ async function signOut() {
   return response
 }
 
-async function verify(request: NextRequest) {
+async function verify(_request: NextRequest) {
   await new Promise((resolve) => setTimeout(resolve, 50))
   return true
 }
