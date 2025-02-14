@@ -1,5 +1,19 @@
 # @deepdish/cms
 
+## 0.3.0
+
+### Minor Changes
+
+- 9e94ae0: Added `authDisabled` flag and refactored the `title` prop.
+
+### Patch Changes
+
+- 47e41fe: Collocated the provider and container.
+- Updated dependencies [9e94ae0]
+- Updated dependencies [9e94ae0]
+  - @deepdish/nextjs@0.4.0
+  - @deepdish/workbench@0.8.0
+
 ## 0.2.0
 
 ### Minor Changes
