@@ -1,65 +1,96 @@
 # DeepDish
 
-Welcome to DeepDish, a flexible and feature-rich data management system designed to empower developers and content creators alike.
-
+Welcome to DeepDish. DeepDish allows you to build Next.js apps without integrating a CMS.
 DeepDish is built on top of React server components and specifically designed for Next.js.
 
-## Features
-
-- **Flexible Architecture**: Adaptable to various content structures and management needs.
-- **Intuitive Interface**: Seamless integration with the Next.js app router, leveraging server-side rendering capabilities.
-- **Developer Experience**: Built with performance and scalability in mind.
+Created by the [ByteSlice](https://byteslice.co) team for devs and marketing teams.
 
 ## Installation
 
-To get started, create an account on [DeepDish](https://dashboard.deepdish.app), and then install the DeepDish packages using your preferred package manager.
+To get started, install the DeepDish package using your preferred package manager.
 
 ```sh
-npm install @deepdish/ui @deepdish/workbench @deepdish-cloud/config
+npm install @deepdish/cms
 # or
-yarn add @deepdish/ui @deepdish/workbench @deepdish-cloud/config
+yarn add @deepdish/cms
 # or
-bun add @deepdish/ui @deepdish/workbench @deepdish-cloud/config
+pnpm add @deepdish/cms
+# or
+bun add @deepdish/cms
 ```
 
-## Configure your project
+## Creating an account
 
-Once installed, you can configure your project to use [DeepDish Cloud](https://dashboard.deepdish.app).
-In your `app/layout.tsx` file, import `cloudConfig` from `@deepdish-cloud/config` and `configure` from `@deepdish/ui/config` and initialize the configuration with your project alias and secret key from the [DeepDish Cloud](https://dashboard.deepdish.app) dashboard.
+We are actively building out the DeepDish platform. To get started, join the [DeepDish waitlist](https://www.deepdish.app).
+We are sending out invites to our waitlist every Friday to gain access to the platform.
+
+## Getting Started
+
+Follow the guide below to get started with DeepDish.
+
+### Step 1: Setup your environment
+
+Set the following environment variables in your local `.env.local` file:
+
+- `DEEPDISH_SECRET_KEY`: Your DeepDish secret key.
+- `DEEPDISH_PROJECT_ALIAS`: Your DeepDish project alias.
+- `DEEPDISH_MODE`: Set to `draft` to enable the DeepDish Workbench.
+- `BASE_URL`: Your base URL.
+
+```sh
+DEEPDISH_SECRET_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+DEEPDISH_PROJECT_ALIAS=project-alias
+DEEPDISH_MODE=draft
+BASE_URL=http://localhost:3000
+```
+
+#### Vercel helpers
+
+If you're using Vercel, you can omit the `BASE_URL` environment variable and use the following helpers to get the base URL based on the Vercel environment.
 
 ```ts
-import { cloudConfig } from "@deepdish-cloud/config";
-import { configure } from "@deepdish/ui/config";
-
-configure(
-  cloudConfig({
-    secretKey: process.env.DEEPDISH_SECRET_KEY,
-    projectAlias: process.env.DEEPDISH_PROJECT_ALIAS,
-  }),
-)
+import { getBaseUrl } from "@deepdish/cms/vercel";
+const baseUrl = getBaseUrl();
 ```
 
-## Add the DeepDish Workbench
+The `getBaseUrl` function will return the base URL based on the Vercel environment, or your local development endpoint if you're running the app locally.
+This is handy when using the Vercel preview feature.
 
-To enable the DeepDish Workbench, import the `Workbench` component and include it at the bottom of your `body` tag.
-Workbench can be passed an `onInit` callback that can handle the initial authentication flow.
-For this example, we're using the `init` function from the `@deepdish-cloud/config/client` package.
+### Step 2: Add a deepdish.ts file
 
-A full example of the `app/layout.tsx` file with the DeepDish Workbench:
+Create a `deepdish.ts` file in the `app` directory of your Next.js project.
+
+`app/deepdish.ts`:
+
+```ts
+// If you're using Vercel, use the following helpers to get the base URL.
+// import { getBaseUrl } from "@deepdish/cms/vercel";
+// const baseUrl = getBaseUrl();
+const baseUrl = process.env.BASE_URL;
+
+// Draft mode is dependent upon your environment.
+// Set to `true` to enable the DeepDish Workbench, or `false` to disable it.
+// We recommend using an environment variable for this.
+const draft = process.env.DEEPDISH_MODE === "draft";
+
+export const config = {
+  draft,
+  baseUrl,
+  secretKey: process.env.DEEPDISH_SECRET_KEY,
+  projectAlias: process.env.DEEPDISH_PROJECT_ALIAS,
+};
+```
+
+### Step 3: Configure your project
+
+In your `app/layout.tsx` file, import the `deepdish` function from `@deepdish/cms` and initialize it with your `config` object.
+Additionally, import the `DeepDishProvider` component from `@deepdish/cms` and wrap your app with it.
 
 ```tsx
-import { Workbench } from "@deepdish/workbench";
-import { init } from "@deepdish-cloud/config/client";
+import { deepdish, DeepDishProvider } from "@deepdish/cms";
+import { config } from "@/deepdish";
 
-import { cloudConfig } from "@deepdish-cloud/config";
-import { configure } from "@deepdish/ui/config";
-
-configure(
-  cloudConfig({
-    secretKey: process.env.DEEPDISH_SECRET_KEY,
-    projectAlias: process.env.DEEPDISH_PROJECT_ALIAS,
-  }),
-)
+await deepdish(config);
 
 export default function RootLayout({
   children,
@@ -69,20 +100,32 @@ export default function RootLayout({
   return (
     <html>
       <body>
-        {children}
-        <Workbench onInit={init} />
+        <DeepDishProvider>
+          {children}
+        </DeepDishProvider>
       </body>
     </html>
   );
 }
 ```
 
-## Add a DeepDish Component
+### Step 4: Add the DeepDish Middleware
 
-To add a DeepDish component to your page, import the `Header1` component and pass it a `deepdish` object with the `key` and `value` properties.
+In your `middleware.ts` file, import the `deepdishMiddleware` function from `@deepdish/cms` and initialize it with your `config` object.
+
+```ts
+import { deepdishMiddleware } from "@deepdish/cms";
+import { config } from "@/deepdish";
+
+export default deepdishMiddleware(config);
+```
+
+### Step 5: Add a DeepDish Component
+
+To add a DeepDish component to your page, import the `Header1` component and pass it a `deepdish` object with the `key` property set to a unique identifier for the component.
 
 ```tsx
-import { Header1 } from "@deepdish/ui/typography";
+import { Header1 } from "@deepdish/cms/typography";
 
 function Home() {
   return (
@@ -93,13 +136,48 @@ function Home() {
 }
 ```
 
-## Editing Content
+See a full list of available components [here](#typography-components) and how to use them.
 
-Content creators can edit content directly on the page by selecting the content they want to edit, after authenticating with DeepDish.
+### Step 6: Editing content on the page
 
-## Active Development
+When `draft` mode is enabled, you will be able to interact with the DeepDish Workbench to edit content directly on the page.
+Simply right click on the component and select "Edit" to modify the contents, then click "Save" to save your changes.
 
-The team at [ByteSlice](https://byteslice.co) is working hard to bring you a stable and feature-rich data management system. We would love to hear your feedback and suggestions. Please feel free to open an issue or [reach out to us directly](https://byteslice.co/contact).
+https://github.com/user-attachments/assets/ab3e113b-476f-4722-a4e6-6ad13f5a5634
+
+> [!Note]
+> The DeepDish Workbench is only available when `draft` mode is enabled.
+
+## Typography components
+
+The `@deepdish/cms/typography` package provides a set of typography components for use in your app.
+These components are completely customizable and can replace the default HTML tags, in order to enable the CMS functionality.
+
+| Component | Renders as |
+| --- | --- |
+| BlockQuote | blockquote |
+| Bold | strong |
+| Div | div |
+| Emphasize | em |
+| Heading1 | h1 |
+| Heading2 | h2 |
+| Heading3 | h3 |
+| Heading4 | h4 |
+| Heading5 | h5 |
+| Heading6 | h6 |
+| Italicize | i |
+| Paragraph | p |
+| Span | span |
+| Strong | strong |
+| Underline | u |
+
+### The DeepDish prop
+
+All DeepDish components accept a `deepdish` prop, which is an object with a `key` property.
+The `key` value is a unique identifier for the component, and it is used to retrieve the value from the CMS when the component is rendered.
+
+> [!TIP]
+> All DeepDish components are editable in the browser when `draft` mode is enabled, enabling you and your team to make changes directly in the page.
 
 ## Contribution Guidelines
 
@@ -109,10 +187,6 @@ We welcome contributions from the community! If you're interested in helping imp
 - **Feature Suggestions**: Have ideas for new features? Open an issue to suggest them.
 - **Code Contributions**: Submit a pull request with new features or bug fixes.
 - **Documentation**: Help improve our docs for better understanding and usage.
-
-### Getting Started
-
-Install [Flox](https://flox.dev/) and run `flox activate` in the root directory. This will activate the `deepdish` development environment and install necessary dependencies.
 
 ### How to Contribute
 
