@@ -1,2 +1,2 @@
-import * as typography from '@deepdish/ui/typography'
-export default typography
+// biome-ignore lint/performance/noBarrelFile: Expected to be used by CMS.
+export * as typography from '@deepdish/ui/typography'
