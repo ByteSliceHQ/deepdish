@@ -1,5 +1,12 @@
 # @deepdish/workbench
 
+## 0.7.1
+
+### Patch Changes
+
+- Updated dependencies [142e359]
+  - @deepdish/core@0.1.1
+
 ## 0.7.0
 
 ### Minor Changes
