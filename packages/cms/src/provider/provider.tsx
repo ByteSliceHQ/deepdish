@@ -6,13 +6,14 @@ import { Workbench } from '@deepdish/workbench'
 export function Provider(props: {
   children: React.ReactNode
   draft: boolean
-  title?: string
+  title?: React.ReactNode
+  authDisabled?: boolean
 }) {
   if (props.draft) {
     return (
       <DeepDishProvider>
         {props.children}
-        <Workbench title={props.title} />
+        <Workbench title={props.title} authDisabled={props.authDisabled} />
       </DeepDishProvider>
     )
   }

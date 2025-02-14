@@ -4,9 +4,14 @@ import { getCss } from '@deepdish/workbench/css'
 
 export type DeepdishMiddlewareConfig = {
   draft: boolean
+  health?: (request: NextRequest) => NextResponse | Promise<NextResponse>
   verify: (request: NextRequest) => boolean | Promise<boolean>
   signIn: (request: NextRequest) => NextResponse | Promise<NextResponse>
   signOut: (request: NextRequest) => NextResponse | Promise<NextResponse>
+}
+
+function defaultHealthCheck() {
+  return NextResponse.json({ status: 'ok' })
 }
 
 export async function deepdishMiddleware(
@@ -28,6 +33,14 @@ export async function deepdishMiddleware(
       response.headers.set('Content-Type', 'text/css')
 
       return response
+    }
+
+    if (url.endsWith('/health')) {
+      if (config.health) {
+        return config.health(request)
+      }
+
+      return defaultHealthCheck()
     }
 
     if (url.endsWith('/sign-in')) {

@@ -103,12 +103,10 @@ function ModeButton() {
   )
 }
 
-function Toolbar({
-  title,
-  setIsExpanded,
-}: {
-  title?: string
+function Toolbar(props: {
+  title?: React.ReactNode
   setIsExpanded: Dispatch<SetStateAction<boolean>>
+  authDisabled?: boolean
 }) {
   const auth = useAuth()
 
@@ -134,28 +132,31 @@ function Toolbar({
     <Container>
       <div className="flex items-center gap-2">
         <TerminalIcon className="h-4 w-4" />
-        <p className="text-xs">{title ?? 'DeepDish Workbench'}</p>
+        {props.title ?? <p className="text-xs">Deepdish Workbench</p>}
       </div>
       <div className="flex items-center gap-2">
-        {signedIn ? (
-          <Button variant="secondary" size="sm" onClick={handleSignOut}>
-            Sign out
-          </Button>
-        ) : (
-          <Button variant="secondary" size="sm" onClick={handleSignIn}>
-            Sign in
-          </Button>
-        )}
+        {!props.authDisabled ? (
+          signedIn ? (
+            <Button variant="secondary" size="sm" onClick={handleSignOut}>
+              Sign out
+            </Button>
+          ) : (
+            <Button variant="secondary" size="sm" onClick={handleSignIn}>
+              Sign in
+            </Button>
+          )
+        ) : null}
         {signedIn ? <ModeButton /> : null}
-        <CollapseWorkbench setIsExpanded={setIsExpanded} />
+        <CollapseWorkbench setIsExpanded={props.setIsExpanded} />
       </div>
     </Container>
   )
 }
 
-type WorkbenchProps = {
+export type WorkbenchProps = {
   ref?: RefObject<HTMLElement>
-  title?: string
+  title?: React.ReactNode
+  authDisabled?: boolean
 }
 
 export function Workbench(props: WorkbenchProps) {
@@ -166,7 +167,11 @@ export function Workbench(props: WorkbenchProps) {
       <TooltipProvider>
         <WorkbenchProvider ref={props.ref}>
           {isExpanded ? (
-            <Toolbar title={props.title} setIsExpanded={setIsExpanded} />
+            <Toolbar
+              title={props.title}
+              setIsExpanded={setIsExpanded}
+              authDisabled={props.authDisabled}
+            />
           ) : (
             <ExpandWorkbench setIsExpanded={setIsExpanded} />
           )}
