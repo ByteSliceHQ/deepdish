@@ -17,7 +17,7 @@
       }
     },
     "hook": {
-      "on-activate": "  echo \"📦 Installing dependencies...\"\n  bun install --frozen-lockfile\n\n  echo -e \"\\n🚀 Development Commands\"\n  echo -e \"- Run all tasks\\t\\t\\033[34mbun dev\\033[0m\"\n  echo -e \"- Start demo app\\t\\033[34mbun dev:demo\\033[0m\"\n  echo -e \"- Start marketing app\\t\\033[34mbun dev:marketing\\033[0m\"\n"
+      "on-activate": "  echo \"📦 Installing dependencies...\"\n  bun install --frozen-lockfile\n\n  echo -e \"\\n🚀 Development Commands\"\n  echo -e \"- Run all tasks\\t\\t\\033[34mbun dev\\033[0m\"\n  echo -e \"- Start demo app\\t\\033[34mbun dev:demo\\033[0m\"\n  echo -e \"- Start marketing app\\t\\033[34mbun dev:marketing\\033[0m\"\n\n  export NODE_EXTRA_CA_CERTS=/etc/ssl/certs/flox-ca-bundle.crt\n"
     },
     "profile": {},
     "options": {
