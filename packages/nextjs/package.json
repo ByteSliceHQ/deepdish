@@ -1,6 +1,6 @@
 {
   "name": "@deepdish/nextjs",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "DeepDish Next.js utilities",
   "author": {
     "name": "ByteSlice, LLC",
@@ -17,7 +17,7 @@
     "dev": "tsup --watch"
   },
   "dependencies": {
-    "@deepdish/workbench": "workspace:0.7.1"
+    "@deepdish/workbench": "workspace:0.8.0"
   },
   "devDependencies": {
     "@tsconfig/create-react-app": "2.0.5",

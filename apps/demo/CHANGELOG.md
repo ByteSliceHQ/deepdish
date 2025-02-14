@@ -1,5 +1,15 @@
 # @deepdish/demo
 
+## 0.2.3
+
+### Patch Changes
+
+- Updated dependencies [9e94ae0]
+- Updated dependencies [9e94ae0]
+- Updated dependencies [47e41fe]
+  - @deepdish/nextjs@0.4.0
+  - @deepdish/cms@0.3.0
+
 ## 0.2.2
 
 ### Patch Changes

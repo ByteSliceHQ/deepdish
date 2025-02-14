@@ -1,5 +1,11 @@
 # @deepdish/workbench
 
+## 0.8.0
+
+### Minor Changes
+
+- 9e94ae0: Added `authDisabled` flag and refactored the `title` prop.
+
 ## 0.7.1
 
 ### Patch Changes
