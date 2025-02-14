@@ -8,5 +8,6 @@ namespace NodeJS {
     DEEPDISH_MODE?: 'draft'
     DEEPDISH_PROJECT_ALIAS: string
     DEEPDISH_SECRET_KEY: string
+    NEXT_PUBLIC_POSTHOG_KEY: string
   }
 }
