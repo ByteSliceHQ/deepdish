@@ -1,5 +1,14 @@
 # @deepdish/ui
 
+## 0.11.1
+
+### Patch Changes
+
+- edd3954: Conditionally rendered context menu based on mode state.
+- 142e359: Added "edit" mode styling.
+- Updated dependencies [142e359]
+  - @deepdish/core@0.1.1
+
 ## 0.11.0
 
 ### Minor Changes

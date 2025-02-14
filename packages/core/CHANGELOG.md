@@ -1,5 +1,11 @@
 # @deepdish/core
 
+## 0.1.1
+
+### Patch Changes
+
+- 142e359: Added "edit" mode styling.
+
 ## 0.1.0
 
 ### Minor Changes
