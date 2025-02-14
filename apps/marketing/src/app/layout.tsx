@@ -1,6 +1,8 @@
 import '@/styles/globals.css'
 import { cms } from '@/cms'
 import { AppLayout } from '@/components/app-layout'
+import { TooltipProvider } from '@/components/ui/tooltip'
+import { WorkbenchTitle } from '@/components/workbench-title'
 import { PostHogProvider } from '@/posthog'
 import { ClerkProvider } from '@clerk/nextjs'
 import { DeepDishProvider } from '@deepdish/cms'
@@ -39,11 +41,13 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en" className="scroll-smooth">
         <body className={`${GeistMono.className} antialiased`}>
-          <DeepDishProvider title="Sign in and edit some content!">
-            <PostHogProvider>
-              <AppLayout>{children}</AppLayout>
-            </PostHogProvider>
-          </DeepDishProvider>
+          <TooltipProvider>
+            <DeepDishProvider title={<WorkbenchTitle />} authDisabled={true}>
+              <PostHogProvider>
+                <AppLayout>{children}</AppLayout>
+              </PostHogProvider>
+            </DeepDishProvider>
+          </TooltipProvider>
         </body>
       </html>
     </ClerkProvider>
