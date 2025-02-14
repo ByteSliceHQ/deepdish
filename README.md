@@ -63,6 +63,8 @@ Create a `deepdish.ts` file in the `app` directory of your Next.js project.
 `app/deepdish.ts`:
 
 ```ts
+import type { DeepDishConfig } from '@deepdish/cms';
+
 // If you're using Vercel, use the following helpers to get the base URL.
 // import { getBaseUrl } from "@deepdish/cms/vercel";
 // const baseUrl = getBaseUrl();
@@ -73,7 +75,7 @@ const baseUrl = process.env.BASE_URL;
 // We recommend using an environment variable for this.
 const draft = process.env.DEEPDISH_MODE === "draft";
 
-export const config = {
+export const config: DeepDishConfig = {
   draft,
   baseUrl,
   secretKey: process.env.DEEPDISH_SECRET_KEY,

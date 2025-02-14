@@ -1,5 +1,5 @@
 import { getBaseUrl } from '@/lib/get-base-url'
-import { deepdish } from '@deepdish/cms'
+import { configure } from '@deepdish/ui/config'
 import { cookieResolver } from '../resolver'
 
 let configured = false
@@ -11,7 +11,7 @@ export async function cms() {
 
   configured = true
 
-  return await deepdish({
+  return await configure({
     contracts: {
       typography: {
         resolver: cookieResolver,
