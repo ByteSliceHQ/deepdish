@@ -39,7 +39,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en" className="scroll-smooth">
         <body className={`${GeistMono.className} antialiased`}>
-          <DeepDishProvider title="DeepDish Example Workbench">
+          <DeepDishProvider title="Sign in and edit some content!">
             <PostHogProvider>
               <AppLayout>{children}</AppLayout>
             </PostHogProvider>
