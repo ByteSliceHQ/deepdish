@@ -93,7 +93,7 @@ function TopBar() {
     <>
       <div className="flex items-center gap-2">
         <TerminalIcon className="h-4 w-4" />
-        {title ?? <p className="text-xs">Deepdish Workbench</p>}
+        {title ?? <p className="text-xs">DeepDish Workbench</p>}
       </div>
       <div className="flex items-center gap-2">
         {!authDisabled ? <AuthButtons /> : null}
