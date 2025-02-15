@@ -1,5 +1,36 @@
 # @deepdish/marketing
 
+## 0.10.1
+
+### Patch Changes
+
+- 9e94ae0: Implemented new Workbench title.
+- Updated dependencies [9e94ae0]
+- Updated dependencies [9e94ae0]
+- Updated dependencies [47e41fe]
+  - @deepdish/nextjs@0.4.0
+  - @deepdish/cms@0.3.0
+
+## 0.10.0
+
+### Minor Changes
+
+- 046836e: Updated the demo video.
+
+### Patch Changes
+
+- 6a3c7ad: Added textured background.
+- ec0a6fc: Added PostHog integration.
+- f98bbdb: Adjusted Workbench title.
+- 142e359: Used DeepDish Paragraph component for sub-headline.
+- Updated dependencies [8787ed4]
+- Updated dependencies [edd3954]
+- Updated dependencies [1208209]
+- Updated dependencies [142e359]
+  - @deepdish/cms@0.2.0
+  - @deepdish/ui@0.11.1
+  - @deepdish/nextjs@0.3.1
+
 ## 0.9.0
 
 ### Minor Changes

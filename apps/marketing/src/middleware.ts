@@ -2,42 +2,38 @@ import { clerkMiddleware } from '@clerk/nextjs/server'
 
 import { deepdishMiddleware } from '@deepdish/nextjs'
 import { type NextRequest, NextResponse } from 'next/server'
-import { getBaseUrl } from './lib/get-base-url'
-import { createCookie, deleteCookie, hasCookie } from './resolver'
+import { createCookie, hasCookie } from './resolver'
 
-const baseUrl = getBaseUrl()
 const draft = process.env.DEEPDISH_MODE === 'draft'
 
-async function signIn() {
-  await new Promise((resolve) => setTimeout(resolve, 50))
-
-  const response = NextResponse.redirect(baseUrl)
-  createCookie(response)
-
-  return response
+function noop() {
+  return NextResponse.next()
 }
 
-async function signOut() {
-  await new Promise((resolve) => setTimeout(resolve, 50))
+async function verify() {
+  await new Promise((resolve) => setTimeout(resolve, 500))
 
-  const response = NextResponse.redirect(baseUrl)
-  deleteCookie(response)
-
-  return response
+  return true
 }
 
-async function verify(request: NextRequest) {
-  await new Promise((resolve) => setTimeout(resolve, 50))
-  return hasCookie(request)
+function health(request: NextRequest) {
+  const response = NextResponse.json({ status: 'ok' })
+
+  if (!hasCookie(request)) {
+    createCookie(response)
+  }
+
+  return response
 }
 
 export default clerkMiddleware((_auth, request) => {
   return deepdishMiddleware(
     {
       draft,
+      health,
       verify,
-      signIn,
-      signOut,
+      signIn: noop,
+      signOut: noop,
     },
     request,
   )

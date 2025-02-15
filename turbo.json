@@ -22,7 +22,8 @@
     },
     "dev": {
       "cache": false,
-      "persistent": true
+      "persistent": true,
+      "env": ["NODE_EXTRA_CA_CERTS"]
     },
     "start": {
       "cache": false,
