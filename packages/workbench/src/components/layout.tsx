@@ -6,7 +6,7 @@ import {
 } from '@/components/ui/tooltip'
 import { useAuthDisabled, useShadowRoot, useTitle } from '@/lib/context'
 import { useAuth } from '@/lib/queries'
-import { useActions, useMode, useWorkbench } from '@deepdish/core/context'
+import { useActions, useMode, useWorkbenchOpen } from '@deepdish/core/context'
 import { Link, Outlet, useCanGoBack, useRouter } from '@tanstack/react-router'
 import {
   ArrowLeftIcon,
@@ -27,17 +27,17 @@ function Spinner() {
 function ExpandButton() {
   const shadowRoot = useShadowRoot()
   const actions = useActions()
-  const workbench = useWorkbench()
+  const workbenchOpen = useWorkbenchOpen()
 
   return (
     <Tooltip>
       <TooltipTrigger asChild>
         <Button variant="outline" onClick={actions.toggleWorkbench}>
-          {workbench.open ? <ChevronDown /> : <ChevronUp />}
+          {workbenchOpen ? <ChevronDown /> : <ChevronUp />}
         </Button>
       </TooltipTrigger>
       <TooltipContent side="top" portal={shadowRoot}>
-        <p className="text-xs">{workbench.open ? 'Collapse' : 'Expand'}</p>
+        <p className="text-xs">{workbenchOpen ? 'Collapse' : 'Expand'}</p>
       </TooltipContent>
     </Tooltip>
   )
@@ -185,7 +185,7 @@ function NavBar() {
 }
 
 export function Layout() {
-  const workbench = useWorkbench()
+  const workbenchOpen = useWorkbenchOpen()
   const auth = useAuth()
 
   if (auth.isPending) {
@@ -198,7 +198,7 @@ export function Layout() {
     )
   }
 
-  if (!workbench.open) {
+  if (!workbenchOpen) {
     return (
       <Wrapper>
         <div className="flex items-center px-4 z-9999 justify-between h-[48px]">
