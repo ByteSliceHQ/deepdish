@@ -1,7 +1,9 @@
+import './index.css'
+
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.css'
-import { Workbench } from '@/components/workbench'
+import { Workbench } from '@/workbench'
+import { DeepDishProvider } from '@deepdish/core/context'
 
 const root = document.getElementById('root')
 
@@ -18,7 +20,9 @@ async function enableMocking() {
 enableMocking().then(() => {
   createRoot(root).render(
     <StrictMode>
-      <Workbench />
+      <DeepDishProvider>
+        <Workbench />
+      </DeepDishProvider>
     </StrictMode>,
   )
 })
