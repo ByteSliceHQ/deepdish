@@ -17,7 +17,7 @@ async function verify() {
 }
 
 function health(request: NextRequest) {
-  const response = NextResponse.json({ status: 'ok' })
+  const response = NextResponse.json({ ok: true })
 
   if (!hasCookie(request)) {
     createCookie(response)

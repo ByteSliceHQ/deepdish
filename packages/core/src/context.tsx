@@ -26,6 +26,10 @@ export function useMode() {
   return useDeepDish((state) => state.mode)
 }
 
+export function useWorkbenchOpen() {
+  return useDeepDish((state) => state.workbench.open)
+}
+
 type DeepDishProviderProps = {
   children: React.ReactNode
 }

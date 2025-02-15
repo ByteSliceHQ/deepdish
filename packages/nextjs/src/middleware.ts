@@ -11,7 +11,7 @@ export type DeepdishMiddlewareConfig = {
 }
 
 function defaultHealthCheck() {
-  return NextResponse.json({ status: 'ok' })
+  return NextResponse.json({ ok: true })
 }
 
 export async function deepdishMiddleware(
