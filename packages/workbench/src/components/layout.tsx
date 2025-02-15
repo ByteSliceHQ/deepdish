@@ -55,10 +55,9 @@ function ModeButton() {
   )
 }
 
-function TopBar() {
+function AuthButtons() {
   const auth = useAuth()
-  const authDisabled = useAuthDisabled()
-  const title = useTitle()
+  const signedIn = auth.data?.signedIn
 
   function handleSignIn() {
     window.location.assign('/__deepdish/sign-in')
@@ -67,6 +66,26 @@ function TopBar() {
   function handleSignOut() {
     window.location.assign('/__deepdish/sign-out')
   }
+
+  if (signedIn) {
+    return (
+      <Button variant="secondary" size="sm" onClick={handleSignOut}>
+        Sign out
+      </Button>
+    )
+  }
+
+  return (
+    <Button variant="secondary" size="sm" onClick={handleSignIn}>
+      Sign in
+    </Button>
+  )
+}
+
+function TopBar() {
+  const auth = useAuth()
+  const authDisabled = useAuthDisabled()
+  const title = useTitle()
 
   const signedIn = auth.data?.signedIn
 
@@ -77,17 +96,7 @@ function TopBar() {
         {title ?? <p className="text-xs">Deepdish Workbench</p>}
       </div>
       <div className="flex items-center gap-2">
-        {!authDisabled ? (
-          signedIn ? (
-            <Button variant="secondary" size="sm" onClick={handleSignOut}>
-              Sign out
-            </Button>
-          ) : (
-            <Button variant="secondary" size="sm" onClick={handleSignIn}>
-              Sign in
-            </Button>
-          )
-        ) : null}
+        {!authDisabled ? <AuthButtons /> : null}
         {signedIn ? <ModeButton /> : null}
         <ExpandButton />
       </div>
