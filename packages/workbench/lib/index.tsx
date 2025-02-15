@@ -2,8 +2,8 @@
 
 import '../src/index.css'
 import {
-  Shadow,
   type WorkbenchProps as InternalWorkbenchProps,
+  Shadow,
 } from '@/workbench'
 
 type WorkbenchProps = Omit<InternalWorkbenchProps, 'ref'>

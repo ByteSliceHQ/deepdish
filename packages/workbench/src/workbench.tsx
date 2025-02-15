@@ -1,11 +1,11 @@
-import { useRef, type RefObject } from 'react'
+import { routeTree } from '@/generated/routeTree.gen'
+import { WorkbenchProvider } from '@/lib/context'
 import {
   RouterProvider,
   createMemoryHistory,
   createRouter,
 } from '@tanstack/react-router'
-import { WorkbenchProvider } from '@/lib/context'
-import { routeTree } from '@/generated/routeTree.gen'
+import { type RefObject, useRef } from 'react'
 import { Tailwind } from 'react-shadow-scope'
 
 declare module '@tanstack/react-router' {

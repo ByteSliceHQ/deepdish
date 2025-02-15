@@ -1,4 +1,13 @@
-import { Link, Outlet, useRouter, useCanGoBack } from '@tanstack/react-router'
+import { Button } from '@/components/ui/button'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@/components/ui/tooltip'
+import { useAuthDisabled, useShadowRoot, useTitle } from '@/lib/context'
+import { useAuth } from '@/lib/queries'
+import { useActions, useMode, useWorkbench } from '@deepdish/core/context'
+import { Link, Outlet, useCanGoBack, useRouter } from '@tanstack/react-router'
 import {
   ArrowLeftIcon,
   ArrowRightIcon,
@@ -9,15 +18,6 @@ import {
   PencilIcon,
   TerminalIcon,
 } from 'lucide-react'
-import { useAuth } from '@/lib/queries'
-import { Button } from '@/components/ui/button'
-import { useActions, useMode, useWorkbench } from '@deepdish/core/context'
-import { useAuthDisabled, useShadowRoot, useTitle } from '@/lib/context'
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from '@/components/ui/tooltip'
 import { Resizable } from 're-resizable'
 
 function Spinner() {

@@ -8,6 +8,7 @@
       ".tsup/",
       ".turbo/",
       "dist/",
+      "generated/",
       "nix/",
       "public/mockServiceWorker.js"
     ]
