@@ -55,7 +55,7 @@ function ModeButton() {
   )
 }
 
-function Topbar() {
+function TopBar() {
   const auth = useAuth()
   const authDisabled = useAuthDisabled()
   const title = useTitle()
@@ -146,7 +146,7 @@ function NavButtons() {
   )
 }
 
-function Navbar() {
+function NavBar() {
   return (
     <div className="flex items-center gap-2">
       <NavButtons />
@@ -202,7 +202,7 @@ export function Layout() {
     return (
       <Wrapper>
         <div className="flex items-center px-4 z-9999 justify-between h-[48px]">
-          <Topbar />
+          <TopBar />
         </div>
       </Wrapper>
     )
@@ -213,10 +213,10 @@ export function Layout() {
       <ResizableContainer>
         <div className="flex flex-col h-full overflow-y-hidden">
           <div className="flex items-center z-9999 justify-between px-4 py-2 border-b">
-            <Topbar />
+            <TopBar />
           </div>
           <div className="flex items-center z-9999 justify-between px-4 py-2 border-b bg-gray-50">
-            <Navbar />
+            <NavBar />
           </div>
           <div className="flex-1 overflow-y-auto">
             <Outlet />
