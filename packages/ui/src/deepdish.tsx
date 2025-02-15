@@ -36,7 +36,11 @@ async function canEdit() {
       return body.signedIn
     },
     (error) => {
-      logger.error('Verifying edit context failed', { error, settings })
+      logger.error('Verifying edit context failed: {message}', {
+        message: error.message,
+        settings,
+      })
+
       return new Error(`Verifying edit context failed: ${error.message}`)
     },
   )
