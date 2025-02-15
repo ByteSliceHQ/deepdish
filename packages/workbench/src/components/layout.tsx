@@ -50,13 +50,17 @@ function ModeButton() {
 
   return (
     <Tooltip>
-      <TooltipTrigger asChild>
+      <TooltipTrigger asChild onClick={(event) => event.preventDefault()}>
         <Button size="sm" variant="secondary" onClick={actions.toggleMode}>
           {mode === 'edit' ? <PencilIcon /> : <EyeIcon />}
           {mode === 'edit' ? 'Editing' : 'Viewing'}
         </Button>
       </TooltipTrigger>
-      <TooltipContent side="top" portal={shadowRoot}>
+      <TooltipContent
+        side="top"
+        portal={shadowRoot}
+        onPointerDownOutside={(event) => event.preventDefault()}
+      >
         <p className="text-xs">{mode === 'edit' ? 'Editing' : 'Viewing'}</p>
       </TooltipContent>
     </Tooltip>
