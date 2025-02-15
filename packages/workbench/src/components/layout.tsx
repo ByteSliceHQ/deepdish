@@ -44,14 +44,22 @@ function ExpandButton() {
 }
 
 function ModeButton() {
+  const shadowRoot = useShadowRoot()
   const actions = useActions()
   const mode = useMode()
 
   return (
-    <Button size="sm" variant="secondary" onClick={actions.toggleMode}>
-      {mode === 'edit' ? <PencilIcon /> : <EyeIcon />}
-      {mode === 'edit' ? 'Editing' : 'Viewing'}
-    </Button>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button size="sm" variant="secondary" onClick={actions.toggleMode}>
+          {mode === 'edit' ? <PencilIcon /> : <EyeIcon />}
+          {mode === 'edit' ? 'Editing' : 'Viewing'}
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent side="top" portal={shadowRoot}>
+        <p className="text-xs">{mode === 'edit' ? 'Editing' : 'Viewing'}</p>
+      </TooltipContent>
+    </Tooltip>
   )
 }
 
