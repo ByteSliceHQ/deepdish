@@ -58,10 +58,13 @@ function ModeButton() {
       </TooltipTrigger>
       <TooltipContent
         side="top"
+        hidden={mode === 'view'}
         portal={shadowRoot}
         onPointerDownOutside={(event) => event.preventDefault()}
       >
-        <p className="text-xs">{mode === 'edit' ? 'Editing' : 'Viewing'}</p>
+        <p className="text-xs">
+          Right-click on a highlighted element to edit its content.
+        </p>
       </TooltipContent>
     </Tooltip>
   )
