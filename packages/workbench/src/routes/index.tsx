@@ -10,7 +10,10 @@ function Index() {
       <h1 className="text-xl text-gray-800">
         Welcome to the DeepDish Workbench
       </h1>
-      <p className="text-gray-700">Cool stuff, huh?</p>
+      <p className="text-gray-700">
+        This is where you can manage your content. We're still under
+        construction!
+      </p>
     </div>
   )
 }

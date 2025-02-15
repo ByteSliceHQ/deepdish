@@ -1,3 +1,4 @@
+import { EmptyState } from '@/components/empty-state'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/i18n')({
@@ -5,5 +6,9 @@ export const Route = createFileRoute('/i18n')({
 })
 
 function RouteComponent() {
-  return <div>Hello "/i18n"!</div>
+  return (
+    <div className="flex h-full items-center justify-center">
+      <EmptyState label="Internationalization coming soon!" />
+    </div>
+  )
 }
