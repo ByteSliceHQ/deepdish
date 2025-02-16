@@ -1,5 +1,14 @@
 # @deepdish/nextjs
 
+## 0.4.1
+
+### Patch Changes
+
+- 6c5105f: Fixed health check payload.
+- Updated dependencies [c608a12]
+- Updated dependencies [6c5105f]
+  - @deepdish/workbench@0.9.0
+
 ## 0.4.0
 
 ### Minor Changes

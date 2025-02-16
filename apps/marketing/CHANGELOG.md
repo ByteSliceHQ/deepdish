@@ -1,5 +1,18 @@
 # @deepdish/marketing
 
+## 0.10.2
+
+### Patch Changes
+
+- c608a12: Modified custom workbench title.
+- 6c5105f: Fixed health check payload.
+- Updated dependencies [b61a8ab]
+- Updated dependencies [6c5105f]
+- Updated dependencies [6c5105f]
+  - @deepdish/cms@0.3.1
+  - @deepdish/ui@0.11.2
+  - @deepdish/nextjs@0.4.1
+
 ## 0.10.1
 
 ### Patch Changes

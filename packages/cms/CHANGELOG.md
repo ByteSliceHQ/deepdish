@@ -1,5 +1,19 @@
 # @deepdish/cms
 
+## 0.3.1
+
+### Patch Changes
+
+- b61a8ab: Added `next` peer dependency.
+- Updated dependencies [c608a12]
+- Updated dependencies [6c5105f]
+- Updated dependencies [6c5105f]
+- Updated dependencies [6c5105f]
+  - @deepdish/workbench@0.9.0
+  - @deepdish/ui@0.11.2
+  - @deepdish/core@0.2.0
+  - @deepdish/nextjs@0.4.1
+
 ## 0.3.0
 
 ### Minor Changes
