@@ -41,7 +41,10 @@ export default function RootLayout({
       <html lang="en" className="scroll-smooth">
         <body className={`${GeistMono.className} antialiased`}>
           <TooltipProvider>
-            <DeepDishProvider authDisabled={true}>
+            <DeepDishProvider
+              title={`Try editing this page's content!`}
+              authDisabled={true}
+            >
               <PostHogProvider>
                 <AppLayout>{children}</AppLayout>
               </PostHogProvider>

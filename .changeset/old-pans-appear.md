@@ -2,4 +2,4 @@
 "@deepdish/marketing": patch
 ---
 
-Removed custom workbench title.
+Modified custom workbench title.
