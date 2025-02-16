@@ -44,14 +44,29 @@ function ExpandButton() {
 }
 
 function ModeButton() {
+  const shadowRoot = useShadowRoot()
   const actions = useActions()
   const mode = useMode()
 
   return (
-    <Button size="sm" variant="secondary" onClick={actions.toggleMode}>
-      {mode === 'edit' ? <PencilIcon /> : <EyeIcon />}
-      {mode === 'edit' ? 'Editing' : 'Viewing'}
-    </Button>
+    <Tooltip>
+      <TooltipTrigger asChild onClick={(event) => event.preventDefault()}>
+        <Button size="sm" variant="secondary" onClick={actions.toggleMode}>
+          {mode === 'edit' ? <PencilIcon /> : <EyeIcon />}
+          {mode === 'edit' ? 'Editing' : 'Viewing'}
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent
+        side="top"
+        hidden={mode === 'view'}
+        portal={shadowRoot}
+        onPointerDownOutside={(event) => event.preventDefault()}
+      >
+        <p className="text-xs">
+          Right-click on a highlighted element to edit its content.
+        </p>
+      </TooltipContent>
+    </Tooltip>
   )
 }
 
@@ -93,7 +108,7 @@ function TopBar() {
     <>
       <div className="flex items-center gap-2">
         <TerminalIcon className="h-4 w-4" />
-        {title ?? <p className="text-xs">Deepdish Workbench</p>}
+        {title ?? <p className="text-xs">DeepDish Workbench</p>}
       </div>
       <div className="flex items-center gap-2">
         {!authDisabled ? <AuthButtons /> : null}
