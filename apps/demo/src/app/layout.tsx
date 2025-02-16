@@ -1,6 +1,7 @@
 import { contentPath, initContent } from '@/content'
-import { DeepDishProvider, deepdish } from '@deepdish/cms'
+import { DeepDishProvider } from '@deepdish/cms'
 import { createJsonResolver } from '@deepdish/resolvers/json'
+import { configure } from '@deepdish/ui/config'
 import { typographySchema } from '@deepdish/ui/schemas'
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
@@ -8,7 +9,7 @@ import './globals.css'
 
 await initContent()
 
-await deepdish({
+await configure({
   contracts: {
     typography: {
       resolver: createJsonResolver(contentPath, typographySchema, {
