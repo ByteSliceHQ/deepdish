@@ -1,5 +1,13 @@
 # @deepdish/ui
 
+## 0.11.2
+
+### Patch Changes
+
+- 6c5105f: Improved error logging message.
+- Updated dependencies [6c5105f]
+  - @deepdish/core@0.2.0
+
 ## 0.11.1
 
 ### Patch Changes
