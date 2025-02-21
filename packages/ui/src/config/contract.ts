@@ -1,6 +1,15 @@
 import type { Resolver } from '@deepdish/resolvers'
-import type { ValueMap, ValueType } from '../schemas'
+import type { ZodTypeAny, z } from 'zod'
 
-export type Contract<T extends ValueType> = Readonly<{
-  resolver: Resolver<ValueMap[T]>
+type Schema = ZodTypeAny
+
+type Value<S extends Schema> = z.infer<S>
+
+export type Contract<S extends Schema> = Readonly<{
+  resolver: Resolver<Value<S>>
+  schema: S
+}>
+
+export type Contracts = Readonly<{
+  [key in string]?: Contract<Schema>
 }>

@@ -1,14 +1,9 @@
 import type { Result } from '@byteslice/result'
 import { getLogger } from '@logtape/logtape'
-import type { ValueType } from '../schemas'
-import type { Contract } from './contract'
+import type { Contract, Contracts } from './contract'
 import { configureLogging } from './logging'
 
 const logger = getLogger(['deepdish', 'config'])
-
-type Contracts = Readonly<{
-  [T in ValueType]?: Contract<T>
-}>
 
 type Logging = Readonly<{
   enabled: boolean
