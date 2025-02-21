@@ -1,7 +1,7 @@
 import { createTypographyResolver } from '@deepdish-cloud/resolvers/typography'
 import { configure } from '@deepdish/ui/config'
-import { deepdishMiddleware } from './middleware'
 import { ProviderContainer as DeepDishProvider } from './container'
+import { deepdishMiddleware } from './middleware'
 
 export type DeepDishConfig = {
   draft: boolean
