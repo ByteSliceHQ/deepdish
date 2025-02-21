@@ -3,6 +3,7 @@ import { defineConfig } from 'tsup'
 export default defineConfig([
   {
     entry: ['src/config/config.ts', 'src/content.ts', 'src/schemas.ts'],
+    clean: true,
     format: ['esm'],
     sourcemap: true,
     dts: true,
@@ -14,6 +15,7 @@ export default defineConfig([
       'src/elements/media.tsx',
       'src/elements/typography.tsx',
     ],
+    clean: true,
     format: ['esm'],
     sourcemap: true,
     dts: true,
@@ -26,6 +28,7 @@ export default defineConfig([
   {
     entry: ['src/menu/index.tsx'],
     outDir: 'dist/menu',
+    clean: true,
     format: ['esm'],
     sourcemap: true,
     dts: true,
