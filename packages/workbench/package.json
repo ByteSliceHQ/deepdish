@@ -27,11 +27,13 @@
     "@tailwindcss/postcss": "4.0.3",
     "@tailwindcss/vite": "4.0.3",
     "@tanstack/react-query": "5.66.0",
+    "@tanstack/react-router": "1.105.0",
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
     "lucide-react": "0.475.0",
     "msw": "2.7.0",
     "postcss": "8.5.1",
+    "re-resizable": "6.10.3",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "react-shadow-scope": "1.0.11",
@@ -41,6 +43,8 @@
     "valibot": "1.0.0-rc.0"
   },
   "devDependencies": {
+    "@tanstack/router-devtools": "1.105.0",
+    "@tanstack/router-plugin": "1.105.0",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
     "@vitejs/plugin-react-swc": "3.5.0",

@@ -4,8 +4,15 @@ import { http, HttpResponse } from 'msw'
 let signedIn = false
 
 export const handlers = [
+  http.get('/__deepdish/health', async () => {
+    await delay(100)
+
+    return HttpResponse.json({
+      ok: true,
+    })
+  }),
   http.get('/__deepdish/verify', async () => {
-    await delay(2000)
+    await delay(1000)
 
     return HttpResponse.json({
       signedIn,

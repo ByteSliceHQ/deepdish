@@ -37,6 +37,9 @@
     "@types/react": "18.3.3",
     "tsup": "8.2.4"
   },
+  "peerDependencies": {
+    "next": "^15"
+  },
   "publishConfig": {
     "access": "public"
   }

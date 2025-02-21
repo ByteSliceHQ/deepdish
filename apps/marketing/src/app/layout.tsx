@@ -2,7 +2,6 @@ import '@/styles/globals.css'
 import { cms } from '@/cms'
 import { AppLayout } from '@/components/app-layout'
 import { TooltipProvider } from '@/components/ui/tooltip'
-import { WorkbenchTitle } from '@/components/workbench-title'
 import { PostHogProvider } from '@/posthog'
 import { ClerkProvider } from '@clerk/nextjs'
 import { DeepDishProvider } from '@deepdish/cms'
@@ -42,7 +41,10 @@ export default function RootLayout({
       <html lang="en" className="scroll-smooth">
         <body className={`${GeistMono.className} antialiased`}>
           <TooltipProvider>
-            <DeepDishProvider title={<WorkbenchTitle />} authDisabled={true}>
+            <DeepDishProvider
+              title={`Try editing this page's content!`}
+              authDisabled={true}
+            >
               <PostHogProvider>
                 <AppLayout>{children}</AppLayout>
               </PostHogProvider>
