@@ -1,12 +1,8 @@
-import { routeTree } from '@/generated/routeTree.gen'
 import { WorkbenchProvider } from '@/lib/context'
-import {
-  RouterProvider,
-  createMemoryHistory,
-  createRouter,
-} from '@tanstack/react-router'
+import { RouterProvider } from '@tanstack/react-router'
 import { type RefObject, useRef } from 'react'
 import { Tailwind } from 'react-shadow-scope'
+import { router } from './router'
 
 declare module '@tanstack/react-router' {
   interface Register {
@@ -19,15 +15,6 @@ export type WorkbenchProps = {
   title?: React.ReactNode
   authDisabled?: boolean
 }
-
-const memoryHistory = createMemoryHistory({
-  initialEntries: ['/'],
-})
-
-const router = createRouter({
-  routeTree,
-  history: memoryHistory,
-})
 
 export function Shadow(props: WorkbenchProps) {
   const ref = useRef<HTMLDivElement>(null)

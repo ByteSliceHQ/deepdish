@@ -1,4 +1,5 @@
-import { QueryClient, useQuery } from '@tanstack/react-query'
+import { QueryClient, queryOptions, useQuery } from '@tanstack/react-query'
+import { trpc } from '@deepdish/trpc/client'
 import { health, verify } from './api'
 
 export const queryClient = new QueryClient()
@@ -20,6 +21,24 @@ export function useHealth() {
     queryKey: ['health'],
     queryFn: async () => {
       return await health()
+    },
+  })
+}
+
+export function catalogOptions() {
+  return queryOptions({
+    queryKey: ['catalog'],
+    queryFn: async () => {
+      return await trpc.getCatalog.query()
+    },
+  })
+}
+
+export function keyOptions(name: string) {
+  return queryOptions({
+    queryKey: ['key', name],
+    queryFn: async () => {
+      return await trpc.getKey.query({ name })
     },
   })
 }

@@ -7,7 +7,13 @@ import {
 import { useAuthDisabled, useShadowRoot, useTitle } from '@/lib/context'
 import { useAuth } from '@/lib/queries'
 import { useActions, useMode, useWorkbenchOpen } from '@deepdish/core/context'
-import { Link, Outlet, useCanGoBack, useRouter } from '@tanstack/react-router'
+import {
+  Link,
+  Outlet,
+  useCanGoBack,
+  useRouter,
+  useRouterState,
+} from '@tanstack/react-router'
 import {
   ArrowLeftIcon,
   ArrowRightIcon,
@@ -170,9 +176,19 @@ function NavButtons() {
   )
 }
 
+function NavigationSpinner() {
+  const routerState = useRouterState()
+
+  if (routerState.isLoading) {
+    return <Spinner />
+  }
+
+  return null
+}
+
 function NavBar() {
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2 w-full">
       <NavButtons />
       <div className="flex items-center gap-2 ml-2">
         <Link to="/catalog">
@@ -203,6 +219,9 @@ function NavBar() {
             </Button>
           )}
         </Link>
+      </div>
+      <div className="ml-auto">
+        <NavigationSpinner />
       </div>
     </div>
   )
