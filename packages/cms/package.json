@@ -12,12 +12,8 @@
       "types": "./dist/cms.d.mts"
     },
     "./vercel": {
-      "import": "./dist/vercel/index.mjs",
-      "types": "./dist/vercel/index.d.mts"
-    },
-    "./typography": {
-      "import": "./dist/typography/index.mjs",
-      "types": "./dist/typography/index.d.mts"
+      "import": "./dist/vercel.mjs",
+      "types": "./dist/vercel.d.mts"
     }
   },
   "scripts": {

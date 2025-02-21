@@ -7,5 +7,10 @@ export default defineConfig([
     sourcemap: true,
     dts: true,
     target: 'esnext',
+    esbuildOptions(options) {
+      options.banner = {
+        js: '"use client";',
+      }
+    },
   },
 ])
