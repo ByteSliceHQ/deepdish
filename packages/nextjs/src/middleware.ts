@@ -1,6 +1,8 @@
 import { type NextRequest, NextResponse } from 'next/server'
-
+import { fetchRequestHandler } from '@trpc/server/adapters/fetch'
 import { getCss } from '@deepdish/workbench/css'
+import { appRouter } from '@deepdish/trpc/server'
+import { TRPC_ENDPOINT } from '@deepdish/trpc/constants'
 
 export type DeepdishMiddlewareConfig = {
   draft: boolean
@@ -24,6 +26,16 @@ export async function deepdishMiddleware(
   }
 
   const { url, method } = request
+
+  if (url.includes(TRPC_ENDPOINT)) {
+    return fetchRequestHandler({
+      endpoint: TRPC_ENDPOINT,
+      req: request,
+      router: appRouter,
+      // TODO: include DeepDish config in
+      createContext: () => ({}),
+    })
+  }
 
   if (url.includes('/__deepdish/') && method === 'GET') {
     if (url.endsWith('/css')) {
