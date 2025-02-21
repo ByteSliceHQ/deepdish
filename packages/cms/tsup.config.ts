@@ -8,6 +8,7 @@ export default defineConfig([
       'src/middleware.ts',
       'src/container.tsx',
     ],
+    external: ['react', 'react-dom'],
     format: ['esm'],
     sourcemap: true,
     target: 'esnext',
@@ -18,6 +19,7 @@ export default defineConfig([
   },
   {
     entry: ['src/provider.tsx'],
+    external: ['react', 'react-dom'],
     format: ['esm'],
     sourcemap: true,
     dts: true,
