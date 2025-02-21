@@ -38,7 +38,7 @@
   },
   "peerDependencies": {
     "next": "^15",
-    "react:": "^19"
+    "react": "^19"
   },
   "publishConfig": {
     "access": "public"
