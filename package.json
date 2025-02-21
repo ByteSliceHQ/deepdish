@@ -7,6 +7,7 @@
   ],
   "scripts": {
     "build": "turbo run build",
+    "build:apps": "turbo run build --filter './apps/*'",
     "build:packages": "turbo run build --filter './packages/*'",
     "ci:publish": "bun run build:packages && changeset publish && git push --follow-tags",
     "ci:version": "changeset version",
