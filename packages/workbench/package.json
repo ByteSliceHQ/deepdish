@@ -21,7 +21,6 @@
   },
   "dependencies": {
     "@byteslice/result": "0.1.0",
-    "@deepdish/core": "workspace:0.1.1",
     "@radix-ui/react-slot": "1.1.2",
     "@radix-ui/react-tooltip": "1.1.8",
     "@tailwindcss/postcss": "4.0.3",
@@ -43,6 +42,7 @@
     "valibot": "1.0.0-rc.0"
   },
   "devDependencies": {
+    "@deepdish/core": "workspace:0.1.1",
     "@tanstack/router-devtools": "1.105.0",
     "@tanstack/router-plugin": "1.105.0",
     "@types/react": "18.3.3",

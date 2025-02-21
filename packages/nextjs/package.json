@@ -16,10 +16,8 @@
     "build": "tsup",
     "dev": "tsup --watch"
   },
-  "dependencies": {
-    "@deepdish/workbench": "workspace:0.8.0"
-  },
   "devDependencies": {
+    "@deepdish/workbench": "workspace:0.8.0",
     "@tsconfig/create-react-app": "2.0.5",
     "@types/bun": "1.1.9",
     "@types/node": "20.9.0",
