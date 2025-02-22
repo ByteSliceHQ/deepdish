@@ -33,13 +33,3 @@ export const videoSchema = z.object({
 })
 
 export type VideoValue = z.infer<typeof videoSchema>
-
-export type ValueMap = {
-  audio: AudioValue
-  image: ImageValue
-  link: LinkValue
-  typography: TypographyValue
-  video: VideoValue
-}
-
-export type ValueType = keyof ValueMap

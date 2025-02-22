@@ -38,7 +38,6 @@ export function BlockQuote(props: TypographyProps<'blockquote'>) {
       deepdish={props.deepdish}
       fallback={props.children}
       render={renderWithFormatting(props, 'blockquote')}
-      type="typography"
     />
   )
 }
@@ -49,7 +48,6 @@ export function Bold(props: TypographyProps<'b'>) {
       deepdish={props.deepdish}
       fallback={props.children}
       render={renderWithFormatting(props, 'b')}
-      type="typography"
     />
   )
 }
@@ -60,7 +58,6 @@ export function Div(props: TypographyProps<'div'>) {
       deepdish={props.deepdish}
       fallback={props.children}
       render={renderWithFormatting(props, 'div')}
-      type="typography"
     />
   )
 }
@@ -71,7 +68,6 @@ export function Emphasize(props: TypographyProps<'em'>) {
       deepdish={props.deepdish}
       fallback={props.children}
       render={renderWithFormatting(props, 'em')}
-      type="typography"
     />
   )
 }
@@ -99,7 +95,6 @@ export function Heading(
       deepdish={props.deepdish}
       fallback={props.children}
       render={renderWithFormatting(rest, headings[level])}
-      type="typography"
     />
   )
 }
@@ -134,7 +129,6 @@ export function Italicize(props: TypographyProps<'i'>) {
       deepdish={props.deepdish}
       fallback={props.children}
       render={renderWithFormatting(props, 'i')}
-      type="typography"
     />
   )
 }
@@ -145,7 +139,6 @@ export function Paragraph(props: TypographyProps<'p'>) {
       deepdish={props.deepdish}
       fallback={props.children}
       render={renderWithFormatting(props, 'p')}
-      type="typography"
     />
   )
 }
@@ -156,7 +149,6 @@ export function Span(props: TypographyProps<'span'>) {
       deepdish={props.deepdish}
       fallback={props.children}
       render={renderWithFormatting(props, 'span')}
-      type="typography"
     />
   )
 }
@@ -167,7 +159,6 @@ export function Strong(props: TypographyProps<'strong'>) {
       deepdish={props.deepdish}
       fallback={props.children}
       render={renderWithFormatting(props, 'strong')}
-      type="typography"
     />
   )
 }
@@ -178,7 +169,6 @@ export function Underline(props: TypographyProps<'u'>) {
       deepdish={props.deepdish}
       fallback={props.children}
       render={renderWithFormatting(props, 'u')}
-      type="typography"
     />
   )
 }

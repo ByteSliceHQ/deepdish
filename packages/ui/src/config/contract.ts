@@ -1,7 +1,7 @@
 import type { Resolver } from '@deepdish/resolvers'
 import type { ZodTypeAny, z } from 'zod'
 
-type Schema = ZodTypeAny
+export type Schema = ZodTypeAny
 
 type Value<S extends Schema> = z.infer<S>
 

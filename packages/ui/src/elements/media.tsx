@@ -19,7 +19,6 @@ export function Audio(props: ElementProps<'audio', string>) {
           </audio>
         )
       }}
-      type="audio"
     />
   )
 }
@@ -43,7 +42,6 @@ export function Image(props: ElementProps<'img'>) {
           />
         )
       }}
-      type="image"
     />
   )
 }
@@ -63,7 +61,6 @@ export function Video(props: ElementProps<'video', string>) {
           </video>
         )
       }}
-      type="video"
     />
   )
 }
