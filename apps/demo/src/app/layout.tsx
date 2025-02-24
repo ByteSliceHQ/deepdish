@@ -15,6 +15,7 @@ await configure({
       resolver: createJsonResolver(contentPath, typographySchema, {
         maxBatchSize: 10,
       }),
+      schema: typographySchema,
     },
   },
   logging: {
