@@ -1,5 +1,18 @@
 # @deepdish/workbench
 
+## 0.9.0
+
+### Minor Changes
+
+- bb99318: Removed dependency workspace prefix before publishing.
+- 6c5105f: Implemented Workbench router and resizing.
+
+### Patch Changes
+
+- c608a12: Added tooltip to guide user behavior while in "edit" mode.
+- Updated dependencies [6c5105f]
+  - @deepdish/core@0.2.0
+
 ## 0.8.0
 
 ### Minor Changes

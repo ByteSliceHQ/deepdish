@@ -1,5 +1,17 @@
 # @deepdish/ui
 
+## 0.12.0
+
+### Minor Changes
+
+- bb99318: Removed dependency workspace prefix before publishing.
+
+### Patch Changes
+
+- 6c5105f: Improved error logging message.
+- Updated dependencies [6c5105f]
+  - @deepdish/core@0.2.0
+
 ## 0.11.1
 
 ### Patch Changes

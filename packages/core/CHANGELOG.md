@@ -1,5 +1,11 @@
 # @deepdish/core
 
+## 0.2.0
+
+### Minor Changes
+
+- 6c5105f: Implemented Workbench router and resizing.
+
 ## 0.1.1
 
 ### Patch Changes
