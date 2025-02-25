@@ -1,5 +1,12 @@
 # @deepdish/ui
 
+## 0.12.1
+
+### Patch Changes
+
+- Updated dependencies [77200b9]
+  - @deepdish/stylesheet@0.2.0
+
 ## 0.12.0
 
 ### Minor Changes

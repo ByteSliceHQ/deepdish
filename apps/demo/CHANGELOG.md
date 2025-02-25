@@ -1,5 +1,12 @@
 # @deepdish/demo
 
+## 0.2.5
+
+### Patch Changes
+
+- @deepdish/ui@0.12.1
+- @deepdish/cms@0.4.1
+
 ## 0.2.4
 
 ### Patch Changes
