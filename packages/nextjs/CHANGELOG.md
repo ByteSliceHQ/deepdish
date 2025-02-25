@@ -1,5 +1,19 @@
 # @deepdish/nextjs
 
+## 0.5.0
+
+### Minor Changes
+
+- bb99318: Removed dependency workspace prefix before publishing.
+
+### Patch Changes
+
+- 6c5105f: Fixed health check payload.
+- Updated dependencies [c608a12]
+- Updated dependencies [bb99318]
+- Updated dependencies [6c5105f]
+  - @deepdish/workbench@0.9.0
+
 ## 0.4.0
 
 ### Minor Changes
