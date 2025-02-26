@@ -1,5 +1,30 @@
 # @deepdish/cms
 
+## 0.4.1
+
+### Patch Changes
+
+- @deepdish/ui@0.12.1
+
+## 0.4.0
+
+### Minor Changes
+
+- bb99318: Removed dependency workspace prefix before publishing.
+
+### Patch Changes
+
+- b61a8ab: Added `next` peer dependency.
+- Updated dependencies [c608a12]
+- Updated dependencies [6c5105f]
+- Updated dependencies [bb99318]
+- Updated dependencies [6c5105f]
+- Updated dependencies [6c5105f]
+  - @deepdish/workbench@0.9.0
+  - @deepdish/ui@0.12.0
+  - @deepdish/nextjs@0.5.0
+  - @deepdish/core@0.2.0
+
 ## 0.3.0
 
 ### Minor Changes

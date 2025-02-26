@@ -1,7 +1,6 @@
 {
   "name": "@deepdish/stylesheet",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.2.0",
   "description": "CSS-in-TS style sheet",
   "author": {
     "name": "ByteSlice, LLC",
@@ -19,5 +18,8 @@
     "@tsconfig/create-react-app": "2.0.5",
     "@types/bun": "1.1.10",
     "dedent": "1.5.3"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

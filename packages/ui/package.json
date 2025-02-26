@@ -1,6 +1,6 @@
 {
   "name": "@deepdish/ui",
-  "version": "0.11.1",
+  "version": "0.12.1",
   "description": "DeepDish UI components",
   "author": {
     "name": "ByteSlice, LLC",
@@ -34,7 +34,9 @@
   },
   "dependencies": {
     "@byteslice/result": "0.1.0",
-    "@deepdish/core": "workspace:0.1.1",
+    "@deepdish/core": "workspace:0.2.0",
+    "@deepdish/resolvers": "workspace:0.10.0",
+    "@deepdish/stylesheet": "workspace:0.2.0",
     "@logtape/logtape": "0.6.2",
     "@radix-ui/react-context-menu": "2.2.1",
     "class-variance-authority": "0.7.0",
@@ -52,8 +54,6 @@
     "zod": "3.23.8"
   },
   "devDependencies": {
-    "@deepdish/resolvers": "workspace:0.10.0",
-    "@deepdish/stylesheet": "workspace:0.1.0",
     "@tsconfig/create-react-app": "2.0.5",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
