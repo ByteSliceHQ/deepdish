@@ -16,6 +16,9 @@ import { Route as LogsImport } from './../routes/logs'
 import { Route as I18nImport } from './../routes/i18n'
 import { Route as CatalogImport } from './../routes/catalog'
 import { Route as IndexImport } from './../routes/index'
+import { Route as CatalogIndexImport } from './../routes/catalog/index'
+import { Route as CatalogNewImport } from './../routes/catalog/new'
+import { Route as CatalogKeyImport } from './../routes/catalog/$key'
 
 // Create/Update Routes
 
@@ -47,6 +50,24 @@ const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRoute,
+} as any)
+
+const CatalogIndexRoute = CatalogIndexImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => CatalogRoute,
+} as any)
+
+const CatalogNewRoute = CatalogNewImport.update({
+  id: '/new',
+  path: '/new',
+  getParentRoute: () => CatalogRoute,
+} as any)
+
+const CatalogKeyRoute = CatalogKeyImport.update({
+  id: '/$key',
+  path: '/$key',
+  getParentRoute: () => CatalogRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
@@ -88,48 +109,116 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ToneImport
       parentRoute: typeof rootRoute
     }
+    '/catalog/$key': {
+      id: '/catalog/$key'
+      path: '/$key'
+      fullPath: '/catalog/$key'
+      preLoaderRoute: typeof CatalogKeyImport
+      parentRoute: typeof CatalogImport
+    }
+    '/catalog/new': {
+      id: '/catalog/new'
+      path: '/new'
+      fullPath: '/catalog/new'
+      preLoaderRoute: typeof CatalogNewImport
+      parentRoute: typeof CatalogImport
+    }
+    '/catalog/': {
+      id: '/catalog/'
+      path: '/'
+      fullPath: '/catalog/'
+      preLoaderRoute: typeof CatalogIndexImport
+      parentRoute: typeof CatalogImport
+    }
   }
 }
 
 // Create and export the route tree
 
+interface CatalogRouteChildren {
+  CatalogKeyRoute: typeof CatalogKeyRoute
+  CatalogNewRoute: typeof CatalogNewRoute
+  CatalogIndexRoute: typeof CatalogIndexRoute
+}
+
+const CatalogRouteChildren: CatalogRouteChildren = {
+  CatalogKeyRoute: CatalogKeyRoute,
+  CatalogNewRoute: CatalogNewRoute,
+  CatalogIndexRoute: CatalogIndexRoute,
+}
+
+const CatalogRouteWithChildren =
+  CatalogRoute._addFileChildren(CatalogRouteChildren)
+
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/catalog': typeof CatalogRoute
+  '/catalog': typeof CatalogRouteWithChildren
   '/i18n': typeof I18nRoute
   '/logs': typeof LogsRoute
   '/tone': typeof ToneRoute
+  '/catalog/$key': typeof CatalogKeyRoute
+  '/catalog/new': typeof CatalogNewRoute
+  '/catalog/': typeof CatalogIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/catalog': typeof CatalogRoute
   '/i18n': typeof I18nRoute
   '/logs': typeof LogsRoute
   '/tone': typeof ToneRoute
+  '/catalog/$key': typeof CatalogKeyRoute
+  '/catalog/new': typeof CatalogNewRoute
+  '/catalog': typeof CatalogIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/catalog': typeof CatalogRoute
+  '/catalog': typeof CatalogRouteWithChildren
   '/i18n': typeof I18nRoute
   '/logs': typeof LogsRoute
   '/tone': typeof ToneRoute
+  '/catalog/$key': typeof CatalogKeyRoute
+  '/catalog/new': typeof CatalogNewRoute
+  '/catalog/': typeof CatalogIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/catalog' | '/i18n' | '/logs' | '/tone'
+  fullPaths:
+    | '/'
+    | '/catalog'
+    | '/i18n'
+    | '/logs'
+    | '/tone'
+    | '/catalog/$key'
+    | '/catalog/new'
+    | '/catalog/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/catalog' | '/i18n' | '/logs' | '/tone'
-  id: '__root__' | '/' | '/catalog' | '/i18n' | '/logs' | '/tone'
+  to:
+    | '/'
+    | '/i18n'
+    | '/logs'
+    | '/tone'
+    | '/catalog/$key'
+    | '/catalog/new'
+    | '/catalog'
+  id:
+    | '__root__'
+    | '/'
+    | '/catalog'
+    | '/i18n'
+    | '/logs'
+    | '/tone'
+    | '/catalog/$key'
+    | '/catalog/new'
+    | '/catalog/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  CatalogRoute: typeof CatalogRoute
+  CatalogRoute: typeof CatalogRouteWithChildren
   I18nRoute: typeof I18nRoute
   LogsRoute: typeof LogsRoute
   ToneRoute: typeof ToneRoute
@@ -137,7 +226,7 @@ export interface RootRouteChildren {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  CatalogRoute: CatalogRoute,
+  CatalogRoute: CatalogRouteWithChildren,
   I18nRoute: I18nRoute,
   LogsRoute: LogsRoute,
   ToneRoute: ToneRoute,
@@ -164,7 +253,12 @@ export const routeTree = rootRoute
       "filePath": "index.tsx"
     },
     "/catalog": {
-      "filePath": "catalog.tsx"
+      "filePath": "catalog.tsx",
+      "children": [
+        "/catalog/$key",
+        "/catalog/new",
+        "/catalog/"
+      ]
     },
     "/i18n": {
       "filePath": "i18n.tsx"
@@ -174,6 +268,18 @@ export const routeTree = rootRoute
     },
     "/tone": {
       "filePath": "tone.tsx"
+    },
+    "/catalog/$key": {
+      "filePath": "catalog/$key.tsx",
+      "parent": "/catalog"
+    },
+    "/catalog/new": {
+      "filePath": "catalog/new.tsx",
+      "parent": "/catalog"
+    },
+    "/catalog/": {
+      "filePath": "catalog/index.tsx",
+      "parent": "/catalog"
     }
   }
 }

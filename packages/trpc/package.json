@@ -1,0 +1,17 @@
+{
+  "name": "@deepdish/trpc",
+  "version": "0.0.0",
+  "private": true,
+  "description": "DeepDish tRPC routers and helpers",
+  "exports": {
+    "./client": "./src/client.ts",
+    "./constants": "./src/constants.ts",
+    "./server": "./src/server.ts"
+  },
+  "dependencies": {
+    "@trpc/client": "11.0.0-rc.791",
+    "@trpc/server": "11.0.0-rc.791",
+    "@valibot/to-json-schema": "1.0.0-rc.0",
+    "valibot": "1.0.0-rc.1"
+  }
+}
