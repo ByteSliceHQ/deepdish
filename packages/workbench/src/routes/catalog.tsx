@@ -1,8 +1,8 @@
-import { createFileRoute, Link, Outlet } from '@tanstack/react-router'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { catalogOptions } from '@/lib/queries'
 import { useSuspenseQuery } from '@tanstack/react-query'
+import { Link, Outlet, createFileRoute } from '@tanstack/react-router'
 import { PlusIcon } from 'lucide-react'
 
 export const Route = createFileRoute('/catalog')({

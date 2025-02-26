@@ -1,5 +1,5 @@
-import * as v from 'valibot'
 import { toJsonSchema } from '@valibot/to-json-schema'
+import * as v from 'valibot'
 
 const Blog = v.object({
   title: v.string(),

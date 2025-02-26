@@ -1,16 +1,16 @@
-import type { Editor } from '@tiptap/react'
 import { Button } from '@/components/ui/button'
+import type { Editor } from '@tiptap/react'
 import {
   BoldIcon,
-  ItalicIcon,
-  StrikethroughIcon,
   CodeIcon,
   Heading1Icon,
   Heading2Icon,
   Heading3Icon,
   Heading4Icon,
+  ItalicIcon,
   ListIcon,
   ListOrderedIcon,
+  StrikethroughIcon,
   TextQuoteIcon,
 } from 'lucide-react'
 

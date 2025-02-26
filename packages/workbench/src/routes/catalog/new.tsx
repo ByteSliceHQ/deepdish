@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { JsonSchemaForm } from '@/components/json-schema-form'
 import { catalogOptions } from '@/lib/queries'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { createFileRoute } from '@tanstack/react-router'
-import { JsonSchemaForm } from '@/components/json-schema-form'
+import { useState } from 'react'
 
+import { Input } from '@/components/ui/input'
 import {
   Select,
   SelectContent,
@@ -11,7 +12,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { Input } from '@/components/ui/input'
 
 export const Route = createFileRoute('/catalog/new')({
   component: RouteComponent,

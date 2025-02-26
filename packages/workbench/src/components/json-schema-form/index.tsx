@@ -1,17 +1,17 @@
+import { RichText } from '@/components/rich-text'
+import { Button } from '@/components/ui/button'
+import { Checkbox } from '@/components/ui/checkbox'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import type { JSONSchema7, JSONSchema7Definition } from 'json-schema'
 import { useEffect, useMemo, useState } from 'react'
 import {
-  useForm,
-  Controller,
-  type UseFormRegister,
   type Control,
+  Controller,
   type FieldValues,
+  type UseFormRegister,
+  useForm,
 } from 'react-hook-form'
-import type { JSONSchema7, JSONSchema7Definition } from 'json-schema'
-import { RichText } from '@/components/rich-text'
-import { Label } from '@/components/ui/label'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Checkbox } from '@/components/ui/checkbox'
 
 type Content = object | string | number | boolean | null | undefined
 

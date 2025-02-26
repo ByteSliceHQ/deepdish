@@ -1,4 +1,3 @@
-import { z } from 'zod'
 import { initTRPC } from '@trpc/server'
 import { toJsonSchema } from '@valibot/to-json-schema'
 import * as v from 'valibot'
@@ -30,8 +29,8 @@ export const appRouter = router({
   }),
   getKey: publicProcedure
     .input(
-      z.object({
-        name: z.string(),
+      v.object({
+        name: v.string(),
       }),
     )
     .output(schemas.Key)
@@ -44,10 +43,11 @@ export const appRouter = router({
         schema: toJsonSchema(v.string()),
       }
     }),
+  // TODO: deprecate
   greeting: publicProcedure
     .input(
-      z.object({
-        name: z.string().nullish(),
+      v.object({
+        name: v.string(),
       }),
     )
     .query(({ input }) => {

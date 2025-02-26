@@ -1,5 +1,5 @@
-import { QueryClient, queryOptions, useQuery } from '@tanstack/react-query'
 import { trpc } from '@deepdish/trpc/client'
+import { QueryClient, queryOptions, useQuery } from '@tanstack/react-query'
 import { health, verify } from './api'
 
 export const queryClient = new QueryClient()
