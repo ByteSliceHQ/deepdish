@@ -10,7 +10,21 @@ type EditorProps<V> = {
   onUpdate: (value: V) => Promise<void>
 }
 
+// TODO: determine "quick edit" behavior for non-string contracts
 export function Editor<V>(props: EditorProps<V>) {
+  if (typeof props.value !== 'string') {
+    return <>Under Construction</>
+  }
+
+  return (
+    <TypographyEditor
+      value={props.value}
+      onUpdate={props.onUpdate as (value: string) => Promise<void>}
+    />
+  )
+}
+
+function TypographyEditor(props: EditorProps<string>) {
   const router = useRouter()
   const [value, setValue] = useState<string>(props.value || '')
   const [loading, setLoading] = useState<boolean>(false)
