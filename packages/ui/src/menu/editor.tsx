@@ -5,12 +5,12 @@ import { useState } from 'react'
 import { Button } from './button'
 import * as styles from './editor.css'
 
-type EditorProps = {
-  value?: string | null
-  onUpdate: (value: string | null) => Promise<void>
+type EditorProps<V> = {
+  value?: V
+  onUpdate: (value: V) => Promise<void>
 }
 
-export function Editor(props: EditorProps) {
+export function Editor<V>(props: EditorProps<V>) {
   const router = useRouter()
   const [value, setValue] = useState<string>(props.value || '')
   const [loading, setLoading] = useState<boolean>(false)

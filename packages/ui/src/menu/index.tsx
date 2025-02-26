@@ -9,19 +9,18 @@ import { Editor } from './editor'
 import * as styles from './menu.css'
 import { stylesheet } from './stylesheet'
 
-type MenuProps = {
+type MenuProps<V> = {
   children: React.ReactNode
-  onUpdate: (value: string | null) => Promise<void>
+  onUpdate: (value: V) => Promise<void>
   deepdish: DeepDishElementProps
-  // TODO: this should be typed to the resolver schema
-  value?: string | null
+  value?: V
 }
 
 function SubMenuChevron() {
   return <ChevronRight size="1rem" />
 }
 
-export function Menu(props: MenuProps) {
+export function Menu<V>(props: MenuProps<V>) {
   const mode = useMode()
 
   if (mode === 'view') {

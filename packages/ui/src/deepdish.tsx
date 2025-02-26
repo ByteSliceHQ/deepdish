@@ -56,12 +56,11 @@ function getResolver(contract: DeepDishProps['contract']) {
   return result.failure ? null : result.data.resolver
 }
 
-function handleUpdate(
+function handleUpdate<V>(
   contract: DeepDishProps['contract'],
   key: DeepDishElementProps['key'],
 ) {
-  // TODO: type of `value` should be based on data contract
-  return async (value: string | null) => {
+  return async (value: V) => {
     'use server'
 
     const resolver = getResolver(contract)
@@ -73,10 +72,9 @@ function handleUpdate(
       return
     }
 
-    // TODO: handle `value` "fallback" based on data contract
     const writeResult = await resolver.write(
       { key, headers: await headers() },
-      value ?? '',
+      value,
     )
     if (writeResult.failure) {
       logger.error('Unable to save {contract} content for {key}: {reason}', {
@@ -129,7 +127,7 @@ async function DeepDishElement<V>(props: {
             <Shell deepdishKey={props.deepdish.key}>
               <Menu
                 deepdish={props.deepdish}
-                value={props.fallback as string}
+                value={props.fallback}
                 onUpdate={handleUpdate(
                   props.deepdish.contract,
                   props.deepdish.key,
@@ -147,18 +145,17 @@ async function DeepDishElement<V>(props: {
   }
 
   if (!(await canEdit())) {
-    return props.render(readResult.data as V)
+    return props.render(readResult.data)
   }
 
   return (
     <Shell deepdishKey={props.deepdish.key}>
       <Menu
         deepdish={props.deepdish}
-        // TODO: remove string type coercion once we support more resolver types
-        value={readResult.data as string}
+        value={readResult.data}
         onUpdate={handleUpdate(props.deepdish.contract, props.deepdish.key)}
       >
-        {props.render(readResult.data as V)}
+        {props.render(readResult.data)}
       </Menu>
     </Shell>
   )
