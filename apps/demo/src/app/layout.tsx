@@ -5,9 +5,15 @@ import { configure } from '@deepdish/ui/config'
 import { typographySchema } from '@deepdish/ui/typography'
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
+import { z } from 'zod'
 import './globals.css'
 
 await initContent()
+
+const blogSchema = z.object({
+  title: z.string(),
+  body: z.string(),
+})
 
 await configure({
   contracts: {
@@ -16,6 +22,12 @@ await configure({
         maxBatchSize: 10,
       }),
       schema: typographySchema,
+    },
+    blog: {
+      resolver: createJsonResolver(contentPath, blogSchema, {
+        maxBatchSize: 10,
+      }),
+      schema: blogSchema,
     },
   },
   logging: {
