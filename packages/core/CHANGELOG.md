@@ -1,5 +1,11 @@
 # @deepdish/core
 
+## 0.3.0
+
+### Minor Changes
+
+- a667382: Implemented type module for all packages.
+
 ## 0.2.0
 
 ### Minor Changes

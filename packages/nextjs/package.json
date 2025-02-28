@@ -1,15 +1,16 @@
 {
   "name": "@deepdish/nextjs",
-  "version": "0.5.0",
+  "version": "0.7.0",
   "description": "DeepDish Next.js utilities",
   "author": {
     "name": "ByteSlice, LLC",
     "url": "https://byteslice.co"
   },
+  "type": "module",
   "exports": {
     ".": {
-      "import": "./dist/middleware.mjs",
-      "types": "./dist/middleware.d.mts"
+      "import": "./dist/middleware.js",
+      "types": "./dist/middleware.d.ts"
     }
   },
   "scripts": {
@@ -19,7 +20,7 @@
   "dependencies": {
     "@deepdish/trpc": "workspace:0.0.0",
     "@deepdish/ui": "workspace:0.12.1",
-    "@deepdish/workbench": "workspace:0.9.0"
+    "@deepdish/workbench": "workspace:0.9.1"
   },
   "devDependencies": {
     "@tsconfig/create-react-app": "2.0.5",

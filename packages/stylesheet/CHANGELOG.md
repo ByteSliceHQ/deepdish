@@ -1,5 +1,18 @@
 # @deepdish/stylesheet
 
+## 0.4.0
+
+### Minor Changes
+
+- a667382: Implemented type module for all packages.
+
+## 0.3.0
+
+### Minor Changes
+
+- 074e85d: Ensured tsup target is esnext.
+- 074e85d: Released stylesheet package as a public package.
+
 ## 0.2.0
 
 ### Minor Changes

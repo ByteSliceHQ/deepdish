@@ -1,31 +1,32 @@
 {
   "name": "@deepdish/ui",
-  "version": "0.12.1",
+  "version": "0.14.0",
   "description": "DeepDish UI components",
   "author": {
     "name": "ByteSlice, LLC",
     "url": "https://byteslice.co"
   },
+  "type": "module",
   "exports": {
     "./config": {
-      "import": "./dist/config/config.mjs",
-      "types": "./dist/config/config.d.mts"
+      "import": "./dist/config/config.js",
+      "types": "./dist/config/config.d.ts"
     },
     "./link": {
-      "import": "./dist/elements/link.mjs",
-      "types": "./dist/elements/link.d.mts"
+      "import": "./dist/elements/link.js",
+      "types": "./dist/elements/link.d.ts"
     },
     "./media": {
-      "import": "./dist/elements/media.mjs",
-      "types": "./dist/elements/media.d.mts"
+      "import": "./dist/elements/media.js",
+      "types": "./dist/elements/media.d.ts"
     },
     "./schemas": {
-      "import": "./dist/schemas.mjs",
-      "types": "./dist/schemas.d.mts"
+      "import": "./dist/schemas.js",
+      "types": "./dist/schemas.d.ts"
     },
     "./typography": {
-      "import": "./dist/elements/typography.mjs",
-      "types": "./dist/elements/typography.d.mts"
+      "import": "./dist/elements/typography.js",
+      "types": "./dist/elements/typography.d.ts"
     }
   },
   "scripts": {
@@ -34,9 +35,9 @@
   },
   "dependencies": {
     "@byteslice/result": "0.1.0",
-    "@deepdish/core": "workspace:0.2.0",
-    "@deepdish/resolvers": "workspace:0.10.0",
-    "@deepdish/stylesheet": "workspace:0.2.0",
+    "@deepdish/core": "workspace:0.3.0",
+    "@deepdish/resolvers": "workspace:0.12.0",
+    "@deepdish/stylesheet": "workspace:0.4.0",
     "@logtape/logtape": "0.6.2",
     "@radix-ui/react-context-menu": "2.2.1",
     "class-variance-authority": "0.7.0",

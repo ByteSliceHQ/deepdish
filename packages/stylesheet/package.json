@@ -1,13 +1,21 @@
 {
   "name": "@deepdish/stylesheet",
-  "version": "0.2.0",
+  "version": "0.4.0",
   "description": "CSS-in-TS style sheet",
   "author": {
     "name": "ByteSlice, LLC",
     "url": "https://byteslice.co"
   },
+  "type": "module",
   "exports": {
-    ".": "./src/stylesheet.ts"
+    ".": {
+      "import": "./dist/stylesheet.js",
+      "types": "./dist/stylesheet.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch"
   },
   "dependencies": {
     "class-variance-authority": "0.7.0",
@@ -17,7 +25,8 @@
     "@happy-dom/global-registrator": "15.7.4",
     "@tsconfig/create-react-app": "2.0.5",
     "@types/bun": "1.1.10",
-    "dedent": "1.5.3"
+    "dedent": "1.5.3",
+    "tsup": "8.3.6"
   },
   "publishConfig": {
     "access": "public"
