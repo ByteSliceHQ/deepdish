@@ -52,6 +52,14 @@ export async function configure(input: Config): Promise<Result<void>> {
   return { data: undefined }
 }
 
+export function getConfig(): Result<Config> {
+  if (!config) {
+    return notConfigured()
+  }
+
+  return { data: config }
+}
+
 export function getContract<T extends ValueType>(type: T): Result<Contract<T>> {
   if (!config) {
     return notConfigured()

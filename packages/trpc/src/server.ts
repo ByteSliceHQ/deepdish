@@ -2,15 +2,16 @@ import { initTRPC } from '@trpc/server'
 import { toJsonSchema } from '@valibot/to-json-schema'
 import * as v from 'valibot'
 import * as schemas from './schemas'
+import type { Context } from './context'
 
-const t = initTRPC.create()
+const t = initTRPC.context<Context>().create()
 
 const router = t.router
 const publicProcedure = t.procedure
 
 export const appRouter = router({
   getCatalog: publicProcedure.output(schemas.Catalog).query(() => {
-    // TODO: implement
+    // TODO: collate contracts from config
     const typographySchema = toJsonSchema(v.string())
 
     return {

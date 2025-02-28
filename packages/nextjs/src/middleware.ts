@@ -3,6 +3,7 @@ import { appRouter } from '@deepdish/trpc/server'
 import { getCss } from '@deepdish/workbench/css'
 import { fetchRequestHandler } from '@trpc/server/adapters/fetch'
 import { type NextRequest, NextResponse } from 'next/server'
+import { getConfig } from '@deepdish/ui/config'
 
 export type DeepdishMiddlewareConfig = {
   draft: boolean
@@ -32,8 +33,17 @@ export async function deepdishMiddleware(
       endpoint: TRPC_ENDPOINT,
       req: request,
       router: appRouter,
-      // TODO: include DeepDish config in
-      createContext: () => ({}),
+      createContext: () => ({
+        getConfig: () => {
+          const config = getConfig()
+
+          if (config.failure) {
+            throw config.failure
+          }
+
+          return config.data
+        },
+      }),
     })
   }
 

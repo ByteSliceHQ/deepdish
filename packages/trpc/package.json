@@ -13,5 +13,8 @@
     "@trpc/server": "11.0.0-rc.791",
     "@valibot/to-json-schema": "1.0.0-rc.0",
     "valibot": "1.0.0-rc.1"
+  },
+  "devDependencies": {
+    "@deepdish/ui": "workspace:0.12.1"
   }
 }
