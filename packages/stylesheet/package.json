@@ -7,7 +7,10 @@
     "url": "https://byteslice.co"
   },
   "exports": {
-    ".": "./src/stylesheet.ts"
+    ".": {
+      "import": "./dist/stylesheet.mjs",
+      "types": "./dist/stylesheet.d.mts"
+    }
   },
   "scripts": {
     "build": "tsup",
