@@ -1,5 +1,11 @@
 # @deepdish/stylesheet
 
+## 0.2.0
+
+### Minor Changes
+
+- 77200b9: Released stylesheet package as a public package.
+
 ## 0.1.0
 
 ### Minor Changes

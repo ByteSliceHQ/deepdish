@@ -1,5 +1,11 @@
 # @deepdish/cms
 
+## 0.4.1
+
+### Patch Changes
+
+- @deepdish/ui@0.12.1
+
 ## 0.4.0
 
 ### Minor Changes

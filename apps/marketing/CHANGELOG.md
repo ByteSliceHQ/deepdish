@@ -1,5 +1,12 @@
 # @deepdish/marketing
 
+## 0.10.3
+
+### Patch Changes
+
+- @deepdish/ui@0.12.1
+- @deepdish/cms@0.4.1
+
 ## 0.10.2
 
 ### Patch Changes
