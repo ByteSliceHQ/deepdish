@@ -1,5 +1,11 @@
 # @deepdish/resolvers
 
+## 0.13.0
+
+### Minor Changes
+
+- 6af4b8e: Replaced bun with pnpm for better workspace and monorepo support.
+
 ## 0.12.0
 
 ### Minor Changes

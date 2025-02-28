@@ -1,5 +1,16 @@
 # @deepdish/workbench
 
+## 0.10.0
+
+### Minor Changes
+
+- 6af4b8e: Replaced bun with pnpm for better workspace and monorepo support.
+
+### Patch Changes
+
+- Updated dependencies [6af4b8e]
+  - @deepdish/core@0.4.0
+
 ## 0.9.1
 
 ### Patch Changes
