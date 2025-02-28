@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@deepdish/trpc": "workspace:0.0.0",
-    "@deepdish/ui": "workspace:0.12.1",
+    "@deepdish/ui": "workspace:0.14.0",
     "@deepdish/workbench": "workspace:0.9.1"
   },
   "devDependencies": {
