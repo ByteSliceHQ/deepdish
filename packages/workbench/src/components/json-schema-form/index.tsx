@@ -22,25 +22,25 @@ function renderFields(
   control: Control<FieldValues>,
   parentKey?: string,
 ) {
-  return Object.entries(properties).map(([key, subschema]) => {
-    if (typeof subschema === 'boolean') {
+  return Object.entries(properties).map(([key, subSchema]) => {
+    if (typeof subSchema === 'boolean') {
       return null
     }
 
     const fieldName = parentKey ? `${parentKey}.${key}` : key
 
-    if (subschema.type === 'object' && subschema.properties) {
+    if (subSchema.type === 'object' && subSchema.properties) {
       return (
         <fieldset key={fieldName} className="border space-y-1 p-4 rounded">
           <legend className="capitalize text-sm font-medium leading-none">
-            {subschema.title || key}
+            {subSchema.title || key}
           </legend>
-          {subschema.description && (
-            <p className="text-gray-500 text-sm">{subschema.description}</p>
+          {subSchema.description && (
+            <p className="text-gray-500 text-sm">{subSchema.description}</p>
           )}
           {renderFields(
             uniqueId,
-            subschema.properties,
+            subSchema.properties,
             register,
             control,
             fieldName,
@@ -49,11 +49,11 @@ function renderFields(
       )
     }
 
-    if (subschema.type === 'string') {
+    if (subSchema.type === 'string') {
       return (
         <div key={fieldName} className="space-y-1">
           <Label className="capitalize text-sm" htmlFor={fieldName}>
-            {subschema.title || key}
+            {subSchema.title || key}
           </Label>
           <Controller
             name={fieldName}
@@ -66,36 +66,36 @@ function renderFields(
               />
             )}
           />
-          {subschema.description && (
-            <p className="text-gray-500 text-sm">{subschema.description}</p>
+          {subSchema.description && (
+            <p className="text-gray-500 text-sm">{subSchema.description}</p>
           )}
         </div>
       )
     }
 
-    if (subschema.type === 'number' || subschema.type === 'integer') {
+    if (subSchema.type === 'number' || subSchema.type === 'integer') {
       return (
         <div key={fieldName} className="space-y-1">
           <Label className="capitalize text-sm" htmlFor="">
-            {subschema.title || key}
+            {subSchema.title || key}
           </Label>
           <Input
             id={fieldName}
             type="number"
             {...register(fieldName, { valueAsNumber: true })}
           />
-          {subschema.description && (
-            <p className="text-gray-500 text-sm">{subschema.description}</p>
+          {subSchema.description && (
+            <p className="text-gray-500 text-sm">{subSchema.description}</p>
           )}
         </div>
       )
     }
 
-    if (subschema.type === 'boolean') {
+    if (subSchema.type === 'boolean') {
       return (
         <div key={fieldName} className="items-center space-x-1">
           <Label className="capitalize text-sm" htmlFor={fieldName}>
-            {subschema.title || key}
+            {subSchema.title || key}
           </Label>
           <Controller
             name={fieldName}
@@ -108,8 +108,8 @@ function renderFields(
               />
             )}
           />
-          {subschema.description && (
-            <p className="text-gray-500 text-sm">{subschema.description}</p>
+          {subSchema.description && (
+            <p className="text-gray-500 text-sm">{subSchema.description}</p>
           )}
         </div>
       )
@@ -118,11 +118,11 @@ function renderFields(
     // TODO: improve unsupported styling
     return (
       <div key={fieldName} className="space-y-1">
-        <Label className="text-sm capitalize">{subschema.title || key}</Label>
+        <Label className="text-sm capitalize">{subSchema.title || key}</Label>
         <div className="max-w-prose text-sm">
           The{' '}
           <pre className="inline bg-gray-50 px-1 py-0.5 rounded">
-            {subschema.type}
+            {subSchema.type}
           </pre>{' '}
           type is not supported.{' '}
           <a
@@ -133,8 +133,8 @@ function renderFields(
             Please drop an issue, and we'll see if we can add support for it.
           </a>
         </div>
-        {subschema.description && (
-          <p className="text-gray-500 text-sm">{subschema.description}</p>
+        {subSchema.description && (
+          <p className="text-gray-500 text-sm">{subSchema.description}</p>
         )}
       </div>
     )
@@ -267,6 +267,8 @@ function SimpleNumberForm(props: {
     </div>
   )
 }
+
+// TODO: SimpleBooleanForm
 
 export function JsonSchemaForm(props: {
   content: Content
