@@ -6,26 +6,27 @@
     "name": "ByteSlice, LLC",
     "url": "https://byteslice.co"
   },
+  "type": "module",
   "exports": {
     "./config": {
-      "import": "./dist/config/config.mjs",
-      "types": "./dist/config/config.d.mts"
+      "import": "./dist/config/config.js",
+      "types": "./dist/config/config.d.ts"
     },
     "./link": {
-      "import": "./dist/elements/link.mjs",
-      "types": "./dist/elements/link.d.mts"
+      "import": "./dist/elements/link.js",
+      "types": "./dist/elements/link.d.ts"
     },
     "./media": {
-      "import": "./dist/elements/media.mjs",
-      "types": "./dist/elements/media.d.mts"
+      "import": "./dist/elements/media.js",
+      "types": "./dist/elements/media.d.ts"
     },
     "./schemas": {
-      "import": "./dist/schemas.mjs",
-      "types": "./dist/schemas.d.mts"
+      "import": "./dist/schemas.js",
+      "types": "./dist/schemas.d.ts"
     },
     "./typography": {
-      "import": "./dist/elements/typography.mjs",
-      "types": "./dist/elements/typography.d.mts"
+      "import": "./dist/elements/typography.js",
+      "types": "./dist/elements/typography.d.ts"
     }
   },
   "scripts": {

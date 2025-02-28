@@ -6,14 +6,15 @@
     "name": "ByteSlice, LLC",
     "url": "https://byteslice.co"
   },
+  "type": "module",
   "exports": {
     "./context": {
-      "import": "./dist/context.mjs",
-      "types": "./dist/context.d.mts"
+      "import": "./dist/context.js",
+      "types": "./dist/context.d.ts"
     },
     "./shell": {
-      "import": "./dist/shell.mjs",
-      "types": "./dist/shell.d.mts"
+      "import": "./dist/shell.js",
+      "types": "./dist/shell.d.ts"
     }
   },
   "scripts": {

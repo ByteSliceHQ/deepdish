@@ -6,18 +6,19 @@
     "name": "ByteSlice, LLC",
     "url": "https://byteslice.co"
   },
+  "type": "module",
   "exports": {
     ".": {
-      "import": "./dist/cms.mjs",
-      "types": "./dist/cms.d.mts"
+      "import": "./dist/cms.js",
+      "types": "./dist/cms.d.ts"
     },
     "./vercel": {
-      "import": "./dist/vercel/index.mjs",
-      "types": "./dist/vercel/index.d.mts"
+      "import": "./dist/vercel/index.js",
+      "types": "./dist/vercel/index.d.ts"
     },
     "./typography": {
-      "import": "./dist/typography/index.mjs",
-      "types": "./dist/typography/index.d.mts"
+      "import": "./dist/typography/index.js",
+      "types": "./dist/typography/index.d.ts"
     }
   },
   "scripts": {

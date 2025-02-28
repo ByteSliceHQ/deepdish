@@ -6,10 +6,11 @@
     "name": "ByteSlice, LLC",
     "url": "https://byteslice.co"
   },
+  "type": "module",
   "exports": {
     ".": {
-      "import": "./dist/stylesheet.mjs",
-      "types": "./dist/stylesheet.d.mts"
+      "import": "./dist/stylesheet.js",
+      "types": "./dist/stylesheet.d.ts"
     }
   },
   "scripts": {
