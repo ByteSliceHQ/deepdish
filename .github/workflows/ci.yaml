@@ -26,13 +26,13 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Analyze code
-        run: pnpm run biome ci .
+        run: pnpm exec biome ci .
 
       - name: Check manifest sorting
         run: pnpm run sort-manifests --check
 
       - name: Check spelling
-        run: pnpm run cspell --dot .
+        run: pnpm exec cspell --dot .
 
   test:
     name: Run tests

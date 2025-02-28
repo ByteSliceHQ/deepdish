@@ -16,14 +16,17 @@
     "dev": "turbo run dev",
     "dev:demo": "turbo run dev --filter @deepdish/demo...",
     "dev:marketing": "turbo run dev --filter @deepdish/marketing...",
-    "sort-manifests": "sort-package-json package.json apps/**/package.json packages/**/package.json"
+    "sort-manifests": "sort-package-json package.json apps/**/package.json packages/**/package.json",
+    "test": "bun test --coverage"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@changesets/changelog-git": "0.2.0",
     "@changesets/cli": "2.27.9",
+    "@happy-dom/global-registrator": "15.7.4",
     "@types/bun": "catalog:repo",
     "@types/node": "catalog:repo",
+    "bun": "^1.2.4",
     "cspell": "8.16.0",
     "rimraf": "6.0.1",
     "sort-package-json": "2.10.1",
