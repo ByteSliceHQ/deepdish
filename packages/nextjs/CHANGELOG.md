@@ -1,5 +1,11 @@
 # @deepdish/nextjs
 
+## 0.6.0
+
+### Minor Changes
+
+- 074e85d: Ensured tsup target is esnext.
+
 ## 0.5.0
 
 ### Minor Changes

@@ -1,5 +1,19 @@
 # @deepdish/ui
 
+## 0.13.0
+
+### Minor Changes
+
+- 074e85d: Added esnext build to ui tsup.
+- 074e85d: Ensured tsup target is esnext.
+
+### Patch Changes
+
+- Updated dependencies [074e85d]
+- Updated dependencies [074e85d]
+  - @deepdish/stylesheet@0.3.0
+  - @deepdish/resolvers@0.11.0
+
 ## 0.12.1
 
 ### Patch Changes
