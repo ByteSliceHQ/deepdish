@@ -23,7 +23,8 @@
     ".git",
     ".next",
     ".turbo",
-    ".vercel"
+    ".vercel",
+    "pnpm-lock.yaml"
   ],
   "words": ["byteslice", "deepdish"]
 }
