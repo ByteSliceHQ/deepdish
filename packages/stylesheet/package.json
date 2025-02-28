@@ -9,6 +9,10 @@
   "exports": {
     ".": "./src/stylesheet.ts"
   },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch"
+  },
   "dependencies": {
     "class-variance-authority": "0.7.0",
     "csstype": "3.1.3"
