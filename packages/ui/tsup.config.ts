@@ -5,6 +5,7 @@ export default defineConfig([
     entry: ['src/config/config.ts', 'src/content.ts', 'src/schemas.ts'],
     format: ['esm'],
     sourcemap: true,
+    target: 'esnext',
     dts: true,
   },
   {

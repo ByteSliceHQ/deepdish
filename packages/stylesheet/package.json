@@ -7,7 +7,14 @@
     "url": "https://byteslice.co"
   },
   "exports": {
-    ".": "./src/stylesheet.ts"
+    ".": {
+      "import": "./dist/stylesheet.mjs",
+      "types": "./dist/stylesheet.d.mts"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch"
   },
   "dependencies": {
     "class-variance-authority": "0.7.0",
@@ -17,7 +24,8 @@
     "@happy-dom/global-registrator": "15.7.4",
     "@tsconfig/create-react-app": "2.0.5",
     "@types/bun": "1.1.10",
-    "dedent": "1.5.3"
+    "dedent": "1.5.3",
+    "tsup": "8.3.6"
   },
   "publishConfig": {
     "access": "public"
