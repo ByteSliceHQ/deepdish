@@ -46,10 +46,11 @@ jobs:
         with:
           bun-version-file: package.json
       
-      - uses: pnpm/action-setup@v4
-        name: Install pnpm
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
         with:
           run_install: false
+          package_json_file: package.json
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile

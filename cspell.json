@@ -13,7 +13,6 @@
     }
   ],
   "ignorePaths": [
-    "*.lockb",
     "dist",
     "node_modules",
     "mockServiceWorker.js",
