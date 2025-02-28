@@ -1,5 +1,15 @@
 # @deepdish/nextjs
 
+## 0.7.0
+
+### Minor Changes
+
+- a667382: Implemented type module for all packages.
+
+### Patch Changes
+
+- @deepdish/workbench@0.9.1
+
 ## 0.6.0
 
 ### Minor Changes

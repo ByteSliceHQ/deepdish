@@ -1,5 +1,11 @@
 # @deepdish/stylesheet
 
+## 0.4.0
+
+### Minor Changes
+
+- a667382: Implemented type module for all packages.
+
 ## 0.3.0
 
 ### Minor Changes

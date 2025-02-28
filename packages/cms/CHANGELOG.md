@@ -1,5 +1,19 @@
 # @deepdish/cms
 
+## 0.6.0
+
+### Minor Changes
+
+- a667382: Implemented type module for all packages.
+
+### Patch Changes
+
+- Updated dependencies [a667382]
+  - @deepdish/nextjs@0.7.0
+  - @deepdish/core@0.3.0
+  - @deepdish/ui@0.14.0
+  - @deepdish/workbench@0.9.1
+
 ## 0.5.0
 
 ### Minor Changes

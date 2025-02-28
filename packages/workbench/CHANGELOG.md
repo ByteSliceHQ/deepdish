@@ -1,5 +1,12 @@
 # @deepdish/workbench
 
+## 0.9.1
+
+### Patch Changes
+
+- Updated dependencies [a667382]
+  - @deepdish/core@0.3.0
+
 ## 0.9.0
 
 ### Minor Changes

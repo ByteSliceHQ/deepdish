@@ -1,5 +1,11 @@
 # @deepdish/resolvers
 
+## 0.12.0
+
+### Minor Changes
+
+- a667382: Implemented type module for all packages.
+
 ## 0.11.0
 
 ### Minor Changes
