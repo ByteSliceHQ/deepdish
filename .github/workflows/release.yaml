@@ -35,9 +35,9 @@ jobs:
         with:
           commit: ${{ env.MESSAGE }}
           createGithubReleases: true
-          publish: pnpm ci:publish
+          publish: pnpm run ci:publish
           title: ${{ env.MESSAGE }}
-          version: pnpm ci:version
+          version: pnpm run ci:version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           MESSAGE: "chore(repo): version workspaces"
