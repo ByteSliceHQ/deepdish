@@ -1,8 +1,8 @@
 import { initTRPC } from '@trpc/server'
 import { toJsonSchema } from '@valibot/to-json-schema'
 import * as v from 'valibot'
-import * as schemas from './schemas'
 import type { Context } from './context'
+import * as schemas from './schemas'
 
 const t = initTRPC.context<Context>().create()
 
