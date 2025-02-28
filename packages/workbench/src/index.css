@@ -127,3 +127,29 @@
     @apply bg-background text-foreground;
   }
 }
+
+.editor .ProseMirror {
+  @apply flex max-w-full cursor-text flex-col;
+  @apply z-0 outline-0;
+}
+
+.editor .ProseMirror h1 {
+  @apply text-2xl font-bold text-gray-800 mt-3;
+}
+
+.editor .ProseMirror h2 {
+  @apply text-xl font-semibold text-gray-800 mt-2;
+}
+
+.editor .ProseMirror h3 {
+  @apply text-lg text-gray-800 mt-1;
+}
+
+.editor .ProseMirror p {
+  @apply text-gray-600;
+}
+
+.editor .ProseMirror ul,
+.editor .ProseMirror ol {
+  @apply ml-4;
+}

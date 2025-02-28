@@ -1,10 +1,14 @@
 import { Layout } from '@/components/layout'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { queryClient } from '@/lib/queries'
-import { QueryClientProvider } from '@tanstack/react-query'
-import { createRootRoute } from '@tanstack/react-router'
+import { type QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { createRootRouteWithContext } from '@tanstack/react-router'
 
-export const Route = createRootRoute({
+export interface RouteContext {
+  queryClient: QueryClient
+}
+
+export const Route = createRootRouteWithContext<RouteContext>()({
   component: () => (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>

@@ -8,13 +8,16 @@ flox
 happydom
 lockb
 logtape
+lowlight
 posthog
 nextjs
 registrator
 rehype
 shadcn
+sonner
 tsup
 turborepo
 turbopack
 valibot
+vafanassieff
 vercel
