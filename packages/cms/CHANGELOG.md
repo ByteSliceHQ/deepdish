@@ -1,5 +1,11 @@
 # @deepdish/cms
 
+## 0.8.0
+
+### Minor Changes
+
+- bee36dd: Updated lock file.
+
 ## 0.7.0
 
 ### Minor Changes

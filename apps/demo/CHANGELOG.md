@@ -1,5 +1,12 @@
 # @deepdish/demo
 
+## 0.3.1
+
+### Patch Changes
+
+- Updated dependencies [bee36dd]
+  - @deepdish/cms@0.8.0
+
 ## 0.3.0
 
 ### Minor Changes
