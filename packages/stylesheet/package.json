@@ -1,6 +1,6 @@
 {
   "name": "@deepdish/stylesheet",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "CSS-in-TS style sheet",
   "author": {
     "name": "ByteSlice, LLC",

@@ -1,5 +1,18 @@
 # @deepdish/cms
 
+## 0.5.0
+
+### Minor Changes
+
+- 074e85d: Ensured tsup target is esnext.
+
+### Patch Changes
+
+- Updated dependencies [074e85d]
+- Updated dependencies [074e85d]
+  - @deepdish/ui@0.13.0
+  - @deepdish/nextjs@0.6.0
+
 ## 0.4.1
 
 ### Patch Changes
