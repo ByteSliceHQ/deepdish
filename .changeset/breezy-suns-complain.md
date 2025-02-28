@@ -2,4 +2,4 @@
 "@deepdish/ui": minor
 ---
 
-Added esnest build to ui tsup.
+Added esnext build to ui tsup.

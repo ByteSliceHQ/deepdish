@@ -17,8 +17,8 @@
     "@happy-dom/global-registrator": "15.7.4",
     "@tsconfig/create-react-app": "2.0.5",
     "@types/bun": "1.1.10",
-    "tsup": "8.3.6",
-    "dedent": "1.5.3"
+    "dedent": "1.5.3",
+    "tsup": "8.3.6"
   },
   "publishConfig": {
     "access": "public"
