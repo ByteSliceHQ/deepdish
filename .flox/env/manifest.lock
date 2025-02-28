@@ -5,7 +5,7 @@
     "install": {
       "_1password": {
         "pkg-path": "_1password",
-        "version": "1password-cli-2.30.3"
+        "version": "2.30.3"
       },
       "bun": {
         "pkg-path": "bun",
@@ -14,10 +14,14 @@
       "nodejs": {
         "pkg-path": "nodejs",
         "version": "22.11.0"
+      },
+      "pnpm": {
+        "pkg-path": "pnpm",
+        "version": "9.15.3"
       }
     },
     "hook": {
-      "on-activate": "  echo \"📦 Installing dependencies...\"\n  bun install --frozen-lockfile\n\n  echo -e \"\\n🚀 Development Commands\"\n  echo -e \"- Run all tasks\\t\\t\\033[34mbun dev\\033[0m\"\n  echo -e \"- Start demo app\\t\\033[34mbun dev:demo\\033[0m\"\n  echo -e \"- Start marketing app\\t\\033[34mbun dev:marketing\\033[0m\"\n\n  export NODE_EXTRA_CA_CERTS=/etc/ssl/certs/flox-ca-bundle.crt\n"
+      "on-activate": "  echo \"📦 Installing dependencies...\"\n  pnpm install --frozen-lockfile\n\n  echo -e \"\\n🚀 Development Commands\"\n  echo -e \"- Run all tasks\\t\\t\\033[34mpnpm dev\\033[0m\"\n  echo -e \"- Start demo app\\t\\033[34mpnpm dev:demo\\033[0m\"\n  echo -e \"- Start marketing app\\t\\033[34mpnpm dev:marketing\\033[0m\"\n\n  export NODE_EXTRA_CA_CERTS=/etc/ssl/certs/flox-ca-bundle.crt\n"
     },
     "profile": {},
     "options": {
@@ -41,19 +45,18 @@
       "description": "1Password command-line tool",
       "install_id": "_1password",
       "license": "Unfree",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
       "name": "1password-cli-2.30.3",
       "pname": "_1password",
-      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
-      "rev_count": 735357,
-      "rev_date": "2025-01-08T13:55:31Z",
-      "scrape_date": "2025-01-10T03:41:12Z",
+      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
+      "rev_count": 736170,
+      "rev_date": "2025-01-10T15:43:18Z",
+      "scrape_date": "2025-01-13T03:35:32Z",
       "stabilities": [
-        "staging",
         "unstable"
       ],
       "unfree": true,
-      "version": "1password-cli-2.30.3",
+      "version": "2.30.3",
       "outputs_to_install": [
         "out"
       ],
@@ -71,19 +74,18 @@
       "description": "1Password command-line tool",
       "install_id": "_1password",
       "license": "Unfree",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
       "name": "1password-cli-2.30.3",
       "pname": "_1password",
-      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
-      "rev_count": 735357,
-      "rev_date": "2025-01-08T13:55:31Z",
-      "scrape_date": "2025-01-10T03:41:12Z",
+      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
+      "rev_count": 736170,
+      "rev_date": "2025-01-10T15:43:18Z",
+      "scrape_date": "2025-01-13T03:35:32Z",
       "stabilities": [
-        "staging",
         "unstable"
       ],
       "unfree": true,
-      "version": "1password-cli-2.30.3",
+      "version": "2.30.3",
       "outputs_to_install": [
         "out"
       ],
@@ -101,19 +103,18 @@
       "description": "1Password command-line tool",
       "install_id": "_1password",
       "license": "Unfree",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
       "name": "1password-cli-2.30.3",
       "pname": "_1password",
-      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
-      "rev_count": 735357,
-      "rev_date": "2025-01-08T13:55:31Z",
-      "scrape_date": "2025-01-10T03:41:12Z",
+      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
+      "rev_count": 736170,
+      "rev_date": "2025-01-10T15:43:18Z",
+      "scrape_date": "2025-01-13T03:35:32Z",
       "stabilities": [
-        "staging",
         "unstable"
       ],
       "unfree": true,
-      "version": "1password-cli-2.30.3",
+      "version": "2.30.3",
       "outputs_to_install": [
         "out"
       ],
@@ -131,19 +132,18 @@
       "description": "1Password command-line tool",
       "install_id": "_1password",
       "license": "Unfree",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
       "name": "1password-cli-2.30.3",
       "pname": "_1password",
-      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
-      "rev_count": 735357,
-      "rev_date": "2025-01-08T13:55:31Z",
-      "scrape_date": "2025-01-10T03:41:12Z",
+      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
+      "rev_count": 736170,
+      "rev_date": "2025-01-10T15:43:18Z",
+      "scrape_date": "2025-01-13T03:35:32Z",
       "stabilities": [
-        "staging",
         "unstable"
       ],
       "unfree": true,
-      "version": "1password-cli-2.30.3",
+      "version": "2.30.3",
       "outputs_to_install": [
         "out"
       ],
@@ -161,15 +161,14 @@
       "description": "Incredibly fast JavaScript runtime, bundler, transpiler and package manager – all in one",
       "install_id": "bun",
       "license": "[ MIT, LGPL-2.1-only ]",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
       "name": "bun-1.1.42",
       "pname": "bun",
-      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
-      "rev_count": 735357,
-      "rev_date": "2025-01-08T13:55:31Z",
-      "scrape_date": "2025-01-10T03:41:12Z",
+      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
+      "rev_count": 736170,
+      "rev_date": "2025-01-10T15:43:18Z",
+      "scrape_date": "2025-01-13T03:35:32Z",
       "stabilities": [
-        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -191,15 +190,14 @@
       "description": "Incredibly fast JavaScript runtime, bundler, transpiler and package manager – all in one",
       "install_id": "bun",
       "license": "[ MIT, LGPL-2.1-only ]",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
       "name": "bun-1.1.42",
       "pname": "bun",
-      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
-      "rev_count": 735357,
-      "rev_date": "2025-01-08T13:55:31Z",
-      "scrape_date": "2025-01-10T03:41:12Z",
+      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
+      "rev_count": 736170,
+      "rev_date": "2025-01-10T15:43:18Z",
+      "scrape_date": "2025-01-13T03:35:32Z",
       "stabilities": [
-        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -221,15 +219,14 @@
       "description": "Incredibly fast JavaScript runtime, bundler, transpiler and package manager – all in one",
       "install_id": "bun",
       "license": "[ MIT, LGPL-2.1-only ]",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
       "name": "bun-1.1.42",
       "pname": "bun",
-      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
-      "rev_count": 735357,
-      "rev_date": "2025-01-08T13:55:31Z",
-      "scrape_date": "2025-01-10T03:41:12Z",
+      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
+      "rev_count": 736170,
+      "rev_date": "2025-01-10T15:43:18Z",
+      "scrape_date": "2025-01-13T03:35:32Z",
       "stabilities": [
-        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -251,15 +248,14 @@
       "description": "Incredibly fast JavaScript runtime, bundler, transpiler and package manager – all in one",
       "install_id": "bun",
       "license": "[ MIT, LGPL-2.1-only ]",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
       "name": "bun-1.1.42",
       "pname": "bun",
-      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
-      "rev_count": 735357,
-      "rev_date": "2025-01-08T13:55:31Z",
-      "scrape_date": "2025-01-10T03:41:12Z",
+      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
+      "rev_count": 736170,
+      "rev_date": "2025-01-10T15:43:18Z",
+      "scrape_date": "2025-01-13T03:35:32Z",
       "stabilities": [
-        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -281,15 +277,14 @@
       "description": "Event-driven I/O framework for the V8 JavaScript engine",
       "install_id": "nodejs",
       "license": "MIT",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
       "name": "nodejs-22.11.0",
       "pname": "nodejs",
-      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
-      "rev_count": 735357,
-      "rev_date": "2025-01-08T13:55:31Z",
-      "scrape_date": "2025-01-10T03:41:12Z",
+      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
+      "rev_count": 736170,
+      "rev_date": "2025-01-10T15:43:18Z",
+      "scrape_date": "2025-01-13T03:35:32Z",
       "stabilities": [
-        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -312,15 +307,14 @@
       "description": "Event-driven I/O framework for the V8 JavaScript engine",
       "install_id": "nodejs",
       "license": "MIT",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
       "name": "nodejs-22.11.0",
       "pname": "nodejs",
-      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
-      "rev_count": 735357,
-      "rev_date": "2025-01-08T13:55:31Z",
-      "scrape_date": "2025-01-10T03:41:12Z",
+      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
+      "rev_count": 736170,
+      "rev_date": "2025-01-10T15:43:18Z",
+      "scrape_date": "2025-01-13T03:35:32Z",
       "stabilities": [
-        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -343,15 +337,14 @@
       "description": "Event-driven I/O framework for the V8 JavaScript engine",
       "install_id": "nodejs",
       "license": "MIT",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
       "name": "nodejs-22.11.0",
       "pname": "nodejs",
-      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
-      "rev_count": 735357,
-      "rev_date": "2025-01-08T13:55:31Z",
-      "scrape_date": "2025-01-10T03:41:12Z",
+      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
+      "rev_count": 736170,
+      "rev_date": "2025-01-10T15:43:18Z",
+      "scrape_date": "2025-01-13T03:35:32Z",
       "stabilities": [
-        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -374,15 +367,14 @@
       "description": "Event-driven I/O framework for the V8 JavaScript engine",
       "install_id": "nodejs",
       "license": "MIT",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
       "name": "nodejs-22.11.0",
       "pname": "nodejs",
-      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
-      "rev_count": 735357,
-      "rev_date": "2025-01-08T13:55:31Z",
-      "scrape_date": "2025-01-10T03:41:12Z",
+      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
+      "rev_count": 736170,
+      "rev_date": "2025-01-10T15:43:18Z",
+      "scrape_date": "2025-01-13T03:35:32Z",
       "stabilities": [
-        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -393,6 +385,122 @@
       "outputs": {
         "libv8": "/nix/store/fyaac3q8qn3zfxy72airfabm3dakmgf5-nodejs-22.11.0-libv8",
         "out": "/nix/store/fkyp1bm5gll9adnfcj92snyym524mdrj-nodejs-22.11.0"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "pnpm",
+      "broken": false,
+      "derivation": "/nix/store/5f225cvd3l61g5fab2din4kvzfvja6hn-pnpm-9.15.3.drv",
+      "description": "Fast, disk space efficient package manager for JavaScript",
+      "install_id": "pnpm",
+      "license": "MIT",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "name": "pnpm-9.15.3",
+      "pname": "pnpm",
+      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
+      "rev_count": 736170,
+      "rev_date": "2025-01-10T15:43:18Z",
+      "scrape_date": "2025-01-13T03:35:32Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "9.15.3",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/hhprmwazmgvxqff5zpra2bw0cb12f4sl-pnpm-9.15.3"
+      },
+      "system": "aarch64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "pnpm",
+      "broken": false,
+      "derivation": "/nix/store/pp1sg4jkgfd9xdbjv1was4m3a5qvxil1-pnpm-9.15.3.drv",
+      "description": "Fast, disk space efficient package manager for JavaScript",
+      "install_id": "pnpm",
+      "license": "MIT",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "name": "pnpm-9.15.3",
+      "pname": "pnpm",
+      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
+      "rev_count": 736170,
+      "rev_date": "2025-01-10T15:43:18Z",
+      "scrape_date": "2025-01-13T03:35:32Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "9.15.3",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/id6m5r3zip98l8g9lyvgwv8bvvnn99hq-pnpm-9.15.3"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "pnpm",
+      "broken": false,
+      "derivation": "/nix/store/r2b75hhww5m8qdmd4yfyaa6izdahx1ap-pnpm-9.15.3.drv",
+      "description": "Fast, disk space efficient package manager for JavaScript",
+      "install_id": "pnpm",
+      "license": "MIT",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "name": "pnpm-9.15.3",
+      "pname": "pnpm",
+      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
+      "rev_count": 736170,
+      "rev_date": "2025-01-10T15:43:18Z",
+      "scrape_date": "2025-01-13T03:35:32Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "9.15.3",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/4lsfbyj9fl5yf6ar3cfj7vngd5v7rvqg-pnpm-9.15.3"
+      },
+      "system": "x86_64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "pnpm",
+      "broken": false,
+      "derivation": "/nix/store/5r97s3gjbbaazb423y3ccb31ap514q85-pnpm-9.15.3.drv",
+      "description": "Fast, disk space efficient package manager for JavaScript",
+      "install_id": "pnpm",
+      "license": "MIT",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "name": "pnpm-9.15.3",
+      "pname": "pnpm",
+      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
+      "rev_count": 736170,
+      "rev_date": "2025-01-10T15:43:18Z",
+      "scrape_date": "2025-01-13T03:35:32Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "9.15.3",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/p7r1k66dzs1qpkas0jx5v20asih9y37q-pnpm-9.15.3"
       },
       "system": "x86_64-linux",
       "group": "toplevel",

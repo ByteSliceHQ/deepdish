@@ -7,13 +7,13 @@ At the monorepo root:
 Install dependencies:
 
 ```bash
-bun install
+pnpm install
 ```
 
 Then, run the development server:
 
 ```bash
-bun run dev
+pnpm run dev
 ```
 
 ## Content

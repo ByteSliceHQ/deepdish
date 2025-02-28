@@ -33,7 +33,7 @@ type Globals = {
   keyframes?: Record<string, Keyframes>
 }
 
-class Stylesheet {
+export class Stylesheet {
   name: string
   globals: Globals
   rules: Rule[] = []
