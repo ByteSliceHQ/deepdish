@@ -9,7 +9,7 @@
     "build": "turbo run build",
     "build:packages": "turbo run build --filter './packages/*'",
     "ci:publish": "pnpm run build:packages && changeset publish && git push --follow-tags",
-    "ci:version": "changeset version && pnpm install",
+    "ci:version": "changeset version && pnpm install --no-frozen-lockfile",
     "clean": "rimraf --glob **/.next **/.turbo **/dist **/node_modules",
     "code:check": "pnpm install --frozen-lockfile && biome ci . & pnpm run sort-manifests --check & cspell --dot .",
     "code:fix": "biome check --write . & pnpm run sort-manifests",
