@@ -1,6 +1,6 @@
 {
   "name": "@deepdish/workbench",
-  "version": "0.9.1",
+  "version": "0.10.0",
   "description": "DeepDish workbench",
   "author": {
     "name": "ByteSlice, LLC",
@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@byteslice/result": "0.1.0",
-    "@deepdish/core": "workspace:0.3.0",
+    "@deepdish/core": "workspace:0.4.0",
     "@radix-ui/react-slot": "1.1.2",
     "@radix-ui/react-tooltip": "1.1.8",
     "@tailwindcss/postcss": "4.0.3",

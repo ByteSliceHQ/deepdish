@@ -1,5 +1,16 @@
 # @deepdish/nextjs
 
+## 0.8.0
+
+### Minor Changes
+
+- 6af4b8e: Replaced bun with pnpm for better workspace and monorepo support.
+
+### Patch Changes
+
+- Updated dependencies [6af4b8e]
+  - @deepdish/workbench@0.10.0
+
 ## 0.7.0
 
 ### Minor Changes

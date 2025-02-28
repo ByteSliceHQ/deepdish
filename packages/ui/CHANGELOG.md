@@ -1,5 +1,18 @@
 # @deepdish/ui
 
+## 0.15.0
+
+### Minor Changes
+
+- 6af4b8e: Replaced bun with pnpm for better workspace and monorepo support.
+
+### Patch Changes
+
+- Updated dependencies [6af4b8e]
+  - @deepdish/stylesheet@0.5.0
+  - @deepdish/resolvers@0.13.0
+  - @deepdish/core@0.4.0
+
 ## 0.14.0
 
 ### Minor Changes
