@@ -70,10 +70,10 @@ importers:
         specifier: 15.7.4
         version: 15.7.4
       '@types/bun':
-        specifier: catalog:repo
+        specifier: 1.1.12
         version: 1.1.12
       '@types/node':
-        specifier: catalog:repo
+        specifier: 20.9.0
         version: 20.9.0
       bun:
         specifier: ^1.2.4
@@ -2826,7 +2826,6 @@ packages:
 
   bun@1.2.4:
     resolution: {integrity: sha512-ZY0EZ/UKqheaLeAtMsfJA6jWoWvV9HAtfFaOJSmS3LrNpFKs1Sg5fZLSsczN1h3a+Dtheo4O3p3ZYWrf40kRGw==}
-    cpu: [arm64, x64, aarch64]
     os: [darwin, linux, win32]
     hasBin: true
 
