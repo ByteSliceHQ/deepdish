@@ -1,5 +1,12 @@
 # @deepdish/marketing
 
+## 0.10.7
+
+### Patch Changes
+
+- Updated dependencies [bee36dd]
+  - @deepdish/cms@0.8.0
+
 ## 0.10.6
 
 ### Patch Changes

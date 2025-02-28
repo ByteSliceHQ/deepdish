@@ -1,6 +1,6 @@
 {
   "name": "@deepdish/marketing",
-  "version": "0.10.6",
+  "version": "0.10.7",
   "private": true,
   "description": "DeepDish marketing site",
   "author": {
@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@clerk/nextjs": "6.11.2",
-    "@deepdish/cms": "workspace:0.7.0",
+    "@deepdish/cms": "workspace:0.8.0",
     "@deepdish/nextjs": "workspace:0.8.0",
     "@deepdish/resolvers": "workspace:0.13.0",
     "@deepdish/ui": "workspace:0.15.0",

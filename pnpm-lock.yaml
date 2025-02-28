@@ -94,7 +94,7 @@ importers:
   apps/demo:
     dependencies:
       '@deepdish/cms':
-        specifier: workspace:0.7.0
+        specifier: workspace:0.8.0
         version: link:../../packages/cms
       '@deepdish/nextjs':
         specifier: workspace:0.8.0
@@ -140,7 +140,7 @@ importers:
         specifier: 6.11.2
         version: 6.11.2(next@15.1.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@deepdish/cms':
-        specifier: workspace:0.7.0
+        specifier: workspace:0.8.0
         version: link:../../packages/cms
       '@deepdish/nextjs':
         specifier: workspace:0.8.0
