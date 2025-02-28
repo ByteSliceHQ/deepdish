@@ -6,7 +6,6 @@
     "name": "ByteSlice, LLC",
     "url": "https://byteslice.co"
   },
-  "type": "module",
   "exports": {
     "./config": {
       "import": "./dist/config/config.mjs",
