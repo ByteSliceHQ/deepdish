@@ -44,18 +44,6 @@ export const appRouter = router({
         schema: toJsonSchema(v.string()),
       }
     }),
-  // TODO: deprecate
-  greeting: publicProcedure
-    .input(
-      v.object({
-        name: v.string(),
-      }),
-    )
-    .query(({ input }) => {
-      return {
-        text: `hello ${input?.name ?? 'world'}`,
-      }
-    }),
 })
 
 export type AppRouter = typeof appRouter
