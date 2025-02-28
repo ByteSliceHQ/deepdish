@@ -1,10 +1,9 @@
 import { initTRPC } from '@trpc/server'
 import { toJsonSchema } from '@valibot/to-json-schema'
 import * as v from 'valibot'
-import type { Context } from './context'
 import * as schemas from './schemas'
 
-const t = initTRPC.context<Context>().create()
+const t = initTRPC.context().create()
 
 const router = t.router
 const publicProcedure = t.procedure
