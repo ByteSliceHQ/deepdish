@@ -22,13 +22,13 @@
     "dev": "tsup --watch"
   },
   "dependencies": {
-    "react": "19.0.0",
+    "react": "catalog:react",
     "zustand": "5.0.3"
   },
   "devDependencies": {
     "@tsconfig/create-react-app": "2.0.5",
-    "@types/react": "18.3.3",
-    "tsup": "8.2.4"
+    "@types/react": "catalog:react-18",
+    "tsup": "catalog:repo"
   },
   "publishConfig": {
     "access": "public"

@@ -26,7 +26,7 @@ To add a changeset, run the following command from the root of the project (wher
 
 ```sh
 # Add a new changeset
-bun changeset
+pnpm changeset
 ```
 
 An interactive prompt will appear to assist in specifying which package(s) to include, choosing relevant version bump(s), and crafting a changelog message.
@@ -47,7 +47,7 @@ If the contribution being made does not necessitate a version change or release 
 
 ```sh
 # Add an "empty" changeset
-bun changeset --empty
+pnpm changeset --empty
 ```
 
 ### Style Guide

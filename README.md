@@ -16,7 +16,7 @@ yarn add @deepdish/cms
 # or
 pnpm add @deepdish/cms
 # or
-bun add @deepdish/cms
+pnpm add @deepdish/cms
 ```
 
 ## Creating an account

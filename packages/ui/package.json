@@ -42,8 +42,8 @@
     "@radix-ui/react-context-menu": "2.2.1",
     "class-variance-authority": "0.7.0",
     "lucide-react": "0.447.0",
-    "react": "19.0.0",
-    "react-dom": "19.0.0",
+    "react": "catalog:react",
+    "react-dom": "catalog:react",
     "react-shadow-scope": "1.0.5",
     "rehype-parse": "9.0.0",
     "rehype-sanitize": "6.0.0",
@@ -56,13 +56,13 @@
   },
   "devDependencies": {
     "@tsconfig/create-react-app": "2.0.5",
-    "@types/react": "18.3.3",
-    "@types/react-dom": "18.3.0",
-    "tsup": "8.2.4",
-    "typescript": "5.5.4"
+    "@types/react": "catalog:react-18",
+    "@types/react-dom": "catalog:react-18",
+    "tsup": "catalog:repo",
+    "typescript": "catalog:repo"
   },
   "peerDependencies": {
-    "next": "^15"
+    "next": "catalog:peer-next"
   },
   "publishConfig": {
     "access": "public"

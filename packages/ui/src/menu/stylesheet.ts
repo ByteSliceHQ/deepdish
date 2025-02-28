@@ -1,6 +1,7 @@
 import { makeStyleSheet } from '@deepdish/stylesheet'
+import type { Stylesheet } from '@deepdish/stylesheet'
 
-export const stylesheet = makeStyleSheet('deepdish-menu', {
+export const stylesheet: Stylesheet = makeStyleSheet('deepdish-menu', {
   vars: {
     // https://tailwindcss.com/docs/customizing-colors
     slate50: '#f8fafc',

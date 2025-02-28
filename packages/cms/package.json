@@ -30,16 +30,17 @@
     "@deepdish/core": "workspace:0.3.0",
     "@deepdish/nextjs": "workspace:0.7.0",
     "@deepdish/ui": "workspace:0.14.0",
-    "@deepdish/workbench": "workspace:0.9.1",
-    "react": "19.0.0"
+    "@deepdish/workbench": "workspace:0.9.1"
   },
   "devDependencies": {
     "@tsconfig/create-react-app": "2.0.5",
-    "@types/react": "18.3.3",
-    "tsup": "8.2.4"
+    "@types/react": "catalog:react",
+    "tsup": "catalog:repo"
   },
   "peerDependencies": {
-    "next": "^15"
+    "next": "catalog:peer-next",
+    "react": "catalog:peer-react",
+    "react-dom": "catalog:peer-react"
   },
   "publishConfig": {
     "access": "public"
