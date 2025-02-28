@@ -94,16 +94,16 @@ importers:
   apps/demo:
     dependencies:
       '@deepdish/cms':
-        specifier: workspace:0.6.0
+        specifier: workspace:0.7.0
         version: link:../../packages/cms
       '@deepdish/nextjs':
-        specifier: workspace:0.7.0
+        specifier: workspace:0.8.0
         version: link:../../packages/nextjs
       '@deepdish/resolvers':
-        specifier: workspace:0.12.0
+        specifier: workspace:0.13.0
         version: link:../../packages/resolvers
       '@deepdish/ui':
-        specifier: workspace:0.14.0
+        specifier: workspace:0.15.0
         version: link:../../packages/ui
       next:
         specifier: 15.1.4
@@ -140,16 +140,16 @@ importers:
         specifier: 6.11.2
         version: 6.11.2(next@15.1.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@deepdish/cms':
-        specifier: workspace:0.6.0
+        specifier: workspace:0.7.0
         version: link:../../packages/cms
       '@deepdish/nextjs':
-        specifier: workspace:0.7.0
+        specifier: workspace:0.8.0
         version: link:../../packages/nextjs
       '@deepdish/resolvers':
-        specifier: workspace:0.12.0
+        specifier: workspace:0.13.0
         version: link:../../packages/resolvers
       '@deepdish/ui':
-        specifier: workspace:0.14.0
+        specifier: workspace:0.15.0
         version: link:../../packages/ui
       '@radix-ui/react-slot':
         specifier: 1.1.1
@@ -231,16 +231,16 @@ importers:
         specifier: 0.1.3
         version: 0.1.3(@types/react-dom@19.0.4(@types/react@19.0.0))(@types/react@19.0.0)
       '@deepdish/core':
-        specifier: workspace:0.3.0
+        specifier: workspace:0.4.0
         version: link:../core
       '@deepdish/nextjs':
-        specifier: workspace:0.7.0
+        specifier: workspace:0.8.0
         version: link:../nextjs
       '@deepdish/ui':
-        specifier: workspace:0.14.0
+        specifier: workspace:0.15.0
         version: link:../ui
       '@deepdish/workbench':
-        specifier: workspace:0.9.1
+        specifier: workspace:0.10.0
         version: link:../workbench
       next:
         specifier: catalog:peer-next
@@ -284,7 +284,7 @@ importers:
   packages/nextjs:
     dependencies:
       '@deepdish/workbench':
-        specifier: workspace:0.9.1
+        specifier: workspace:0.10.0
         version: link:../workbench
       next:
         specifier: catalog:peer-next
@@ -374,13 +374,13 @@ importers:
         specifier: 0.1.0
         version: 0.1.0
       '@deepdish/core':
-        specifier: workspace:0.3.0
+        specifier: workspace:0.4.0
         version: link:../core
       '@deepdish/resolvers':
-        specifier: workspace:0.12.0
+        specifier: workspace:0.13.0
         version: link:../resolvers
       '@deepdish/stylesheet':
-        specifier: workspace:0.4.0
+        specifier: workspace:0.5.0
         version: link:../stylesheet
       '@logtape/logtape':
         specifier: 0.6.2
@@ -453,7 +453,7 @@ importers:
         specifier: 0.1.0
         version: 0.1.0
       '@deepdish/core':
-        specifier: workspace:0.3.0
+        specifier: workspace:0.4.0
         version: link:../core
       '@radix-ui/react-slot':
         specifier: 1.1.2
@@ -2826,7 +2826,6 @@ packages:
 
   bun@1.2.4:
     resolution: {integrity: sha512-ZY0EZ/UKqheaLeAtMsfJA6jWoWvV9HAtfFaOJSmS3LrNpFKs1Sg5fZLSsczN1h3a+Dtheo4O3p3ZYWrf40kRGw==}
-    cpu: [arm64, x64, aarch64]
     os: [darwin, linux, win32]
     hasBin: true
 
