@@ -10,6 +10,7 @@ export default defineConfig([
   },
   {
     entry: [
+      'src/config/components.tsx',
       'src/deepdish.tsx',
       'src/elements/link.tsx',
       'src/elements/media.tsx',

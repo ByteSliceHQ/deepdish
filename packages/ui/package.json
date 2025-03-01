@@ -8,6 +8,10 @@
   },
   "type": "module",
   "exports": {
+    "./components": {
+      "import": "./dist/config/components.mjs",
+      "types": "./dist/config/components.d.mts"
+    },
     "./config": {
       "import": "./dist/config/config.js",
       "types": "./dist/config/config.d.ts"
