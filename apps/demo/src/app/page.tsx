@@ -22,11 +22,24 @@ export default function Demo() {
       </div>
       <div className="grid grid-cols-3 gap-4">
         <div>
-          <p className="font-bold">Simple element</p>
+          <p className="font-bold">Nested elements</p>
           <Text
-            deepdish={{ key: 'element', contract: 'text' }}
-            fallback="This is a simple element."
-            render={async (value) => <p>{value}</p>}
+            deepdish={{ key: 'parent', contract: 'text' }}
+            fallback="This is a parent element."
+            render={async (value) => {
+              return (
+                <>
+                  <h1>{value}</h1>
+                  <Text
+                    deepdish={{ key: 'child', contract: 'text' }}
+                    fallback="This is a child element."
+                    render={async (value) => {
+                      return <p>{value}</p>
+                    }}
+                  />
+                </>
+              )
+            }}
           />
         </div>
         <div>
