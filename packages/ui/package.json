@@ -9,16 +9,16 @@
   "type": "module",
   "exports": {
     "./components": {
-      "import": "./dist/config/components.mjs",
-      "types": "./dist/config/components.d.mts"
+      "import": "./dist/config/components.js",
+      "types": "./dist/config/components.d.ts"
     },
     "./config": {
       "import": "./dist/config/config.js",
       "types": "./dist/config/config.d.ts"
     },
     "./deepdish": {
-      "import": "./dist/deepdish.mjs",
-      "types": "./dist/deepdish.d.mts"
+      "import": "./dist/deepdish.js",
+      "types": "./dist/deepdish.d.ts"
     },
     "./link": {
       "import": "./dist/elements/link.js",
