@@ -1,5 +1,6 @@
 import { createTypographyResolver } from '@deepdish-cloud/resolvers/typography'
 import { configure } from '@deepdish/ui/config'
+import { typographySchema } from '@deepdish/ui/typography'
 import { deepdishMiddleware } from './middleware'
 import { ProviderContainer as DeepDishProvider } from './provider/container'
 
@@ -29,6 +30,7 @@ export const deepdish = async (config: DeepDishConfig) => {
           keys: () => Promise.resolve({ success: false, data: [] }),
           ...cloudTypographyResolver,
         },
+        schema: typographySchema,
       },
     },
     logging: {
