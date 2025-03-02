@@ -5,7 +5,7 @@ import localFont from 'next/font/local'
 
 import './globals.css'
 
-await cms()
+export const components = await cms()
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
