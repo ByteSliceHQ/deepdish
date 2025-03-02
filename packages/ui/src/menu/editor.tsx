@@ -10,7 +10,7 @@ type EditorProps<V> = {
   onUpdate: (value: V) => Promise<void>
 }
 
-// TODO: determine "quick edit" behavior for non-string contracts
+// TODO: direct "complex" content editing to workbench
 export function Editor<V>(props: EditorProps<V>) {
   if (typeof props.value !== 'string') {
     return <>Under Construction</>
