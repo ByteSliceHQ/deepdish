@@ -247,3 +247,5 @@ export async function DeepDish<V>(props: {
     />
   )
 }
+
+export type { DeepDishProps }
