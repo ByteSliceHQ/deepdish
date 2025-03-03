@@ -17,6 +17,7 @@ function HighlightBox(props: {
         outlineOffset: '2px',
         position: 'relative',
         borderRadius: '2px',
+        display: 'table',
       }}
     >
       <div

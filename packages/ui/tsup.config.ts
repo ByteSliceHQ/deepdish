@@ -2,7 +2,7 @@ import { defineConfig } from 'tsup'
 
 export default defineConfig([
   {
-    entry: ['src/config/config.ts', 'src/content.ts', 'src/schemas.ts'],
+    entry: ['src/config/config.ts', 'src/content.ts'],
     format: ['esm'],
     sourcemap: true,
     target: 'esnext',
@@ -10,6 +10,7 @@ export default defineConfig([
   },
   {
     entry: [
+      'src/config/components.tsx',
       'src/deepdish.tsx',
       'src/elements/link.tsx',
       'src/elements/media.tsx',
