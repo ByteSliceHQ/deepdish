@@ -1,4 +1,5 @@
 import { Paragraph } from '@deepdish/ui/typography'
+import { Feature } from '@/feature'
 import { components } from './layout'
 
 const Text = components.text
@@ -59,6 +60,10 @@ export default function Demo() {
             This is a dynamic collection.
           </Paragraph>
         </div>
+      </div>
+      <div>
+        <p className="font-bold">Custom elements</p>
+        <Feature deepdish={{ key: 'feature/feature-1', contract: 'feature' }} />
       </div>
     </div>
   )

@@ -4,6 +4,11 @@ import { createComponents } from '@deepdish/ui/components'
 import { configure } from '@deepdish/ui/config'
 import { z } from 'zod'
 
+const featureSchema = z.object({
+  name: z.string(),
+  description: z.string(),
+})
+
 const textSchema = z.string()
 
 const contracts = {
@@ -12,6 +17,12 @@ const contracts = {
       maxBatchSize: 10,
     }),
     schema: textSchema,
+  },
+  feature: {
+    resolver: createJsonResolver(contentPath, featureSchema, {
+      maxBatchSize: 10,
+    }),
+    schema: featureSchema,
   },
 }
 
