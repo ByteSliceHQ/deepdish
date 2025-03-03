@@ -1,5 +1,5 @@
-import { Paragraph } from '@deepdish/ui/typography'
 import { Feature } from '@/feature'
+import { Paragraph } from '@deepdish/ui/typography'
 import { components } from './layout'
 
 const Text = components.text
