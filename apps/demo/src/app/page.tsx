@@ -1,8 +1,24 @@
 import { Feature } from '@/feature'
 import { Paragraph } from '@deepdish/ui/typography'
+import { DeepDish2 } from '@deepdish/ui/deepdish'
 import { components } from './layout'
+import * as z from 'zod'
+import { createJsonResolver } from '@deepdish/resolvers/json'
 
 const Text = components.text
+
+const featureSchema = z.object({
+  name: z.string(),
+  description: z.string(),
+})
+
+const featureResolver = createJsonResolver(
+  '/tmp/deepdish_feature.json',
+  featureSchema,
+  {
+    maxBatchSize: 10,
+  },
+)
 
 export default function Demo() {
   return (
@@ -65,6 +81,32 @@ export default function Demo() {
         <p className="font-bold">Custom elements</p>
         <Feature
           deepdish={{ key: 'features/feature-1', contract: 'feature' }}
+        />
+        <DeepDish2
+          contract={{
+            resolver: featureResolver,
+            schema: featureSchema,
+          }}
+          deepdish={{ key: 'features/feature-1' }}
+          onWrite={async (
+            key: string,
+            value: z.infer<typeof featureSchema>,
+          ) => {
+            'use server'
+
+            console.log('[server] I am writing!', {
+              key,
+              value,
+            })
+
+            await featureResolver.write({ key }, value)
+          }}
+          render={(value) => (
+            <div className="border border-gray-200 rounded-lg p-4 bg-white shadow-sm inline-block">
+              <h1 className="text-xl text-gray-800 font-bold">{value.name}</h1>
+              <p className="text-gray-500">{value.description}</p>
+            </div>
+          )}
         />
       </div>
     </div>

@@ -19,6 +19,17 @@ export type DeepDishElementProps = {
 
 export type DeepDishProps = DeepDishElementProps | DeepDishCollectionProps
 
+export type DeepDishCollection2Props = {
+  collection: Collection
+}
+
+export type DeepDishElement2Props = {
+  collection?: never
+  key: Key
+}
+
+export type DeepDish2Props = DeepDishElement2Props | DeepDishCollection2Props
+
 export type ElementProps<
   E extends IntrinsicElement,
   C = undefined,
