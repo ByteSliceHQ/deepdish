@@ -1,5 +1,18 @@
 # @deepdish/marketing
 
+## 0.10.8
+
+### Patch Changes
+
+- bead0aa: Specified typography contract and schema.
+- Updated dependencies [bead0aa]
+- Updated dependencies [bead0aa]
+- Updated dependencies [bead0aa]
+- Updated dependencies [bead0aa]
+- Updated dependencies [bead0aa]
+  - @deepdish/ui@0.16.0
+  - @deepdish/cms@0.8.1
+
 ## 0.10.7
 
 ### Patch Changes

@@ -1,5 +1,16 @@
 # @deepdish/cms
 
+## 0.8.1
+
+### Patch Changes
+
+- bead0aa: Specified typography schema.
+- Updated dependencies [bead0aa]
+- Updated dependencies [bead0aa]
+- Updated dependencies [bead0aa]
+- Updated dependencies [bead0aa]
+  - @deepdish/ui@0.16.0
+
 ## 0.8.0
 
 ### Minor Changes

@@ -1,5 +1,21 @@
 # @deepdish/demo
 
+## 0.4.0
+
+### Minor Changes
+
+- bead0aa: Utilized components created by custom contract definition.
+
+### Patch Changes
+
+- Updated dependencies [bead0aa]
+- Updated dependencies [bead0aa]
+- Updated dependencies [bead0aa]
+- Updated dependencies [bead0aa]
+- Updated dependencies [bead0aa]
+  - @deepdish/ui@0.16.0
+  - @deepdish/cms@0.8.1
+
 ## 0.3.1
 
 ### Patch Changes
