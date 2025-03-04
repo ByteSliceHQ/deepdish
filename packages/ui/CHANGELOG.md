@@ -1,5 +1,14 @@
 # @deepdish/ui
 
+## 0.16.0
+
+### Minor Changes
+
+- bead0aa: Enabled component creation based on custom contract.
+- bead0aa: Replaced static value type with dynamic contract.
+- bead0aa: Added schema to contract definition.
+- bead0aa: Collocated pre-built schemas with their associated elements.
+
 ## 0.15.0
 
 ### Minor Changes

@@ -94,7 +94,7 @@ importers:
   apps/demo:
     dependencies:
       '@deepdish/cms':
-        specifier: workspace:0.8.0
+        specifier: workspace:0.8.1
         version: link:../../packages/cms
       '@deepdish/nextjs':
         specifier: workspace:0.8.0
@@ -103,7 +103,7 @@ importers:
         specifier: workspace:0.13.0
         version: link:../../packages/resolvers
       '@deepdish/ui':
-        specifier: workspace:0.15.0
+        specifier: workspace:0.16.0
         version: link:../../packages/ui
       next:
         specifier: 15.1.4
@@ -143,7 +143,7 @@ importers:
         specifier: 6.11.2
         version: 6.11.2(next@15.1.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@deepdish/cms':
-        specifier: workspace:0.8.0
+        specifier: workspace:0.8.1
         version: link:../../packages/cms
       '@deepdish/nextjs':
         specifier: workspace:0.8.0
@@ -152,7 +152,7 @@ importers:
         specifier: workspace:0.13.0
         version: link:../../packages/resolvers
       '@deepdish/ui':
-        specifier: workspace:0.15.0
+        specifier: workspace:0.16.0
         version: link:../../packages/ui
       '@radix-ui/react-slot':
         specifier: 1.1.1
@@ -240,7 +240,7 @@ importers:
         specifier: workspace:0.8.0
         version: link:../nextjs
       '@deepdish/ui':
-        specifier: workspace:0.15.0
+        specifier: workspace:0.16.0
         version: link:../ui
       '@deepdish/workbench':
         specifier: workspace:0.10.0
