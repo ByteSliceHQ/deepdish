@@ -5,12 +5,26 @@ import { useState } from 'react'
 import { Button } from './button'
 import * as styles from './editor.css'
 
-type EditorProps = {
-  value?: string | null
-  onUpdate: (value: string | null) => Promise<void>
+type EditorProps<V> = {
+  value?: V
+  onUpdate: (value: V) => Promise<void>
 }
 
-export function Editor(props: EditorProps) {
+// TODO: direct "complex" content editing to workbench
+export function Editor<V>(props: EditorProps<V>) {
+  if (typeof props.value !== 'string') {
+    return <>Under Construction</>
+  }
+
+  return (
+    <TypographyEditor
+      value={props.value}
+      onUpdate={props.onUpdate as (value: string) => Promise<void>}
+    />
+  )
+}
+
+function TypographyEditor(props: EditorProps<string>) {
   const router = useRouter()
   const [value, setValue] = useState<string>(props.value || '')
   const [loading, setLoading] = useState<boolean>(false)

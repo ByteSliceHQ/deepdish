@@ -8,9 +8,17 @@
   },
   "type": "module",
   "exports": {
+    "./components": {
+      "import": "./dist/config/components.js",
+      "types": "./dist/config/components.d.ts"
+    },
     "./config": {
       "import": "./dist/config/config.js",
       "types": "./dist/config/config.d.ts"
+    },
+    "./deepdish": {
+      "import": "./dist/deepdish.js",
+      "types": "./dist/deepdish.d.ts"
     },
     "./link": {
       "import": "./dist/elements/link.js",
@@ -19,10 +27,6 @@
     "./media": {
       "import": "./dist/elements/media.js",
       "types": "./dist/elements/media.d.ts"
-    },
-    "./schemas": {
-      "import": "./dist/schemas.js",
-      "types": "./dist/schemas.d.ts"
     },
     "./typography": {
       "import": "./dist/elements/typography.js",

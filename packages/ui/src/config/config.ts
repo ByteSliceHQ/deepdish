@@ -1,14 +1,9 @@
 import type { Result } from '@byteslice/result'
 import { getLogger } from '@logtape/logtape'
-import type { ValueType } from '../schemas'
-import type { Contract } from './contract'
+import type { Contract, Contracts, Schema } from './contract'
 import { configureLogging } from './logging'
 
 const logger = getLogger(['deepdish', 'config'])
-
-type Contracts = Readonly<{
-  [T in ValueType]?: Contract<T>
-}>
 
 type Logging = Readonly<{
   enabled: boolean
@@ -52,15 +47,15 @@ export async function configure(input: Config): Promise<Result<void>> {
   return { data: undefined }
 }
 
-export function getContract<T extends ValueType>(type: T): Result<Contract<T>> {
+export function getContract(name: string): Result<Contract<Schema>> {
   if (!config) {
     return notConfigured()
   }
 
-  const contract = config.contracts[type]
+  const contract = config.contracts[name]
   if (!contract) {
-    logger.error('Missing {type} contract.', { type })
-    return { failure: new Error(`Missing '${type}' contract.`) }
+    logger.error('Missing {name} contract.', { name })
+    return { failure: new Error(`Missing '${name}' contract.`) }
   }
 
   return { data: contract }

@@ -11,13 +11,13 @@ export default function Home() {
       <section className="pt-16 pb-24 sm:pt-24 sm:pb-32 border-b border-gray-200 bg-textured">
         <div className="container mx-auto text-left sm:text-center max-w-xl">
           <Heading1
-            deepdish={{ key: 'home/headline' }}
+            deepdish={{ key: 'home/headline', contract: 'typography' }}
             className="text-4xl font-bold mb-6 bg-gradient-to-r from-red-400 to-orange-500 text-transparent bg-clip-text"
           >
             Manage content directly on your pages
           </Heading1>
           <Paragraph
-            deepdish={{ key: 'home/sub-headline' }}
+            deepdish={{ key: 'home/sub-headline', contract: 'typography' }}
             className="text-xl text-gray-800 mb-10 max-w-2xl mx-auto"
           >
             DeepDish lets you build Next.js apps without integrating a CMS.
