@@ -1,4 +1,4 @@
-import { contentPath, initContent } from '@/content'
+import { contentPaths, initContent } from '@/content'
 import { createJsonResolver } from '@deepdish/resolvers/json'
 import { createComponents } from '@deepdish/ui/components'
 import { configure } from '@deepdish/ui/config'
@@ -13,13 +13,13 @@ const textSchema = z.string()
 
 const contracts = {
   text: {
-    resolver: createJsonResolver(contentPath, textSchema, {
+    resolver: createJsonResolver(contentPaths.text, textSchema, {
       maxBatchSize: 10,
     }),
     schema: textSchema,
   },
   feature: {
-    resolver: createJsonResolver(contentPath, featureSchema, {
+    resolver: createJsonResolver(contentPaths.feature, featureSchema, {
       maxBatchSize: 10,
     }),
     schema: featureSchema,

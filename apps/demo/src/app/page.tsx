@@ -63,7 +63,9 @@ export default function Demo() {
       </div>
       <div>
         <p className="font-bold">Custom elements</p>
-        <Feature deepdish={{ key: 'feature/feature-1', contract: 'feature' }} />
+        <Feature
+          deepdish={{ key: 'features/feature-1', contract: 'feature' }}
+        />
       </div>
     </div>
   )
