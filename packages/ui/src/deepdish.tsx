@@ -5,12 +5,17 @@ import { Shell } from '@deepdish/core/shell'
 import { getLogger } from '@logtape/logtape'
 import { headers } from 'next/headers'
 import { getContract, getSettings } from './config/config'
-import { Menu } from './menu'
+import { Menu, Menu2 } from './menu'
+import type * as z from 'zod'
 import type {
   DeepDishCollectionProps,
   DeepDishElementProps,
   DeepDishProps,
+  DeepDish2Props,
+  DeepDishCollection2Props,
+  DeepDishElement2Props,
 } from './types'
+import type { Contract } from './config/contract'
 
 const logger = getLogger(['deepdish', 'ui'])
 
@@ -243,6 +248,97 @@ export async function DeepDish<V>(props: {
     <DeepDishElement
       deepdish={props.deepdish}
       fallback={props.fallback}
+      render={props.render}
+    />
+  )
+}
+
+async function DeepDishElement2<S extends z.ZodTypeAny>(props: {
+  contract: Contract<S>
+  deepdish: DeepDishElement2Props
+  inCollection?: boolean
+  onWrite: (key: string, value: z.infer<S>) => Promise<void>
+  render: (value: z.infer<S>) => React.ReactNode
+}) {
+  const result = await props.contract.resolver.read({ key: props.deepdish.key })
+
+  if (result.failure) {
+    return <div>Fail 😭</div>
+  }
+
+  return (
+    <Shell deepdishKey={props.deepdish.key}>
+      <Menu2
+        deepdish={props.deepdish}
+        value={result.data}
+        onUpdate={props.onWrite}
+      >
+        {props.render(result.data)}
+      </Menu2>
+    </Shell>
+  )
+}
+
+async function DeepdishCollection2<S extends z.ZodTypeAny>(props: {
+  contract: Contract<S>
+  deepdish: DeepDishCollection2Props
+  onWrite: (key: string, value: z.infer<S>) => Promise<void>
+  render: (value: z.infer<S>) => React.ReactNode
+}) {
+  let keys: string[]
+
+  if (Array.isArray(props.deepdish.collection)) {
+    keys = props.deepdish.collection
+  } else {
+    const keysResult = await props.contract.resolver.keys(
+      props.deepdish.collection,
+    )
+
+    if (keysResult.failure) {
+      return <div>Fail 😭 could not get keys</div>
+    }
+
+    keys = keysResult.data
+  }
+
+  return keys.map((key) => {
+    const { collection, ...rest } = props.deepdish
+
+    return (
+      <DeepDishElement2
+        key={key}
+        contract={props.contract}
+        deepdish={{ ...rest, key }}
+        render={props.render}
+        onWrite={props.onWrite}
+        inCollection
+      />
+    )
+  })
+}
+
+export async function DeepDish2<S extends z.ZodTypeAny>(props: {
+  contract: Contract<S>
+  deepdish: DeepDish2Props
+  render: (value: z.infer<S>) => React.ReactNode
+  onWrite: (key: string, value: z.infer<S>) => Promise<void>
+}) {
+  if (props.deepdish.collection !== undefined) {
+    return (
+      <DeepdishCollection2
+        contract={props.contract}
+        deepdish={props.deepdish}
+        onWrite={props.onWrite}
+        render={props.render}
+      />
+    )
+  }
+
+  return (
+    <DeepDishElement2
+      contract={props.contract}
+      deepdish={props.deepdish}
+      onWrite={props.onWrite}
       render={props.render}
     />
   )
