@@ -27,15 +27,15 @@ export default function Demo() {
           <Text
             deepdish={{ key: 'parent', contract: 'text' }}
             fallback="This is a parent element."
-            render={async (value) => {
+            render={async (parent) => {
               return (
                 <>
-                  <h1>{value}</h1>
+                  <h1>{parent}</h1>
                   <Text
                     deepdish={{ key: 'child', contract: 'text' }}
                     fallback="This is a child element."
-                    render={async (value) => {
-                      return <p>{value}</p>
+                    render={async (child) => {
+                      return <p>{child}</p>
                     }}
                   />
                 </>
