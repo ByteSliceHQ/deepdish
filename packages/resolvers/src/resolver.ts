@@ -1,4 +1,5 @@
 import { type Result, withResult } from '@byteslice/result'
+import type { Schema, Value } from '@deepdish/core/schema'
 import DataLoader, { type BatchLoadFn } from 'dataloader'
 import * as v from 'valibot'
 
@@ -34,17 +35,16 @@ function handleValidationException(ex: unknown): Error {
   return new Error('Unable to validate content.', { cause: ex })
 }
 
-export function createResolver<S extends v.GenericSchema>(
+// TODO: refactor to remove partial function application
+export function createResolver<S extends Schema>(
   schema: S,
   options?: ResolverOptions,
 ) {
-  type Value = v.InferOutput<S>
-
   return (
     loadValues: BatchLoadFn<Key, unknown>,
-    updateValue: (key: Key, value: Value) => Promise<void>,
+    updateValue: (key: Key, value: Value<S>) => Promise<void>,
     listKeys?: (pattern: string) => Promise<Key[]>,
-  ): Resolver<Value> => {
+  ): Resolver<Value<S>> => {
     const loader = new DataLoader(loadValues, {
       maxBatchSize: options?.maxBatchSize,
     })
@@ -78,7 +78,7 @@ export function createResolver<S extends v.GenericSchema>(
           return { failure: { type: 'CONTENT_MISSING' } }
         }
 
-        const parseResult = await withResult<Value, ReadFailure>(
+        const parseResult = await withResult<Value<S>, ReadFailure>(
           () => v.parse(schema, content),
           (error) => ({ type: 'CONTENT_INVALID', error }),
           { onException: handleValidationException },

@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@byteslice/result": "0.1.0",
+    "@deepdish/core": "workspace:0.4.0",
     "dataloader": "2.2.2",
     "valibot": "1.0.0-rc.0"
   },
