@@ -12,6 +12,7 @@ import {
 } from '@/components/ui/context-menu'
 import { Textarea } from '@/components/ui/textarea'
 import { ShadowProvider, useShadowRoot } from '@/lib/context'
+import { useMode } from '@deepdish/core/context'
 import { useState } from 'react'
 
 type EditorProps<V> = {
@@ -105,6 +106,12 @@ function MenuContent<V>(props: Omit<MenuProps<V>, 'children'>) {
 }
 
 export function Menu<V>(props: MenuProps<V>) {
+  const mode = useMode()
+
+  if (mode === 'view') {
+    return props.children
+  }
+
   return (
     <ContextMenu>
       <ContextMenuTrigger>{props.children}</ContextMenuTrigger>
