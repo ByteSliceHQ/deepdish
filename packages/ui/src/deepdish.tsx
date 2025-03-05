@@ -145,7 +145,7 @@ async function DeepDishElement<V>(props: {
   }
 
   if (!(await canEdit())) {
-    return props.render(readResult.data)
+    return props.render(readResult.data as V)
   }
 
   return (
@@ -155,7 +155,7 @@ async function DeepDishElement<V>(props: {
         value={readResult.data}
         onUpdate={handleUpdate(props.deepdish.contract, props.deepdish.key)}
       >
-        {props.render(readResult.data)}
+        {props.render(readResult.data as V)}
       </Menu>
     </Shell>
   )
