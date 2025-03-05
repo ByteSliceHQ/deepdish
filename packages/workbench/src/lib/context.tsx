@@ -1,7 +1,7 @@
-import { type RefObject, createContext, useContext } from 'react'
+import { createContext, useContext, useState } from 'react'
+import { Tailwind } from 'react-shadow-scope'
 
 export type WorkbenchContext = {
-  ref?: RefObject<HTMLElement>
   authDisabled?: boolean
   title?: React.ReactNode
 }
@@ -9,7 +9,6 @@ export type WorkbenchContext = {
 export type WorkbenchProviderProps = {
   children: React.ReactNode
   authDisabled?: boolean
-  ref?: RefObject<HTMLElement>
   title?: React.ReactNode
 }
 
@@ -25,14 +24,34 @@ export function WorkbenchProvider(props: WorkbenchProviderProps) {
   )
 }
 
+export type ShadowContext = {
+  shadowRoot: HTMLDivElement | null
+}
+
+export type ShadowProviderProps = {
+  children: React.ReactNode
+}
+
+export const ShadowContext = createContext<ShadowContext | null>(null)
+
+export function ShadowProvider(props: { children: React.ReactNode }) {
+  const [shadowRoot, setShadowRoot] = useState<HTMLDivElement | null>(null)
+
+  return (
+    <Tailwind href="/__deepdish/css">
+      <div ref={setShadowRoot} className="deepdish-shadow">
+        <ShadowContext.Provider value={{ shadowRoot }}>
+          {props.children}
+        </ShadowContext.Provider>
+      </div>
+    </Tailwind>
+  )
+}
+
 export function useShadowRoot() {
-  const context = useContext(WorkbenchContext)
+  const context = useContext(ShadowContext)
 
-  if (!context) {
-    throw noContextFound()
-  }
-
-  return context.ref?.current
+  return context?.shadowRoot
 }
 
 export function useAuthDisabled() {
