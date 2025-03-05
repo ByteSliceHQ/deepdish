@@ -385,6 +385,9 @@ importers:
       '@deepdish/stylesheet':
         specifier: workspace:0.5.0
         version: link:../stylesheet
+      '@deepdish/workbench':
+        specifier: workspace:0.10.0
+        version: link:../workbench
       '@logtape/logtape':
         specifier: 0.6.2
         version: 0.6.2
@@ -458,6 +461,9 @@ importers:
       '@deepdish/core':
         specifier: workspace:0.4.0
         version: link:../core
+      '@radix-ui/react-context-menu':
+        specifier: 2.2.1
+        version: 2.2.1(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@radix-ui/react-slot':
         specifier: 1.1.2
         version: 1.1.2(@types/react@18.3.3)(react@19.0.0)
