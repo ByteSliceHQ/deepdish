@@ -1,5 +1,6 @@
 import 'server-only'
 
+import type { Value } from '@deepdish/core/schema'
 import * as v from 'valibot'
 import { DeepDish } from '../deepdish'
 import type { ElementProps } from '../types'
@@ -10,7 +11,7 @@ export const linkSchema = v.object({
   title: v.optional(v.string()),
 })
 
-type LinkValue = v.InferOutput<typeof linkSchema>
+type LinkValue = Value<typeof linkSchema>
 
 export function Link(props: ElementProps<'a', string>) {
   return (
