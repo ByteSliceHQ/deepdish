@@ -25,9 +25,9 @@ export type ResolverOptions = {
   maxBatchSize?: number
 }
 
-function handleValidationException(ex: unknown) {
-  if (ex instanceof ZodError) {
-    const message = [ex.flatten().formErrors].join('; ')
+function handleValidationException(ex: unknown): Error {
+  if (ex instanceof v.ValiError) {
+    const message = ex.issues.map((issue) => issue.message).join('; ')
     return new Error(message, { cause: ex })
   }
 
