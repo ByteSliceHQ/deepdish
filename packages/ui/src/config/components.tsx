@@ -1,5 +1,6 @@
+import type { Schema, Value } from '@deepdish/core/schema'
 import { DeepDish } from '../deepdish'
-import type { Contracts, Schema, Value } from './contract'
+import type { Contracts } from './contract'
 
 type Schemas<C extends Contracts> = {
   [K in keyof C]: C[K]['schema']

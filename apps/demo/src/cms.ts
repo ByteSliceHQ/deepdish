@@ -2,14 +2,14 @@ import { contentPaths, initContent } from '@/content'
 import { createJsonResolver } from '@deepdish/resolvers/json'
 import { createComponents } from '@deepdish/ui/components'
 import { configure } from '@deepdish/ui/config'
-import { z } from 'zod'
+import * as v from 'valibot'
 
-const featureSchema = z.object({
-  name: z.string(),
-  description: z.string(),
+const featureSchema = v.object({
+  name: v.string(),
+  description: v.string(),
 })
 
-const textSchema = z.string()
+const textSchema = v.string()
 
 const contracts = {
   text: {

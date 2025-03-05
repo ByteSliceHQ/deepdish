@@ -15,7 +15,7 @@
     "next": "15.1.4",
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "zod": "3.23.8"
+    "valibot": "1.0.0-rc.0"
   },
   "devDependencies": {
     "@types/node": "20.14.2",

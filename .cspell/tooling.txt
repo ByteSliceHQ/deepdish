@@ -1,6 +1,6 @@
 biomejs
-csvg
 cpath
+csvg
 dashify
 excalidraw
 filenaming
@@ -8,13 +8,14 @@ flox
 happydom
 lockb
 logtape
-posthog
 nextjs
+posthog
 registrator
 rehype
 shadcn
 tsup
-turborepo
 turbopack
+turborepo
+vali
 valibot
 vercel

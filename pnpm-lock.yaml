@@ -114,9 +114,9 @@ importers:
       react-dom:
         specifier: 19.0.0
         version: 19.0.0(react@19.0.0)
-      zod:
-        specifier: 3.23.8
-        version: 3.23.8
+      valibot:
+        specifier: 1.0.0-rc.0
+        version: 1.0.0-rc.0(typescript@5.5.4)
     devDependencies:
       '@types/node':
         specifier: 20.14.2
@@ -270,6 +270,9 @@ importers:
       react:
         specifier: catalog:react
         version: 19.0.0
+      valibot:
+        specifier: 1.0.0-rc.0
+        version: 1.0.0-rc.0(typescript@5.7.3)
       zustand:
         specifier: 5.0.3
         version: 5.0.3(@types/react@18.3.3)(react@19.0.0)(use-sync-external-store@1.4.0(react@19.0.0))
@@ -317,12 +320,15 @@ importers:
       '@byteslice/result':
         specifier: 0.1.0
         version: 0.1.0
+      '@deepdish/core':
+        specifier: workspace:0.4.0
+        version: link:../core
       dataloader:
         specifier: 2.2.2
         version: 2.2.2
-      zod:
-        specifier: 3.23.8
-        version: 3.23.8
+      valibot:
+        specifier: 1.0.0-rc.0
+        version: 1.0.0-rc.0(typescript@5.6.3)
     devDependencies:
       '@types/bun':
         specifier: catalog:repo
@@ -430,9 +436,9 @@ importers:
       unified:
         specifier: 11.0.5
         version: 11.0.5
-      zod:
-        specifier: 3.23.8
-        version: 3.23.8
+      valibot:
+        specifier: 1.0.0-rc.0
+        version: 1.0.0-rc.0(typescript@5.6.3)
     devDependencies:
       '@tsconfig/create-react-app':
         specifier: 2.0.5
@@ -9050,9 +9056,17 @@ snapshots:
 
   util-deprecate@1.0.2: {}
 
+  valibot@1.0.0-rc.0(typescript@5.5.4):
+    optionalDependencies:
+      typescript: 5.5.4
+
   valibot@1.0.0-rc.0(typescript@5.6.3):
     optionalDependencies:
       typescript: 5.6.3
+
+  valibot@1.0.0-rc.0(typescript@5.7.3):
+    optionalDependencies:
+      typescript: 5.7.3
 
   vfile-location@5.0.3:
     dependencies:

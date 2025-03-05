@@ -1,6 +1,7 @@
 import type { Result } from '@byteslice/result'
+import type { Schema } from '@deepdish/core/schema'
 import { getLogger } from '@logtape/logtape'
-import type { Contract, Contracts, Schema } from './contract'
+import type { Contract, Contracts } from './contract'
 import { configureLogging } from './logging'
 
 const logger = getLogger(['deepdish', 'config'])
