@@ -382,9 +382,6 @@ importers:
       '@deepdish/resolvers':
         specifier: workspace:0.13.0
         version: link:../resolvers
-      '@deepdish/stylesheet':
-        specifier: workspace:0.5.0
-        version: link:../stylesheet
       '@deepdish/workbench':
         specifier: workspace:0.10.0
         version: link:../workbench
