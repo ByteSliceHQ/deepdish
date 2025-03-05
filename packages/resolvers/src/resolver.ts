@@ -78,16 +78,16 @@ export function createResolver<S extends v.GenericSchema>(
           return { failure: { type: 'CONTENT_MISSING' } }
         }
 
-        const validateResult = await withResult<unknown, ReadFailure>(
+        const parseResult = await withResult<Value, ReadFailure>(
           () => v.parse(schema, content),
           (error) => ({ type: 'CONTENT_INVALID', error }),
           { onException: handleValidationException },
         )
-        if (validateResult.failure) {
-          return validateResult
+        if (parseResult.failure) {
+          return parseResult
         }
 
-        return { data: content }
+        return { data: parseResult.data }
       },
       async write(ctx, value) {
         const key = options?.deriveKey ? options.deriveKey(ctx) : ctx.key
