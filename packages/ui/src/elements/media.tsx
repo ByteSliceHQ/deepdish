@@ -1,15 +1,15 @@
 import 'server-only'
 
-import { z } from 'zod'
+import * as v from 'valibot'
 import { DeepDish } from '../deepdish'
 import type { ElementProps } from '../types'
 
-export const audioSchema = z.object({
-  fallback: z.string().optional(),
-  source: z.string().optional(),
+export const audioSchema = v.object({
+  fallback: v.optional(v.string()),
+  source: v.optional(v.string()),
 })
 
-type AudioValue = z.infer<typeof audioSchema>
+type AudioValue = v.InferOutput<typeof audioSchema>
 
 export function Audio(props: ElementProps<'audio', string>) {
   return (
@@ -30,13 +30,13 @@ export function Audio(props: ElementProps<'audio', string>) {
   )
 }
 
-export const imageSchema = z.object({
-  description: z.string().optional(),
-  source: z.string().optional(),
-  title: z.string().optional(),
+export const imageSchema = v.object({
+  description: v.optional(v.string()),
+  source: v.optional(v.string()),
+  title: v.optional(v.string()),
 })
 
-type ImageValue = z.infer<typeof imageSchema>
+type ImageValue = v.InferOutput<typeof imageSchema>
 
 export function Image(props: ElementProps<'img'>) {
   return (
@@ -61,12 +61,12 @@ export function Image(props: ElementProps<'img'>) {
   )
 }
 
-export const videoSchema = z.object({
-  fallback: z.string().optional(),
-  source: z.string().optional(),
+export const videoSchema = v.object({
+  fallback: v.optional(v.string()),
+  source: v.optional(v.string()),
 })
 
-type VideoValue = z.infer<typeof videoSchema>
+type VideoValue = v.InferOutput<typeof videoSchema>
 
 export function Video(props: ElementProps<'video', string>) {
   return (

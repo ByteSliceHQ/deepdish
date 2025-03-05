@@ -1,9 +1,9 @@
 import type { Resolver } from '@deepdish/resolvers'
-import type { ZodTypeAny, z } from 'zod'
+import type * as v from 'valibot'
 
-export type Schema = ZodTypeAny
+export type Schema = v.UnknownSchema
 
-export type Value<S extends Schema> = z.infer<S>
+export type Value<S extends Schema> = v.InferOutput<S>
 
 export type Contract<S extends Schema> = {
   resolver: Resolver<Value<S>>

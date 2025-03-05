@@ -1,6 +1,6 @@
 import { type Result, withResult } from '@byteslice/result'
 import DataLoader, { type BatchLoadFn } from 'dataloader'
-import { ZodError, type ZodTypeAny, type z } from 'zod'
+import * as v from 'valibot'
 
 export type Key = string
 
@@ -34,11 +34,11 @@ function handleValidationException(ex: unknown) {
   return new Error('Unable to validate content.', { cause: ex })
 }
 
-export function createResolver<S extends ZodTypeAny>(
+export function createResolver<S extends v.UnknownSchema>(
   schema: S,
   options?: ResolverOptions,
 ) {
-  type Value = z.infer<S>
+  type Value = v.InferOutput<S>
 
   return (
     loadValues: BatchLoadFn<Key, unknown>,
@@ -79,7 +79,7 @@ export function createResolver<S extends ZodTypeAny>(
         }
 
         const validateResult = await withResult<unknown, ReadFailure>(
-          () => schema.parse(content),
+          () => v.parse(schema, content),
           (error) => ({ type: 'CONTENT_INVALID', error }),
           { onException: handleValidationException },
         )
