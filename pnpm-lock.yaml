@@ -114,9 +114,9 @@ importers:
       react-dom:
         specifier: 19.0.0
         version: 19.0.0(react@19.0.0)
-      zod:
-        specifier: 3.23.8
-        version: 3.23.8
+      valibot:
+        specifier: 1.0.0-rc.0
+        version: 1.0.0-rc.0(typescript@5.5.4)
     devDependencies:
       '@types/node':
         specifier: 20.14.2
@@ -320,9 +320,9 @@ importers:
       dataloader:
         specifier: 2.2.2
         version: 2.2.2
-      zod:
-        specifier: 3.23.8
-        version: 3.23.8
+      valibot:
+        specifier: 1.0.0-rc.0
+        version: 1.0.0-rc.0(typescript@5.6.3)
     devDependencies:
       '@types/bun':
         specifier: catalog:repo
@@ -430,9 +430,9 @@ importers:
       unified:
         specifier: 11.0.5
         version: 11.0.5
-      zod:
-        specifier: 3.23.8
-        version: 3.23.8
+      valibot:
+        specifier: 1.0.0-rc.0
+        version: 1.0.0-rc.0(typescript@5.6.3)
     devDependencies:
       '@tsconfig/create-react-app':
         specifier: 2.0.5
@@ -2829,6 +2829,7 @@ packages:
 
   bun@1.2.4:
     resolution: {integrity: sha512-ZY0EZ/UKqheaLeAtMsfJA6jWoWvV9HAtfFaOJSmS3LrNpFKs1Sg5fZLSsczN1h3a+Dtheo4O3p3ZYWrf40kRGw==}
+    cpu: [arm64, x64, aarch64]
     os: [darwin, linux, win32]
     hasBin: true
 
@@ -9049,6 +9050,10 @@ snapshots:
       react: 19.0.0
 
   util-deprecate@1.0.2: {}
+
+  valibot@1.0.0-rc.0(typescript@5.5.4):
+    optionalDependencies:
+      typescript: 5.5.4
 
   valibot@1.0.0-rc.0(typescript@5.6.3):
     optionalDependencies:
