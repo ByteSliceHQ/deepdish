@@ -37,7 +37,7 @@ function listKeys(path: Path) {
 }
 
 /** Creates a resolver to asynchronously read/write values of a JSON file. */
-export function createJsonResolver<S extends v.UnknownSchema>(
+export function createJsonResolver<S extends v.GenericSchema>(
   path: Path,
   schema: S,
   options?: ResolverOptions,

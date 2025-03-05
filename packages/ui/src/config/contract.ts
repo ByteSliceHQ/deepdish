@@ -1,7 +1,7 @@
 import type { Resolver } from '@deepdish/resolvers'
 import type * as v from 'valibot'
 
-export type Schema = v.UnknownSchema
+export type Schema = v.GenericSchema
 
 export type Value<S extends Schema> = v.InferOutput<S>
 

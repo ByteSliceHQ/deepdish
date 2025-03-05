@@ -34,7 +34,7 @@ function handleValidationException(ex: unknown) {
   return new Error('Unable to validate content.', { cause: ex })
 }
 
-export function createResolver<S extends v.UnknownSchema>(
+export function createResolver<S extends v.GenericSchema>(
   schema: S,
   options?: ResolverOptions,
 ) {
