@@ -1,12 +1,12 @@
 import { afterAll, beforeAll, describe, expect, it } from 'bun:test'
 import fs from 'node:fs/promises'
-import { z } from 'zod'
+import * as v from 'valibot'
 import { createJsonResolver } from './json'
 import { createResolver } from './resolver'
 
 const path = './test.json'
 const empty = JSON.stringify({})
-const schema = z.string()
+const schema = v.string()
 const key = 'foo'
 const value = 'bar'
 const error = new Error('uh-oh')
