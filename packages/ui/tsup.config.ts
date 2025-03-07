@@ -25,4 +25,17 @@ export default defineConfig([
     // it, and the components that depend on it, can't be bundled
     bundle: false,
   },
+  {
+    entry: ['src/menu.tsx'],
+    format: ['esm'],
+    sourcemap: true,
+    dts: true,
+    target: 'esnext',
+    external: ['react', 'react-dom'],
+    esbuildOptions(options) {
+      options.banner = {
+        js: '"use client";',
+      }
+    },
+  },
 ])

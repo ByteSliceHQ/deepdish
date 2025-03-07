@@ -1,6 +1,5 @@
 import './index.css'
 
-import { DeepDishProvider } from '@deepdish/core/context'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { App } from './app'
@@ -13,8 +12,6 @@ if (!root) {
 
 createRoot(root).render(
   <StrictMode>
-    <DeepDishProvider>
-      <App />
-    </DeepDishProvider>
+    <App />
   </StrictMode>,
 )
