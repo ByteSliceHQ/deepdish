@@ -45,10 +45,5 @@
     "tsup": "catalog:repo",
     "typescript": "catalog:repo",
     "vite": "catalog:vite"
-  },
-  "msw": {
-    "workerDirectory": [
-      "public"
-    ]
   }
 }
