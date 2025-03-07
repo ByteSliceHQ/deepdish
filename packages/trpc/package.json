@@ -9,12 +9,12 @@
     "./server": "./src/server.ts"
   },
   "dependencies": {
-    "@trpc/client": "11.0.0-rc.791",
-    "@trpc/server": "11.0.0-rc.791",
+    "@trpc/client": "11.0.0-rc.824",
+    "@trpc/server": "11.0.0-rc.824",
     "@valibot/to-json-schema": "1.0.0-rc.0",
     "valibot": "1.0.0-rc.1"
   },
   "devDependencies": {
-    "@deepdish/ui": "workspace:0.14.0"
+    "typescript": "catalog:repo"
   }
 }

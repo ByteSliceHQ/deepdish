@@ -1,6 +1,6 @@
 import type { PathLike as Path } from 'node:fs'
 import { readFile, writeFile } from 'node:fs/promises'
-import type { ZodTypeAny } from 'zod'
+import type { Schema } from '@deepdish/core/schema'
 import { type Key, type ResolverOptions, createResolver } from './resolver'
 
 async function parseJson(path: Path) {
@@ -37,7 +37,7 @@ function listKeys(path: Path) {
 }
 
 /** Creates a resolver to asynchronously read/write values of a JSON file. */
-export function createJsonResolver<S extends ZodTypeAny>(
+export function createJsonResolver<S extends Schema>(
   path: Path,
   schema: S,
   options?: ResolverOptions,

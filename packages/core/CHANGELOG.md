@@ -1,5 +1,11 @@
 # @deepdish/core
 
+## 0.4.0
+
+### Minor Changes
+
+- 6af4b8e: Replaced bun with pnpm for better workspace and monorepo support.
+
 ## 0.3.0
 
 ### Minor Changes

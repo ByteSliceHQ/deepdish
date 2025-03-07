@@ -1,0 +1,52 @@
+{
+  "name": "@deepdish/menu",
+  "version": "0.0.0",
+  "description": "DeepDish context menu",
+  "author": {
+    "name": "ByteSlice, LLC",
+    "url": "https://byteslice.co"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/menu.js",
+      "types": "./dist/menu.d.ts"
+    },
+    "./css": "./dist/menu.css.ts"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "vite",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@radix-ui/react-context-menu": "2.2.1",
+    "@radix-ui/react-slot": "^1.1.2",
+    "@tailwindcss/postcss": "4.0.3",
+    "@tailwindcss/vite": "4.0.3",
+    "class-variance-authority": "0.7.1",
+    "clsx": "2.1.1",
+    "lucide-react": "0.475.0",
+    "postcss": "8.5.1",
+    "react": "catalog:react",
+    "react-dom": "catalog:react",
+    "react-shadow-scope": "1.0.11",
+    "tailwind-merge": "3.0.1",
+    "tailwindcss": "4.0.3",
+    "tailwindcss-animate": "1.0.7",
+    "valibot": "1.0.0-rc.0"
+  },
+  "devDependencies": {
+    "@tsconfig/create-react-app": "2.0.5",
+    "@types/react": "catalog:react-18",
+    "@types/react-dom": "catalog:react-18",
+    "@vitejs/plugin-react-swc": "catalog:vite",
+    "globals": "15.14.0",
+    "tsup": "catalog:repo",
+    "typescript": "catalog:repo",
+    "vite": "catalog:vite"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

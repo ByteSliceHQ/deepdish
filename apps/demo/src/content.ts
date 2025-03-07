@@ -1,14 +1,19 @@
 import fs from 'node:fs/promises'
 
-export const contentPath = '/tmp/deepdish.json'
+export const contentPaths = {
+  feature: '/tmp/deepdish_feature.json',
+  text: '/tmp/deepdish_text.json',
+} as const
 
 export async function initContent() {
-  const exists = await fs
-    .stat(contentPath)
-    .then(() => true)
-    .catch(() => false)
+  for (const path of Object.values(contentPaths)) {
+    const exists = await fs
+      .stat(path)
+      .then(() => true)
+      .catch(() => false)
 
-  if (!exists) {
-    await fs.writeFile(contentPath, JSON.stringify({}))
+    if (!exists) {
+      await fs.writeFile(path, JSON.stringify({}))
+    }
   }
 }

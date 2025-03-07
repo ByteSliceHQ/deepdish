@@ -1,6 +1,6 @@
 {
   "name": "@deepdish/workbench",
-  "version": "0.9.1",
+  "version": "0.10.0",
   "description": "DeepDish workbench",
   "author": {
     "name": "ByteSlice, LLC",
@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@byteslice/result": "0.1.0",
-    "@deepdish/core": "workspace:0.3.0",
+    "@deepdish/core": "workspace:0.4.0",
     "@deepdish/trpc": "workspace:0.0.0",
     "@radix-ui/react-checkbox": "1.1.4",
     "@radix-ui/react-dialog": "1.1.6",
@@ -36,8 +36,8 @@
     "@radix-ui/react-toggle": "1.1.2",
     "@radix-ui/react-toggle-group": "1.1.2",
     "@radix-ui/react-tooltip": "1.1.8",
-    "@tailwindcss/postcss": "4.0.3",
-    "@tailwindcss/vite": "4.0.3",
+    "@tailwindcss/postcss": "catalog:tailwind",
+    "@tailwindcss/vite": "catalog:tailwind",
     "@tanstack/react-query": "5.66.0",
     "@tanstack/react-router": "1.106.0",
     "@tiptap/extension-code-block-lowlight": "2.11.5",
@@ -46,6 +46,7 @@
     "@tiptap/extension-horizontal-rule": "2.11.5",
     "@tiptap/extension-image": "2.11.5",
     "@tiptap/extension-link": "2.11.5",
+    "@tiptap/extension-list-item": "^2.11.5",
     "@tiptap/extension-placeholder": "2.11.5",
     "@tiptap/extension-text-style": "2.11.5",
     "@tiptap/extension-typography": "2.11.5",
@@ -60,29 +61,29 @@
     "msw": "2.7.0",
     "postcss": "8.5.1",
     "re-resizable": "6.10.3",
-    "react": "19.0.0",
-    "react-dom": "19.0.0",
+    "react": "catalog:react",
+    "react-dom": "catalog:react",
     "react-hook-form": "7.54.2",
     "react-shadow-scope": "1.0.11",
-    "sonner": "1.7.4",
-    "tailwind-merge": "3.0.1",
-    "tailwindcss": "4.0.3",
-    "tailwindcss-animate": "1.0.7",
-    "valibot": "1.0.0-rc.1"
+    "tailwind-merge": "catalog:tailwind",
+    "tailwindcss": "catalog:tailwind",
+    "tailwindcss-animate": "catalog:tailwind",
+    "valibot": "1.0.0-rc.0"
   },
   "devDependencies": {
     "@tanstack/router-devtools": "1.106.0",
     "@tanstack/router-plugin": "1.106.0",
+    "@tsconfig/create-react-app": "2.0.5",
     "@types/json-schema": "7.0.15",
-    "@types/react": "18.3.3",
-    "@types/react-dom": "18.3.0",
+    "@types/react": "catalog:react-18",
+    "@types/react-dom": "catalog:react-18",
     "@vafanassieff/msw-trpc": "0.0.1",
-    "@vitejs/plugin-react-swc": "3.5.0",
+    "@vitejs/plugin-react-swc": "catalog:vite",
     "globals": "15.14.0",
     "json-schema": "0.4.0",
-    "tsup": "8.3.6",
-    "typescript": "5.7.3",
-    "vite": "6.1.0"
+    "tsup": "catalog:repo",
+    "typescript": "catalog:repo",
+    "vite": "catalog:vite"
   },
   "msw": {
     "workerDirectory": [

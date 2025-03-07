@@ -1,7 +1,8 @@
 import { TRPC_ENDPOINT } from '@deepdish/trpc/constants'
 import { appRouter } from '@deepdish/trpc/server'
-import { getCss } from '@deepdish/workbench/css'
 import { fetchRequestHandler } from '@trpc/server/adapters/fetch'
+import { getCss as getMenuCss } from '@deepdish/menu/css'
+import { getCss as getWorkbenchCss } from '@deepdish/workbench/css'
 import { type NextRequest, NextResponse } from 'next/server'
 
 export type DeepdishMiddlewareConfig = {
@@ -38,8 +39,17 @@ export async function deepdishMiddleware(
   }
 
   if (url.includes('/__deepdish/') && method === 'GET') {
-    if (url.endsWith('/css')) {
-      const css = getCss()
+    if (url.endsWith('/css/menu')) {
+      const css = getMenuCss()
+
+      const response = new NextResponse(css)
+      response.headers.set('Content-Type', 'text/css')
+
+      return response
+    }
+
+    if (url.endsWith('/css/workbench')) {
+      const css = getWorkbenchCss()
 
       const response = new NextResponse(css)
       response.headers.set('Content-Type', 'text/css')

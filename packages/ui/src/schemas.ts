@@ -1,45 +1,36 @@
-import { z } from 'zod'
+import type { Value } from '@deepdish/core/schema'
+import * as v from 'valibot'
 
-export const audioSchema = z.object({
-  fallback: z.string().optional(),
-  source: z.string().optional(),
+export const audioSchema = v.object({
+  fallback: v.optional(v.string()),
+  source: v.optional(v.string()),
 })
 
-export type AudioValue = z.infer<typeof audioSchema>
+export type AudioValue = Value<typeof audioSchema>
 
-export const imageSchema = z.object({
-  description: z.string().optional(),
-  source: z.string().optional(),
-  title: z.string().optional(),
+export const imageSchema = v.object({
+  description: v.optional(v.string()),
+  source: v.optional(v.string()),
+  title: v.optional(v.string()),
 })
 
-export type ImageValue = z.infer<typeof imageSchema>
+export type ImageValue = Value<typeof imageSchema>
 
-export const linkSchema = z.object({
-  destination: z.string().optional(),
-  href: z.string().optional(),
-  title: z.string().optional(),
+export const linkSchema = v.object({
+  destination: v.optional(v.string()),
+  href: v.optional(v.string()),
+  title: v.optional(v.string()),
 })
 
-export type LinkValue = z.infer<typeof linkSchema>
+export type LinkValue = Value<typeof linkSchema>
 
-export const typographySchema = z.string()
+export const typographySchema = v.string()
 
-export type TypographyValue = z.infer<typeof typographySchema>
+export type TypographyValue = Value<typeof typographySchema>
 
-export const videoSchema = z.object({
-  fallback: z.string().optional(),
-  source: z.string().optional(),
+export const videoSchema = v.object({
+  fallback: v.optional(v.string()),
+  source: v.optional(v.string()),
 })
 
-export type VideoValue = z.infer<typeof videoSchema>
-
-export type ValueMap = {
-  audio: AudioValue
-  image: ImageValue
-  link: LinkValue
-  typography: TypographyValue
-  video: VideoValue
-}
-
-export type ValueType = keyof ValueMap
+export type VideoValue = Value<typeof videoSchema>

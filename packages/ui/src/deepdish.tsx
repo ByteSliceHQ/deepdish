@@ -6,7 +6,6 @@ import { getLogger } from '@logtape/logtape'
 import { headers } from 'next/headers'
 import { getContract, getSettings } from './config/config'
 import { Menu } from './menu'
-import type { ValueType } from './schemas'
 import type {
   DeepDishCollectionProps,
   DeepDishElementProps,
@@ -52,33 +51,34 @@ async function canEdit() {
   return response.data
 }
 
-function getResolver(type: ValueType) {
-  const result = getContract(type)
+function getResolver(contract: DeepDishProps['contract']) {
+  const result = getContract(contract)
   return result.failure ? null : result.data.resolver
 }
 
-function handleUpdate(type: ValueType, key: DeepDishElementProps['key']) {
-  // TODO: type of `value` should be based on data contract
-  return async (value: string | null) => {
+function handleUpdate<V>(
+  contract: DeepDishProps['contract'],
+  key: DeepDishElementProps['key'],
+) {
+  return async (value: V) => {
     'use server'
 
-    const resolver = getResolver(type)
+    const resolver = getResolver(contract)
     if (!resolver) {
       logger.error(
-        'Unable to save {type} content for {key}: missing resolver.',
-        { type, key },
+        'Unable to save {contract} content for {key}: missing resolver.',
+        { contract, key },
       )
       return
     }
 
-    // TODO: handle `value` "fallback" based on data contract
     const writeResult = await resolver.write(
       { key, headers: await headers() },
-      value ?? '',
+      value,
     )
     if (writeResult.failure) {
-      logger.error('Unable to save {type} content for {key}: {reason}', {
-        type,
+      logger.error('Unable to save {contract} content for {key}: {reason}', {
+        contract,
         key,
         error: writeResult.failure,
         reason: writeResult.failure.message,
@@ -93,9 +93,8 @@ async function DeepDishElement<V>(props: {
   fallback?: V
   inCollection?: boolean
   render(value?: V): Promise<React.ReactElement>
-  type: ValueType
 }) {
-  const resolver = getResolver(props.type)
+  const resolver = getResolver(props.deepdish.contract)
   if (!resolver) {
     return props.render(props.fallback)
   }
@@ -107,16 +106,16 @@ async function DeepDishElement<V>(props: {
   if (readResult.failure) {
     switch (readResult.failure.type) {
       case 'READ':
-        logger.warn('Unable to read {type} content for {key}: {reason}', {
-          type: props.type,
+        logger.warn('Unable to read {contract} content for {key}: {reason}', {
+          contract: props.deepdish.contract,
           key: props.deepdish.key,
           error: readResult.failure.error,
           reason: readResult.failure.error.message,
         })
         break
       case 'CONTENT_INVALID':
-        logger.warn('Invalid {type} content for {key}: {reason}', {
-          type: props.type,
+        logger.warn('Invalid {contract} content for {key}: {reason}', {
+          contract: props.deepdish.contract,
           key: props.deepdish.key,
           error: readResult.failure.error,
           reason: readResult.failure.error.message,
@@ -127,9 +126,12 @@ async function DeepDishElement<V>(props: {
           return (
             <Shell deepdishKey={props.deepdish.key}>
               <Menu
-                deepdish={props.deepdish}
-                value={props.fallback as string}
-                onUpdate={handleUpdate(props.type, props.deepdish.key)}
+                deepdishKey={props.deepdish.key}
+                value={props.fallback}
+                onUpdate={handleUpdate(
+                  props.deepdish.contract,
+                  props.deepdish.key,
+                )}
               >
                 {props.render(props.fallback)}
               </Menu>
@@ -143,18 +145,17 @@ async function DeepDishElement<V>(props: {
   }
 
   if (!(await canEdit())) {
-    return props.render(readResult.data as V)
+    return props.render(readResult.data)
   }
 
   return (
     <Shell deepdishKey={props.deepdish.key}>
-      {/* // TODO: remove string type coercion once we support more resolver types */}
       <Menu
-        deepdish={props.deepdish}
-        value={readResult.data as string}
-        onUpdate={handleUpdate(props.type, props.deepdish.key)}
+        deepdishKey={props.deepdish.key}
+        value={readResult.data}
+        onUpdate={handleUpdate(props.deepdish.contract, props.deepdish.key)}
       >
-        {props.render(readResult.data as V)}
+        {props.render(readResult.data)}
       </Menu>
     </Shell>
   )
@@ -164,9 +165,8 @@ async function DeepDishCollection<V>(props: {
   deepdish: DeepDishCollectionProps
   fallback?: V
   render(value?: V): Promise<React.ReactElement>
-  type: ValueType
 }) {
-  const resolver = getResolver(props.type)
+  const resolver = getResolver(props.deepdish.contract)
   if (!resolver) {
     return props.render(props.fallback)
   }
@@ -182,17 +182,15 @@ async function DeepDishCollection<V>(props: {
       switch (keysResult.failure.type) {
         case 'UNSUPPORTED':
           logger.warn(
-            'The {type} content resolver does not support dynamic collections',
-            {
-              type: props.type,
-            },
+            'The {contract} content resolver does not support dynamic collections',
+            { contract: props.deepdish.contract },
           )
           break
         case 'KEYS':
           logger.warn(
-            'Unable to list keys for {type} content for {collection}: {reason}',
+            'Unable to list keys for {contract} content for {collection}: {reason}',
             {
-              type: props.type,
+              contract: props.deepdish.contract,
               collection: props.deepdish.collection,
               error: keysResult.failure.error,
               reason: keysResult.failure.error.message,
@@ -216,7 +214,6 @@ async function DeepDishCollection<V>(props: {
         deepdish={{ ...rest, key }}
         fallback={props.fallback}
         render={props.render}
-        type={props.type}
         inCollection
       />
     )
@@ -227,7 +224,6 @@ export async function DeepDish<V>(props: {
   deepdish?: DeepDishProps
   fallback?: V
   render(value?: V): Promise<React.ReactElement>
-  type: ValueType
 }) {
   if (!props.deepdish) {
     return <>{props.render(props.fallback)}</>
@@ -239,7 +235,6 @@ export async function DeepDish<V>(props: {
         deepdish={props.deepdish}
         fallback={props.fallback}
         render={props.render}
-        type={props.type}
       />
     )
   }
@@ -249,7 +244,8 @@ export async function DeepDish<V>(props: {
       deepdish={props.deepdish}
       fallback={props.fallback}
       render={props.render}
-      type={props.type}
     />
   )
 }
+
+export type { DeepDishProps }

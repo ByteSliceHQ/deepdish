@@ -13,7 +13,6 @@
     }
   ],
   "ignorePaths": [
-    "*.lockb",
     "dist",
     "node_modules",
     "mockServiceWorker.js",
@@ -23,7 +22,8 @@
     ".git",
     ".next",
     ".turbo",
-    ".vercel"
+    ".vercel",
+    "pnpm-lock.yaml"
   ],
   "words": ["byteslice", "deepdish"]
 }

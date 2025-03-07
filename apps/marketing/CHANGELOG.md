@@ -1,5 +1,22 @@
 # @deepdish/marketing
 
+## 0.10.7
+
+### Patch Changes
+
+- Updated dependencies [bee36dd]
+  - @deepdish/cms@0.8.0
+
+## 0.10.6
+
+### Patch Changes
+
+- Updated dependencies [6af4b8e]
+  - @deepdish/resolvers@0.13.0
+  - @deepdish/nextjs@0.8.0
+  - @deepdish/cms@0.7.0
+  - @deepdish/ui@0.15.0
+
 ## 0.10.5
 
 ### Patch Changes

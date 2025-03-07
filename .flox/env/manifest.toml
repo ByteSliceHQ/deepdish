@@ -2,21 +2,23 @@ version = 1
 
 [install]
 _1password.pkg-path = "_1password"
-_1password.version = "1password-cli-2.30.3"
+_1password.version = "2.30.3"
 bun.pkg-path = "bun"
 bun.version = "1.1.42"
 nodejs.pkg-path = "nodejs"
 nodejs.version = "22.11.0"
+pnpm.pkg-path = "pnpm"
+pnpm.version = "9.15.3"
 
 [hook]
 on-activate = '''
   echo "📦 Installing dependencies..."
-  bun install --frozen-lockfile
+  pnpm install --frozen-lockfile
 
   echo -e "\n🚀 Development Commands"
-  echo -e "- Run all tasks\t\t\033[34mbun dev\033[0m"
-  echo -e "- Start demo app\t\033[34mbun dev:demo\033[0m"
-  echo -e "- Start marketing app\t\033[34mbun dev:marketing\033[0m"
+  echo -e "- Run all tasks\t\t\033[34mpnpm dev\033[0m"
+  echo -e "- Start demo app\t\033[34mpnpm dev:demo\033[0m"
+  echo -e "- Start marketing app\t\033[34mpnpm dev:marketing\033[0m"
 
   export NODE_EXTRA_CA_CERTS=/etc/ssl/certs/flox-ca-bundle.crt
 '''

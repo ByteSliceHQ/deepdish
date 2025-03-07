@@ -1,5 +1,25 @@
 # @deepdish/cms
 
+## 0.8.0
+
+### Minor Changes
+
+- bee36dd: Updated lock file.
+
+## 0.7.0
+
+### Minor Changes
+
+- 6af4b8e: Replaced bun with pnpm for better workspace and monorepo support.
+
+### Patch Changes
+
+- Updated dependencies [6af4b8e]
+  - @deepdish/workbench@0.10.0
+  - @deepdish/nextjs@0.8.0
+  - @deepdish/core@0.4.0
+  - @deepdish/ui@0.15.0
+
 ## 0.6.0
 
 ### Minor Changes

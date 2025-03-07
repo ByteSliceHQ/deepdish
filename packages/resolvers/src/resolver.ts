@@ -1,6 +1,7 @@
 import { type Result, withResult } from '@byteslice/result'
+import type { Schema, Value } from '@deepdish/core/schema'
 import DataLoader, { type BatchLoadFn } from 'dataloader'
-import { ZodError, type ZodTypeAny, type z } from 'zod'
+import * as v from 'valibot'
 
 export type Key = string
 
@@ -25,26 +26,25 @@ export type ResolverOptions = {
   maxBatchSize?: number
 }
 
-function handleValidationException(ex: unknown) {
-  if (ex instanceof ZodError) {
-    const message = [ex.flatten().formErrors].join('; ')
+function handleValidationException(ex: unknown): Error {
+  if (ex instanceof v.ValiError) {
+    const message = ex.issues.map((issue) => issue.message).join('; ')
     return new Error(message, { cause: ex })
   }
 
   return new Error('Unable to validate content.', { cause: ex })
 }
 
-export function createResolver<S extends ZodTypeAny>(
+// TODO: refactor to remove partial function application
+export function createResolver<S extends Schema>(
   schema: S,
   options?: ResolverOptions,
 ) {
-  type Value = z.infer<S>
-
   return (
     loadValues: BatchLoadFn<Key, unknown>,
-    updateValue: (key: Key, value: Value) => Promise<void>,
+    updateValue: (key: Key, value: Value<S>) => Promise<void>,
     listKeys?: (pattern: string) => Promise<Key[]>,
-  ): Resolver<Value> => {
+  ): Resolver<Value<S>> => {
     const loader = new DataLoader(loadValues, {
       maxBatchSize: options?.maxBatchSize,
     })
@@ -78,16 +78,16 @@ export function createResolver<S extends ZodTypeAny>(
           return { failure: { type: 'CONTENT_MISSING' } }
         }
 
-        const validateResult = await withResult<unknown, ReadFailure>(
-          () => schema.parse(content),
+        const parseResult = await withResult<Value<S>, ReadFailure>(
+          () => v.parse(schema, content),
           (error) => ({ type: 'CONTENT_INVALID', error }),
           { onException: handleValidationException },
         )
-        if (validateResult.failure) {
-          return validateResult
+        if (parseResult.failure) {
+          return parseResult
         }
 
-        return { data: content }
+        return { data: parseResult.data }
       },
       async write(ctx, value) {
         const key = options?.deriveKey ? options.deriveKey(ctx) : ctx.key

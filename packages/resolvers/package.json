@@ -1,6 +1,6 @@
 {
   "name": "@deepdish/resolvers",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "description": "DeepDish content resolvers",
   "author": {
     "name": "ByteSlice, LLC",
@@ -23,13 +23,14 @@
   },
   "dependencies": {
     "@byteslice/result": "0.1.0",
+    "@deepdish/core": "workspace:0.4.0",
     "dataloader": "2.2.2",
-    "zod": "3.23.8"
+    "valibot": "1.0.0-rc.0"
   },
   "devDependencies": {
-    "@types/bun": "1.1.12",
-    "tsup": "8.2.4",
-    "typescript": "5.5.4"
+    "@types/bun": "catalog:repo",
+    "tsup": "catalog:repo",
+    "typescript": "catalog:repo"
   },
   "publishConfig": {
     "access": "public"

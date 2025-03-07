@@ -1,6 +1,9 @@
+import type { Schema, Value } from '@deepdish/core/schema'
 import type { Resolver } from '@deepdish/resolvers'
-import type { ValueMap, ValueType } from '../schemas'
 
-export type Contract<T extends ValueType> = Readonly<{
-  resolver: Resolver<ValueMap[T]>
-}>
+export type Contract<S extends Schema> = {
+  resolver: Resolver<Value<S>>
+  schema: S
+}
+
+export type Contracts = Record<string, Contract<Schema>>

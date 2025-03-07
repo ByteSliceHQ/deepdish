@@ -1,0 +1,40 @@
+packages:
+  - "packages/*"
+  - "apps/*"
+
+catalogs:
+  react:
+    react: 19.0.0
+    react-dom: 19.0.0
+    "@types/react": 19.0.0
+    "@types/react-dom": 19.0.0
+
+  react-18:
+    react: 18.3.1
+    react-dom: 18.3.1
+    "@types/react": 18.3.3
+    "@types/react-dom": 18.3.0
+
+  peer-react:
+    react: ^19.0.0 || ^19.0.0-0
+    react-dom: ^19.0.0 || ^19.0.0-0
+
+  peer-next:
+    next: ^15.0.0
+
+  repo:
+    tsup: 8.2.4
+    typescript: 5.7.2
+    "@types/bun": 1.1.12
+    "@types/node": 20.9.0
+
+  tailwind:
+    tailwindcss: 4.0.3
+    tailwindcss-animate: 1.0.7
+    tailwind-merge: 3.0.1
+    "@tailwindcss/postcss": 4.0.3
+    "@tailwindcss/vite": 4.0.3
+
+  vite:
+    vite: 6.1.0
+    "@vitejs/plugin-react-swc": 3.5.0
