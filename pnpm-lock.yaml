@@ -518,9 +518,6 @@ importers:
       '@deepdish/resolvers':
         specifier: workspace:0.13.0
         version: link:../resolvers
-      '@deepdish/workbench':
-        specifier: workspace:0.10.0
-        version: link:../workbench
       '@logtape/logtape':
         specifier: 0.6.2
         version: 0.6.2
