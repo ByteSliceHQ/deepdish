@@ -1,5 +1,5 @@
 import { type Context, createResolver } from '@deepdish/resolvers'
-import { typographySchema } from '@deepdish/ui/typography'
+import { typographySchema } from '@deepdish/ui/schema'
 import type { NextRequest, NextResponse } from 'next/server'
 
 const data = new Map<string, string>()
