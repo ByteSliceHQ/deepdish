@@ -71,6 +71,16 @@
           }
         }
       }
+    },
+    {
+      "include": ["packages/workbench/src/routes"],
+      "linter": {
+        "rules": {
+          "style": {
+            "useFilenamingConvention": "off"
+          }
+        }
+      }
     }
   ]
 }

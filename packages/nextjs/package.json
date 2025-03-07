@@ -19,7 +19,10 @@
   },
   "dependencies": {
     "@deepdish/menu": "workspace:0.0.0",
-    "@deepdish/workbench": "workspace:0.10.0"
+    "@deepdish/trpc": "workspace:0.0.0",
+    "@deepdish/ui": "workspace:0.15.0",
+    "@deepdish/workbench": "workspace:0.10.0",
+    "@trpc/server": "11.0.0-rc.824"
   },
   "devDependencies": {
     "@tsconfig/create-react-app": "2.0.5",
