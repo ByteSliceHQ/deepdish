@@ -1,5 +1,28 @@
 # @deepdish/ui
 
+## 0.16.0
+
+### Minor Changes
+
+- bead0aa: Enabled component creation based on custom contract.
+- b60c1ba: Consolidated pre-built schemas export.
+- bead0aa: Replaced static value type with dynamic contract.
+- bead0aa: Added schema to contract definition.
+- d58bfb8: Moved the context menu to standalone `@deepdish/menu` package.
+- 8b01a63: Replaced Zod with Valibot.
+- bead0aa: Collocated pre-built schemas with their associated elements.
+
+### Patch Changes
+
+- Updated dependencies [8b01a63]
+- Updated dependencies [d58bfb8]
+- Updated dependencies [d58bfb8]
+- Updated dependencies [8b01a63]
+  - @deepdish/core@0.5.0
+  - @deepdish/workbench@0.11.0
+  - @deepdish/menu@0.0.1
+  - @deepdish/resolvers@0.14.0
+
 ## 0.15.0
 
 ### Minor Changes

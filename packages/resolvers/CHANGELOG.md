@@ -1,5 +1,16 @@
 # @deepdish/resolvers
 
+## 0.14.0
+
+### Minor Changes
+
+- 8b01a63: Replaced Zod with Valibot.
+
+### Patch Changes
+
+- Updated dependencies [8b01a63]
+  - @deepdish/core@0.5.0
+
 ## 0.13.0
 
 ### Minor Changes

@@ -1,5 +1,18 @@
 # @deepdish/nextjs
 
+## 0.9.0
+
+### Minor Changes
+
+- d58bfb8: Added separate CSS route for the context menu.
+
+### Patch Changes
+
+- Updated dependencies [d58bfb8]
+- Updated dependencies [d58bfb8]
+  - @deepdish/workbench@0.11.0
+  - @deepdish/menu@0.0.1
+
 ## 0.8.0
 
 ### Minor Changes

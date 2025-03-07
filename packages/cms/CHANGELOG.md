@@ -1,5 +1,28 @@
 # @deepdish/cms
 
+## 0.9.0
+
+### Minor Changes
+
+- b60c1ba: Updated pre-built schema imports.
+
+### Patch Changes
+
+- bead0aa: Specified typography schema.
+- Updated dependencies [bead0aa]
+- Updated dependencies [b60c1ba]
+- Updated dependencies [bead0aa]
+- Updated dependencies [8b01a63]
+- Updated dependencies [bead0aa]
+- Updated dependencies [d58bfb8]
+- Updated dependencies [8b01a63]
+- Updated dependencies [d58bfb8]
+- Updated dependencies [bead0aa]
+  - @deepdish/ui@0.16.0
+  - @deepdish/core@0.5.0
+  - @deepdish/workbench@0.11.0
+  - @deepdish/nextjs@0.9.0
+
 ## 0.8.0
 
 ### Minor Changes
