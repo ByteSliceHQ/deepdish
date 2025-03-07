@@ -1,14 +1,9 @@
 import 'server-only'
 
-import type { Value } from '@deepdish/core/schema'
-import * as v from 'valibot'
 import { type ContentFormat, sanitizeContent } from '../content'
 import { DeepDish } from '../deepdish'
 import type { ElementProps, IntrinsicElement } from '../types'
-
-export const typographySchema = v.string()
-
-type TypographyValue = Value<typeof typographySchema>
+import type { TypographyValue } from '../schemas'
 
 type TypographyProps<E extends IntrinsicElement> = ElementProps<E, string> & {
   format?: ContentFormat

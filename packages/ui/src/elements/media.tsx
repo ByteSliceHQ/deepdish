@@ -1,16 +1,8 @@
 import 'server-only'
 
-import type { Value } from '@deepdish/core/schema'
-import * as v from 'valibot'
 import { DeepDish } from '../deepdish'
 import type { ElementProps } from '../types'
-
-export const audioSchema = v.object({
-  fallback: v.optional(v.string()),
-  source: v.optional(v.string()),
-})
-
-type AudioValue = Value<typeof audioSchema>
+import type { AudioValue, ImageValue, VideoValue } from '../schemas'
 
 export function Audio(props: ElementProps<'audio', string>) {
   return (
@@ -30,14 +22,6 @@ export function Audio(props: ElementProps<'audio', string>) {
     />
   )
 }
-
-export const imageSchema = v.object({
-  description: v.optional(v.string()),
-  source: v.optional(v.string()),
-  title: v.optional(v.string()),
-})
-
-type ImageValue = Value<typeof imageSchema>
 
 export function Image(props: ElementProps<'img'>) {
   return (
@@ -61,13 +45,6 @@ export function Image(props: ElementProps<'img'>) {
     />
   )
 }
-
-export const videoSchema = v.object({
-  fallback: v.optional(v.string()),
-  source: v.optional(v.string()),
-})
-
-type VideoValue = Value<typeof videoSchema>
 
 export function Video(props: ElementProps<'video', string>) {
   return (
