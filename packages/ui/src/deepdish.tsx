@@ -2,7 +2,7 @@ import 'server-only'
 
 import { withResult } from '@byteslice/result'
 import { Shell } from '@deepdish/core/shell'
-import { Menu } from '@deepdish/workbench'
+import { Menu } from '@deepdish/menu'
 import { getLogger } from '@logtape/logtape'
 import { headers } from 'next/headers'
 import { getContract, getSettings } from './config/config'
