@@ -1,7 +1,7 @@
 import * as v from 'valibot'
-import { useActions, useMode } from '@deepdish/core/context'
 import { Button } from '@/components/ui/button'
 import { Menu } from '@/menu'
+import { useState } from 'react'
 
 const typographySchema = v.string()
 
@@ -11,16 +11,18 @@ const featureSchema = v.object({
 })
 
 export function App() {
-  const mode = useMode()
-  const actions = useActions()
+  const [mode, setMode] = useState<'view' | 'edit'>('view')
 
   return (
     <div className="h-full flex flex-col justify-center items-center gap-4">
-      <Button onClick={actions.toggleMode}>
+      <Button
+        onClick={() => setMode((mode) => (mode === 'view' ? 'edit' : 'view'))}
+      >
         {mode === 'view' ? 'Viewing' : 'Editing'}
       </Button>
       <Menu
         deepdishKey="test/typography"
+        mode={mode}
         onUpdate={async (value) => {
           console.log('Updating test/typography', value)
         }}
@@ -30,6 +32,7 @@ export function App() {
       </Menu>
       <Menu
         deepdishKey="test/feature"
+        mode={mode}
         onUpdate={async (value) => {
           console.log('Updating test/feature', value)
         }}

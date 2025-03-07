@@ -20,7 +20,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@deepdish/core": "workspace:0.4.0",
     "@radix-ui/react-context-menu": "2.2.1",
     "@radix-ui/react-slot": "^1.1.2",
     "@tailwindcss/postcss": "4.0.3",

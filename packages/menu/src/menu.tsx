@@ -12,7 +12,6 @@ import {
 } from '@/components/ui/context-menu'
 import { Textarea } from '@/components/ui/textarea'
 import { ShadowProvider, useShadowRoot } from '@/lib/context'
-import { useMode } from '@deepdish/core/context'
 import { useState } from 'react'
 
 type EditorProps<V> = {
@@ -83,6 +82,7 @@ function TypographyEditor(props: EditorProps<string>) {
 export type MenuProps<V> = {
   children: React.ReactNode
   deepdishKey: string
+  mode?: 'view' | 'edit'
   onUpdate: (value: V) => Promise<void>
   value?: V
   withShadow?: boolean
@@ -107,9 +107,7 @@ function MenuContent<V>(props: Omit<MenuProps<V>, 'children'>) {
 }
 
 export function Menu<V>(props: MenuProps<V>) {
-  const mode = useMode()
-
-  if (mode === 'view') {
+  if (props.mode === 'view') {
     return props.children
   }
 
