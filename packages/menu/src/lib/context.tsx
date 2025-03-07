@@ -18,7 +18,7 @@ export function ShadowProvider(props: {
   }
 
   return (
-    <Tailwind href="/__deepdish/css">
+    <Tailwind href="/__deepdish/css/menu">
       <div ref={setShadowRoot} className="deepdish-shadow">
         <ShadowContext.Provider value={{ shadowRoot }}>
           {props.children}

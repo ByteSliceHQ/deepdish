@@ -20,7 +20,7 @@ async function createCssGetter() {
 
 export default defineConfig({
   entry: {
-    workbench: 'lib/index.tsx',
+    menu: 'lib/index.tsx',
   },
   external: ['react', 'react-dom'],
   format: ['esm'],
