@@ -19,3 +19,5 @@ turborepo
 vali
 valibot
 vercel
+vite
+vitejs

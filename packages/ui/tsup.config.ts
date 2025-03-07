@@ -26,13 +26,12 @@ export default defineConfig([
     bundle: false,
   },
   {
-    entry: ['src/menu/index.tsx'],
-    outDir: 'dist/menu',
+    entry: ['src/menu.tsx'],
     format: ['esm'],
     sourcemap: true,
     dts: true,
     target: 'esnext',
-    external: ['react', 'react-dom', 'next'],
+    external: ['react', 'react-dom'],
     esbuildOptions(options) {
       options.banner = {
         js: '"use client";',

@@ -13,7 +13,7 @@
     "clean": "rimraf --glob **/.next **/.turbo **/dist **/node_modules",
     "code:check": "pnpm install --frozen-lockfile && biome ci . & pnpm run sort-manifests --check & cspell --dot .",
     "code:fix": "biome check --write . & pnpm run sort-manifests",
-    "dev": "turbo run dev",
+    "dev": "turbo run dev --concurrency=20",
     "dev:demo": "turbo run dev --filter @deepdish/demo...",
     "dev:marketing": "turbo run dev --filter @deepdish/marketing...",
     "sort-manifests": "sort-package-json package.json apps/**/package.json packages/**/package.json",

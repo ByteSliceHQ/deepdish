@@ -126,7 +126,7 @@ async function DeepDishElement<V>(props: {
           return (
             <Shell deepdishKey={props.deepdish.key}>
               <Menu
-                deepdish={props.deepdish}
+                deepdishKey={props.deepdish.key}
                 value={props.fallback}
                 onUpdate={handleUpdate(
                   props.deepdish.contract,
@@ -151,7 +151,7 @@ async function DeepDishElement<V>(props: {
   return (
     <Shell deepdishKey={props.deepdish.key}>
       <Menu
-        deepdish={props.deepdish}
+        deepdishKey={props.deepdish.key}
         value={readResult.data}
         onUpdate={handleUpdate(props.deepdish.contract, props.deepdish.key)}
       >

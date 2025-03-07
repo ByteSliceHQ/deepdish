@@ -18,6 +18,7 @@
     "dev": "tsup --watch"
   },
   "dependencies": {
+    "@deepdish/menu": "workspace:0.0.0",
     "@deepdish/workbench": "workspace:0.10.0"
   },
   "devDependencies": {
