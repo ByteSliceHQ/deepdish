@@ -1,5 +1,29 @@
 # @deepdish/marketing
 
+## 0.11.0
+
+### Minor Changes
+
+- b60c1ba: Updated pre-built schema imports.
+
+### Patch Changes
+
+- bead0aa: Specified typography contract and schema.
+- Updated dependencies [bead0aa]
+- Updated dependencies [b60c1ba]
+- Updated dependencies [bead0aa]
+- Updated dependencies [bead0aa]
+- Updated dependencies [d58bfb8]
+- Updated dependencies [b60c1ba]
+- Updated dependencies [8b01a63]
+- Updated dependencies [d58bfb8]
+- Updated dependencies [bead0aa]
+- Updated dependencies [bead0aa]
+  - @deepdish/ui@0.16.0
+  - @deepdish/cms@0.9.0
+  - @deepdish/resolvers@0.14.0
+  - @deepdish/nextjs@0.9.0
+
 ## 0.10.7
 
 ### Patch Changes
