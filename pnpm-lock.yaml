@@ -52,6 +52,29 @@ catalogs:
     typescript:
       specifier: 5.6.3
       version: 5.6.3
+  tailwind:
+    '@tailwindcss/postcss':
+      specifier: 4.0.3
+      version: 4.0.3
+    '@tailwindcss/vite':
+      specifier: 4.0.3
+      version: 4.0.3
+    tailwind-merge:
+      specifier: 3.0.1
+      version: 3.0.1
+    tailwindcss:
+      specifier: 4.0.3
+      version: 4.0.3
+    tailwindcss-animate:
+      specifier: 1.0.7
+      version: 1.0.7
+  vite:
+    '@vitejs/plugin-react-swc':
+      specifier: 3.5.0
+      version: 3.5.0
+    vite:
+      specifier: 6.1.0
+      version: 6.1.0
 
 importers:
 
@@ -284,8 +307,84 @@ importers:
         specifier: catalog:repo
         version: 8.2.4(@swc/core@1.11.5(@swc/helpers@0.5.15))(jiti@2.4.2)(postcss@8.5.1)(tsx@4.19.3)(typescript@5.7.3)(yaml@2.7.0)
 
+  packages/menu:
+    dependencies:
+      '@radix-ui/react-context-menu':
+        specifier: 2.2.1
+        version: 2.2.1(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@radix-ui/react-slot':
+        specifier: ^1.1.2
+        version: 1.1.2(@types/react@18.3.3)(react@19.0.0)
+      '@tailwindcss/postcss':
+        specifier: 4.0.3
+        version: 4.0.3
+      '@tailwindcss/vite':
+        specifier: 4.0.3
+        version: 4.0.3(vite@6.1.0(@types/node@20.14.2)(jiti@2.4.2)(lightningcss@1.29.1)(tsx@4.19.3)(yaml@2.7.0))
+      class-variance-authority:
+        specifier: 0.7.1
+        version: 0.7.1
+      clsx:
+        specifier: 2.1.1
+        version: 2.1.1
+      lucide-react:
+        specifier: 0.475.0
+        version: 0.475.0(react@19.0.0)
+      postcss:
+        specifier: 8.5.1
+        version: 8.5.1
+      react:
+        specifier: catalog:react
+        version: 19.0.0
+      react-dom:
+        specifier: catalog:react
+        version: 19.0.0(react@19.0.0)
+      react-shadow-scope:
+        specifier: 1.0.11
+        version: 1.0.11(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      tailwind-merge:
+        specifier: 3.0.1
+        version: 3.0.1
+      tailwindcss:
+        specifier: 4.0.3
+        version: 4.0.3
+      tailwindcss-animate:
+        specifier: 1.0.7
+        version: 1.0.7(tailwindcss@4.0.3)
+      valibot:
+        specifier: 1.0.0-rc.0
+        version: 1.0.0-rc.0(typescript@5.6.3)
+    devDependencies:
+      '@tsconfig/create-react-app':
+        specifier: 2.0.5
+        version: 2.0.5
+      '@types/react':
+        specifier: catalog:react-18
+        version: 18.3.3
+      '@types/react-dom':
+        specifier: catalog:react-18
+        version: 18.3.0
+      '@vitejs/plugin-react-swc':
+        specifier: catalog:vite
+        version: 3.5.0(@swc/helpers@0.5.15)(vite@6.1.0(@types/node@20.14.2)(jiti@2.4.2)(lightningcss@1.29.1)(tsx@4.19.3)(yaml@2.7.0))
+      globals:
+        specifier: 15.14.0
+        version: 15.14.0
+      tsup:
+        specifier: catalog:repo
+        version: 8.2.4(@swc/core@1.11.5(@swc/helpers@0.5.15))(jiti@2.4.2)(postcss@8.5.1)(tsx@4.19.3)(typescript@5.6.3)(yaml@2.7.0)
+      typescript:
+        specifier: catalog:repo
+        version: 5.6.3
+      vite:
+        specifier: catalog:vite
+        version: 6.1.0(@types/node@20.14.2)(jiti@2.4.2)(lightningcss@1.29.1)(tsx@4.19.3)(yaml@2.7.0)
+
   packages/nextjs:
     dependencies:
+      '@deepdish/menu':
+        specifier: workspace:0.0.0
+        version: link:../menu
       '@deepdish/workbench':
         specifier: workspace:0.10.0
         version: link:../workbench
@@ -379,6 +478,9 @@ importers:
       '@deepdish/core':
         specifier: workspace:0.4.0
         version: link:../core
+      '@deepdish/menu':
+        specifier: workspace:0.0.0
+        version: link:../menu
       '@deepdish/resolvers':
         specifier: workspace:0.13.0
         version: link:../resolvers
@@ -468,10 +570,10 @@ importers:
         specifier: 1.1.8
         version: 1.1.8(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@tailwindcss/postcss':
-        specifier: 4.0.3
+        specifier: catalog:tailwind
         version: 4.0.3
       '@tailwindcss/vite':
-        specifier: 4.0.3
+        specifier: catalog:tailwind
         version: 4.0.3(vite@6.1.0(@types/node@20.14.2)(jiti@2.4.2)(lightningcss@1.29.1)(tsx@4.19.3)(yaml@2.7.0))
       '@tanstack/react-query':
         specifier: 5.66.0
@@ -507,13 +609,13 @@ importers:
         specifier: 1.0.11
         version: 1.0.11(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       tailwind-merge:
-        specifier: 3.0.1
+        specifier: catalog:tailwind
         version: 3.0.1
       tailwindcss:
-        specifier: 4.0.3
+        specifier: catalog:tailwind
         version: 4.0.3
       tailwindcss-animate:
-        specifier: 1.0.7
+        specifier: catalog:tailwind
         version: 1.0.7(tailwindcss@4.0.3)
       valibot:
         specifier: 1.0.0-rc.0
@@ -529,13 +631,13 @@ importers:
         specifier: 2.0.5
         version: 2.0.5
       '@types/react':
-        specifier: 18.3.3
+        specifier: catalog:react-18
         version: 18.3.3
       '@types/react-dom':
-        specifier: 18.3.0
+        specifier: catalog:react-18
         version: 18.3.0
       '@vitejs/plugin-react-swc':
-        specifier: 3.5.0
+        specifier: catalog:vite
         version: 3.5.0(@swc/helpers@0.5.15)(vite@6.1.0(@types/node@20.14.2)(jiti@2.4.2)(lightningcss@1.29.1)(tsx@4.19.3)(yaml@2.7.0))
       globals:
         specifier: 15.14.0
@@ -547,7 +649,7 @@ importers:
         specifier: catalog:repo
         version: 5.6.3
       vite:
-        specifier: 6.1.0
+        specifier: catalog:vite
         version: 6.1.0(@types/node@20.14.2)(jiti@2.4.2)(lightningcss@1.29.1)(tsx@4.19.3)(yaml@2.7.0)
 
 packages:
