@@ -38,7 +38,7 @@ export function ShadowProvider(props: { children: React.ReactNode }) {
   const [shadowRoot, setShadowRoot] = useState<HTMLDivElement | null>(null)
 
   return (
-    <Tailwind href="/__deepdish/css">
+    <Tailwind href="/__deepdish/css/workbench">
       <div ref={setShadowRoot} className="deepdish-shadow">
         <ShadowContext.Provider value={{ shadowRoot }}>
           {props.children}
