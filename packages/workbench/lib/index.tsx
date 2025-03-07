@@ -1,7 +1,6 @@
 'use client'
 
 import '../src/index.css'
-import { Menu as InternalMenu, type MenuProps } from '@/components/menu'
 import { ShadowProvider } from '@/lib/context'
 import {
   Workbench as InternalWorkbench,
@@ -16,8 +15,4 @@ export function Workbench(props: WorkbenchProps) {
       <InternalWorkbench {...props} />
     </ShadowProvider>
   )
-}
-
-export function Menu<V>(props: MenuProps<V>) {
-  return <InternalMenu {...props} />
 }

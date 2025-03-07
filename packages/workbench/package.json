@@ -25,8 +25,8 @@
     "@radix-ui/react-context-menu": "2.2.1",
     "@radix-ui/react-slot": "1.1.2",
     "@radix-ui/react-tooltip": "1.1.8",
-    "@tailwindcss/postcss": "4.0.3",
-    "@tailwindcss/vite": "4.0.3",
+    "@tailwindcss/postcss": "catalog:tailwind",
+    "@tailwindcss/vite": "catalog:tailwind",
     "@tanstack/react-query": "5.66.0",
     "@tanstack/react-router": "1.105.0",
     "class-variance-authority": "0.7.1",
@@ -38,22 +38,22 @@
     "react": "catalog:react",
     "react-dom": "catalog:react",
     "react-shadow-scope": "1.0.11",
-    "tailwind-merge": "3.0.1",
-    "tailwindcss": "4.0.3",
-    "tailwindcss-animate": "1.0.7",
+    "tailwind-merge": "catalog:tailwind",
+    "tailwindcss": "catalog:tailwind",
+    "tailwindcss-animate": "catalog:tailwind",
     "valibot": "1.0.0-rc.0"
   },
   "devDependencies": {
     "@tanstack/router-devtools": "1.105.0",
     "@tanstack/router-plugin": "1.105.0",
     "@tsconfig/create-react-app": "2.0.5",
-    "@types/react": "18.3.3",
-    "@types/react-dom": "18.3.0",
-    "@vitejs/plugin-react-swc": "3.5.0",
+    "@types/react": "catalog:react-18",
+    "@types/react-dom": "catalog:react-18",
+    "@vitejs/plugin-react-swc": "catalog:vite",
     "globals": "15.14.0",
     "tsup": "catalog:repo",
     "typescript": "catalog:repo",
-    "vite": "6.1.0"
+    "vite": "catalog:vite"
   },
   "msw": {
     "workerDirectory": [
