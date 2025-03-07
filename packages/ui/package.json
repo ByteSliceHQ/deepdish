@@ -40,8 +40,8 @@
   "dependencies": {
     "@byteslice/result": "0.1.0",
     "@deepdish/core": "workspace:0.4.0",
-    "@deepdish/resolvers": "workspace:0.13.0",
     "@deepdish/menu": "workspace:0.0.0",
+    "@deepdish/resolvers": "workspace:0.13.0",
     "@deepdish/workbench": "workspace:0.10.0",
     "@logtape/logtape": "0.6.2",
     "@radix-ui/react-context-menu": "2.2.1",

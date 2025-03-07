@@ -1,6 +1,6 @@
-import { type NextRequest, NextResponse } from 'next/server'
 import { getCss as getMenuCss } from '@deepdish/menu/css'
 import { getCss as getWorkbenchCss } from '@deepdish/workbench/css'
+import { type NextRequest, NextResponse } from 'next/server'
 
 export type DeepdishMiddlewareConfig = {
   draft: boolean

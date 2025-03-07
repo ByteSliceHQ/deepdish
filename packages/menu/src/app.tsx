@@ -1,7 +1,7 @@
-import * as v from 'valibot'
 import { Button } from '@/components/ui/button'
 import { Menu } from '@/menu'
 import { useState } from 'react'
+import * as v from 'valibot'
 
 const typographySchema = v.string()
 
