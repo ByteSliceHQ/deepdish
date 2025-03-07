@@ -5,9 +5,16 @@ import * as v from 'valibot'
 
 const typographySchema = v.string()
 
+const paragraph = v.parse(typographySchema, 'Paragraph')
+
 const featureSchema = v.object({
   name: v.string(),
   description: v.string(),
+})
+
+const feature = v.parse(featureSchema, {
+  name: 'Feature Name',
+  description: 'Feature Description',
 })
 
 export function App() {
@@ -26,9 +33,9 @@ export function App() {
         onUpdate={async (value) => {
           console.log('Updating test/typography', value)
         }}
-        value={v.parse(typographySchema, 'Hello, world!')}
+        value={paragraph}
       >
-        <p>Paragraph</p>
+        <p>{paragraph}</p>
       </Menu>
       <Menu
         deepdishKey="test/feature"
@@ -36,14 +43,11 @@ export function App() {
         onUpdate={async (value) => {
           console.log('Updating test/feature', value)
         }}
-        value={v.parse(featureSchema, {
-          name: 'Feature Name',
-          description: 'Feature Description',
-        })}
+        value={feature}
       >
         <div className="border rounded shadow-sm py-3 px-4">
-          <h1 className="font-bold text-gray-800">Feature Title</h1>
-          <p className="text-gray-600">Feature Description</p>
+          <h1 className="font-bold text-gray-800">{feature.name}</h1>
+          <p className="text-gray-600">{feature.description}</p>
         </div>
       </Menu>
     </div>
