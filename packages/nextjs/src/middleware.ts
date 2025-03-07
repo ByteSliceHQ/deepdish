@@ -1,8 +1,8 @@
+import { getCss as getMenuCss } from '@deepdish/menu/css'
 import { TRPC_ENDPOINT } from '@deepdish/trpc/constants'
 import { appRouter } from '@deepdish/trpc/server'
-import { fetchRequestHandler } from '@trpc/server/adapters/fetch'
-import { getCss as getMenuCss } from '@deepdish/menu/css'
 import { getCss as getWorkbenchCss } from '@deepdish/workbench/css'
+import { fetchRequestHandler } from '@trpc/server/adapters/fetch'
 import { type NextRequest, NextResponse } from 'next/server'
 
 export type DeepdishMiddlewareConfig = {
