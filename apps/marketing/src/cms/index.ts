@@ -1,6 +1,6 @@
 import { getBaseUrl } from '@/lib/get-base-url'
 import { configure } from '@deepdish/ui/config'
-import { typographySchema } from '@deepdish/ui/typography'
+import { typographySchema } from '@deepdish/ui/schemas'
 import { cookieResolver } from '../resolver'
 
 let configured = false

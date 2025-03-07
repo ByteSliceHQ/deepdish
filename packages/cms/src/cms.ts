@@ -1,6 +1,6 @@
 import { createTypographyResolver } from '@deepdish-cloud/resolvers/typography'
 import { configure } from '@deepdish/ui/config'
-import { typographySchema } from '@deepdish/ui/typography'
+import { typographySchema } from '@deepdish/ui/schemas'
 import { deepdishMiddleware } from './middleware'
 import { ProviderContainer as DeepDishProvider } from './provider/container'
 
