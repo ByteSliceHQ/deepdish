@@ -3,4 +3,4 @@
 "@deepdish/ui": minor
 ---
 
-Moved the context menu to the `@deepdish/workbench` package.
+Moved the context menu to standalone `@deepdish/menu` package.
