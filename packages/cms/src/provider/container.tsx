@@ -1,3 +1,4 @@
+// FIXME: contracts have been removed from the configuration
 import { getContracts, getSettings } from '@deepdish/ui/config'
 import { toJsonSchema } from '@valibot/to-json-schema'
 import { Provider } from './provider'
