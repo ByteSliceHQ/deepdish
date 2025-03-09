@@ -1,7 +1,5 @@
 import { getBaseUrl } from '@/lib/get-base-url'
 import { configure } from '@deepdish/ui/config'
-import { typographySchema } from '@deepdish/ui/schemas'
-import { cookieResolver } from '../resolver'
 
 let configured = false
 
@@ -13,12 +11,6 @@ export async function cms() {
   configured = true
 
   return await configure({
-    contracts: {
-      typography: {
-        resolver: cookieResolver,
-        schema: typographySchema,
-      },
-    },
     logging: {
       enabled: process.env.NODE_ENV === 'development',
     },

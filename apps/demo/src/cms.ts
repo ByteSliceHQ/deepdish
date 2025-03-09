@@ -30,7 +30,6 @@ export async function cms() {
   await initContent()
 
   await configure({
-    contracts,
     logging: {
       enabled: process.env.NODE_ENV === 'development',
     },
