@@ -2,7 +2,7 @@ import { getBaseUrl } from '@/lib/get-base-url'
 import { createComponents } from '@deepdish/ui/components'
 import { configure } from '@deepdish/ui/config'
 import * as v from 'valibot'
-import { cookieResolver } from '../resolver'
+import { cookieResolver } from './resolver'
 
 const textSchema = v.string()
 
