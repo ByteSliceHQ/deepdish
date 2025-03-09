@@ -29,7 +29,7 @@ export const metadata = {
   },
 }
 
-await cms()
+export const components = await cms()
 
 export default function RootLayout({
   children,

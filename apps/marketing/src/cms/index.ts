@@ -1,16 +1,20 @@
 import { getBaseUrl } from '@/lib/get-base-url'
+import { createComponents } from '@deepdish/ui/components'
 import { configure } from '@deepdish/ui/config'
+import * as v from 'valibot'
+import { cookieResolver } from '../resolver'
 
-let configured = false
+const textSchema = v.string()
+
+const contracts = {
+  text: {
+    resolver: cookieResolver,
+    schema: textSchema,
+  },
+}
 
 export async function cms() {
-  if (configured) {
-    return
-  }
-
-  configured = true
-
-  return await configure({
+  await configure({
     logging: {
       enabled: process.env.NODE_ENV === 'development',
     },
@@ -19,4 +23,6 @@ export async function cms() {
       draft: process.env.DEEPDISH_MODE === 'draft',
     },
   })
+
+  return createComponents(contracts)
 }
