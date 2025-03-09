@@ -9,13 +9,7 @@ export default defineConfig([
     dts: true,
   },
   {
-    entry: [
-      'src/config/components.tsx',
-      'src/deepdish.tsx',
-      'src/elements/link.tsx',
-      'src/elements/media.tsx',
-      'src/elements/typography.tsx',
-    ],
+    entry: ['src/config/components.tsx', 'src/deepdish.tsx'],
     format: ['esm'],
     sourcemap: true,
     dts: true,
