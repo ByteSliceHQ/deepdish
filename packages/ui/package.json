@@ -19,10 +19,6 @@
     "./deepdish": {
       "import": "./dist/deepdish.js",
       "types": "./dist/deepdish.d.ts"
-    },
-    "./schemas": {
-      "import": "./dist/schemas.js",
-      "types": "./dist/schemas.d.ts"
     }
   },
   "scripts": {
