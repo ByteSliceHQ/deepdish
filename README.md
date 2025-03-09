@@ -132,7 +132,7 @@ import { Header1 } from "@deepdish/cms/typography";
 function Home() {
   return (
     <div>
-      <Header1 deepdish={{ key: "title", contract: "typography" }}>
+      <Header1 deepdish={{ key: "title" }}>
         Header Fallback
       </Header1>
     </div>
