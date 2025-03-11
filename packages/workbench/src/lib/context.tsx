@@ -4,7 +4,6 @@ import { Tailwind } from 'react-shadow-scope'
 
 export type Procedures = {
   getContracts: () => Promise<string[]>
-  getContractSchema: (name: string) => Promise<JSONSchema7>
   getContractKeys: (name: string) => Promise<string[]>
   getKey: (
     contract: string,

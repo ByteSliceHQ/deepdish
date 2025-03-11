@@ -7,15 +7,6 @@ export const procedures = {
 
     return Object.keys(catalog)
   },
-  getContractSchema: async (name: string) => {
-    await delay(100)
-
-    if (!(name in catalog)) {
-      throw new Error(`Contract '${name}' not found.`)
-    }
-
-    return catalog[name as keyof typeof catalog].serializedSchema
-  },
   getContractKeys: async (name: string) => {
     await delay(100)
 

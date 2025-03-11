@@ -46,23 +46,6 @@ export function ProviderContainer(props: {
 
       return keysResult.data
     },
-    getContractSchema: async (name: string) => {
-      'use server'
-
-      const contractsResult = getContracts()
-
-      if (contractsResult.failure) {
-        throw contractsResult.failure
-      }
-
-      const contract = contractsResult.data[name]
-
-      if (!contract) {
-        throw new Error(`Contract '${name}' not found.`)
-      }
-
-      return toJsonSchema(contract.schema)
-    },
     getKey: async (contractName: string, name: string) => {
       'use server'
 

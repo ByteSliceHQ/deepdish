@@ -24,11 +24,11 @@ export const catalog = {
     schema: featureSchema,
     serializedSchema: toJsonSchema(featureSchema),
     keys: {
-      'home/feature-1.json': {
+      'home/feature-1': {
         name: 'Feature 1 Name',
         description: 'Feature 1 Description',
       },
-      'home/feature-2.json': {
+      'home/feature-2': {
         name: 'Feature 2 Name',
         description: 'Feature 2 Description',
       },
@@ -38,8 +38,8 @@ export const catalog = {
     schema: textSchema,
     serializedSchema: toJsonSchema(textSchema),
     keys: {
-      'home/headline.txt': 'Headline',
-      'home/sub-headline.txt': 'Sub-Headline',
+      'home/headline': 'Headline',
+      'home/sub-headline': 'Sub-Headline',
     },
   },
 }
