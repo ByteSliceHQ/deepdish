@@ -21,7 +21,6 @@ turbopack
 turborepo
 vali
 valibot
-vafanassieff
 vercel
 vite
 vitejs
