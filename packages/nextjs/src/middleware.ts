@@ -1,8 +1,5 @@
 import { getCss as getMenuCss } from '@deepdish/menu/css'
-import { TRPC_ENDPOINT } from '@deepdish/trpc/constants'
-import { appRouter } from '@deepdish/trpc/server'
 import { getCss as getWorkbenchCss } from '@deepdish/workbench/css'
-import { fetchRequestHandler } from '@trpc/server/adapters/fetch'
 import { type NextRequest, NextResponse } from 'next/server'
 
 export type DeepdishMiddlewareConfig = {
@@ -27,16 +24,6 @@ export async function deepdishMiddleware(
   }
 
   const { url, method } = request
-
-  if (url.includes(TRPC_ENDPOINT)) {
-    return fetchRequestHandler({
-      endpoint: TRPC_ENDPOINT,
-      req: request,
-      router: appRouter,
-      // NB: context needs to be serializable
-      // createContext: () => {},
-    })
-  }
 
   if (url.includes('/__deepdish/') && method === 'GET') {
     if (url.endsWith('/css/menu')) {

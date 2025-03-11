@@ -1,6 +1,7 @@
 import * as TooltipPrimitive from '@radix-ui/react-tooltip'
 import type * as React from 'react'
 
+import { useShadowRoot } from '@/lib/context'
 import { cn } from '@/lib/utils'
 
 function TooltipProvider({
@@ -36,13 +37,12 @@ function TooltipContent({
   className,
   sideOffset = 4,
   children,
-  portal,
   ...props
-}: React.ComponentProps<typeof TooltipPrimitive.Content> & {
-  portal?: TooltipPrimitive.TooltipPortalProps['container']
-}) {
+}: React.ComponentProps<typeof TooltipPrimitive.Content>) {
+  const shadowRoot = useShadowRoot()
+
   return (
-    <TooltipPrimitive.Portal container={portal}>
+    <TooltipPrimitive.Portal container={shadowRoot}>
       <TooltipPrimitive.Content
         data-slot="tooltip-content"
         sideOffset={sideOffset}

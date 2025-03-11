@@ -22,7 +22,6 @@
   "dependencies": {
     "@byteslice/result": "0.1.0",
     "@deepdish/core": "workspace:0.4.0",
-    "@deepdish/trpc": "workspace:0.0.0",
     "@radix-ui/react-checkbox": "1.1.4",
     "@radix-ui/react-dialog": "1.1.6",
     "@radix-ui/react-dropdown-menu": "2.1.6",
@@ -77,7 +76,6 @@
     "@types/json-schema": "7.0.15",
     "@types/react": "catalog:react-18",
     "@types/react-dom": "catalog:react-18",
-    "@vafanassieff/msw-trpc": "0.0.1",
     "@vitejs/plugin-react-swc": "catalog:vite",
     "globals": "15.14.0",
     "json-schema": "0.4.0",

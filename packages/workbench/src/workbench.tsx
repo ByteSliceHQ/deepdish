@@ -1,22 +1,31 @@
-import { WorkbenchProvider } from '@/lib/context'
+import {
+  WorkbenchProvider,
+  type WorkbenchProviderProps,
+  useProcedures,
+} from '@/lib/context'
 import { RouterProvider } from '@tanstack/react-router'
-import { router } from './router'
+import { queryClient } from './lib/queries'
+import { makeRouter } from './router'
 
 declare module '@tanstack/react-router' {
   interface Register {
-    router: typeof router
+    router: ReturnType<typeof makeRouter>
   }
 }
 
-export type WorkbenchProps = {
-  title?: React.ReactNode
-  authDisabled?: boolean
+export type WorkbenchProps = Omit<WorkbenchProviderProps, 'children'>
+
+function Router() {
+  const procedures = useProcedures()
+  const router = makeRouter(queryClient, procedures)
+
+  return <RouterProvider router={router} />
 }
 
 export function Workbench(props: WorkbenchProps) {
   return (
     <WorkbenchProvider {...props}>
-      <RouterProvider router={router} />
+      <Router />
     </WorkbenchProvider>
   )
 }

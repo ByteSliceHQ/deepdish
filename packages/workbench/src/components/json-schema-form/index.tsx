@@ -1,281 +1,37 @@
-import { RichText } from '@/components/rich-text'
-import { Button } from '@/components/ui/button'
-import { Checkbox } from '@/components/ui/checkbox'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import type { JSONSchema7, JSONSchema7Definition } from 'json-schema'
-import { useEffect, useMemo, useState } from 'react'
-import {
-  type Control,
-  Controller,
-  type FieldValues,
-  type UseFormRegister,
-  useForm,
-} from 'react-hook-form'
+import type { JSONSchema7 } from 'json-schema'
+import { useEffect, useRef, useState } from 'react'
+import { DynamicForm } from './dynamic-form'
+import { SimpleNumberForm, SimpleTextForm } from './simple-form'
 
-type Content = object | string | number | boolean | null | undefined
+export type Content = object | string | number | boolean | null | undefined
 
-function renderFields(
-  uniqueId: string,
-  properties: Record<string, JSONSchema7Definition>,
-  register: UseFormRegister<FieldValues>,
-  control: Control<FieldValues>,
-  parentKey?: string,
-) {
-  return Object.entries(properties).map(([key, subSchema]) => {
-    if (typeof subSchema === 'boolean') {
-      return null
-    }
-
-    const fieldName = parentKey ? `${parentKey}.${key}` : key
-
-    if (subSchema.type === 'object' && subSchema.properties) {
-      return (
-        <fieldset key={fieldName} className="border space-y-1 p-4 rounded">
-          <legend className="capitalize text-sm font-medium leading-none">
-            {subSchema.title || key}
-          </legend>
-          {subSchema.description && (
-            <p className="text-gray-500 text-sm">{subSchema.description}</p>
-          )}
-          {renderFields(
-            uniqueId,
-            subSchema.properties,
-            register,
-            control,
-            fieldName,
-          )}
-        </fieldset>
-      )
-    }
-
-    if (subSchema.type === 'string') {
-      return (
-        <div key={fieldName} className="space-y-1">
-          <Label className="capitalize text-sm" htmlFor={fieldName}>
-            {subSchema.title || key}
-          </Label>
-          <Controller
-            name={fieldName}
-            control={control}
-            render={({ field: { onChange, value } }) => (
-              <RichText
-                uniqueId={uniqueId}
-                content={value}
-                onChange={onChange}
-              />
-            )}
-          />
-          {subSchema.description && (
-            <p className="text-gray-500 text-sm">{subSchema.description}</p>
-          )}
-        </div>
-      )
-    }
-
-    if (subSchema.type === 'number' || subSchema.type === 'integer') {
-      return (
-        <div key={fieldName} className="space-y-1">
-          <Label className="capitalize text-sm" htmlFor="">
-            {subSchema.title || key}
-          </Label>
-          <Input
-            id={fieldName}
-            type="number"
-            {...register(fieldName, { valueAsNumber: true })}
-          />
-          {subSchema.description && (
-            <p className="text-gray-500 text-sm">{subSchema.description}</p>
-          )}
-        </div>
-      )
-    }
-
-    if (subSchema.type === 'boolean') {
-      return (
-        <div key={fieldName} className="items-center space-x-1">
-          <Label className="capitalize text-sm" htmlFor={fieldName}>
-            {subSchema.title || key}
-          </Label>
-          <Controller
-            name={fieldName}
-            control={control}
-            render={({ field: { onChange, value } }) => (
-              <Checkbox
-                id={fieldName}
-                checked={value}
-                onCheckedChange={onChange}
-              />
-            )}
-          />
-          {subSchema.description && (
-            <p className="text-gray-500 text-sm">{subSchema.description}</p>
-          )}
-        </div>
-      )
-    }
-
-    // TODO: improve unsupported styling
-    return (
-      <div key={fieldName} className="space-y-1">
-        <Label className="text-sm capitalize">{subSchema.title || key}</Label>
-        <div className="max-w-prose text-sm">
-          The{' '}
-          <pre className="inline bg-gray-50 px-1 py-0.5 rounded">
-            {subSchema.type}
-          </pre>{' '}
-          type is not supported.{' '}
-          <a
-            href="https://github.com/byteslicehq/deepdish/issues"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Please drop an issue, and we'll see if we can add support for it.
-          </a>
-        </div>
-        {subSchema.description && (
-          <p className="text-gray-500 text-sm">{subSchema.description}</p>
-        )}
-      </div>
-    )
-  })
-}
-
-function getDefaultValues(schema: JSONSchema7, content: Content): FieldValues {
-  const schemaAndContentAreCompatible =
-    schema.type === 'object' &&
-    schema.properties &&
-    typeof content === 'object' &&
-    content !== null
-
-  if (schemaAndContentAreCompatible) {
-    return content
-  }
-
-  console.warn('Received malformed schema or content:', {
-    schema,
-    content,
-  })
-
-  return {}
-}
-
-function DynamicForm(props: {
+export function JsonSchemaForm(props: {
   content: Content
-  onSubmit: (content: Content) => void
+  onSubmit: (content: Content) => Promise<void>
   schema: JSONSchema7
   uniqueId: string
 }) {
-  const defaultValues: FieldValues = useMemo(() => {
-    return getDefaultValues(props.schema, props.content)
-  }, [props.schema, props.content])
+  const initialUniqueId = useRef<string>(props.uniqueId)
+  const [shouldRender, setShouldRender] = useState<boolean>(false)
 
-  // TODO: validation, error states, etc.
-  const form = useForm({
-    defaultValues,
-  })
-
+  // NB: ensure component fully re-renders when uniqueId changes
   useEffect(() => {
-    form.reset(defaultValues)
-  }, [form, defaultValues])
-
-  if (props.schema.type === 'object' && props.schema.properties) {
-    return (
-      <form onSubmit={form.handleSubmit(props.onSubmit)} className="space-y-4">
-        {renderFields(
-          props.uniqueId,
-          props.schema.properties,
-          form.register,
-          form.control,
-        )}
-        <Button variant="default">Submit</Button>
-      </form>
-    )
-  }
-
-  return (
-    <form onSubmit={form.handleSubmit(props.onSubmit)}>
-      <div>Unsupported schema type</div>
-      <Button variant="default">Submit</Button>
-    </form>
-  )
-}
-
-function SimpleTextForm(props: {
-  content: string
-  onSubmit: (content: Content) => void
-  uniqueId: string
-}) {
-  const [value, setValue] = useState<string | undefined>(props.content)
-
-  // NB: ensure the `RichText` component unmounts when the `uniqueId` changes.
-  useEffect(() => {
-    if (props.uniqueId) {
-      setValue(undefined)
+    if (initialUniqueId.current !== props.uniqueId) {
+      initialUniqueId.current = props.uniqueId
+      setShouldRender(false)
     }
   }, [props.uniqueId])
 
   useEffect(() => {
-    if (value === undefined) {
-      setValue(props.content)
+    if (!shouldRender) {
+      setShouldRender(true)
     }
-  }, [value, props.content])
+  }, [shouldRender])
 
-  if (value === undefined) {
+  if (!shouldRender) {
     return null
   }
 
-  return (
-    <div className="space-y-4">
-      <RichText uniqueId={props.uniqueId} content={value} onChange={setValue} />
-      <Button
-        type="submit"
-        variant="default"
-        onClick={() => props.onSubmit(value)}
-      >
-        Submit
-      </Button>
-    </div>
-  )
-}
-
-function SimpleNumberForm(props: {
-  content: number
-  onSubmit: (content: Content) => void
-  uniqueId: string
-}) {
-  const [value, setValue] = useState<number | undefined>(props.content)
-
-  useEffect(() => {
-    setValue(props.content)
-  }, [props.content])
-
-  return (
-    <div className="space-y-4">
-      <Input
-        type="number"
-        value={value}
-        onChange={(e) => setValue(Number(e.target.value))}
-      />
-      <Button
-        type="submit"
-        variant="default"
-        onClick={() => props.onSubmit(value)}
-      >
-        Submit
-      </Button>
-    </div>
-  )
-}
-
-// TODO: SimpleBooleanForm
-
-export function JsonSchemaForm(props: {
-  content: Content
-  onSubmit: (content: Content) => void
-  schema: JSONSchema7
-  uniqueId: string
-}) {
   if (props.schema.type === 'string') {
     return (
       <SimpleTextForm

@@ -62,6 +62,14 @@ export function getContract(name: string): Result<Contract<Schema>> {
   return { data: contract }
 }
 
+export function getContracts(): Result<Contracts> {
+  if (!config) {
+    return notConfigured()
+  }
+
+  return { data: config.contracts }
+}
+
 export function getSettings(): Result<Settings> {
   if (!config) {
     return notConfigured()

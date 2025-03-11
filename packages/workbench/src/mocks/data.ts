@@ -1,78 +1,45 @@
 import { toJsonSchema } from '@valibot/to-json-schema'
 import * as v from 'valibot'
 
-const Blog = v.object({
+const blogSchema = v.object({
   title: v.string(),
-  overview: v.string(),
   author: v.object({
     name: v.string(),
     email: v.string(),
   }),
-  content: v.string(),
-  published: v.boolean(),
-  views: v.number(),
+  body: v.string(),
 })
 
-const Feature = v.object({
-  name: v.string(),
-  description: v.string(),
-})
+const featureSchema = v.object({ name: v.string(), description: v.string() })
 
-const Typography = v.string()
-
-export const blogSchema = toJsonSchema(Blog)
-export const featureSchema = toJsonSchema(Feature)
-export const typographySchema = toJsonSchema(Typography)
+const textSchema = v.string()
 
 export const catalog = {
-  schemas: {
-    '.blog': blogSchema,
-    '.feature': featureSchema,
-    '.txt': typographySchema,
+  blog: {
+    schema: blogSchema,
+    serializedSchema: toJsonSchema(blogSchema),
+    keys: {},
   },
-  keys: [
-    {
-      name: 'home/headline.txt',
-      content: 'Headline',
-      extension: '.txt',
-      schema: typographySchema,
-    },
-    {
-      name: 'home/sub-headline.txt',
-      content: 'Sub-headline',
-      extension: '.txt',
-      schema: typographySchema,
-    },
-    {
-      name: 'home/about.txt',
-      content: 'About',
-      extension: '.txt',
-      schema: typographySchema,
-    },
-    {
-      name: 'features/feature-1.feature',
-      content: v.parse(Feature, {
+  feature: {
+    schema: featureSchema,
+    serializedSchema: toJsonSchema(featureSchema),
+    keys: {
+      'home/feature-1.json': {
         name: 'Feature 1 Name',
         description: 'Feature 1 Description',
-      }),
-      extension: '.feature',
-      schema: featureSchema,
+      },
+      'home/feature-2.json': {
+        name: 'Feature 2 Name',
+        description: 'Feature 2 Description',
+      },
     },
-    {
-      name: 'blogs/blog-1.blog',
-      content: v.parse(Blog, {
-        title: 'Blog 1 Title',
-        overview: 'Blog 1 Overview',
-        author: {
-          name: 'Blog 1 Author Name',
-          email: 'blog1@example.com',
-        },
-        content: 'Blog 1 Content',
-        published: true,
-        views: 100,
-      }),
-      extension: '.blog',
-      schema: blogSchema,
+  },
+  text: {
+    schema: textSchema,
+    serializedSchema: toJsonSchema(textSchema),
+    keys: {
+      'home/headline.txt': 'Headline',
+      'home/sub-headline.txt': 'Sub-Headline',
     },
-  ],
+  },
 }

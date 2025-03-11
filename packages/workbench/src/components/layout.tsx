@@ -4,7 +4,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
-import { useAuthDisabled, useShadowRoot, useTitle } from '@/lib/context'
+import { useAuthDisabled, useTitle } from '@/lib/context'
 import { useAuth } from '@/lib/queries'
 import { useActions, useMode, useWorkbenchOpen } from '@deepdish/core/context'
 import {
@@ -31,7 +31,6 @@ function Spinner() {
 }
 
 function ExpandButton() {
-  const shadowRoot = useShadowRoot()
   const actions = useActions()
   const workbenchOpen = useWorkbenchOpen()
 
@@ -42,7 +41,7 @@ function ExpandButton() {
           {workbenchOpen ? <ChevronDown /> : <ChevronUp />}
         </Button>
       </TooltipTrigger>
-      <TooltipContent side="top" portal={shadowRoot}>
+      <TooltipContent side="top">
         <p className="text-xs">{workbenchOpen ? 'Collapse' : 'Expand'}</p>
       </TooltipContent>
     </Tooltip>
@@ -50,7 +49,6 @@ function ExpandButton() {
 }
 
 function ModeButton() {
-  const shadowRoot = useShadowRoot()
   const actions = useActions()
   const mode = useMode()
 
@@ -65,7 +63,6 @@ function ModeButton() {
       <TooltipContent
         side="top"
         hidden={mode === 'view'}
-        portal={shadowRoot}
         onPointerDownOutside={(event) => event.preventDefault()}
       >
         <p className="text-xs">

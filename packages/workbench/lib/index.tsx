@@ -4,10 +4,10 @@ import '../src/index.css'
 import { ShadowProvider } from '@/lib/context'
 import {
   Workbench as InternalWorkbench,
-  type WorkbenchProps as InternalWorkbenchProps,
+  type WorkbenchProps,
 } from '@/workbench'
 
-type WorkbenchProps = Omit<InternalWorkbenchProps, 'ref'>
+export type { WorkbenchProps }
 
 export function Workbench(props: WorkbenchProps) {
   return (

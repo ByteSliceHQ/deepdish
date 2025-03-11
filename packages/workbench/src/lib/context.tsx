@@ -1,8 +1,29 @@
+import type { JSONSchema7 } from 'json-schema'
 import { createContext, useContext, useState } from 'react'
 import { Tailwind } from 'react-shadow-scope'
 
+export type Procedures = {
+  getContracts: () => Promise<string[]>
+  getContractSchema: (name: string) => Promise<JSONSchema7>
+  getContractKeys: (name: string) => Promise<string[]>
+  getKey: (
+    contract: string,
+    name: string,
+  ) => Promise<{
+    content: string | number | boolean | object
+    name: string
+    schema: JSONSchema7
+  }>
+  updateKey: (
+    contract: string,
+    name: string,
+    content: string | number | boolean | object,
+  ) => Promise<void>
+}
+
 export type WorkbenchContext = {
   authDisabled?: boolean
+  procedures: Procedures
   title?: React.ReactNode
 }
 
@@ -10,6 +31,7 @@ export type WorkbenchProviderProps = {
   children: React.ReactNode
   authDisabled?: boolean
   title?: React.ReactNode
+  procedures: Procedures
 }
 
 export const WorkbenchContext = createContext<WorkbenchContext | null>(null)
@@ -48,12 +70,6 @@ export function ShadowProvider(props: { children: React.ReactNode }) {
   )
 }
 
-export function useShadowRoot() {
-  const context = useContext(ShadowContext)
-
-  return context?.shadowRoot
-}
-
 export function useAuthDisabled() {
   const context = useContext(WorkbenchContext)
 
@@ -62,6 +78,22 @@ export function useAuthDisabled() {
   }
 
   return context.authDisabled
+}
+
+export function useProcedures() {
+  const context = useContext(WorkbenchContext)
+
+  if (!context) {
+    throw noContextFound()
+  }
+
+  return context.procedures
+}
+
+export function useShadowRoot() {
+  const context = useContext(ShadowContext)
+
+  return context?.shadowRoot
 }
 
 export function useTitle() {
