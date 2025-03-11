@@ -13,15 +13,7 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { useProcedures } from '@/lib/context'
-import {
-  contractsOptions,
-  keyOptions,
-  useContracts,
-  useKey,
-  useUpdateKey,
-} from '@/lib/queries'
-import { useSuspenseQuery } from '@tanstack/react-query'
+import { keyOptions, useContracts, useKey, useUpdateKey } from '@/lib/queries'
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { MenuIcon } from 'lucide-react'
 import { Resizable } from 're-resizable'

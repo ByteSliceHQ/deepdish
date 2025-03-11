@@ -6,7 +6,7 @@ import {
   useSuspenseQuery,
 } from '@tanstack/react-query'
 import { health, verify } from './api'
-import { useProcedures, type Procedures } from './context'
+import { type Procedures, useProcedures } from './context'
 
 export const queryClient = new QueryClient()
 

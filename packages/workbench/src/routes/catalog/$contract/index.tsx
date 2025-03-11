@@ -15,7 +15,7 @@ import {
 import { useProcedures } from '@/lib/context'
 import { contractKeysOptions, contractsOptions } from '@/lib/queries'
 import { useSuspenseQuery } from '@tanstack/react-query'
-import { createFileRoute, useNavigate, redirect } from '@tanstack/react-router'
+import { createFileRoute, redirect, useNavigate } from '@tanstack/react-router'
 import { MenuIcon } from 'lucide-react'
 
 export const Route = createFileRoute('/catalog/$contract/')({

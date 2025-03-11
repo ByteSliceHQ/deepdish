@@ -1,9 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { useProcedures } from '@/lib/context'
 import { contractKeysOptions, useContractKeys } from '@/lib/queries'
-import { useSuspenseQuery } from '@tanstack/react-query'
-import { createFileRoute, Link, Outlet } from '@tanstack/react-router'
+import { Link, Outlet, createFileRoute } from '@tanstack/react-router'
 import { PlusIcon } from 'lucide-react'
 
 export const Route = createFileRoute('/catalog/$contract')({
