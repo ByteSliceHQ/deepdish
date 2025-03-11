@@ -388,9 +388,6 @@ importers:
       '@deepdish/menu':
         specifier: workspace:0.0.0
         version: link:../menu
-      '@deepdish/ui':
-        specifier: workspace:0.15.0
-        version: link:../ui
       '@deepdish/workbench':
         specifier: workspace:0.10.0
         version: link:../workbench
