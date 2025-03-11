@@ -45,6 +45,16 @@ function deriveKey(ctx: Context) {
   return `${ctx.key}-${value}`
 }
 
+async function listKeys(pattern: string) {
+  const allKeys = Array.from(data.keys())
+
+  if (pattern === '*') {
+    return allKeys
+  }
+
+  return allKeys.filter((key) => key.startsWith(pattern))
+}
+
 export function createCookie(response: NextResponse) {
   response.cookies.set(resolverCookie, Math.random().toString(36).slice(2))
 }
@@ -60,4 +70,4 @@ export function hasCookie(request: NextRequest) {
 
 export const cookieResolver = createResolver(typographySchema, {
   deriveKey,
-})(loadValues, updateValues)
+})(loadValues, updateValues, listKeys)

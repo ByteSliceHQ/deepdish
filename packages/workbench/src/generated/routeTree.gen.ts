@@ -14,8 +14,12 @@ import { Route as rootRoute } from './../routes/__root'
 import { Route as ToneImport } from './../routes/tone'
 import { Route as LogsImport } from './../routes/logs'
 import { Route as I18nImport } from './../routes/i18n'
-import { Route as CatalogImport } from './../routes/catalog'
 import { Route as IndexImport } from './../routes/index'
+import { Route as CatalogIndexImport } from './../routes/catalog/index'
+import { Route as CatalogNewImport } from './../routes/catalog/new'
+import { Route as CatalogContractImport } from './../routes/catalog/$contract'
+import { Route as CatalogContractIndexImport } from './../routes/catalog/$contract/index'
+import { Route as CatalogContractKeyImport } from './../routes/catalog/$contract/$key'
 
 // Create/Update Routes
 
@@ -37,16 +41,40 @@ const I18nRoute = I18nImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const CatalogRoute = CatalogImport.update({
-  id: '/catalog',
-  path: '/catalog',
-  getParentRoute: () => rootRoute,
-} as any)
-
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRoute,
+} as any)
+
+const CatalogIndexRoute = CatalogIndexImport.update({
+  id: '/catalog/',
+  path: '/catalog/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const CatalogNewRoute = CatalogNewImport.update({
+  id: '/catalog/new',
+  path: '/catalog/new',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const CatalogContractRoute = CatalogContractImport.update({
+  id: '/catalog/$contract',
+  path: '/catalog/$contract',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const CatalogContractIndexRoute = CatalogContractIndexImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => CatalogContractRoute,
+} as any)
+
+const CatalogContractKeyRoute = CatalogContractKeyImport.update({
+  id: '/$key',
+  path: '/$key',
+  getParentRoute: () => CatalogContractRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
@@ -58,13 +86,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/catalog': {
-      id: '/catalog'
-      path: '/catalog'
-      fullPath: '/catalog'
-      preLoaderRoute: typeof CatalogImport
       parentRoute: typeof rootRoute
     }
     '/i18n': {
@@ -88,59 +109,150 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ToneImport
       parentRoute: typeof rootRoute
     }
+    '/catalog/$contract': {
+      id: '/catalog/$contract'
+      path: '/catalog/$contract'
+      fullPath: '/catalog/$contract'
+      preLoaderRoute: typeof CatalogContractImport
+      parentRoute: typeof rootRoute
+    }
+    '/catalog/new': {
+      id: '/catalog/new'
+      path: '/catalog/new'
+      fullPath: '/catalog/new'
+      preLoaderRoute: typeof CatalogNewImport
+      parentRoute: typeof rootRoute
+    }
+    '/catalog/': {
+      id: '/catalog/'
+      path: '/catalog'
+      fullPath: '/catalog'
+      preLoaderRoute: typeof CatalogIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/catalog/$contract/$key': {
+      id: '/catalog/$contract/$key'
+      path: '/$key'
+      fullPath: '/catalog/$contract/$key'
+      preLoaderRoute: typeof CatalogContractKeyImport
+      parentRoute: typeof CatalogContractImport
+    }
+    '/catalog/$contract/': {
+      id: '/catalog/$contract/'
+      path: '/'
+      fullPath: '/catalog/$contract/'
+      preLoaderRoute: typeof CatalogContractIndexImport
+      parentRoute: typeof CatalogContractImport
+    }
   }
 }
 
 // Create and export the route tree
 
+interface CatalogContractRouteChildren {
+  CatalogContractKeyRoute: typeof CatalogContractKeyRoute
+  CatalogContractIndexRoute: typeof CatalogContractIndexRoute
+}
+
+const CatalogContractRouteChildren: CatalogContractRouteChildren = {
+  CatalogContractKeyRoute: CatalogContractKeyRoute,
+  CatalogContractIndexRoute: CatalogContractIndexRoute,
+}
+
+const CatalogContractRouteWithChildren = CatalogContractRoute._addFileChildren(
+  CatalogContractRouteChildren,
+)
+
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/catalog': typeof CatalogRoute
   '/i18n': typeof I18nRoute
   '/logs': typeof LogsRoute
   '/tone': typeof ToneRoute
+  '/catalog/$contract': typeof CatalogContractRouteWithChildren
+  '/catalog/new': typeof CatalogNewRoute
+  '/catalog': typeof CatalogIndexRoute
+  '/catalog/$contract/$key': typeof CatalogContractKeyRoute
+  '/catalog/$contract/': typeof CatalogContractIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/catalog': typeof CatalogRoute
   '/i18n': typeof I18nRoute
   '/logs': typeof LogsRoute
   '/tone': typeof ToneRoute
+  '/catalog/new': typeof CatalogNewRoute
+  '/catalog': typeof CatalogIndexRoute
+  '/catalog/$contract/$key': typeof CatalogContractKeyRoute
+  '/catalog/$contract': typeof CatalogContractIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/catalog': typeof CatalogRoute
   '/i18n': typeof I18nRoute
   '/logs': typeof LogsRoute
   '/tone': typeof ToneRoute
+  '/catalog/$contract': typeof CatalogContractRouteWithChildren
+  '/catalog/new': typeof CatalogNewRoute
+  '/catalog/': typeof CatalogIndexRoute
+  '/catalog/$contract/$key': typeof CatalogContractKeyRoute
+  '/catalog/$contract/': typeof CatalogContractIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/catalog' | '/i18n' | '/logs' | '/tone'
+  fullPaths:
+    | '/'
+    | '/i18n'
+    | '/logs'
+    | '/tone'
+    | '/catalog/$contract'
+    | '/catalog/new'
+    | '/catalog'
+    | '/catalog/$contract/$key'
+    | '/catalog/$contract/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/catalog' | '/i18n' | '/logs' | '/tone'
-  id: '__root__' | '/' | '/catalog' | '/i18n' | '/logs' | '/tone'
+  to:
+    | '/'
+    | '/i18n'
+    | '/logs'
+    | '/tone'
+    | '/catalog/new'
+    | '/catalog'
+    | '/catalog/$contract/$key'
+    | '/catalog/$contract'
+  id:
+    | '__root__'
+    | '/'
+    | '/i18n'
+    | '/logs'
+    | '/tone'
+    | '/catalog/$contract'
+    | '/catalog/new'
+    | '/catalog/'
+    | '/catalog/$contract/$key'
+    | '/catalog/$contract/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  CatalogRoute: typeof CatalogRoute
   I18nRoute: typeof I18nRoute
   LogsRoute: typeof LogsRoute
   ToneRoute: typeof ToneRoute
+  CatalogContractRoute: typeof CatalogContractRouteWithChildren
+  CatalogNewRoute: typeof CatalogNewRoute
+  CatalogIndexRoute: typeof CatalogIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  CatalogRoute: CatalogRoute,
   I18nRoute: I18nRoute,
   LogsRoute: LogsRoute,
   ToneRoute: ToneRoute,
+  CatalogContractRoute: CatalogContractRouteWithChildren,
+  CatalogNewRoute: CatalogNewRoute,
+  CatalogIndexRoute: CatalogIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -154,17 +266,16 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/catalog",
         "/i18n",
         "/logs",
-        "/tone"
+        "/tone",
+        "/catalog/$contract",
+        "/catalog/new",
+        "/catalog/"
       ]
     },
     "/": {
       "filePath": "index.tsx"
-    },
-    "/catalog": {
-      "filePath": "catalog.tsx"
     },
     "/i18n": {
       "filePath": "i18n.tsx"
@@ -174,6 +285,27 @@ export const routeTree = rootRoute
     },
     "/tone": {
       "filePath": "tone.tsx"
+    },
+    "/catalog/$contract": {
+      "filePath": "catalog/$contract.tsx",
+      "children": [
+        "/catalog/$contract/$key",
+        "/catalog/$contract/"
+      ]
+    },
+    "/catalog/new": {
+      "filePath": "catalog/new.tsx"
+    },
+    "/catalog/": {
+      "filePath": "catalog/index.tsx"
+    },
+    "/catalog/$contract/$key": {
+      "filePath": "catalog/$contract/$key.tsx",
+      "parent": "/catalog/$contract"
+    },
+    "/catalog/$contract/": {
+      "filePath": "catalog/$contract/index.tsx",
+      "parent": "/catalog/$contract"
     }
   }
 }

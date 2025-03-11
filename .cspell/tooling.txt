@@ -8,11 +8,14 @@ flox
 happydom
 lockb
 logtape
+lowlight
+posthog
 nextjs
 posthog
 registrator
 rehype
 shadcn
+sonner
 tsup
 turbopack
 turborepo

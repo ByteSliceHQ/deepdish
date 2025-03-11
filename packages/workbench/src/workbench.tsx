@@ -1,34 +1,31 @@
-import { routeTree } from '@/generated/routeTree.gen'
-import { WorkbenchProvider } from '@/lib/context'
 import {
-  RouterProvider,
-  createMemoryHistory,
-  createRouter,
-} from '@tanstack/react-router'
+  WorkbenchProvider,
+  type WorkbenchProviderProps,
+  useProcedures,
+} from '@/lib/context'
+import { RouterProvider } from '@tanstack/react-router'
+import { queryClient } from './lib/queries'
+import { makeRouter } from './router'
+
 declare module '@tanstack/react-router' {
   interface Register {
-    router: typeof router
+    router: ReturnType<typeof makeRouter>
   }
 }
 
-export type WorkbenchProps = {
-  title?: React.ReactNode
-  authDisabled?: boolean
+export type WorkbenchProps = Omit<WorkbenchProviderProps, 'children'>
+
+function Router() {
+  const procedures = useProcedures()
+  const router = makeRouter(queryClient, procedures)
+
+  return <RouterProvider router={router} />
 }
-
-const memoryHistory = createMemoryHistory({
-  initialEntries: ['/'],
-})
-
-const router = createRouter({
-  routeTree,
-  history: memoryHistory,
-})
 
 export function Workbench(props: WorkbenchProps) {
   return (
     <WorkbenchProvider {...props}>
-      <RouterProvider router={router} />
+      <Router />
     </WorkbenchProvider>
   )
 }

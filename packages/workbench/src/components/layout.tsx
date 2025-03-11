@@ -4,10 +4,16 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
-import { useAuthDisabled, useShadowRoot, useTitle } from '@/lib/context'
+import { useAuthDisabled, useTitle } from '@/lib/context'
 import { useAuth } from '@/lib/queries'
 import { useActions, useMode, useWorkbenchOpen } from '@deepdish/core/context'
-import { Link, Outlet, useCanGoBack, useRouter } from '@tanstack/react-router'
+import {
+  Link,
+  Outlet,
+  useCanGoBack,
+  useRouter,
+  useRouterState,
+} from '@tanstack/react-router'
 import {
   ArrowLeftIcon,
   ArrowRightIcon,
@@ -25,7 +31,6 @@ function Spinner() {
 }
 
 function ExpandButton() {
-  const shadowRoot = useShadowRoot()
   const actions = useActions()
   const workbenchOpen = useWorkbenchOpen()
 
@@ -36,7 +41,7 @@ function ExpandButton() {
           {workbenchOpen ? <ChevronDown /> : <ChevronUp />}
         </Button>
       </TooltipTrigger>
-      <TooltipContent side="top" portal={shadowRoot}>
+      <TooltipContent side="top">
         <p className="text-xs">{workbenchOpen ? 'Collapse' : 'Expand'}</p>
       </TooltipContent>
     </Tooltip>
@@ -44,7 +49,6 @@ function ExpandButton() {
 }
 
 function ModeButton() {
-  const shadowRoot = useShadowRoot()
   const actions = useActions()
   const mode = useMode()
 
@@ -59,7 +63,6 @@ function ModeButton() {
       <TooltipContent
         side="top"
         hidden={mode === 'view'}
-        portal={shadowRoot}
         onPointerDownOutside={(event) => event.preventDefault()}
       >
         <p className="text-xs">
@@ -170,9 +173,19 @@ function NavButtons() {
   )
 }
 
+function NavigationSpinner() {
+  const routerState = useRouterState()
+
+  if (routerState.isLoading) {
+    return <Spinner />
+  }
+
+  return null
+}
+
 function NavBar() {
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2 w-full">
       <NavButtons />
       <div className="flex items-center gap-2 ml-2">
         <Link to="/catalog">
@@ -203,6 +216,9 @@ function NavBar() {
             </Button>
           )}
         </Link>
+      </div>
+      <div className="ml-auto">
+        <NavigationSpinner />
       </div>
     </div>
   )
