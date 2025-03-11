@@ -219,10 +219,6 @@ export function DynamicForm(props: {
     )
   }
 
-  return (
-    <form onSubmit={form.handleSubmit(props.onSubmit)}>
-      <div>Unsupported schema type</div>
-      <Button variant="default">Submit</Button>
-    </form>
-  )
+  // TODO: better unsupported styling
+  return <div>Unsupported schema type</div>
 }
