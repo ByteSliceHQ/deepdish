@@ -1,4 +1,4 @@
-import { cms } from '@/cms'
+import { cms, contracts } from '@/cms'
 import { DeepDishProvider } from '@deepdish/cms'
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
@@ -34,7 +34,7 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <DeepDishProvider>{children}</DeepDishProvider>
+        <DeepDishProvider contracts={contracts}>{children}</DeepDishProvider>
       </body>
     </html>
   )

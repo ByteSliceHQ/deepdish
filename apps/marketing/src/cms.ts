@@ -6,7 +6,7 @@ import { cookieResolver } from './resolver'
 
 const textSchema = v.string()
 
-const contracts = {
+export const contracts = {
   text: {
     resolver: cookieResolver,
     schema: textSchema,

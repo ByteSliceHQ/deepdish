@@ -1,5 +1,5 @@
 import '@/styles/globals.css'
-import { cms } from '@/cms'
+import { cms, contracts } from '@/cms'
 import { AppLayout } from '@/components/app-layout'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { PostHogProvider } from '@/posthog'
@@ -42,6 +42,7 @@ export default function RootLayout({
         <body className={`${GeistMono.className} antialiased`}>
           <TooltipProvider>
             <DeepDishProvider
+              contracts={contracts}
               title={`Try editing this page's content!`}
               authDisabled={true}
             >

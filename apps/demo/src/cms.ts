@@ -11,7 +11,7 @@ const featureSchema = v.object({
 
 const textSchema = v.string()
 
-const contracts = {
+export const contracts = {
   text: {
     resolver: createJsonResolver(contentPaths.text, textSchema, {
       maxBatchSize: 10,

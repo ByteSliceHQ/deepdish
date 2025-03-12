@@ -1,5 +1,6 @@
 import type { Result } from '@byteslice/result'
 import { getLogger } from '@logtape/logtape'
+import type { Contracts } from './contract'
 import { configureLogging } from './logging'
 
 const logger = getLogger(['deepdish', 'config'])
@@ -52,3 +53,6 @@ export function getSettings(): Result<Settings> {
 
   return { data: config.settings }
 }
+
+// TODO: contract-related types should be exported separately from config
+export type { Contracts }
