@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@radix-ui/react-context-menu": "2.2.1",
-    "@radix-ui/react-slot": "^1.1.2",
+    "@radix-ui/react-slot": "1.1.2",
     "@tailwindcss/postcss": "4.0.3",
     "@tailwindcss/vite": "4.0.3",
     "class-variance-authority": "0.7.1",
