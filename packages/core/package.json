@@ -12,6 +12,10 @@
       "import": "./dist/context.js",
       "types": "./dist/context.d.ts"
     },
+    "./events": {
+      "import": "./dist/events.js",
+      "types": "./dist/events.d.ts"
+    },
     "./schema": {
       "import": "./dist/schema.js",
       "types": "./dist/schema.d.ts"
@@ -26,6 +30,7 @@
     "dev": "tsup --watch"
   },
   "dependencies": {
+    "mitt": "^3.0.1",
     "react": "catalog:react",
     "valibot": "1.0.0-rc.0",
     "zustand": "5.0.3"

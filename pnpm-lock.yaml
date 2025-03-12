@@ -290,6 +290,9 @@ importers:
 
   packages/core:
     dependencies:
+      mitt:
+        specifier: ^3.0.1
+        version: 3.0.1
       react:
         specifier: catalog:react
         version: 19.0.0
@@ -3436,6 +3439,7 @@ packages:
 
   bun@1.2.4:
     resolution: {integrity: sha512-ZY0EZ/UKqheaLeAtMsfJA6jWoWvV9HAtfFaOJSmS3LrNpFKs1Sg5fZLSsczN1h3a+Dtheo4O3p3ZYWrf40kRGw==}
+    cpu: [arm64, x64, aarch64]
     os: [darwin, linux, win32]
     hasBin: true
 
@@ -4386,6 +4390,9 @@ packages:
   minipass@7.1.2:
     resolution: {integrity: sha512-qOOzS1cBTWYF4BH8fVePDBOO9iptMnGUEZwNc/cMWnTV2nVLZ7VoNWEPHkYczZA0pdoA7dl6e7FL659nX9S2aw==}
     engines: {node: '>=16 || 14 >=14.17'}
+
+  mitt@3.0.1:
+    resolution: {integrity: sha512-vKivATfr97l2/QBCYAkXYDbrIWPM2IIKEl7YPhjCvKlG3kE2gm+uBo6nEXK3M5/Ffh/FLpKExzOQ3JJoJGFKBw==}
 
   mri@1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
@@ -9310,6 +9317,8 @@ snapshots:
       brace-expansion: 2.0.1
 
   minipass@7.1.2: {}
+
+  mitt@3.0.1: {}
 
   mri@1.2.0: {}
 

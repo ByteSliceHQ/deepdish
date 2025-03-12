@@ -17,6 +17,8 @@ const feature = v.parse(featureSchema, {
   description: 'Feature Description',
 })
 
+async function noop() {}
+
 export function App() {
   const [mode, setMode] = useState<'view' | 'edit'>('view')
 
@@ -28,21 +30,21 @@ export function App() {
         {mode === 'view' ? 'Viewing' : 'Editing'}
       </Button>
       <Menu
+        deepdishContract="typography"
         deepdishKey="test/typography"
         mode={mode}
-        onUpdate={async (value) => {
-          console.log('Updating test/typography', value)
-        }}
+        onEdit={noop}
+        onUpdate={noop}
         value={paragraph}
       >
         <p>{paragraph}</p>
       </Menu>
       <Menu
+        deepdishContract="feature"
         deepdishKey="test/feature"
         mode={mode}
-        onUpdate={async (value) => {
-          console.log('Updating test/feature', value)
-        }}
+        onEdit={noop}
+        onUpdate={noop}
         value={feature}
       >
         <div className="border rounded shadow-sm py-3 px-4">

@@ -4,7 +4,9 @@ import { Button } from '@/components/ui/button'
 import {
   ContextMenu,
   ContextMenuContent,
+  ContextMenuItem,
   ContextMenuLabel,
+  ContextMenuSeparator,
   ContextMenuSub,
   ContextMenuSubContent,
   ContextMenuSubTrigger,
@@ -19,10 +21,9 @@ type EditorProps<V> = {
   onUpdate: (value: V) => Promise<void>
 }
 
-// TODO: direct "complex" content editing to workbench
 function Editor<V>(props: EditorProps<V>) {
   if (typeof props.value !== 'string') {
-    return <>Under Construction</>
+    return null
   }
 
   return (
@@ -81,8 +82,10 @@ function TypographyEditor(props: EditorProps<string>) {
 
 export type MenuProps<V> = {
   children: React.ReactNode
+  deepdishContract: string
   deepdishKey: string
   mode?: 'view' | 'edit'
+  onEdit: () => void
   onUpdate: (value: V) => Promise<void>
   value?: V
   withShadow?: boolean
@@ -93,15 +96,24 @@ function MenuContent<V>(props: Omit<MenuProps<V>, 'children'>) {
 
   return (
     <ContextMenuContent className="w-64" portal={shadowRoot}>
-      <ContextMenuLabel>
-        <pre>{props.deepdishKey}</pre>
+      <ContextMenuLabel inset>
+        <pre className="text-muted-foreground">{props.deepdishContract}</pre>
       </ContextMenuLabel>
-      <ContextMenuSub>
-        <ContextMenuSubTrigger inset>Quick edit</ContextMenuSubTrigger>
-        <ContextMenuSubContent className="w-48 py-3 px-4">
-          <Editor value={props.value} onUpdate={props.onUpdate} />
-        </ContextMenuSubContent>
-      </ContextMenuSub>
+      <ContextMenuLabel inset>
+        <pre className="font-bold">{props.deepdishKey}</pre>
+      </ContextMenuLabel>
+      <ContextMenuSeparator />
+      <ContextMenuItem inset onClick={props.onEdit}>
+        Edit in Workbench
+      </ContextMenuItem>
+      {typeof props.value === 'string' ? (
+        <ContextMenuSub>
+          <ContextMenuSubTrigger inset>Quick Edit</ContextMenuSubTrigger>
+          <ContextMenuSubContent className="w-48 py-3 px-4">
+            <Editor value={props.value} onUpdate={props.onUpdate} />
+          </ContextMenuSubContent>
+        </ContextMenuSub>
+      ) : null}
     </ContextMenuContent>
   )
 }

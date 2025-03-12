@@ -7,12 +7,7 @@ function Wrapper(props: {
   children: React.ReactNode
   onSubmit: (content: Content) => void
 }) {
-  return (
-    <div className="space-y-4">
-      {props.children}
-      <Button variant="default">Submit</Button>
-    </div>
-  )
+  return <div className="space-y-4">{props.children}</div>
 }
 
 export function SimpleNumberForm(props: {
@@ -26,9 +21,12 @@ export function SimpleNumberForm(props: {
     <Wrapper onSubmit={props.onSubmit}>
       <Input
         type="number"
-        value={value}
+        value={value || 0}
         onChange={(e) => setValue(Number(e.target.value))}
       />
+      <Button variant="default" onClick={() => props.onSubmit(value)}>
+        Submit
+      </Button>
     </Wrapper>
   )
 }
@@ -38,11 +36,17 @@ export function SimpleTextForm(props: {
   onSubmit: (content: Content) => void
   uniqueId: string
 }) {
-  const [value, setValue] = useState<string>(props.content)
+  const [value, setValue] = useState<string>(props.content || '')
 
   return (
     <Wrapper onSubmit={props.onSubmit}>
-      <Input value={value} onChange={(e) => setValue(e.currentTarget.value)} />
+      <Input
+        value={value || ''}
+        onChange={(e) => setValue(e.currentTarget.value)}
+      />
+      <Button variant="default" onClick={() => props.onSubmit(value)}>
+        Submit
+      </Button>
     </Wrapper>
   )
 }

@@ -13,7 +13,12 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { keyOptions, useContracts, useKey, useUpdateKey } from '@/lib/queries'
+import {
+  contractsOptions,
+  keyOptions,
+  useKey,
+  useUpdateKey,
+} from '@/lib/queries'
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { MenuIcon } from 'lucide-react'
 import { Resizable } from 're-resizable'
@@ -24,6 +29,10 @@ export const Route = createFileRoute('/catalog/$contract/$key')({
   loader: async ({ context, params }) => {
     await context.queryClient.ensureQueryData(
       keyOptions(context.procedures, params.contract, params.key),
+    )
+
+    return context.queryClient.ensureQueryData(
+      contractsOptions(context.procedures),
     )
   },
 })
@@ -67,7 +76,7 @@ function Inspector(props: {
 
 function Breadcrumbs() {
   const { contract: currentContract, key } = Route.useParams()
-  const { data: contracts } = useContracts()
+  const contracts = Route.useLoaderData()
   const navigate = useNavigate()
 
   return (
@@ -86,12 +95,12 @@ function Breadcrumbs() {
                 <DropdownMenuCheckboxItem
                   key={contract}
                   checked={contract === currentContract}
-                  onCheckedChange={() =>
+                  onCheckedChange={() => {
                     navigate({
                       to: '/catalog/$contract',
                       params: { contract },
                     })
-                  }
+                  }}
                 >
                   <pre>{contract}</pre>
                 </DropdownMenuCheckboxItem>

@@ -47,10 +47,12 @@ function KeyList() {
 }
 
 function SearchBar() {
+  const { contract: currentContract } = Route.useParams()
+
   return (
     <div className="flex items-center gap-2 w-full">
       <Input className="flex-1" placeholder="Find key" />
-      <Link to="/catalog/new">
+      <Link to="/catalog/$contract/new" params={{ contract: currentContract }}>
         {({ isActive }) => (
           <Button size="icon" variant={isActive ? 'default' : 'outline'}>
             <PlusIcon />

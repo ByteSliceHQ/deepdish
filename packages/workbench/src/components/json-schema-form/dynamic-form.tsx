@@ -55,7 +55,9 @@ function renderFields(
             name={fieldName}
             control={control}
             render={({ field: { onChange, value } }) => {
-              return <Input id={fieldName} value={value} onChange={onChange} />
+              return (
+                <Input id={fieldName} value={value || ''} onChange={onChange} />
+              )
             }}
           />
         </Field>
@@ -128,7 +130,7 @@ function renderFields(
   })
 }
 
-function getDefaultValues(schema: JSONSchema7, content: Content): FieldValues {
+function getDefaultValues(schema: JSONSchema7, content: unknown): FieldValues {
   const schemaAndContentAreCompatible =
     schema.type === 'object' &&
     schema.properties &&
@@ -139,6 +141,7 @@ function getDefaultValues(schema: JSONSchema7, content: Content): FieldValues {
     return content
   }
 
+  // TODO: adjust warning for null content
   console.warn('Received malformed schema or content:', {
     schema,
     content,
@@ -187,7 +190,7 @@ function Fieldset(props: {
 }
 
 export function DynamicForm(props: {
-  content: Content
+  content: unknown
   onSubmit: (content: Content) => void
   schema: JSONSchema7
   uniqueId: string

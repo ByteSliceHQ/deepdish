@@ -5,19 +5,16 @@ import { Tailwind } from 'react-shadow-scope'
 export type Procedures = {
   getContracts: () => Promise<string[]>
   getContractKeys: (name: string) => Promise<string[]>
+  getContractSchema: (name: string) => Promise<JSONSchema7>
   getKey: (
     contract: string,
     name: string,
   ) => Promise<{
-    content: string | number | boolean | object
+    content: unknown
     name: string
     schema: JSONSchema7
   }>
-  updateKey: (
-    contract: string,
-    name: string,
-    content: string | number | boolean | object,
-  ) => Promise<void>
+  updateKey: (contract: string, name: string, content: unknown) => Promise<void>
 }
 
 export type WorkbenchContext = {

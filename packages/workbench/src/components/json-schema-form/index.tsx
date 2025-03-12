@@ -6,7 +6,7 @@ import { SimpleNumberForm, SimpleTextForm } from './simple-form'
 export type Content = object | string | number | boolean | null | undefined
 
 export function JsonSchemaForm(props: {
-  content: Content
+  content: unknown
   onSubmit: (content: Content) => Promise<void>
   schema: JSONSchema7
   uniqueId: string
