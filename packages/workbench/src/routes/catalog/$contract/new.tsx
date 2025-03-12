@@ -15,15 +15,14 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { Input } from '@/components/ui/input'
-import { useProcedures } from '@/lib/context'
 import {
   contractSchemaOptions,
   contractsOptions,
+  useContracts,
   useContractSchema,
   useCreateKey,
 } from '@/lib/queries'
 import { withResult } from '@byteslice/result'
-import { useSuspenseQuery } from '@tanstack/react-query'
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { MenuIcon } from 'lucide-react'
 import { useState } from 'react'
@@ -36,13 +35,12 @@ type NewKeySearch = {
 export const Route = createFileRoute('/catalog/$contract/new')({
   component: RouteComponent,
   loader: async ({ context, params }) => {
-    await context.queryClient.ensureQueryData(
-      contractsOptions(context.procedures),
-    )
-
-    await context.queryClient.ensureQueryData(
-      contractSchemaOptions(context.procedures, params.contract),
-    )
+    await Promise.all([
+      context.queryClient.ensureQueryData(contractsOptions(context.procedures)),
+      context.queryClient.ensureQueryData(
+        contractSchemaOptions(context.procedures, params.contract),
+      ),
+    ])
   },
   validateSearch: (search): NewKeySearch => ({
     key: search.key ? String(search.key) : undefined,
@@ -54,8 +52,7 @@ function Breadcrumbs(props: {
   onKeyNameChange: (name: string) => void
 }) {
   const { contract: currentContract } = Route.useParams()
-  const procedures = useProcedures()
-  const { data: contracts } = useSuspenseQuery(contractsOptions(procedures))
+  const { data: contracts } = useContracts()
   const navigate = useNavigate()
 
   return (
@@ -113,11 +110,6 @@ function RouteComponent() {
   async function handleSubmit(content: unknown) {
     if (!keyName) {
       toast.error('Key name is required')
-      return
-    }
-
-    if (content === null) {
-      toast.error('Content is required')
       return
     }
 
