@@ -25,7 +25,7 @@ import {
 import { withResult } from '@byteslice/result'
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { MenuIcon } from 'lucide-react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 
 type NewKeySearch = {
@@ -127,6 +127,10 @@ function RouteComponent() {
       <SaveKeyToast message="Successfully created" keyName={keyName} />,
     )
   }
+
+  useEffect(() => {
+    setKeyName(defaultKeyName)
+  }, [defaultKeyName])
 
   return (
     <div className="h-full flex flex-col">
