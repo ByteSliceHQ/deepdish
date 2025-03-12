@@ -1,10 +1,13 @@
+import { useShadowRoot } from '@/lib/context'
 import { useTheme } from 'next-themes'
 import { Toaster as Sonner, type ToasterProps } from 'sonner'
+import { createPortal } from 'react-dom'
 
-const Toaster = ({ ...props }: ToasterProps) => {
+function Toaster(props: ToasterProps) {
   const { theme = 'system' } = useTheme()
+  const shadowRoot = useShadowRoot()
 
-  return (
+  const sonnerContent = (
     <Sonner
       theme={theme as ToasterProps['theme']}
       className="toaster group"
@@ -22,6 +25,23 @@ const Toaster = ({ ...props }: ToasterProps) => {
       {...props}
     />
   )
+
+  const portal = createPortal(sonnerContent, shadowRoot || document.body)
+
+  // NB: Sonner has poor support for the Shadow DOM, so this hack is needed:
+  // https://github.com/emilkowalski/sonner/issues/361
+  if (shadowRoot) {
+    const sonnerStyle = document.head
+      .querySelectorAll('style')
+      .values()
+      .find((style) => style.textContent?.includes('[data-sonner-toaster]'))
+
+    if (sonnerStyle) {
+      shadowRoot.append(sonnerStyle)
+    }
+  }
+
+  return portal
 }
 
 export { Toaster }
