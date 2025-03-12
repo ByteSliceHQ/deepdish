@@ -1,4 +1,5 @@
 import { JsonSchemaForm } from '@/components/json-schema-form'
+import { SaveKeyToast } from '@/components/toasts/save-key'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -19,10 +20,12 @@ import {
   useKey,
   useUpdateKey,
 } from '@/lib/queries'
+import { withResult } from '@byteslice/result'
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { MenuIcon } from 'lucide-react'
 import { Resizable } from 're-resizable'
 import { useState } from 'react'
+import { toast } from 'sonner'
 
 export const Route = createFileRoute('/catalog/$contract/$key')({
   component: RouteComponent,
@@ -124,6 +127,20 @@ function RouteComponent() {
   const { data } = useKey(contract, key)
   const { mutateAsync: updateKey } = useUpdateKey(contract, key)
 
+  async function handleSubmit(content: unknown) {
+    const result = await withResult(
+      () => updateKey({ content, key }),
+      (err) => err,
+    )
+
+    if (result.failure) {
+      toast.error(<SaveKeyToast message="Failed to save" keyName={key} />)
+      return
+    }
+
+    toast.success(<SaveKeyToast message="Successfully saved" keyName={key} />)
+  }
+
   return (
     <div className="flex h-full">
       <div className="flex flex-col flex-1 h-full overflow-y-auto">
@@ -132,11 +149,7 @@ function RouteComponent() {
           <JsonSchemaForm
             content={data.content}
             schema={data.schema}
-            onSubmit={async (data) => {
-              if (data) {
-                await updateKey(data)
-              }
-            }}
+            onSubmit={handleSubmit}
             uniqueId={data.name}
           />
         </div>

@@ -1,4 +1,5 @@
 import { JsonSchemaForm } from '@/components/json-schema-form'
+import { SaveKeyToast } from '@/components/toasts/save-key'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -21,10 +22,12 @@ import {
   useContractSchema,
   useCreateKey,
 } from '@/lib/queries'
+import { withResult } from '@byteslice/result'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { MenuIcon } from 'lucide-react'
 import { useState } from 'react'
+import { toast } from 'sonner'
 
 type NewKeySearch = {
   key?: string
@@ -91,6 +94,7 @@ function Breadcrumbs(props: {
               value={props.keyName}
               onChange={(e) => props.onKeyNameChange(e.currentTarget.value)}
               placeholder="Enter key name here"
+              className="font-mono"
             />
           </BreadcrumbPage>
         </BreadcrumbItem>
@@ -107,12 +111,29 @@ function RouteComponent() {
   const { mutateAsync: createKey } = useCreateKey(currentContract)
 
   async function handleSubmit(content: unknown) {
-    if (content !== null && keyName) {
-      await createKey({
-        content,
-        keyName,
-      })
+    if (!keyName) {
+      toast.error('Key name is required')
+      return
     }
+
+    if (content === null) {
+      toast.error('Content is required')
+      return
+    }
+
+    const result = await withResult(
+      () => createKey({ content, keyName }),
+      (err) => err,
+    )
+
+    if (result.failure) {
+      toast.error(<SaveKeyToast message="Failed to create" keyName={keyName} />)
+      return
+    }
+
+    toast.success(
+      <SaveKeyToast message="Successfully created" keyName={keyName} />,
+    )
   }
 
   return (
