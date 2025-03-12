@@ -5,7 +5,6 @@ import type { Content } from '.'
 
 function Wrapper(props: {
   children: React.ReactNode
-  onSubmit: (content: Content) => void
 }) {
   return <div className="space-y-4">{props.children}</div>
 }
@@ -31,7 +30,7 @@ export function SimpleNumberForm(props: {
   }
 
   return (
-    <Wrapper onSubmit={props.onSubmit}>
+    <Wrapper>
       <Input
         type="number"
         value={value || 0}
@@ -70,7 +69,7 @@ export function SimpleTextForm(props: {
   }
 
   return (
-    <Wrapper onSubmit={props.onSubmit}>
+    <Wrapper>
       <Input
         value={value || ''}
         onChange={(e) => setValue(e.currentTarget.value)}
