@@ -1,5 +1,2 @@
-[install]
-exact = true
-
 [test]
 preload = "./test/happydom.ts"
