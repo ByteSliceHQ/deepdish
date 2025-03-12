@@ -1,7 +1,5 @@
 import { Feature } from '@/feature'
-import { components } from './layout'
-
-const Text = components.text
+import { Text } from '@/text'
 
 export default function Demo() {
   return (

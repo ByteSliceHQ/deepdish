@@ -1,5 +1,5 @@
+import { components } from '@/app/layout'
 import type { DeepDishProps } from '@deepdish/ui/deepdish'
-import { components } from './app/layout'
 
 const Component = components.feature
 
