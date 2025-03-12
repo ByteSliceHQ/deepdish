@@ -17,6 +17,10 @@ import type {
 
 const logger = getLogger(['deepdish', 'ui'])
 
+type Render<S extends Schema> = (
+  value?: Value<S>,
+) => Promise<React.ReactElement>
+
 async function canEdit() {
   const settingsResult = getSettings()
   if (settingsResult.failure) {
@@ -78,7 +82,7 @@ async function DeepDishElement<S extends Schema>(props: {
   deepdish: DeepDishElementProps
   fallback?: Value<S>
   inCollection?: boolean
-  render(value?: Value<S>): Promise<React.ReactElement>
+  render: Render<S>
 }) {
   const readResult = await props.contract.resolver.read({
     key: props.deepdish.key,
@@ -147,7 +151,7 @@ async function DeepDishCollection<S extends Schema>(props: {
   contract: Contract<S>
   deepdish: DeepDishCollectionProps
   fallback?: Value<S>
-  render(value?: Value<S>): Promise<React.ReactElement>
+  render: Render<S>
 }) {
   let keys: string[]
 
@@ -201,7 +205,7 @@ export async function DeepDish<S extends Schema>(props: {
   contract: Contract<S>
   deepdish?: DeepDishProps
   fallback?: Value<S>
-  render(value?: Value<S>): Promise<React.ReactElement>
+  render: Render<S>
 }) {
   if (!props.deepdish) {
     return <>{props.render(props.fallback)}</>
