@@ -12,10 +12,23 @@ function Wrapper(props: {
 
 export function SimpleNumberForm(props: {
   content: number
-  onSubmit: (content: Content) => void
+  onSubmit: (content: Content) => Promise<void>
   uniqueId: string
 }) {
   const [value, setValue] = useState<number>(props.content)
+  const [loading, setLoading] = useState<boolean>(false)
+
+  async function handleSubmit() {
+    try {
+      setLoading(true)
+      await props.onSubmit(value)
+    } catch (err) {
+      // TODO: handle this properly (global error toast)
+      console.error('Error updating content', err)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   return (
     <Wrapper onSubmit={props.onSubmit}>
@@ -24,8 +37,13 @@ export function SimpleNumberForm(props: {
         value={value || 0}
         onChange={(e) => setValue(Number(e.target.value))}
       />
-      <Button variant="default" onClick={() => props.onSubmit(value)}>
-        Submit
+      <Button
+        variant="default"
+        size="sm"
+        loading={loading}
+        onClick={handleSubmit}
+      >
+        {loading ? 'Saving...' : 'Save'}
       </Button>
     </Wrapper>
   )
@@ -37,6 +55,19 @@ export function SimpleTextForm(props: {
   uniqueId: string
 }) {
   const [value, setValue] = useState<string>(props.content || '')
+  const [loading, setLoading] = useState<boolean>(false)
+
+  async function handleSubmit() {
+    try {
+      setLoading(true)
+      await props.onSubmit(value)
+    } catch (err) {
+      // TODO: handle this properly (global error toast)
+      console.error('Error updating content', err)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   return (
     <Wrapper onSubmit={props.onSubmit}>
@@ -44,8 +75,13 @@ export function SimpleTextForm(props: {
         value={value || ''}
         onChange={(e) => setValue(e.currentTarget.value)}
       />
-      <Button variant="default" onClick={() => props.onSubmit(value)}>
-        Submit
+      <Button
+        variant="default"
+        size="sm"
+        loading={loading}
+        onClick={handleSubmit}
+      >
+        {loading ? 'Saving...' : 'Save'}
       </Button>
     </Wrapper>
   )

@@ -217,7 +217,14 @@ export function DynamicForm(props: {
           form.register,
           form.control,
         )}
-        <Button variant="default">Submit</Button>
+        <Button
+          variant="default"
+          type="submit"
+          loading={form.formState.isSubmitting}
+          size="sm"
+        >
+          {form.formState.isSubmitting ? 'Saving...' : 'Save'}
+        </Button>
       </form>
     )
   }
