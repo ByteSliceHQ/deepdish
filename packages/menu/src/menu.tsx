@@ -93,6 +93,7 @@ export type MenuProps<V> = {
 
 function MenuContent<V>(props: Omit<MenuProps<V>, 'children'>) {
   const shadowRoot = useShadowRoot()
+  const hasQuickEdit = typeof props.value === 'string'
 
   return (
     <ContextMenuContent className="w-64" portal={shadowRoot}>
@@ -106,7 +107,7 @@ function MenuContent<V>(props: Omit<MenuProps<V>, 'children'>) {
       <ContextMenuItem inset onClick={props.onRequestEdit}>
         Edit in Workbench
       </ContextMenuItem>
-      {typeof props.value === 'string' ? (
+      {hasQuickEdit ? (
         <ContextMenuSub>
           <ContextMenuSubTrigger inset>Quick Edit</ContextMenuSubTrigger>
           <ContextMenuSubContent className="w-48 py-3 px-4">
