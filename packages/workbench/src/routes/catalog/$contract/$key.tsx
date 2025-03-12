@@ -129,7 +129,7 @@ function RouteComponent() {
 
   async function handleSubmit(content: unknown) {
     const result = await withResult(
-      () => updateKey({ content, key }),
+      () => updateKey(content),
       (err) => err,
     )
 

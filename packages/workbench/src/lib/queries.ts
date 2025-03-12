@@ -82,8 +82,8 @@ export function useUpdateKey(contractName: string, keyName: string) {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: async (data: string | boolean | number | object) => {
-      await procedures.updateKey(contractName, keyName, data)
+    mutationFn: async (content: unknown) => {
+      await procedures.updateKey(contractName, keyName, content)
 
       queryClient.invalidateQueries({
         queryKey: ['contracts', contractName, 'keys', keyName],
