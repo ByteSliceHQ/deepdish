@@ -21,7 +21,7 @@
       }
     },
     "hook": {
-      "on-activate": "  echo \"📦 Installing dependencies...\"\n  pnpm install --frozen-lockfile\n\n  echo -e \"\\n🚀 Development Commands\"\n  echo -e \"- Run all tasks\\t\\t\\033[34mpnpm dev\\033[0m\"\n  echo -e \"- Start demo app\\t\\033[34mpnpm dev:demo\\033[0m\"\n  echo -e \"- Start marketing app\\t\\033[34mpnpm dev:marketing\\033[0m\"\n\n  export NODE_EXTRA_CA_CERTS=/etc/ssl/certs/flox-ca-bundle.crt\n"
+      "on-activate": "  echo \"🧼 Cleaning workspace...\"\n  shopt -s globstar # enable recursive globbing\n  rm -rf **/.next **/.turbo **/dist **/node_modules\n\n  echo -e \"\\n📦 Installing dependencies...\"\n  pnpm install --frozen-lockfile\n\n  echo -e \"\\n🚀 Development Commands\"\n  echo -e \"- Run all tasks\\t\\t\\033[34mpnpm dev\\033[0m\"\n  echo -e \"- Start demo app\\t\\033[34mpnpm dev:demo\\033[0m\"\n  echo -e \"- Start marketing app\\t\\033[34mpnpm dev:marketing\\033[0m\"\n\n  export NODE_EXTRA_CA_CERTS=/etc/ssl/certs/flox-ca-bundle.crt\n"
     },
     "profile": {},
     "options": {
