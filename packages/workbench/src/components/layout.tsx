@@ -238,7 +238,7 @@ function useEventsListener() {
   const procedures = useProcedures()
 
   useEffect(() => {
-    async function handleEditEvent(event: Events['edit.requested']) {
+    async function handleEditRequestedEvent(event: Events['edit.requested']) {
       const key = await procedures.getKey(event.contract, event.key)
       const hasContent = key.content !== null
 
@@ -267,10 +267,10 @@ function useEventsListener() {
       })
     }
 
-    emitter.on('edit.requested', handleEditEvent)
+    emitter.on('edit.requested', handleEditRequestedEvent)
 
     return () => {
-      emitter.off('edit.requested', handleEditEvent)
+      emitter.off('edit.requested', handleEditRequestedEvent)
     }
   }, [actions, emitter, procedures, router])
 }
