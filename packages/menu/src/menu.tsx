@@ -85,7 +85,7 @@ export type MenuProps<V> = {
   deepdishContract: string
   deepdishKey: string
   mode?: 'view' | 'edit'
-  onEdit: () => void
+  onRequestEdit: () => void
   onUpdate: (value: V) => Promise<void>
   value?: V
   withShadow?: boolean
@@ -103,7 +103,7 @@ function MenuContent<V>(props: Omit<MenuProps<V>, 'children'>) {
         <pre className="font-bold">{props.deepdishKey}</pre>
       </ContextMenuLabel>
       <ContextMenuSeparator />
-      <ContextMenuItem inset onClick={props.onEdit}>
+      <ContextMenuItem inset onClick={props.onRequestEdit}>
         Edit in Workbench
       </ContextMenuItem>
       {typeof props.value === 'string' ? (

@@ -33,7 +33,7 @@ export function App() {
         deepdishContract="typography"
         deepdishKey="test/typography"
         mode={mode}
-        onEdit={noop}
+        onRequestEdit={noop}
         onUpdate={noop}
         value={paragraph}
       >
@@ -43,7 +43,7 @@ export function App() {
         deepdishContract="feature"
         deepdishKey="test/feature"
         mode={mode}
-        onEdit={noop}
+        onRequestEdit={noop}
         onUpdate={noop}
         value={feature}
       >

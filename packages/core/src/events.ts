@@ -1,7 +1,7 @@
 import mitt from 'mitt'
 
 export type Events = {
-  edit: {
+  'edit.requested': {
     contract: string
     key: string
   }
