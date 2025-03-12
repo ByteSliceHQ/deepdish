@@ -18,15 +18,9 @@ export function SimpleNumberForm(props: {
   const [loading, setLoading] = useState<boolean>(false)
 
   async function handleSubmit() {
-    try {
-      setLoading(true)
-      await props.onSubmit(value)
-    } catch (err) {
-      // TODO: handle this properly (global error toast)
-      console.error('Error updating content', err)
-    } finally {
-      setLoading(false)
-    }
+    setLoading(true)
+    await props.onSubmit(value)
+    setLoading(false)
   }
 
   return (
@@ -57,15 +51,9 @@ export function SimpleTextForm(props: {
   const [loading, setLoading] = useState<boolean>(false)
 
   async function handleSubmit() {
-    try {
-      setLoading(true)
-      await props.onSubmit(value)
-    } catch (err) {
-      // TODO: handle this properly (global error toast)
-      console.error('Error updating content', err)
-    } finally {
-      setLoading(false)
-    }
+    setLoading(true)
+    await props.onSubmit(value)
+    setLoading(false)
   }
 
   return (

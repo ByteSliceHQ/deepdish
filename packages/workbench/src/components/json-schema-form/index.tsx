@@ -1,5 +1,7 @@
+import { withResult } from '@byteslice/result'
 import type { JSONSchema7 } from 'json-schema'
 import { useEffect, useRef, useState } from 'react'
+import { toast } from 'sonner'
 import { DynamicForm } from './dynamic-form'
 import { SimpleNumberForm, SimpleTextForm } from './simple-form'
 
@@ -13,6 +15,20 @@ export function JsonSchemaForm(props: {
 }) {
   const initialUniqueId = useRef<string>(props.uniqueId)
   const [shouldRender, setShouldRender] = useState<boolean>(false)
+
+  async function handleSubmit(content: Content) {
+    const result = await withResult(
+      () => props.onSubmit(content),
+      (err) => err,
+    )
+
+    if (result.failure) {
+      toast.error('Failed to save content')
+      return
+    }
+
+    toast.success('Successfully saved')
+  }
 
   // NB: ensure component fully re-renders when uniqueId changes
   useEffect(() => {
@@ -37,7 +53,7 @@ export function JsonSchemaForm(props: {
       <SimpleTextForm
         uniqueId={props.uniqueId}
         content={props.content as string}
-        onSubmit={props.onSubmit}
+        onSubmit={handleSubmit}
       />
     )
   }
@@ -47,13 +63,14 @@ export function JsonSchemaForm(props: {
       <SimpleNumberForm
         uniqueId={props.uniqueId}
         content={props.content as number}
-        onSubmit={props.onSubmit}
+        onSubmit={handleSubmit}
       />
     )
   }
 
   if (props.schema.type === 'object' && props.schema.properties) {
-    return <DynamicForm {...props} />
+    const { onSubmit, ...rest } = props
+    return <DynamicForm onSubmit={handleSubmit} {...rest} />
   }
 
   // TODO: better unsupported styling
