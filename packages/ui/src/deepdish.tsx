@@ -3,7 +3,6 @@ import 'server-only'
 import { withResult } from '@byteslice/result'
 import type { Schema, Value } from '@deepdish/core/schema'
 import { Shell } from '@deepdish/core/shell'
-import type { Resolver } from '@deepdish/resolvers'
 import { getLogger } from '@logtape/logtape'
 import { headers } from 'next/headers'
 import { getSettings } from './config/config'
@@ -20,6 +19,8 @@ const logger = getLogger(['deepdish', 'ui'])
 type Render<S extends Schema> = (
   value?: Value<S>,
 ) => Promise<React.ReactElement>
+
+type Update<S extends Schema> = (key: string, value: Value<S>) => Promise<void>
 
 async function canEdit() {
   const settingsResult = getSettings()
@@ -58,30 +59,12 @@ async function canEdit() {
   return response.data
 }
 
-function handleUpdate<V>(
-  key: DeepDishElementProps['key'],
-  write: Resolver<V>['write'],
-) {
-  return async (value: V) => {
-    'use server'
-
-    const writeResult = await write({ key, headers: await headers() }, value)
-    if (writeResult.failure) {
-      logger.error('Unable to save content for {key}: {reason}', {
-        key,
-        error: writeResult.failure,
-        reason: writeResult.failure.message,
-      })
-      return
-    }
-  }
-}
-
 async function DeepDishElement<S extends Schema>(props: {
   contract: Contract<S>
   deepdish: DeepDishElementProps
   fallback?: Value<S>
   render: Render<S>
+  onUpdate: Update<S>
 }) {
   const readResult = await props.contract.resolver.read({
     key: props.deepdish.key,
@@ -110,10 +93,7 @@ async function DeepDishElement<S extends Schema>(props: {
               <Menu
                 deepdishKey={props.deepdish.key}
                 value={props.fallback}
-                onUpdate={handleUpdate(
-                  props.deepdish.key,
-                  props.contract.resolver.write,
-                )}
+                onUpdate={props.onUpdate.bind(null, props.deepdish.key)}
               >
                 {props.render(props.fallback)}
               </Menu>
@@ -135,10 +115,7 @@ async function DeepDishElement<S extends Schema>(props: {
       <Menu
         deepdishKey={props.deepdish.key}
         value={readResult.data}
-        onUpdate={handleUpdate(
-          props.deepdish.key,
-          props.contract.resolver.write,
-        )}
+        onUpdate={props.onUpdate.bind(null, props.deepdish.key)}
       >
         {props.render(readResult.data)}
       </Menu>
@@ -151,6 +128,7 @@ async function DeepDishCollection<S extends Schema>(props: {
   deepdish: DeepDishCollectionProps
   fallback?: Value<S>
   render: Render<S>
+  onUpdate: Update<S>
 }) {
   let keys: string[]
 
@@ -194,6 +172,7 @@ async function DeepDishCollection<S extends Schema>(props: {
         deepdish={{ ...rest, key }}
         fallback={props.fallback}
         render={props.render}
+        onUpdate={props.onUpdate}
       />
     )
   })
@@ -204,6 +183,7 @@ export async function DeepDish<S extends Schema>(props: {
   deepdish?: DeepDishProps
   fallback?: Value<S>
   render: Render<S>
+  onUpdate: Update<S>
 }) {
   if (!props.deepdish) {
     return <>{props.render(props.fallback)}</>
@@ -216,6 +196,7 @@ export async function DeepDish<S extends Schema>(props: {
         deepdish={props.deepdish}
         fallback={props.fallback}
         render={props.render}
+        onUpdate={props.onUpdate}
       />
     )
   }
@@ -226,6 +207,7 @@ export async function DeepDish<S extends Schema>(props: {
       deepdish={props.deepdish}
       fallback={props.fallback}
       render={props.render}
+      onUpdate={props.onUpdate}
     />
   )
 }
