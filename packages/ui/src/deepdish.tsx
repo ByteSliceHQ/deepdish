@@ -81,7 +81,6 @@ async function DeepDishElement<S extends Schema>(props: {
   contract: Contract<S>
   deepdish: DeepDishElementProps
   fallback?: Value<S>
-  inCollection?: boolean
   render: Render<S>
 }) {
   const readResult = await props.contract.resolver.read({
@@ -195,7 +194,6 @@ async function DeepDishCollection<S extends Schema>(props: {
         deepdish={{ ...rest, key }}
         fallback={props.fallback}
         render={props.render}
-        inCollection
       />
     )
   })
