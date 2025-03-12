@@ -1,7 +1,7 @@
 import { useShadowRoot } from '@/lib/context'
 import { useTheme } from 'next-themes'
-import { Toaster as Sonner, type ToasterProps } from 'sonner'
 import { createPortal } from 'react-dom'
+import { Toaster as Sonner, type ToasterProps } from 'sonner'
 
 function Toaster(props: ToasterProps) {
   const { theme = 'system' } = useTheme()

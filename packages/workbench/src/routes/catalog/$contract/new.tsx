@@ -18,8 +18,8 @@ import { Input } from '@/components/ui/input'
 import {
   contractSchemaOptions,
   contractsOptions,
-  useContracts,
   useContractSchema,
+  useContracts,
   useCreateKey,
 } from '@/lib/queries'
 import { withResult } from '@byteslice/result'
