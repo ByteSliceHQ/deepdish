@@ -3,11 +3,11 @@ export function SaveKeyToast(props: {
   message: string
 }) {
   return (
-    <p>
+    <span>
       {props.message}{' '}
       <pre className="inline bg-gray-100 py-0.5 px-1 rounded">
         {props.keyName}
       </pre>
-    </p>
+    </span>
   )
 }
