@@ -13,7 +13,8 @@ pnpm.version = "9.15.3"
 [hook]
 on-activate = '''
   echo "🧼 Cleaning workspace..."
-  rm -rf .next .turbo dist node_modules
+  shopt -s globstar # enable recursive globbing
+  rm -rf **/.next **/.turbo **/dist **/node_modules
 
   echo -e "\n📦 Installing dependencies..."
   pnpm install --frozen-lockfile
