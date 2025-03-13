@@ -2,32 +2,48 @@
 
 import { createContext, useContext, useState } from 'react'
 import { useStore } from 'zustand'
+import { makeEmitter } from './events'
 import { type Selector, type Store, createDeepDishStore } from './state'
 
-const DeepDishContext = createContext<Store | null>(null)
+type DeepDishContext = {
+  emitter: ReturnType<typeof makeEmitter>
+  store: Store
+}
 
-function useDeepDish<T>(selector: Selector<T>) {
-  const store = useContext(DeepDishContext)
+const DeepDishContext = createContext<DeepDishContext | null>(null)
 
-  if (!store) {
+function useDeepDish() {
+  const context = useContext(DeepDishContext)
+
+  if (!context) {
     throw new Error(
       'The `useDeepDish` hook must be used within a `DeepDishProvider`.',
     )
   }
 
-  return useStore(store, selector)
+  return context
+}
+
+function useDeepDishStore<T>(selector: Selector<T>) {
+  const context = useDeepDish()
+  return useStore(context.store, selector)
 }
 
 export function useActions() {
-  return useDeepDish((state) => state.actions)
+  return useDeepDishStore((state) => state.actions)
+}
+
+export function useEmitter() {
+  const context = useDeepDish()
+  return context.emitter
 }
 
 export function useMode() {
-  return useDeepDish((state) => state.mode)
+  return useDeepDishStore((state) => state.mode)
 }
 
 export function useWorkbenchOpen() {
-  return useDeepDish((state) => state.workbench.open)
+  return useDeepDishStore((state) => state.workbench.open)
 }
 
 type DeepDishProviderProps = {
@@ -36,9 +52,10 @@ type DeepDishProviderProps = {
 
 export function DeepDishProvider(props: DeepDishProviderProps) {
   const [store] = useState(createDeepDishStore)
+  const emitter = makeEmitter()
 
   return (
-    <DeepDishContext.Provider value={store}>
+    <DeepDishContext.Provider value={{ store, emitter }}>
       {props.children}
     </DeepDishContext.Provider>
   )

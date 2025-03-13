@@ -1,4 +1,5 @@
 import { JsonSchemaForm } from '@/components/json-schema-form'
+import { SaveKeyToast } from '@/components/toasts/save-key'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -13,17 +14,28 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { keyOptions, useContracts, useKey, useUpdateKey } from '@/lib/queries'
+import {
+  contractsOptions,
+  keyOptions,
+  useKey,
+  useUpdateKey,
+} from '@/lib/queries'
+import { withResult } from '@byteslice/result'
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { MenuIcon } from 'lucide-react'
 import { Resizable } from 're-resizable'
 import { useState } from 'react'
+import { toast } from 'sonner'
 
 export const Route = createFileRoute('/catalog/$contract/$key')({
   component: RouteComponent,
   loader: async ({ context, params }) => {
     await context.queryClient.ensureQueryData(
       keyOptions(context.procedures, params.contract, params.key),
+    )
+
+    return context.queryClient.ensureQueryData(
+      contractsOptions(context.procedures),
     )
   },
 })
@@ -67,7 +79,7 @@ function Inspector(props: {
 
 function Breadcrumbs() {
   const { contract: currentContract, key } = Route.useParams()
-  const { data: contracts } = useContracts()
+  const contracts = Route.useLoaderData()
   const navigate = useNavigate()
 
   return (
@@ -86,12 +98,12 @@ function Breadcrumbs() {
                 <DropdownMenuCheckboxItem
                   key={contract}
                   checked={contract === currentContract}
-                  onCheckedChange={() =>
+                  onCheckedChange={() => {
                     navigate({
                       to: '/catalog/$contract',
                       params: { contract },
                     })
-                  }
+                  }}
                 >
                   <pre>{contract}</pre>
                 </DropdownMenuCheckboxItem>
@@ -115,6 +127,20 @@ function RouteComponent() {
   const { data } = useKey(contract, key)
   const { mutateAsync: updateKey } = useUpdateKey(contract, key)
 
+  async function handleSubmit(content: unknown) {
+    const result = await withResult(
+      () => updateKey(content),
+      (err) => err,
+    )
+
+    if (result.failure) {
+      toast.error(<SaveKeyToast message="Failed to save" keyName={key} />)
+      return
+    }
+
+    toast.success(<SaveKeyToast message="Successfully saved" keyName={key} />)
+  }
+
   return (
     <div className="flex h-full">
       <div className="flex flex-col flex-1 h-full overflow-y-auto">
@@ -123,11 +149,7 @@ function RouteComponent() {
           <JsonSchemaForm
             content={data.content}
             schema={data.schema}
-            onSubmit={async (data) => {
-              if (data) {
-                await updateKey(data)
-              }
-            }}
+            onSubmit={handleSubmit}
             uniqueId={data.name}
           />
         </div>

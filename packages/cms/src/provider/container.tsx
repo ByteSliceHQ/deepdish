@@ -46,6 +46,23 @@ export function ProviderContainer(props: {
 
       return keysResult.data
     },
+    getContractSchema: async (name: string) => {
+      'use server'
+
+      const contractsResult = getContracts()
+
+      if (contractsResult.failure) {
+        throw contractsResult.failure
+      }
+
+      const contract = contractsResult.data[name]
+
+      if (!contract) {
+        throw new Error(`Contract '${name}' not found.`)
+      }
+
+      return toJsonSchema(contract.schema)
+    },
     getKey: async (contractName: string, name: string) => {
       'use server'
 
@@ -63,12 +80,20 @@ export function ProviderContainer(props: {
 
       const readResult = await contract.resolver.read({ key: name })
 
+      let content: unknown
+
       if (readResult.failure) {
-        throw readResult.failure
+        if (readResult.failure.type !== 'CONTENT_MISSING') {
+          throw readResult.failure
+        }
+
+        content = null
+      } else {
+        content = readResult.data
       }
 
       return {
-        content: readResult.data,
+        content,
         name,
         schema: toJsonSchema(contract.schema),
       }

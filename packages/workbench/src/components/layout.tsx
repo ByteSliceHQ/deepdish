@@ -4,9 +4,15 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
-import { useAuthDisabled, useTitle } from '@/lib/context'
+import { useAuthDisabled, useProcedures, useTitle } from '@/lib/context'
 import { useAuth } from '@/lib/queries'
-import { useActions, useMode, useWorkbenchOpen } from '@deepdish/core/context'
+import {
+  useActions,
+  useEmitter,
+  useMode,
+  useWorkbenchOpen,
+} from '@deepdish/core/context'
+import type { Events } from '@deepdish/core/events'
 import {
   Link,
   Outlet,
@@ -25,6 +31,7 @@ import {
   TerminalIcon,
 } from 'lucide-react'
 import { Resizable } from 're-resizable'
+import { useEffect } from 'react'
 
 function Spinner() {
   return <LoaderCircle className="animate-spin" />
@@ -224,9 +231,55 @@ function NavBar() {
   )
 }
 
+function useEventsListener() {
+  const actions = useActions()
+  const router = useRouter()
+  const emitter = useEmitter()
+  const procedures = useProcedures()
+
+  useEffect(() => {
+    async function handleEditRequestedEvent(event: Events['edit.requested']) {
+      const key = await procedures.getKey(event.contract, event.key)
+      const hasContent = key.content !== null
+
+      actions.openWorkbench()
+
+      if (hasContent) {
+        router.navigate({
+          to: '/catalog/$contract/$key',
+          params: {
+            contract: event.contract,
+            key: event.key,
+          },
+        })
+
+        return
+      }
+
+      router.navigate({
+        to: '/catalog/$contract/new',
+        params: {
+          contract: event.contract,
+        },
+        search: {
+          key: event.key,
+        },
+      })
+    }
+
+    emitter.on('edit.requested', handleEditRequestedEvent)
+
+    return () => {
+      emitter.off('edit.requested', handleEditRequestedEvent)
+    }
+  }, [actions, emitter, procedures, router])
+}
+
 export function Layout() {
   const workbenchOpen = useWorkbenchOpen()
   const auth = useAuth()
+
+  useEventsListener()
 
   if (auth.isPending) {
     return (
