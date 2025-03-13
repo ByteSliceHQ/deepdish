@@ -1,12 +1,12 @@
 import fs from 'node:fs/promises'
+import { truncate } from '@/utils'
 import { getBaseUrl } from '@deepdish/cms/vercel'
 import { createJsonResolver } from '@deepdish/resolvers/json'
 import { createComponents } from '@deepdish/ui/components'
 import { configure } from '@deepdish/ui/config'
 import type { IntrinsicElement, SetChildren } from '@deepdish/ui/deepdish'
-import * as v from 'valibot'
 import Link from 'next/link'
-import { truncate } from '@/utils'
+import * as v from 'valibot'
 
 // TODO: get local data dir to work
 export const contentPaths = {

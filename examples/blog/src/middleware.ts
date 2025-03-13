@@ -1,6 +1,6 @@
+import { getBaseUrl } from '@deepdish/cms/vercel'
 import { deepdishMiddleware } from '@deepdish/nextjs'
 import { type NextRequest, NextResponse } from 'next/server'
-import { getBaseUrl } from '@deepdish/cms/vercel'
 
 let signedIn = false
 
