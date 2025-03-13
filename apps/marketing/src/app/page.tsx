@@ -1,11 +1,9 @@
 import { Button } from '@/components/ui/button'
+import { Text } from '@/text'
 import { Waitlist } from '@clerk/nextjs'
 import { ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { components } from './layout'
-
-const Text = components.text
 
 export default function Home() {
   return (
