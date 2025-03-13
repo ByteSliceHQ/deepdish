@@ -28,4 +28,4 @@ export type ElementProps<
 
 export type IntrinsicElement = keyof JSX.IntrinsicElements
 
-type SetChildren<T, C> = Omit<T, 'children'> & { children?: C }
+export type SetChildren<T, C> = Omit<T, 'children'> & { children?: C }

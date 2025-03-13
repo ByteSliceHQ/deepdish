@@ -1,3 +1,4 @@
+/// <reference types="react/experimental" />
 import 'server-only'
 
 import { withResult } from '@byteslice/result'
@@ -10,6 +11,9 @@ import type {
   DeepDishCollectionProps,
   DeepDishElementProps,
   DeepDishProps,
+  ElementProps,
+  IntrinsicElement,
+  SetChildren,
 } from './types'
 
 const logger = getLogger(['deepdish', 'ui'])
@@ -250,4 +254,4 @@ export async function DeepDish<V>(props: {
   )
 }
 
-export type { DeepDishProps }
+export type { DeepDishProps, ElementProps, IntrinsicElement, SetChildren }
