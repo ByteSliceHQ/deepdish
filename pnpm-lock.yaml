@@ -219,6 +219,9 @@ importers:
       tailwindcss-animate:
         specifier: 1.0.7
         version: 1.0.7(tailwindcss@3.4.4)
+      valibot:
+        specifier: 1.0.0-rc.0
+        version: 1.0.0-rc.0(typescript@5.5.4)
     devDependencies:
       '@tsconfig/next':
         specifier: 2.0.3
@@ -336,6 +339,9 @@ importers:
       lucide-react:
         specifier: 0.475.0
         version: 0.475.0(react@19.0.0)
+      next:
+        specifier: catalog:peer-next
+        version: 15.1.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       postcss:
         specifier: 8.5.1
         version: 8.5.1

@@ -11,7 +11,7 @@ const featureSchema = v.object({
 
 const textSchema = v.string()
 
-const contracts = {
+export const contracts = {
   text: {
     resolver: createJsonResolver(contentPaths.text, textSchema, {
       maxBatchSize: 10,
@@ -30,7 +30,6 @@ export async function cms() {
   await initContent()
 
   await configure({
-    contracts,
     logging: {
       enabled: process.env.NODE_ENV === 'development',
     },

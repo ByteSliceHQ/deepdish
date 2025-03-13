@@ -1,8 +1,9 @@
-import { getContracts, getSettings } from '@deepdish/ui/config'
+import { type Contracts, getSettings } from '@deepdish/ui/config'
 import { toJsonSchema } from '@valibot/to-json-schema'
 import { Provider } from './provider'
 
 export function ProviderContainer(props: {
+  contracts: Contracts
   children: React.ReactNode
   title?: React.ReactNode
   authDisabled?: boolean
@@ -15,24 +16,12 @@ export function ProviderContainer(props: {
     getContracts: async () => {
       'use server'
 
-      const contractsResult = getContracts()
-
-      if (contractsResult.failure) {
-        throw contractsResult.failure
-      }
-
-      return Object.keys(contractsResult.data)
+      return Object.keys(props.contracts)
     },
     getContractKeys: async (name: string) => {
       'use server'
 
-      const contractsResult = getContracts()
-
-      if (contractsResult.failure) {
-        throw contractsResult.failure
-      }
-
-      const contract = contractsResult.data[name]
+      const contract = props.contracts[name]
 
       if (!contract) {
         throw new Error(`Contract '${name}' not found.`)
@@ -66,13 +55,7 @@ export function ProviderContainer(props: {
     getKey: async (contractName: string, name: string) => {
       'use server'
 
-      const contractsResult = getContracts()
-
-      if (contractsResult.failure) {
-        throw contractsResult.failure
-      }
-
-      const contract = contractsResult.data[contractName]
+      const contract = props.contracts[contractName]
 
       if (!contract) {
         throw new Error(`Contract '${contractName}' not found.`)
@@ -101,13 +84,7 @@ export function ProviderContainer(props: {
     updateKey: async (contractName: string, name: string, content: unknown) => {
       'use server'
 
-      const contractsResult = getContracts()
-
-      if (contractsResult.failure) {
-        throw contractsResult.failure
-      }
-
-      const contract = contractsResult.data[contractName]
+      const contract = props.contracts[contractName]
 
       if (!contract) {
         throw new Error(`Contract '${contractName}' not found.`)
