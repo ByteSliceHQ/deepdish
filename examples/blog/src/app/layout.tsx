@@ -1,11 +1,9 @@
-import { DeepDishProvider } from '@deepdish/cms'
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
 import { Navbar } from '@/components/navbar'
 
-// initialize the DeepDish CMS
-import '@/cms'
+import { DeepDishProvider } from '@/cms'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',

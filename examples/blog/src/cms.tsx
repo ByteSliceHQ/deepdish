@@ -1,5 +1,6 @@
 import fs from 'node:fs/promises'
 import { truncate } from '@/utils'
+import { DeepDishProvider as InternalDeepDishProvider } from '@deepdish/cms'
 import { getBaseUrl } from '@deepdish/cms/vercel'
 import { createJsonResolver } from '@deepdish/resolvers/json'
 import { createComponents } from '@deepdish/ui/components'
@@ -171,4 +172,10 @@ export function BlogPost(props: {
       }}
     />
   )
+}
+
+export function DeepDishProvider(props: {
+  children: React.ReactNode
+}) {
+  return <InternalDeepDishProvider {...props} />
 }
