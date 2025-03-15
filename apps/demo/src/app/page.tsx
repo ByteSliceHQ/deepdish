@@ -1,5 +1,4 @@
-import { Text } from '@/cms'
-import { Feature } from '../feature'
+import { Feature, Text } from '@/cms'
 
 export default function Demo() {
   return (
