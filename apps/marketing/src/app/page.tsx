@@ -1,6 +1,6 @@
+import { Text } from '@/cms'
 import { Button } from '@/components/ui/button'
 import { Waitlist } from '@clerk/nextjs'
-import { Heading1, Paragraph } from '@deepdish/ui/typography'
 import { ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -10,18 +10,24 @@ export default function Home() {
     <main className="flex-grow">
       <section className="pt-16 pb-24 sm:pt-24 sm:pb-32 border-b border-gray-200 bg-textured">
         <div className="container mx-auto text-left sm:text-center max-w-xl">
-          <Heading1
-            deepdish={{ key: 'home/headline', contract: 'typography' }}
-            className="text-4xl font-bold mb-6 bg-gradient-to-r from-red-400 to-orange-500 text-transparent bg-clip-text"
-          >
-            Manage content directly on your pages
-          </Heading1>
-          <Paragraph
-            deepdish={{ key: 'home/sub-headline', contract: 'typography' }}
-            className="text-xl text-gray-800 mb-10 max-w-2xl mx-auto"
-          >
-            DeepDish lets you build Next.js apps without integrating a CMS.
-          </Paragraph>
+          <Text
+            deepdish={{ key: 'home/headline', contract: 'text' }}
+            fallback="Manage content directly on your pages"
+            render={async (value) => (
+              <h1 className="text-4xl font-bold mb-6 bg-gradient-to-r from-red-400 to-orange-500 text-transparent bg-clip-text">
+                {value}
+              </h1>
+            )}
+          />
+          <Text
+            deepdish={{ key: 'home/sub-headline', contract: 'text' }}
+            fallback="DeepDish lets you build Next.js apps without integrating a CMS."
+            render={async (value) => (
+              <p className="text-xl text-gray-800 mb-10 max-w-2xl mx-auto">
+                {value}
+              </p>
+            )}
+          />
           <div className="flex justify-start sm:justify-center space-x-0 sm:space-x-4 flex-wrap space-y-4 sm:space-y-0">
             <Button
               asChild

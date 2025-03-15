@@ -1,5 +1,4 @@
 import '@/styles/globals.css'
-import { cms } from '@/cms'
 import { AppLayout } from '@/components/app-layout'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { PostHogProvider } from '@/posthog'
@@ -28,8 +27,6 @@ export const metadata = {
     ],
   },
 }
-
-await cms()
 
 export default function RootLayout({
   children,
