@@ -51,15 +51,12 @@ async function canEdit() {
   return response.data
 }
 
-function getResolver(contract: DeepDishProps['contract']) {
+function getResolver(contract: string) {
   const result = getContract(contract)
   return result.failure ? null : result.data.resolver
 }
 
-function handleUpdate<V>(
-  contract: DeepDishProps['contract'],
-  key: DeepDishElementProps['key'],
-) {
+function handleUpdate<V>(contract: string, key: DeepDishElementProps['key']) {
   return async (value: V) => {
     'use server'
 
@@ -89,12 +86,13 @@ function handleUpdate<V>(
 }
 
 async function DeepDishElement<V>(props: {
+  contract: string
   deepdish: DeepDishElementProps
   fallback?: V
   inCollection?: boolean
   render(value?: V): Promise<React.ReactElement>
 }) {
-  const resolver = getResolver(props.deepdish.contract)
+  const resolver = getResolver(props.contract)
   if (!resolver) {
     return props.render(props.fallback)
   }
@@ -107,7 +105,7 @@ async function DeepDishElement<V>(props: {
     switch (readResult.failure.type) {
       case 'READ':
         logger.warn('Unable to read {contract} content for {key}: {reason}', {
-          contract: props.deepdish.contract,
+          contract: props.contract,
           key: props.deepdish.key,
           error: readResult.failure.error,
           reason: readResult.failure.error.message,
@@ -115,7 +113,7 @@ async function DeepDishElement<V>(props: {
         break
       case 'CONTENT_INVALID':
         logger.warn('Invalid {contract} content for {key}: {reason}', {
-          contract: props.deepdish.contract,
+          contract: props.contract,
           key: props.deepdish.key,
           error: readResult.failure.error,
           reason: readResult.failure.error.message,
@@ -126,13 +124,10 @@ async function DeepDishElement<V>(props: {
           return (
             <Shell deepdishKey={props.deepdish.key}>
               <Menu
-                deepdishContract={props.deepdish.contract}
+                deepdishContract={props.contract}
                 deepdishKey={props.deepdish.key}
                 value={props.fallback}
-                onUpdate={handleUpdate(
-                  props.deepdish.contract,
-                  props.deepdish.key,
-                )}
+                onUpdate={handleUpdate(props.contract, props.deepdish.key)}
               >
                 {props.render(props.fallback)}
               </Menu>
@@ -152,10 +147,10 @@ async function DeepDishElement<V>(props: {
   return (
     <Shell deepdishKey={props.deepdish.key}>
       <Menu
-        deepdishContract={props.deepdish.contract}
+        deepdishContract={props.contract}
         deepdishKey={props.deepdish.key}
         value={readResult.data}
-        onUpdate={handleUpdate(props.deepdish.contract, props.deepdish.key)}
+        onUpdate={handleUpdate(props.contract, props.deepdish.key)}
       >
         {props.render(readResult.data)}
       </Menu>
@@ -164,11 +159,12 @@ async function DeepDishElement<V>(props: {
 }
 
 async function DeepDishCollection<V>(props: {
+  contract: string
   deepdish: DeepDishCollectionProps
   fallback?: V
   render(value?: V): Promise<React.ReactElement>
 }) {
-  const resolver = getResolver(props.deepdish.contract)
+  const resolver = getResolver(props.contract)
   if (!resolver) {
     return props.render(props.fallback)
   }
@@ -185,14 +181,14 @@ async function DeepDishCollection<V>(props: {
         case 'UNSUPPORTED':
           logger.warn(
             'The {contract} content resolver does not support dynamic collections',
-            { contract: props.deepdish.contract },
+            { contract: props.contract },
           )
           break
         case 'KEYS':
           logger.warn(
             'Unable to list keys for {contract} content for {collection}: {reason}',
             {
-              contract: props.deepdish.contract,
+              contract: props.contract,
               collection: props.deepdish.collection,
               error: keysResult.failure.error,
               reason: keysResult.failure.error.message,
@@ -212,6 +208,7 @@ async function DeepDishCollection<V>(props: {
 
     return (
       <DeepDishElement
+        contract={props.contract}
         key={key}
         deepdish={{ ...rest, key }}
         fallback={props.fallback}
@@ -223,6 +220,7 @@ async function DeepDishCollection<V>(props: {
 }
 
 export async function DeepDish<V>(props: {
+  contract: string
   deepdish?: DeepDishProps
   fallback?: V
   render(value?: V): Promise<React.ReactElement>
@@ -234,6 +232,7 @@ export async function DeepDish<V>(props: {
   if (props.deepdish.collection !== undefined) {
     return (
       <DeepDishCollection
+        contract={props.contract}
         deepdish={props.deepdish}
         fallback={props.fallback}
         render={props.render}
@@ -243,6 +242,7 @@ export async function DeepDish<V>(props: {
 
   return (
     <DeepDishElement
+      contract={props.contract}
       deepdish={props.deepdish}
       fallback={props.fallback}
       render={props.render}
