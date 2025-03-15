@@ -16,9 +16,9 @@ type Components<C extends Contracts, S extends Schemas<C>> = {
 
 export function createComponents<C extends Contracts>(contracts: C) {
   const components = {} as Components<C, Schemas<C>>
-  for (const key in contracts) {
-    type V = Value<C[typeof key]['schema']>
-    components[key] = DeepDish<V>
+  for (const name in contracts) {
+    type V = Value<C[typeof name]['schema']>
+    components[name] = DeepDish<V>
   }
 
   return components
