@@ -1,11 +1,8 @@
-import { cms } from '@/cms'
 import { DeepDishProvider } from '@deepdish/cms'
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 
 import './globals.css'
-
-export const components = await cms()
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
