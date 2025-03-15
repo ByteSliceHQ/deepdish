@@ -7,7 +7,7 @@ type Schemas<C extends Contracts> = {
 }
 
 type Component<S extends Schema> = React.FC<
-  React.ComponentProps<typeof DeepDish<Value<S>>>
+  Omit<React.ComponentProps<typeof DeepDish<Value<S>>>, 'contract'>
 >
 
 type Components<C extends Contracts, S extends Schemas<C>> = {
@@ -18,7 +18,9 @@ export function createComponents<C extends Contracts>(contracts: C) {
   const components = {} as Components<C, Schemas<C>>
   for (const name in contracts) {
     type V = Value<C[typeof name]['schema']>
-    components[name] = DeepDish<V>
+    components[name] = (props) => {
+      return <DeepDish<V> {...props} contract={name} />
+    }
   }
 
   return components
