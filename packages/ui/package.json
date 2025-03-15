@@ -28,10 +28,6 @@
       "import": "./dist/elements/media.js",
       "types": "./dist/elements/media.d.ts"
     },
-    "./schemas": {
-      "import": "./dist/schemas.js",
-      "types": "./dist/schemas.d.ts"
-    },
     "./typography": {
       "import": "./dist/elements/typography.js",
       "types": "./dist/elements/typography.d.ts"
