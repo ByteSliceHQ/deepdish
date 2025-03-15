@@ -29,7 +29,8 @@
     "@deepdish/workbench": "workspace:0.10.0",
     "@valibot/to-json-schema": "1.0.0-rc.0",
     "react": "catalog:react",
-    "react-dom": "catalog:react"
+    "react-dom": "catalog:react",
+    "valibot": "1.0.0-rc.0"
   },
   "devDependencies": {
     "@tsconfig/create-react-app": "2.0.5",

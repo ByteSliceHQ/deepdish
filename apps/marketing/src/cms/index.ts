@@ -1,6 +1,6 @@
 import { getBaseUrl } from '@/lib/get-base-url'
 import { configure } from '@deepdish/ui/config'
-import { typographySchema } from '@deepdish/ui/schemas'
+import * as v from 'valibot'
 import { cookieResolver } from '../resolver'
 
 let configured = false
@@ -16,7 +16,7 @@ export async function cms() {
     contracts: {
       typography: {
         resolver: cookieResolver,
-        schema: typographySchema,
+        schema: v.string(),
       },
     },
     logging: {

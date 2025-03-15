@@ -34,7 +34,8 @@
     "react-dom": "19.0.0",
     "react-syntax-highlighter": "15.6.1",
     "tailwind-merge": "2.3.0",
-    "tailwindcss-animate": "1.0.7"
+    "tailwindcss-animate": "1.0.7",
+    "valibot": "1.0.0-rc.0"
   },
   "devDependencies": {
     "@tsconfig/next": "2.0.3",
