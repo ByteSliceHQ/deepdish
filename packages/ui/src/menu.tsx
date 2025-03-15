@@ -5,12 +5,14 @@ import {
   Menu as InternalMenu,
   type MenuProps as InternalMenuProps,
 } from '@deepdish/menu'
+import { useRouter } from 'next/navigation'
 
 type MenuProps<V> = Omit<InternalMenuProps<V>, 'onRequestEdit'>
 
 export function Menu<V>(props: MenuProps<V>) {
   const mode = useMode()
   const emitter = useEmitter()
+  const router = useRouter()
 
   function handleEditRequest() {
     emitter.emit('edit.requested', {
@@ -19,7 +21,17 @@ export function Menu<V>(props: MenuProps<V>) {
     })
   }
 
+  async function handleUpdate(value: V) {
+    await props.onUpdate(value)
+    router.refresh()
+  }
+
   return (
-    <InternalMenu mode={mode} onRequestEdit={handleEditRequest} {...props} />
+    <InternalMenu
+      {...props}
+      mode={mode}
+      onRequestEdit={handleEditRequest}
+      onUpdate={handleUpdate}
+    />
   )
 }
