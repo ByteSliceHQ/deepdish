@@ -42,7 +42,6 @@ function TypographyEditor(props: EditorProps<string>) {
     try {
       setLoading(true)
       await props.onUpdate(value)
-      window.location.reload()
     } catch (err) {
       // TODO: handle this properly
       console.error('Error updating content', err)
