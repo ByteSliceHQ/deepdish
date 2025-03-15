@@ -1,5 +1,35 @@
 # @deepdish/demo
 
+## 0.4.0
+
+### Minor Changes
+
+- bead0aa: Utilized components created by custom contract definition.
+- 8b01a63: Replaced Zod with Valibot.
+
+### Patch Changes
+
+- Updated dependencies [bead0aa]
+- Updated dependencies [b60c1ba]
+- Updated dependencies [bead0aa]
+- Updated dependencies [bead0aa]
+- Updated dependencies [57b5bee]
+- Updated dependencies [d58bfb8]
+- Updated dependencies [b60c1ba]
+- Updated dependencies [f873dd9]
+- Updated dependencies [fecc4ad]
+- Updated dependencies [fecc4ad]
+- Updated dependencies [8b01a63]
+- Updated dependencies [d58bfb8]
+- Updated dependencies [f873dd9]
+- Updated dependencies [fecc4ad]
+- Updated dependencies [bead0aa]
+- Updated dependencies [bead0aa]
+  - @deepdish/ui@0.16.0
+  - @deepdish/cms@0.9.0
+  - @deepdish/nextjs@0.9.0
+  - @deepdish/resolvers@0.14.0
+
 ## 0.3.1
 
 ### Patch Changes
