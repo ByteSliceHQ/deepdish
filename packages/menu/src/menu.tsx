@@ -14,6 +14,7 @@ import {
 } from '@/components/ui/context-menu'
 import { Textarea } from '@/components/ui/textarea'
 import { ShadowProvider, useShadowRoot } from '@/lib/context'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
 type EditorProps<V> = {
@@ -35,6 +36,7 @@ function Editor<V>(props: EditorProps<V>) {
 }
 
 function TypographyEditor(props: EditorProps<string>) {
+  const router = useRouter()
   const [value, setValue] = useState<string>(props.value || '')
   const [loading, setLoading] = useState<boolean>(false)
 
@@ -42,7 +44,7 @@ function TypographyEditor(props: EditorProps<string>) {
     try {
       setLoading(true)
       await props.onUpdate(value)
-      window.location.reload()
+      router.refresh()
     } catch (err) {
       // TODO: handle this properly
       console.error('Error updating content', err)
