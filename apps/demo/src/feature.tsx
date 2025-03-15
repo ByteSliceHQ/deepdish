@@ -1,7 +1,5 @@
+import { Feature as Component } from '@/cms'
 import type { DeepDishProps } from '@deepdish/ui/deepdish'
-import { components } from './app/layout'
-
-const Component = components.feature
 
 export function Feature(props: {
   deepdish: DeepDishProps

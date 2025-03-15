@@ -26,7 +26,7 @@ const contracts = {
   },
 }
 
-export async function cms() {
+async function cms() {
   await initContent()
 
   await configure({
@@ -42,3 +42,8 @@ export async function cms() {
 
   return createComponents(contracts)
 }
+
+const components = await cms()
+
+export const Feature = components.feature
+export const Text = components.text
