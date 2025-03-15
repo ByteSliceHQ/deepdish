@@ -46,9 +46,6 @@
     "typescript": "catalog:repo",
     "vite": "catalog:vite"
   },
-  "peerDependencies": {
-    "next": "catalog:peer-next"
-  },
   "publishConfig": {
     "access": "public"
   }
