@@ -127,7 +127,7 @@ export default deepdishMiddleware(config);
 To add a DeepDish component to your page, import one and pass it a `deepdish` prop. That object requires a `key` to uniquely identify the component and a `contract` to specify the structure of its data.
 
 ```tsx
-import { Header1 } from "@deepdish/cms/typography";
+import { Header1 } from "@/deepdish";
 
 function Home() {
   return (
@@ -140,8 +140,6 @@ function Home() {
 }
 ```
 
-See a full list of available components [here](#typography-components) and how to use them.
-
 ### Step 6: Editing content on the page
 
 When `draft` mode is enabled, you will be able to interact with the DeepDish Workbench to edit content directly on the page.
@@ -151,29 +149,6 @@ https://github.com/user-attachments/assets/ab3e113b-476f-4722-a4e6-6ad13f5a5634
 
 > [!Note]
 > The DeepDish Workbench is only available when `draft` mode is enabled.
-
-## Typography components
-
-The `@deepdish/cms/typography` package provides a set of typography components for use in your app.
-These components are completely customizable and can replace the default HTML tags, in order to enable the CMS functionality.
-
-| Component | Renders as |
-| --- | --- |
-| BlockQuote | blockquote |
-| Bold | strong |
-| Div | div |
-| Emphasize | em |
-| Heading1 | h1 |
-| Heading2 | h2 |
-| Heading3 | h3 |
-| Heading4 | h4 |
-| Heading5 | h5 |
-| Heading6 | h6 |
-| Italicize | i |
-| Paragraph | p |
-| Span | span |
-| Strong | strong |
-| Underline | u |
 
 ### The DeepDish prop
 
