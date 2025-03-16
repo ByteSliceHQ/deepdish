@@ -1,5 +1,23 @@
 # @deepdish/nextjs
 
+## 0.9.0
+
+### Minor Changes
+
+- fecc4ad: Added contract enumeration support.
+- d58bfb8: Added separate CSS route for the context menu.
+
+### Patch Changes
+
+- Updated dependencies [f873dd9]
+- Updated dependencies [57b5bee]
+- Updated dependencies [d58bfb8]
+- Updated dependencies [d58bfb8]
+- Updated dependencies [f873dd9]
+- Updated dependencies [fecc4ad]
+  - @deepdish/workbench@0.11.0
+  - @deepdish/menu@0.1.0
+
 ## 0.8.0
 
 ### Minor Changes

@@ -1,6 +1,6 @@
 {
   "name": "@deepdish/resolvers",
-  "version": "0.13.0",
+  "version": "0.14.0",
   "description": "DeepDish content resolvers",
   "author": {
     "name": "ByteSlice, LLC",
@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@byteslice/result": "0.1.0",
-    "@deepdish/core": "workspace:0.4.0",
+    "@deepdish/core": "workspace:0.5.0",
     "dataloader": "2.2.2",
     "valibot": "1.0.0-rc.0"
   },

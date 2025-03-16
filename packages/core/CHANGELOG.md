@@ -1,5 +1,12 @@
 # @deepdish/core
 
+## 0.5.0
+
+### Minor Changes
+
+- 8b01a63: Consolidated schema-related types.
+- f873dd9: Added ability to open Workbench from the context menu.
+
 ## 0.4.0
 
 ### Minor Changes

@@ -1,5 +1,43 @@
 # @deepdish/marketing
 
+## 0.11.0
+
+### Minor Changes
+
+- b60c1ba: Updated pre-built schema imports.
+- 91304da: Replaced pre-built components with contract-based ones.
+
+### Patch Changes
+
+- bead0aa: Specified typography contract and schema.
+- 91304da: Replaced imported schemas with valibot.
+- fecc4ad: Added key enumeration to the cookie resolver.
+- Updated dependencies [bead0aa]
+- Updated dependencies [b60c1ba]
+- Updated dependencies [91304da]
+- Updated dependencies [bead0aa]
+- Updated dependencies [0e4bfea]
+- Updated dependencies [bead0aa]
+- Updated dependencies [57b5bee]
+- Updated dependencies [d58bfb8]
+- Updated dependencies [91304da]
+- Updated dependencies [b60c1ba]
+- Updated dependencies [f873dd9]
+- Updated dependencies [fecc4ad]
+- Updated dependencies [fecc4ad]
+- Updated dependencies [8b01a63]
+- Updated dependencies [91304da]
+- Updated dependencies [d58bfb8]
+- Updated dependencies [f873dd9]
+- Updated dependencies [fecc4ad]
+- Updated dependencies [bead0aa]
+- Updated dependencies [bead0aa]
+- Updated dependencies [91304da]
+  - @deepdish/ui@0.16.0
+  - @deepdish/cms@0.9.0
+  - @deepdish/nextjs@0.9.0
+  - @deepdish/resolvers@0.14.0
+
 ## 0.10.7
 
 ### Patch Changes
