@@ -1,5 +1,41 @@
 # @deepdish/cms
 
+## 0.9.0
+
+### Minor Changes
+
+- b60c1ba: Updated pre-built schema imports.
+- fecc4ad: Added Workbench procedures.
+- f873dd9: Added contract schema retrieval procedure.
+- 91304da: Removed typography export.
+
+### Patch Changes
+
+- 91304da: Replaced imported schemas with valibot.
+- bead0aa: Specified typography schema.
+- Updated dependencies [bead0aa]
+- Updated dependencies [b60c1ba]
+- Updated dependencies [91304da]
+- Updated dependencies [f873dd9]
+- Updated dependencies [bead0aa]
+- Updated dependencies [8b01a63]
+- Updated dependencies [0e4bfea]
+- Updated dependencies [bead0aa]
+- Updated dependencies [57b5bee]
+- Updated dependencies [d58bfb8]
+- Updated dependencies [91304da]
+- Updated dependencies [f873dd9]
+- Updated dependencies [fecc4ad]
+- Updated dependencies [8b01a63]
+- Updated dependencies [d58bfb8]
+- Updated dependencies [fecc4ad]
+- Updated dependencies [fecc4ad]
+- Updated dependencies [bead0aa]
+  - @deepdish/ui@0.16.0
+  - @deepdish/workbench@0.11.0
+  - @deepdish/core@0.5.0
+  - @deepdish/nextjs@0.9.0
+
 ## 0.8.0
 
 ### Minor Changes

@@ -1,5 +1,19 @@
 # @deepdish/workbench
 
+## 0.11.0
+
+### Minor Changes
+
+- f873dd9: Added key creation page.
+- d58bfb8: Moved the context menu to standalone `@deepdish/menu` package.
+- fecc4ad: Implemented initial content catalog.
+
+### Patch Changes
+
+- Updated dependencies [8b01a63]
+- Updated dependencies [f873dd9]
+  - @deepdish/core@0.5.0
+
 ## 0.10.0
 
 ### Minor Changes
