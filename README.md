@@ -124,7 +124,7 @@ export default deepdishMiddleware(config);
 
 ### Step 5: Add a DeepDish Component
 
-To add a DeepDish component to your page, import one and pass it a `deepdish` prop. That object requires a `key` to uniquely identify the component and a `contract` to specify the structure of its data.
+To add a DeepDish component to your page, import one and pass it a `deepdish` prop. That object requires a `key` to uniquely identify the component.
 
 ```tsx
 import { Header1 } from "@/deepdish";
@@ -132,7 +132,7 @@ import { Header1 } from "@/deepdish";
 function Home() {
   return (
     <div>
-      <Header1 deepdish={{ key: "title", contract: "typography" }}>
+      <Header1 deepdish={{ key: "title" }}>
         Header Fallback
       </Header1>
     </div>
