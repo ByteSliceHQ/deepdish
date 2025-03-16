@@ -219,6 +219,9 @@ importers:
       tailwindcss-animate:
         specifier: 1.0.7
         version: 1.0.7(tailwindcss@3.4.4)
+      valibot:
+        specifier: 1.0.0-rc.0
+        version: 1.0.0-rc.0(typescript@5.5.4)
     devDependencies:
       '@tsconfig/next':
         specifier: 2.0.3
@@ -277,6 +280,9 @@ importers:
       react-dom:
         specifier: catalog:react
         version: 19.0.0(react@19.0.0)
+      valibot:
+        specifier: 1.0.0-rc.0
+        version: 1.0.0-rc.0(typescript@5.7.3)
     devDependencies:
       '@tsconfig/create-react-app':
         specifier: 2.0.5

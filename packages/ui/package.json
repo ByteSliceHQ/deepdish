@@ -19,22 +19,6 @@
     "./deepdish": {
       "import": "./dist/deepdish.js",
       "types": "./dist/deepdish.d.ts"
-    },
-    "./link": {
-      "import": "./dist/elements/link.js",
-      "types": "./dist/elements/link.d.ts"
-    },
-    "./media": {
-      "import": "./dist/elements/media.js",
-      "types": "./dist/elements/media.d.ts"
-    },
-    "./schemas": {
-      "import": "./dist/schemas.js",
-      "types": "./dist/schemas.d.ts"
-    },
-    "./typography": {
-      "import": "./dist/elements/typography.js",
-      "types": "./dist/elements/typography.d.ts"
     }
   },
   "scripts": {
