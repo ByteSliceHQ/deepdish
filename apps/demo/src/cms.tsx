@@ -11,8 +11,6 @@ const featureSchema = v.object({
   description: v.string(),
 })
 
-const textSchema = v.string()
-
 const featureResolver = createJsonResolver(
   contentPaths.feature,
   featureSchema,
@@ -21,13 +19,14 @@ const featureResolver = createJsonResolver(
   },
 )
 
+const textSchema = v.string()
+
+const textResolver = createJsonResolver(contentPaths.text, textSchema, {
+  maxBatchSize: 10,
+})
+
 const contracts = {
-  text: {
-    resolver: createJsonResolver(contentPaths.text, textSchema, {
-      maxBatchSize: 10,
-    }),
-    schema: textSchema,
-  },
+  text: createContract(textSchema, textResolver),
   feature: createContract(featureSchema, featureResolver, {
     name: {
       rich: true,
