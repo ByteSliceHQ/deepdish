@@ -2,7 +2,7 @@ import { contentPaths, initContent } from '@/content'
 import { createJsonResolver } from '@deepdish/resolvers/json'
 import { createComponents } from '@deepdish/ui/components'
 import { configure } from '@deepdish/ui/config'
-import { createContract, type Contracts } from '@deepdish/ui/contract'
+import { type Contracts, createContract } from '@deepdish/ui/contract'
 import type { DeepDishProps } from '@deepdish/ui/deepdish'
 import * as v from 'valibot'
 
