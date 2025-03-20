@@ -2,6 +2,7 @@ import { contentPaths, initContent } from '@/content'
 import { createJsonResolver } from '@deepdish/resolvers/json'
 import { createComponents } from '@deepdish/ui/components'
 import { configure } from '@deepdish/ui/config'
+import { type Contracts, createContract } from '@deepdish/ui/contract'
 import type { DeepDishProps } from '@deepdish/ui/deepdish'
 import * as v from 'valibot'
 
@@ -10,22 +11,28 @@ const featureSchema = v.object({
   description: v.string(),
 })
 
+const featureResolver = createJsonResolver(
+  contentPaths.feature,
+  featureSchema,
+  {
+    maxBatchSize: 10,
+  },
+)
+
 const textSchema = v.string()
 
+const textResolver = createJsonResolver(contentPaths.text, textSchema, {
+  maxBatchSize: 10,
+})
+
 const contracts = {
-  text: {
-    resolver: createJsonResolver(contentPaths.text, textSchema, {
-      maxBatchSize: 10,
-    }),
-    schema: textSchema,
-  },
-  feature: {
-    resolver: createJsonResolver(contentPaths.feature, featureSchema, {
-      maxBatchSize: 10,
-    }),
-    schema: featureSchema,
-  },
-}
+  text: createContract(textSchema, textResolver),
+  feature: createContract(featureSchema, featureResolver, {
+    name: {
+      rich: true,
+    },
+  }),
+} as unknown as Contracts
 
 async function cms() {
   await initContent()
