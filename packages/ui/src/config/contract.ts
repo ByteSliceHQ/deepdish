@@ -1,11 +1,5 @@
-import type { Schema, Value } from '@deepdish/core/schema'
+import type { Meta, Schema, Value } from '@deepdish/core/schema'
 import type { Resolver } from '@deepdish/resolvers'
-
-type Meta<S extends Schema> = {
-  [K in keyof Value<S>]?: {
-    rich?: boolean
-  }
-}
 
 export type Contract<S extends Schema> = {
   resolver: Resolver<Value<S>>
