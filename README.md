@@ -92,7 +92,7 @@ Additionally, import the `DeepDishProvider` component from `@deepdish/cms` and w
 import { deepdish, DeepDishProvider } from "@deepdish/cms";
 import { config } from "@/deepdish";
 
-await deepdish(config);
+const components = await deepdish(config);
 
 export default function RootLayout({
   children,
@@ -124,17 +124,19 @@ export default deepdishMiddleware(config);
 
 ### Step 5: Add a DeepDish Component
 
-To add a DeepDish component to your page, import one and pass it a `deepdish` prop. That object requires a `key` to uniquely identify the component.
+To add a DeepDish component to your page, import one that has been created based on your configuration. Pass it a `deepdish` prop with a `key` unique to the data you want to render. The `render` prop will be given a strongly-typed `value` that you can use to render whatever you'd like!
 
 ```tsx
-import { Header1 } from "@/deepdish";
+import { Text } from "@/layout";
 
 function Home() {
   return (
     <div>
-      <Header1 deepdish={{ key: "title" }}>
-        Header Fallback
-      </Header1>
+      <Text
+        deepdish={{ key: 'headline' }}
+        fallback="Grab a slice!"
+        render={async (value) => <p className="text-xl font-bold">{value}</p>}
+      />
     </div>
   );
 }
