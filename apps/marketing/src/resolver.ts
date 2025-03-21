@@ -1,6 +1,6 @@
+import { createSchema } from '@deepdish/core/schema'
 import { type Context, createResolver } from '@deepdish/resolvers'
 import type { NextRequest, NextResponse } from 'next/server'
-import * as v from 'valibot'
 
 const data = new Map<string, string>()
 const resolverCookie = '__deepdish_resolver'
@@ -68,6 +68,9 @@ export function hasCookie(request: NextRequest) {
   return cookie !== undefined
 }
 
-export const cookieResolver = createResolver(v.string(), {
-  deriveKey,
-})(loadValues, updateValues, listKeys)
+export const cookieResolver = createResolver(
+  createSchema((v) => v.string()),
+  {
+    deriveKey,
+  },
+)(loadValues, updateValues, listKeys)
