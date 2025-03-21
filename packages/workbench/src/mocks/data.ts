@@ -17,12 +17,16 @@ const textSchema = v.string()
 export const catalog = {
   blog: {
     schema: blogSchema,
-    serializedSchema: toJsonSchema(blogSchema),
+    serializedSchema: toJsonSchema(blogSchema, {
+      errorMode: 'ignore',
+    }),
     keys: {},
   },
   feature: {
     schema: featureSchema,
-    serializedSchema: toJsonSchema(featureSchema),
+    serializedSchema: toJsonSchema(featureSchema, {
+      errorMode: 'ignore',
+    }),
     keys: {
       'home/feature-1': {
         name: 'Feature 1 Name',
@@ -36,7 +40,9 @@ export const catalog = {
   },
   text: {
     schema: textSchema,
-    serializedSchema: toJsonSchema(textSchema),
+    serializedSchema: toJsonSchema(textSchema, {
+      errorMode: 'ignore',
+    }),
     keys: {
       'home/headline': 'Headline',
       'home/sub-headline': 'Sub-Headline',

@@ -61,7 +61,9 @@ export function ProviderContainer(props: {
         throw new Error(`Contract '${name}' not found.`)
       }
 
-      return toJsonSchema(contract.schema)
+      return toJsonSchema(contract.schema, {
+        errorMode: 'ignore',
+      })
     },
     getKey: async (contractName: string, name: string) => {
       'use server'
@@ -95,7 +97,9 @@ export function ProviderContainer(props: {
       return {
         content,
         name,
-        schema: toJsonSchema(contract.schema),
+        schema: toJsonSchema(contract.schema, {
+          errorMode: 'ignore',
+        }),
       }
     },
     updateKey: async (contractName: string, name: string, content: unknown) => {

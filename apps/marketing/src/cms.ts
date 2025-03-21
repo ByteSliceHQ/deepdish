@@ -1,10 +1,10 @@
 import { getBaseUrl } from '@/lib/get-base-url'
 import { createComponents } from '@deepdish/ui/components'
 import { configure } from '@deepdish/ui/config'
-import * as v from 'valibot'
+import { createSchema } from '@deepdish/core/schema'
 import { cookieResolver } from './resolver'
 
-const textSchema = v.string()
+const textSchema = createSchema((v) => v.string())
 
 const contracts = {
   text: {
