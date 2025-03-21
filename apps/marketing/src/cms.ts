@@ -1,7 +1,7 @@
 import { getBaseUrl } from '@/lib/get-base-url'
+import { createSchema } from '@deepdish/core/schema'
 import { createComponents } from '@deepdish/ui/components'
 import { configure } from '@deepdish/ui/config'
-import { createSchema } from '@deepdish/core/schema'
 import { cookieResolver } from './resolver'
 
 const textSchema = createSchema((v) => v.string())

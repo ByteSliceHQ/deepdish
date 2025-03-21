@@ -1,9 +1,9 @@
 import { contentPaths, initContent } from '@/content'
+import { createSchema } from '@deepdish/core/schema'
 import { createJsonResolver } from '@deepdish/resolvers/json'
 import { createComponents } from '@deepdish/ui/components'
 import { configure } from '@deepdish/ui/config'
 import type { DeepDishProps } from '@deepdish/ui/deepdish'
-import { createSchema } from '@deepdish/core/schema'
 
 const featureSchema = createSchema((v, utils) =>
   v.object({
