@@ -17,12 +17,6 @@ export type Schema<S = unknown> = BaseSchema<S, any, BaseIssue<unknown>>
 
 export type Value<S extends Schema> = InferOutput<S>
 
-export function createSchema(
-  buildSchema: (valibot: typeof v, utils: SchemaUtils) => Schema,
-) {
-  return buildSchema(v, { meta, required, rich })
-}
-
 export function extractMetadata<S extends Schema>(
   valibotSchema: S,
 ): Record<string, Meta> | Meta | null {
@@ -83,4 +77,10 @@ export function required<S extends Schema>(schema: S) {
 
 export function rich<S extends Schema>(schema: S) {
   return meta(schema, { rich: true })
+}
+
+export function schema(
+  buildSchema: (valibot: typeof v, utils: SchemaUtils) => Schema,
+) {
+  return buildSchema(v, { meta, required, rich })
 }

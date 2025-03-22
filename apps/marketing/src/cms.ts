@@ -1,10 +1,10 @@
 import { getBaseUrl } from '@/lib/get-base-url'
-import { createSchema } from '@deepdish/core/schema'
+import { schema } from '@deepdish/core/schema'
 import { createComponents } from '@deepdish/ui/components'
 import { configure } from '@deepdish/ui/config'
 import { cookieResolver } from './resolver'
 
-const textSchema = createSchema((v) => v.string())
+const textSchema = schema((v) => v.string())
 
 const contracts = {
   text: {

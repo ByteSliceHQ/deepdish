@@ -1,4 +1,4 @@
-import { createSchema } from '@deepdish/core/schema'
+import { schema } from '@deepdish/core/schema'
 import { type Context, createResolver } from '@deepdish/resolvers'
 import type { NextRequest, NextResponse } from 'next/server'
 
@@ -69,7 +69,7 @@ export function hasCookie(request: NextRequest) {
 }
 
 export const cookieResolver = createResolver(
-  createSchema((v) => v.string()),
+  schema((v) => v.string()),
   {
     deriveKey,
   },

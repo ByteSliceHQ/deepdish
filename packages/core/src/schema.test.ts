@@ -1,18 +1,18 @@
 import { describe, expect, it } from 'bun:test'
-import { createSchema, extractMetadata } from './schema'
+import { schema, extractMetadata } from './schema'
 
 describe('extractMetadata', () => {
   it('should extract metadata from a simple schema', () => {
-    const schema = createSchema((v, { meta }) =>
+    const simpleSchema = schema((v, { meta }) =>
       meta(v.string(), { rich: true }),
     )
 
-    const result = extractMetadata(schema)
+    const result = extractMetadata(simpleSchema)
     expect(result).toEqual({ rich: true })
   })
 
   it('should extract metadata from nested object schemas', () => {
-    const schema = createSchema((v, { required, rich }) => {
+    const nestedSchema = schema((v, { required, rich }) => {
       return v.object({
         name: required(v.string()),
         details: v.object({
@@ -22,7 +22,7 @@ describe('extractMetadata', () => {
       })
     })
 
-    const result = extractMetadata(schema)
+    const result = extractMetadata(nestedSchema)
     expect(result).toEqual({
       name: { required: true },
       'details.age': { required: true },
@@ -31,14 +31,14 @@ describe('extractMetadata', () => {
   })
 
   it('should handle schemas without metadata', () => {
-    const schema = createSchema((v) =>
+    const schemaWithoutMetadata = schema((v) =>
       v.object({
         name: v.string(),
         age: v.number(),
       }),
     )
 
-    const result = extractMetadata(schema)
+    const result = extractMetadata(schemaWithoutMetadata)
     expect(result).toBeNull()
   })
 })
