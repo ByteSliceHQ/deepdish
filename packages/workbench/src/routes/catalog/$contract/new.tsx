@@ -16,8 +16,10 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { Input } from '@/components/ui/input'
 import {
+  contractMetaOptions,
   contractSchemaOptions,
   contractsOptions,
+  useContractMeta,
   useContractSchema,
   useContracts,
   useCreateKey,
@@ -27,10 +29,11 @@ import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { MenuIcon } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
+import * as v from 'valibot'
 
-type NewKeySearch = {
-  key?: string
-}
+const newKeySchema = v.object({
+  key: v.optional(v.string()),
+})
 
 export const Route = createFileRoute('/catalog/$contract/new')({
   component: RouteComponent,
@@ -40,11 +43,12 @@ export const Route = createFileRoute('/catalog/$contract/new')({
       context.queryClient.ensureQueryData(
         contractSchemaOptions(context.procedures, params.contract),
       ),
+      context.queryClient.ensureQueryData(
+        contractMetaOptions(context.procedures, params.contract),
+      ),
     ])
   },
-  validateSearch: (search): NewKeySearch => ({
-    key: search.key ? String(search.key) : undefined,
-  }),
+  validateSearch: (search) => v.parse(newKeySchema, search),
 })
 
 function Breadcrumbs(props: {
@@ -101,11 +105,12 @@ function Breadcrumbs(props: {
 }
 
 function RouteComponent() {
-  const { contract: currentContract } = Route.useParams()
+  const { contract } = Route.useParams()
   const { key: defaultKeyName = '' } = Route.useSearch()
-  const { data: schema } = useContractSchema(currentContract)
+  const { data: schema } = useContractSchema(contract)
+  const { data: meta } = useContractMeta(contract)
   const [keyName, setKeyName] = useState(defaultKeyName)
-  const { mutateAsync: createKey } = useCreateKey(currentContract)
+  const { mutateAsync: createKey } = useCreateKey(contract)
 
   async function handleSubmit(content: unknown) {
     if (!keyName) {
@@ -137,10 +142,12 @@ function RouteComponent() {
       <Breadcrumbs keyName={keyName} onKeyNameChange={setKeyName} />
       <div className="p-4 flex-1 overflow-y-auto">
         <JsonSchemaForm
-          uniqueId={`${currentContract}-new`}
           content={null}
-          schema={schema}
+          contentRootKey="root"
+          meta={meta}
           onSubmit={handleSubmit}
+          schema={schema}
+          uniqueId={`${contract}-new`}
         />
       </div>
     </div>

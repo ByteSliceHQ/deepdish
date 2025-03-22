@@ -1,3 +1,4 @@
+import type { Meta } from '@deepdish/core/schema'
 import type { JSONSchema7 } from 'json-schema'
 import { createContext, useContext, useState } from 'react'
 import { Tailwind } from 'react-shadow-scope'
@@ -5,6 +6,7 @@ import { Tailwind } from 'react-shadow-scope'
 export type Procedures = {
   getContracts: () => Promise<string[]>
   getContractKeys: (name: string) => Promise<string[]>
+  getContractMeta: (name: string) => Promise<Record<string, Meta>>
   getContractSchema: (name: string) => Promise<JSONSchema7>
   getKey: (
     contract: string,

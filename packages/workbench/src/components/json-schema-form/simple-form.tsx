@@ -2,6 +2,8 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useState } from 'react'
 import type { Content } from '.'
+import type { Meta } from '@deepdish/core/schema'
+import { RichText } from '../rich-text'
 
 function Wrapper(props: {
   children: React.ReactNode
@@ -11,6 +13,7 @@ function Wrapper(props: {
 
 export function SimpleNumberForm(props: {
   content: number
+  meta: Meta
   onSubmit: (content: Content) => Promise<void>
   uniqueId: string
 }) {
@@ -44,6 +47,7 @@ export function SimpleNumberForm(props: {
 
 export function SimpleTextForm(props: {
   content: string
+  meta: Meta
   onSubmit: (content: Content) => void
   uniqueId: string
 }) {
@@ -58,10 +62,18 @@ export function SimpleTextForm(props: {
 
   return (
     <Wrapper>
-      <Input
-        value={value || ''}
-        onChange={(e) => setValue(e.currentTarget.value)}
-      />
+      {props.meta.rich ? (
+        <RichText
+          content={value || ''}
+          uniqueId={props.uniqueId}
+          onChange={setValue}
+        />
+      ) : (
+        <Input
+          value={value || ''}
+          onChange={(e) => setValue(e.currentTarget.value)}
+        />
+      )}
       <Button
         variant="default"
         size="sm"
