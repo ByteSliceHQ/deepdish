@@ -1,4 +1,6 @@
 import type { BaseIssue, BaseSchema, InferOutput } from 'valibot'
+import type { JSONSchema7 } from 'json-schema'
+import { toJsonSchema } from '@valibot/to-json-schema'
 import * as v from 'valibot'
 
 type SchemaUtils = {
@@ -66,6 +68,13 @@ export function required<S extends Schema>(schema: S) {
 
 export function rich<S extends Schema>(schema: S) {
   return meta(schema, { rich: true })
+}
+
+export function serialize<S extends Schema>(
+  schema: S,
+  errorMode?: 'ignore' | 'throw' | 'warn',
+): JSONSchema7 {
+  return toJsonSchema(schema, { errorMode: errorMode ?? 'ignore' })
 }
 
 export function schema(

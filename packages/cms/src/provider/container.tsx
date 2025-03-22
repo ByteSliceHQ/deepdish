@@ -1,5 +1,5 @@
+import { extractMetadata, serialize } from '@deepdish/core/schema'
 import { getContracts, getSettings } from '@deepdish/ui/config'
-import { toJsonSchema } from '@valibot/to-json-schema'
 import { Provider } from './provider'
 
 export function ProviderContainer(props: {
@@ -46,6 +46,23 @@ export function ProviderContainer(props: {
 
       return keysResult.data
     },
+    getContractMeta: async (name: string) => {
+      'use server'
+
+      const contractsResult = getContracts()
+
+      if (contractsResult.failure) {
+        throw contractsResult.failure
+      }
+
+      const contract = contractsResult.data[name]
+
+      if (!contract) {
+        throw new Error(`Contract '${name}' not found.`)
+      }
+
+      return extractMetadata(contract.schema)
+    },
     getContractSchema: async (name: string) => {
       'use server'
 
@@ -61,9 +78,7 @@ export function ProviderContainer(props: {
         throw new Error(`Contract '${name}' not found.`)
       }
 
-      return toJsonSchema(contract.schema, {
-        errorMode: 'ignore',
-      })
+      return serialize(contract.schema)
     },
     getKey: async (contractName: string, name: string) => {
       'use server'
@@ -97,9 +112,7 @@ export function ProviderContainer(props: {
       return {
         content,
         name,
-        schema: toJsonSchema(contract.schema, {
-          errorMode: 'ignore',
-        }),
+        schema: serialize(contract.schema),
       }
     },
     updateKey: async (contractName: string, name: string, content: unknown) => {

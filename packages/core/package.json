@@ -30,6 +30,8 @@
     "dev": "tsup --watch"
   },
   "dependencies": {
+    "@valibot/to-json-schema": "1.0.0-rc.0",
+    "json-schema": "0.4.0",
     "mitt": "3.0.1",
     "react": "catalog:react",
     "valibot": "1.0.0-rc.0",
@@ -37,6 +39,7 @@
   },
   "devDependencies": {
     "@tsconfig/create-react-app": "2.0.5",
+    "@types/json-schema": "7.0.15",
     "@types/react": "catalog:react-18",
     "tsup": "catalog:repo"
   },
