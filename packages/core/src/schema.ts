@@ -1,6 +1,6 @@
-import type { BaseIssue, BaseSchema, InferOutput } from 'valibot'
-import type { JSONSchema7 } from 'json-schema'
 import { toJsonSchema } from '@valibot/to-json-schema'
+import type { JSONSchema7 } from 'json-schema'
+import type { BaseIssue, BaseSchema, InferOutput } from 'valibot'
 import * as v from 'valibot'
 
 type SchemaUtils = {
