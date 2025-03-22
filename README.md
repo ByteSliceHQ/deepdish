@@ -28,7 +28,7 @@ We are sending out invites to our waitlist every Friday to gain access to the pl
 
 Follow the guide below to get started with DeepDish.
 
-### Step 1: Setup your environment
+### Step 1: Set up your environment
 
 Set the following environment variables in your local `.env.local` file:
 
@@ -46,15 +46,14 @@ BASE_URL=http://localhost:3000
 
 #### Vercel helpers
 
-If you're using Vercel, you can omit the `BASE_URL` environment variable and use the following helpers to get the base URL based on the Vercel environment.
+If you're using Vercel, you can omit the `BASE_URL` environment variable and use the `getBaseUrl` helper instead.
 
 ```ts
 import { getBaseUrl } from "@deepdish/cms/vercel";
 const baseUrl = getBaseUrl();
 ```
 
-The `getBaseUrl` function will return the base URL based on the Vercel environment, or your local development endpoint if you're running the app locally.
-This is handy when using the Vercel preview feature.
+That helper function will return the base URL of the Vercel environment (or your local development endpoint if you're running the app locally). This is particularly useful when using the Vercel preview feature.
 
 ### Step 2: Add a deepdish.ts file
 
