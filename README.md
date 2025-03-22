@@ -82,16 +82,12 @@ export const config: DeepDishConfig = {
 };
 ```
 
-### Step 3: Configure your project
+### Step 3: Add the provider
 
-In your `app/layout.tsx` file, import the `deepdish` function from `@deepdish/cms` and initialize it with your `config` object.
-Additionally, import the `DeepDishProvider` component from `@deepdish/cms` and wrap your app with it.
+Import the `DeepDishProvider` component from `@deepdish/cms` and wrap the subtree where DeepDish components will be rendered.
 
 ```tsx
-import { deepdish, DeepDishProvider } from "@deepdish/cms";
-import { config } from "@/deepdish";
-
-const components = await deepdish(config);
+import { DeepDishProvider } from "@deepdish/cms";
 
 export default function RootLayout({
   children,
