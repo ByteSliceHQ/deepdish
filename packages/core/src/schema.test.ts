@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'bun:test'
-import { schema, extractMetadata } from './schema'
+import { extractMetadata, schema } from './schema'
 
 describe('extractMetadata', () => {
   it('should extract metadata from a simple schema', () => {
@@ -8,7 +8,9 @@ describe('extractMetadata', () => {
     )
 
     const result = extractMetadata(simpleSchema)
-    expect(result).toEqual({ rich: true })
+    expect(result).toEqual({
+      root: { rich: true },
+    })
   })
 
   it('should extract metadata from nested object schemas', () => {
@@ -24,9 +26,9 @@ describe('extractMetadata', () => {
 
     const result = extractMetadata(nestedSchema)
     expect(result).toEqual({
-      name: { required: true },
-      'details.age': { required: true },
-      'details.bio': { rich: true },
+      'root.name': { required: true },
+      'root.details.age': { required: true },
+      'root.details.bio': { rich: true },
     })
   })
 
@@ -39,6 +41,6 @@ describe('extractMetadata', () => {
     )
 
     const result = extractMetadata(schemaWithoutMetadata)
-    expect(result).toBeNull()
+    expect(result).toBeEmptyObject()
   })
 })

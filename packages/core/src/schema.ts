@@ -7,7 +7,7 @@ type SchemaUtils = {
   rich: typeof rich
 }
 
-type Meta = {
+export type Meta = {
   required?: boolean
   rich?: boolean
 }
@@ -19,13 +19,12 @@ export type Value<S extends Schema> = InferOutput<S>
 
 export function extractMetadata<S extends Schema>(
   valibotSchema: S,
-): Record<string, Meta> | Meta | null {
+): Record<string, Meta> {
   const result: Record<string, Meta> = {}
-  const root = ''
+  const root = 'root'
+  const delimiter = '.'
 
-  let isPrimitive = true
-
-  function traverse(schema: Schema, path: string[] = []) {
+  function traverse(schema: Schema, path: string[] = [root]) {
     if ('pipe' in schema && Array.isArray(schema.pipe)) {
       for (const pipeItem of schema.pipe) {
         traverse(pipeItem as Schema, path)
@@ -37,29 +36,19 @@ export function extractMetadata<S extends Schema>(
       schema.entries &&
       typeof schema.entries === 'object'
     ) {
-      isPrimitive = false
       const entries = schema.entries as Record<string, Schema>
+
       for (const [key, value] of Object.entries(entries)) {
         traverse(value, [...path, key])
       }
     }
 
     if ('metadata' in schema && schema.metadata) {
-      const fullPath = path.join('.')
-      result[fullPath] = schema.metadata
+      result[path.join(delimiter)] = schema.metadata
     }
   }
 
   traverse(valibotSchema)
-
-  if (isPrimitive && result[root]) {
-    return result[root]
-  }
-
-  if (!Object.keys(result).length) {
-    return null
-  }
-
   return result
 }
 
