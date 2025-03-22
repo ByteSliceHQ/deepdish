@@ -1,16 +1,18 @@
 import { contentPaths, initContent } from '@/content'
+import { schema } from '@deepdish/core/schema'
 import { createJsonResolver } from '@deepdish/resolvers/json'
 import { createComponents } from '@deepdish/ui/components'
 import { configure } from '@deepdish/ui/config'
 import type { DeepDishProps } from '@deepdish/ui/deepdish'
-import * as v from 'valibot'
 
-const featureSchema = v.object({
-  name: v.string(),
-  description: v.string(),
-})
+const featureSchema = schema((v, utils) =>
+  v.object({
+    name: v.string(),
+    description: utils.meta(v.string(), { rich: true }),
+  }),
+)
 
-const textSchema = v.string()
+const textSchema = schema((v) => v.string())
 
 const contracts = {
   text: {
