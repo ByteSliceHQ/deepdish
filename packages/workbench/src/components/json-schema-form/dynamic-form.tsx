@@ -223,6 +223,7 @@ export function DynamicForm(props: {
   }, [props.schema, props.content, props.contentRootKey])
 
   // TODO: validation, error states, etc.
+  // TODO: prevent form submission when changing rich text formatting
   const form = useForm({
     defaultValues,
   })
