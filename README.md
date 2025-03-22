@@ -55,31 +55,24 @@ const baseUrl = getBaseUrl();
 
 That helper function will return the base URL of the Vercel environment (or your local development endpoint if you're running the app locally). This is particularly useful when using the Vercel preview feature.
 
-### Step 2: Add a deepdish.ts file
+### Step 2: Configure your project
 
-Create a `deepdish.ts` file in the `app` directory of your Next.js project.
-
-`app/deepdish.ts`:
+Create a `deepdish.ts` file in the `app` directory of your Next.js project. Import the `deepdish` function from `@deepdish/cms` and initialize it with your configuration.
 
 ```ts
-import type { DeepDishConfig } from '@deepdish/cms';
-
-// If you're using Vercel, use the following helpers to get the base URL.
-// import { getBaseUrl } from "@deepdish/cms/vercel";
-// const baseUrl = getBaseUrl();
-const baseUrl = process.env.BASE_URL;
+import { deepdish } from '@deepdish/cms';
 
 // Draft mode is dependent upon your environment.
 // Set to `true` to enable the DeepDish Workbench, or `false` to disable it.
 // We recommend using an environment variable for this.
 const draft = process.env.DEEPDISH_MODE === "draft";
 
-export const config: DeepDishConfig = {
+const components = await deepdish({
   draft,
-  baseUrl,
+  baseUrl: process.env.BASE_URL, // or getBaseUrl() if using Vercel
   secretKey: process.env.DEEPDISH_SECRET_KEY,
   projectAlias: process.env.DEEPDISH_PROJECT_ALIAS,
-};
+});
 ```
 
 ### Step 3: Add the provider
