@@ -14,38 +14,56 @@ import {
   TextQuoteIcon,
 } from 'lucide-react'
 
+function FormatButton(props: {
+  children: React.ReactNode
+  disabled?: boolean
+  onClick: () => void
+  variant?: 'default' | 'secondary' | 'ghost'
+}) {
+  return (
+    <Button
+      type="button"
+      onClick={props.onClick}
+      disabled={props.disabled}
+      variant={props.variant}
+    >
+      {props.children}
+    </Button>
+  )
+}
+
 export function FormattingControls(props: { editor: Editor }) {
   return (
     <div className="flex items-center gap-1 px-3 py-2 bg-white rounded-md border overflow-x-auto">
-      <Button
+      <FormatButton
         onClick={() => props.editor.chain().focus().toggleBold().run()}
         disabled={!props.editor.can().chain().focus().toggleBold().run()}
         variant={props.editor.isActive('bold') ? 'secondary' : 'ghost'}
       >
         <BoldIcon className="size-4" />
-      </Button>
-      <Button
+      </FormatButton>
+      <FormatButton
         onClick={() => props.editor.chain().focus().toggleItalic().run()}
         disabled={!props.editor.can().chain().focus().toggleItalic().run()}
         variant={props.editor.isActive('italic') ? 'secondary' : 'ghost'}
       >
         <ItalicIcon className="size-4" />
-      </Button>
-      <Button
+      </FormatButton>
+      <FormatButton
         onClick={() => props.editor.chain().focus().toggleStrike().run()}
         disabled={!props.editor.can().chain().focus().toggleStrike().run()}
         variant={props.editor.isActive('strike') ? 'secondary' : 'ghost'}
       >
         <StrikethroughIcon className="size-4" />
-      </Button>
-      <Button
+      </FormatButton>
+      <FormatButton
         onClick={() => props.editor.chain().focus().toggleCode().run()}
         disabled={!props.editor.can().chain().focus().toggleCode().run()}
         variant={props.editor.isActive('code') ? 'secondary' : 'ghost'}
       >
         <CodeIcon className="size-4" />
-      </Button>
-      <Button
+      </FormatButton>
+      <FormatButton
         onClick={() =>
           props.editor.chain().focus().toggleHeading({ level: 1 }).run()
         }
@@ -54,8 +72,8 @@ export function FormattingControls(props: { editor: Editor }) {
         }
       >
         <Heading1Icon className="size-4" />
-      </Button>
-      <Button
+      </FormatButton>
+      <FormatButton
         onClick={() =>
           props.editor.chain().focus().toggleHeading({ level: 2 }).run()
         }
@@ -64,8 +82,8 @@ export function FormattingControls(props: { editor: Editor }) {
         }
       >
         <Heading2Icon className="size-4" />
-      </Button>
-      <Button
+      </FormatButton>
+      <FormatButton
         onClick={() =>
           props.editor.chain().focus().toggleHeading({ level: 3 }).run()
         }
@@ -74,8 +92,8 @@ export function FormattingControls(props: { editor: Editor }) {
         }
       >
         <Heading3Icon className="size-4" />
-      </Button>
-      <Button
+      </FormatButton>
+      <FormatButton
         onClick={() =>
           props.editor.chain().focus().toggleHeading({ level: 4 }).run()
         }
@@ -84,31 +102,25 @@ export function FormattingControls(props: { editor: Editor }) {
         }
       >
         <Heading4Icon className="size-4" />
-      </Button>
-      <Button
+      </FormatButton>
+      <FormatButton
         onClick={() => props.editor.chain().focus().toggleBulletList().run()}
         variant={props.editor.isActive('bulletList') ? 'secondary' : 'ghost'}
       >
         <ListIcon className="size-4" />
-      </Button>
-      <Button
+      </FormatButton>
+      <FormatButton
         onClick={() => props.editor.chain().focus().toggleOrderedList().run()}
         variant={props.editor.isActive('orderedList') ? 'secondary' : 'ghost'}
       >
         <ListOrderedIcon className="size-4" />
-      </Button>
-      <Button
-        onClick={() => props.editor.chain().focus().toggleCodeBlock().run()}
-        variant={props.editor.isActive('codeBlock') ? 'secondary' : 'ghost'}
-      >
-        <CodeIcon className="size-4" />
-      </Button>
-      <Button
+      </FormatButton>
+      <FormatButton
         onClick={() => props.editor.chain().focus().toggleBlockquote().run()}
         variant={props.editor.isActive('blockquote') ? 'secondary' : 'ghost'}
       >
         <TextQuoteIcon className="size-4" />
-      </Button>
+      </FormatButton>
     </div>
   )
 }
