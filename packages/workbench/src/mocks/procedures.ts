@@ -16,6 +16,15 @@ export const procedures = {
 
     return Object.keys(catalog[name as keyof typeof catalog].keys)
   },
+  getContractMeta: async (name: string) => {
+    await delay(100)
+
+    if (!(name in catalog)) {
+      throw new Error(`Contract '${name}' not found.`)
+    }
+
+    return catalog[name as keyof typeof catalog].meta
+  },
   getContractSchema: async (name: string) => {
     await delay(100)
 

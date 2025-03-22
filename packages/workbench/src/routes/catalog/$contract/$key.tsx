@@ -17,6 +17,7 @@ import {
 import {
   contractsOptions,
   keyOptions,
+  useContractMeta,
   useKey,
   useUpdateKey,
 } from '@/lib/queries'
@@ -125,6 +126,7 @@ function Breadcrumbs() {
 function RouteComponent() {
   const { contract, key } = Route.useParams()
   const { data } = useKey(contract, key)
+  const { data: meta } = useContractMeta(contract)
   const { mutateAsync: updateKey } = useUpdateKey(contract, key)
 
   async function handleSubmit(content: unknown) {
@@ -148,8 +150,10 @@ function RouteComponent() {
         <div className="p-4 flex-1 overflow-y-auto">
           <JsonSchemaForm
             content={data.content}
-            schema={data.schema}
+            contentRootKey="root"
             onSubmit={handleSubmit}
+            meta={meta}
+            schema={data.schema}
             uniqueId={data.name}
           />
         </div>

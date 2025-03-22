@@ -43,6 +43,11 @@ export function useContractKeys(contractName: string) {
   return useSuspenseQuery(contractKeysOptions(procedures, contractName))
 }
 
+export function useContractMeta(contractName: string) {
+  const procedures = useProcedures()
+  return useSuspenseQuery(contractMetaOptions(procedures, contractName))
+}
+
 export function useContractSchema(contractName: string) {
   const procedures = useProcedures()
   return useSuspenseQuery(contractSchemaOptions(procedures, contractName))
@@ -109,6 +114,18 @@ export function contractKeysOptions(
     queryKey: ['contracts', contractName, 'keys'],
     queryFn: async () => {
       return await procedures.getContractKeys(contractName)
+    },
+  })
+}
+
+export function contractMetaOptions(
+  procedures: Procedures,
+  contractName: string,
+) {
+  return queryOptions({
+    queryKey: ['contracts', contractName, 'meta'],
+    queryFn: async () => {
+      return await procedures.getContractMeta(contractName)
     },
   })
 }

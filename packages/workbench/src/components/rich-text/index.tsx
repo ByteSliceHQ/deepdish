@@ -66,7 +66,7 @@ export function RichText(props: {
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
         editor={editor}
-        className="py-3 px-4 text-sm"
+        className="[&>div[contenteditable=true]]:py-2 [&>[contenteditable=true]]:px-3 text-sm"
       />
       <BubbleMenu editor={editor}>
         <FormattingControls editor={editor} />
