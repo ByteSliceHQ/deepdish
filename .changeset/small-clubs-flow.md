@@ -1,5 +1,5 @@
 ---
-"@deepdish/core": patch
+"@deepdish/core": minor
 ---
 
 Added schema-building helpers.
