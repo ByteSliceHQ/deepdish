@@ -1,5 +1,18 @@
 # @deepdish/marketing
 
+## 0.11.1
+
+### Patch Changes
+
+- b71e7cf: Replaced valibot with core schema helpers.
+- Updated dependencies [b71e7cf]
+- Updated dependencies [b71e7cf]
+  - @deepdish/cms@0.9.1
+  - @deepdish/core@0.6.0
+  - @deepdish/nextjs@0.9.1
+  - @deepdish/resolvers@0.14.1
+  - @deepdish/ui@0.16.1
+
 ## 0.11.0
 
 ### Minor Changes

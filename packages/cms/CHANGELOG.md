@@ -1,5 +1,17 @@
 # @deepdish/cms
 
+## 0.9.1
+
+### Patch Changes
+
+- b71e7cf: Added error suppression to schema serialization.
+- Updated dependencies [b71e7cf]
+- Updated dependencies [b71e7cf]
+  - @deepdish/workbench@0.11.1
+  - @deepdish/core@0.6.0
+  - @deepdish/nextjs@0.9.1
+  - @deepdish/ui@0.16.1
+
 ## 0.9.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @deepdish/core
 
+## 0.6.0
+
+### Minor Changes
+
+- b71e7cf: Added schema-building helpers.
+
 ## 0.5.0
 
 ### Minor Changes
