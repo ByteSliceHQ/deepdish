@@ -1,5 +1,12 @@
 # @deepdish/resolvers
 
+## 0.14.1
+
+### Patch Changes
+
+- Updated dependencies [b71e7cf]
+  - @deepdish/core@0.6.0
+
 ## 0.14.0
 
 ### Minor Changes

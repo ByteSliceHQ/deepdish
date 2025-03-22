@@ -1,5 +1,13 @@
 # @deepdish/workbench
 
+## 0.11.1
+
+### Patch Changes
+
+- b71e7cf: Added error suppression to schema serialization.
+- Updated dependencies [b71e7cf]
+  - @deepdish/core@0.6.0
+
 ## 0.11.0
 
 ### Minor Changes

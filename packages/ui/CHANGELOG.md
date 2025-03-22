@@ -1,5 +1,13 @@
 # @deepdish/ui
 
+## 0.16.1
+
+### Patch Changes
+
+- Updated dependencies [b71e7cf]
+  - @deepdish/core@0.6.0
+  - @deepdish/resolvers@0.14.1
+
 ## 0.16.0
 
 ### Minor Changes
