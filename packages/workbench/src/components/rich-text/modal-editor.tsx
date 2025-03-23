@@ -69,7 +69,7 @@ export function ModalEditor(props: {
             onFocus={() => setFocused(true)}
             onBlur={() => setFocused(false)}
             editor={modalEditor}
-            className="[&>div[contenteditable=true]]:py-4 [&>[contenteditable=true]]:px-5 [&>[contenteditable=true]]:w-full w-full text-sm flex flex-1"
+            className="[&>div[contenteditable=true]]:py-4 [&>[contenteditable=true]]:px-5 [&>[contenteditable=true]]:w-full w-full text-sm flex flex-1 overflow-y-auto"
           />
           <div className="border-t py-2 px-3 w-full">
             <FormattingControls editor={modalEditor} />

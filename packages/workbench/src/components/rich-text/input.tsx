@@ -45,7 +45,7 @@ export function Input(props: {
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
           editor={editor}
-          className="[&>div[contenteditable=true]]:py-2 [&>[contenteditable=true]]:px-3 [&>[contenteditable=true]]:flex-1 text-sm"
+          className="[&>div[contenteditable=true]]:py-2 [&>[contenteditable=true]]:px-3 [&>[contenteditable=true]]:flex-1 text-sm max-h-[200px] overflow-y-auto"
         />
         <BubbleMenu editor={editor}>
           <div className="px-3 py-2 bg-white rounded-md overflow-x-auto border">
