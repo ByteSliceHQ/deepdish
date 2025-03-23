@@ -27,7 +27,7 @@ export const catalog = {
   },
   feature: {
     schema: featureSchema,
-    serializedSchema: serialize(blogSchema),
+    serializedSchema: serialize(featureSchema),
     keys: {
       'home/feature-1': {
         name: 'Feature 1 Name',
@@ -42,7 +42,7 @@ export const catalog = {
   },
   text: {
     schema: textSchema,
-    serializedSchema: serialize(blogSchema),
+    serializedSchema: serialize(textSchema),
     keys: {
       'home/headline': 'Headline',
       'home/sub-headline': 'Sub-Headline',

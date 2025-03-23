@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import type { Meta } from '@deepdish/core/schema'
 import type { JSONSchema7, JSONSchema7Definition } from 'json-schema'
 import { useEffect, useMemo } from 'react'
 import {
@@ -12,13 +13,15 @@ import {
   useForm,
 } from 'react-hook-form'
 import type { Content } from '.'
+import { RichText } from '../rich-text'
 
 function renderFields(
   uniqueId: string,
   properties: Record<string, JSONSchema7Definition>,
   register: UseFormRegister<FieldValues>,
   control: Control<FieldValues>,
-  parentKey?: string,
+  parentKey: string,
+  meta: Record<string, Meta>,
 ) {
   return Object.entries(properties).map(([key, subSchema]) => {
     if (typeof subSchema === 'boolean') {
@@ -37,13 +40,15 @@ function renderFields(
             register,
             control,
             fieldName,
+            meta,
           )}
         </Fieldset>
       )
     }
 
     if (subSchema.type === 'string') {
-      // TODO: support rich-text editing
+      const rich = Boolean(meta[fieldName]?.rich)
+
       return (
         <Field
           key={fieldName}
@@ -55,6 +60,16 @@ function renderFields(
             name={fieldName}
             control={control}
             render={({ field: { onChange, value } }) => {
+              if (rich) {
+                return (
+                  <RichText
+                    content={value || ''}
+                    uniqueId={fieldName}
+                    onChange={onChange}
+                  />
+                )
+              }
+
               return (
                 <Input id={fieldName} value={value || ''} onChange={onChange} />
               )
@@ -130,7 +145,11 @@ function renderFields(
   })
 }
 
-function getDefaultValues(schema: JSONSchema7, content: unknown): FieldValues {
+function getDefaultValues(
+  schema: JSONSchema7,
+  content: unknown,
+  rootKey: string,
+): FieldValues {
   const schemaAndContentAreCompatible =
     schema.type === 'object' &&
     schema.properties &&
@@ -138,7 +157,9 @@ function getDefaultValues(schema: JSONSchema7, content: unknown): FieldValues {
     content !== null
 
   if (schemaAndContentAreCompatible) {
-    return content
+    return {
+      [rootKey]: content,
+    }
   }
 
   // TODO: adjust warning for null content
@@ -191,13 +212,15 @@ function Fieldset(props: {
 
 export function DynamicForm(props: {
   content: unknown
+  contentRootKey: string
   onSubmit: (content: Content) => void
   schema: JSONSchema7
+  meta: Record<string, Meta>
   uniqueId: string
 }) {
   const defaultValues: FieldValues = useMemo(() => {
-    return getDefaultValues(props.schema, props.content)
-  }, [props.schema, props.content])
+    return getDefaultValues(props.schema, props.content, props.contentRootKey)
+  }, [props.schema, props.content, props.contentRootKey])
 
   // TODO: validation, error states, etc.
   const form = useForm({
@@ -208,14 +231,21 @@ export function DynamicForm(props: {
     form.reset(defaultValues)
   }, [form, defaultValues])
 
+  function handleSubmit(content: Record<typeof props.contentRootKey, Content>) {
+    const value = content[props.contentRootKey]
+    props.onSubmit(value)
+  }
+
   if (props.schema.type === 'object' && props.schema.properties) {
     return (
-      <form onSubmit={form.handleSubmit(props.onSubmit)} className="space-y-4">
+      <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4">
         {renderFields(
           props.uniqueId,
           props.schema.properties,
           form.register,
           form.control,
+          props.contentRootKey,
+          props.meta,
         )}
         <Button
           variant="default"

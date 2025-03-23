@@ -1,3 +1,4 @@
+import type { Meta } from '@deepdish/core/schema'
 import type { JSONSchema7 } from 'json-schema'
 import { useEffect, useRef, useState } from 'react'
 import { DynamicForm } from './dynamic-form'
@@ -7,9 +8,11 @@ export type Content = object | string | number | boolean | null | undefined
 
 export function JsonSchemaForm(props: {
   content: unknown
+  contentRootKey: string
   onSubmit: (content: Content) => Promise<void>
   schema: JSONSchema7
   uniqueId: string
+  meta: Record<string, Meta>
 }) {
   const initialUniqueId = useRef<string>(props.uniqueId)
   const [shouldRender, setShouldRender] = useState<boolean>(false)
@@ -33,21 +36,27 @@ export function JsonSchemaForm(props: {
   }
 
   if (props.schema.type === 'string') {
+    const meta = props.meta[props.contentRootKey]
+
     return (
       <SimpleTextForm
-        uniqueId={props.uniqueId}
         content={props.content as string}
+        meta={meta}
         onSubmit={props.onSubmit}
+        uniqueId={props.uniqueId}
       />
     )
   }
 
   if (props.schema.type === 'number') {
+    const meta = props.meta[props.contentRootKey]
+
     return (
       <SimpleNumberForm
-        uniqueId={props.uniqueId}
         content={props.content as number}
+        meta={meta}
         onSubmit={props.onSubmit}
+        uniqueId={props.uniqueId}
       />
     )
   }
