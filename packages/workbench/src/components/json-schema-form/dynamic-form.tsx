@@ -213,6 +213,7 @@ function Fieldset(props: {
 export function DynamicForm(props: {
   content: unknown
   contentRootKey: string
+  description?: React.ReactNode
   onSubmit: (content: Content) => void
   schema: JSONSchema7
   meta: Record<string, Meta>
