@@ -1,9 +1,10 @@
 # DeepDish
 
-Welcome to DeepDish. DeepDish allows you to build Next.js apps without integrating a CMS.
-DeepDish is built on top of React server components and specifically designed for Next.js.
+DeepDish enables developers to build web applications without integrating a CMS, allowing content managers to make edits directly on each page.
 
-Created by the [ByteSlice](https://byteslice.co) team for devs and marketing teams.
+Specifically designed for [Next.js](https://nextjs.org/), DeepDish leverages the capabilities of [React Server Components](https://react.dev/reference/rsc/server-components).
+
+🍕 Built by the team at [ByteSlice](https://byteslice.co).
 
 ## Installation
 
@@ -21,12 +22,11 @@ bun add @deepdish/cms
 
 ## Creating an account
 
-We are actively building out the DeepDish platform. To get started, join the [DeepDish waitlist](https://www.deepdish.app).
-We are sending out invites to our waitlist every Friday to gain access to the platform.
+We are actively building out the DeepDish platform. To request access, please join the [waitlist](https://www.deepdish.app).
 
 ## Getting Started
 
-Follow the guide below to get started with DeepDish.
+Follow the guide below to get up-and-running with DeepDish.
 
 ### Step 1: Set up your environment
 
