@@ -47,7 +47,7 @@ function renderFields(
     }
 
     if (subSchema.type === 'string') {
-      const rich = meta[fieldName]?.rich ?? false
+      const rich = Boolean(meta[fieldName]?.rich)
 
       return (
         <Field
