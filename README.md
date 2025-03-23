@@ -86,16 +86,12 @@ Import the `DeepDishProvider` component from `@deepdish/cms` and wrap the subtre
 ```tsx
 import { DeepDishProvider } from "@deepdish/cms"
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export default function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html>
       <body>
         <DeepDishProvider>
-          {children}
+          {props.children}
         </DeepDishProvider>
       </body>
     </html>
