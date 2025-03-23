@@ -16,6 +16,7 @@ registrator
 rehype
 shadcn
 sonner
+stricli
 tsup
 turbopack
 turborepo
