@@ -70,7 +70,7 @@ import { deepdish } from '@deepdish/cms';
 // We recommend using an environment variable for this.
 const draft = process.env.DEEPDISH_MODE === "draft";
 
-export const components = await deepdish({
+export const { components, middleware } = await deepdish({
   draft,
   baseUrl: process.env.BASE_URL, // or getBaseUrl() if using Vercel
   secretKey: process.env.DEEPDISH_SECRET_KEY,
@@ -102,15 +102,14 @@ export default function RootLayout({
 }
 ```
 
-### Step 4: Add the DeepDish Middleware
+### Step 4: Add the middleware
 
-In your `middleware.ts` file, import the `deepdishMiddleware` function from `@deepdish/cms` and initialize it with your `config` object.
+In your `middleware.ts` file—where [Next.js middleware](https://nextjs.org/docs/app/building-your-application/routing/middleware) is defined—add the configured DeepDish middleware.
 
 ```ts
-import { deepdishMiddleware } from "@deepdish/cms";
-import { config } from "@/deepdish";
+import * as deepdish from "@/deepdish";
 
-export default deepdishMiddleware(config);
+export default deepdish.middleware;
 ```
 
 ### Step 5: Add a DeepDish Component
@@ -118,7 +117,9 @@ export default deepdishMiddleware(config);
 To add a DeepDish component to your page, import one that has been created based on your configuration. Pass it a `deepdish` prop with a `key` unique to the data you want to render. The `render` prop will be given a strongly-typed `value` that you can use to render whatever you'd like!
 
 ```tsx
-import { Text } from "@/deepdish";
+import * as deepdish from "@/deepdish";
+
+const { Text } = deepdish.components;
 
 function Home() {
   return (
