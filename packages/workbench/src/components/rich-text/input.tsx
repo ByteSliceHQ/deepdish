@@ -13,7 +13,7 @@ export function Input(props: {
 }) {
   const mountedId = useRef<string | null>(null)
   const [focused, setFocused] = useState(false)
-  const [modalOpened, setModalOpened] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false)
   const { editor, id } = useRichText()
 
   useEffect(() => {
@@ -30,7 +30,7 @@ export function Input(props: {
 
   function handleSave(content: string) {
     editor.commands.setContent(content)
-    setModalOpened(false)
+    setModalOpen(false)
   }
 
   return (
@@ -54,8 +54,8 @@ export function Input(props: {
         </BubbleMenu>
       </div>
       <ModalEditor
-        open={modalOpened}
-        onOpenChange={setModalOpened}
+        open={modalOpen}
+        onOpenChange={setModalOpen}
         onSave={handleSave}
       >
         <Button size="icon" variant="ghost" className="ml-auto">
