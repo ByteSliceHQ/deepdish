@@ -49,8 +49,9 @@ BASE_URL=http://localhost:3000
 If you're using Vercel, you can omit the `BASE_URL` environment variable and use the `getBaseUrl` helper instead.
 
 ```ts
-import { getBaseUrl } from "@deepdish/cms/vercel";
-const baseUrl = getBaseUrl();
+import { getBaseUrl } from "@deepdish/cms/vercel"
+
+const baseUrl = getBaseUrl()
 ```
 
 That helper function will return the base URL of the Vercel environment (or your local development endpoint if you're running the app locally). This is particularly useful when using the Vercel preview feature.
@@ -63,19 +64,19 @@ Create a `deepdish.ts` file in the `app` directory of your Next.js project. Impo
 > The `deepdish` function creates components based on your configuration. Ensure you export them so they can be used throughout your application.
 
 ```ts
-import { deepdish } from '@deepdish/cms';
+import { deepdish } from '@deepdish/cms'
 
 // Draft mode is dependent upon your environment.
 // Set to `true` to enable the DeepDish Workbench, or `false` to disable it.
 // We recommend using an environment variable for this.
-const draft = process.env.DEEPDISH_MODE === "draft";
+const draft = process.env.DEEPDISH_MODE === "draft"
 
 export const { components, middleware } = await deepdish({
   draft,
   baseUrl: process.env.BASE_URL, // or getBaseUrl() if using Vercel
   secretKey: process.env.DEEPDISH_SECRET_KEY,
   projectAlias: process.env.DEEPDISH_PROJECT_ALIAS,
-});
+})
 ```
 
 ### Step 3: Add the provider
@@ -83,12 +84,12 @@ export const { components, middleware } = await deepdish({
 Import the `DeepDishProvider` component from `@deepdish/cms` and wrap the subtree where DeepDish components will be rendered.
 
 ```tsx
-import { DeepDishProvider } from "@deepdish/cms";
+import { DeepDishProvider } from "@deepdish/cms"
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <html>
@@ -98,7 +99,7 @@ export default function RootLayout({
         </DeepDishProvider>
       </body>
     </html>
-  );
+  )
 }
 ```
 
@@ -107,9 +108,9 @@ export default function RootLayout({
 In your `middleware.ts` file—where [Next.js middleware](https://nextjs.org/docs/app/building-your-application/routing/middleware) is defined—add the configured DeepDish middleware.
 
 ```ts
-import * as deepdish from "@/deepdish";
+import * as deepdish from "@/deepdish"
 
-export default deepdish.middleware;
+export default deepdish.middleware
 ```
 
 ### Step 5: Add a DeepDish Component
@@ -117,9 +118,9 @@ export default deepdish.middleware;
 To add a DeepDish component to your page, import one that has been created based on your configuration. Pass it a `deepdish` prop with a `key` unique to the data you want to render. The `render` prop will be given a strongly-typed `value` that you can use to render whatever you'd like!
 
 ```tsx
-import * as deepdish from "@/deepdish";
+import * as deepdish from "@/deepdish"
 
-const { Text } = deepdish.components;
+const { Text } = deepdish.components
 
 function Home() {
   return (
@@ -130,7 +131,7 @@ function Home() {
         render={async (value) => <p className="text-xl font-bold">{value}</p>}
       />
     </div>
-  );
+  )
 }
 ```
 
