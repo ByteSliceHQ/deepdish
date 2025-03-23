@@ -5,17 +5,6 @@ settings:
   excludeLinksFromLockfile: false
 
 catalogs:
-  peer-next:
-    next:
-      specifier: ^15.0.0
-      version: 15.1.4
-  peer-react:
-    react:
-      specifier: ^19.0.0 || ^19.0.0-0
-      version: 19.0.0
-    react-dom:
-      specifier: ^19.0.0 || ^19.0.0-0
-      version: 19.0.0
   react:
     react:
       specifier: 19.0.0
@@ -30,19 +19,7 @@ catalogs:
     '@types/react-dom':
       specifier: 18.3.0
       version: 18.3.0
-    react:
-      specifier: 18.3.1
-      version: 18.3.1
-    react-dom:
-      specifier: 18.3.1
-      version: 18.3.1
   repo:
-    '@types/bun':
-      specifier: 1.1.12
-      version: 1.1.12
-    '@types/node':
-      specifier: 20.9.0
-      version: 20.9.0
     tsup:
       specifier: 8.2.4
       version: 8.2.4
@@ -3451,6 +3428,7 @@ packages:
 
   bun@1.2.4:
     resolution: {integrity: sha512-ZY0EZ/UKqheaLeAtMsfJA6jWoWvV9HAtfFaOJSmS3LrNpFKs1Sg5fZLSsczN1h3a+Dtheo4O3p3ZYWrf40kRGw==}
+    cpu: [arm64, x64, aarch64]
     os: [darwin, linux, win32]
     hasBin: true
 

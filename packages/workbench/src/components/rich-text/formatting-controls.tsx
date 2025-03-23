@@ -33,9 +33,11 @@ function FormatButton(props: {
   )
 }
 
-export function FormattingControls(props: { editor: Editor }) {
+export function FormattingControls(props: {
+  editor: Editor
+}) {
   return (
-    <div className="flex items-center gap-1 px-3 py-2 bg-white rounded-md border overflow-x-auto">
+    <div className="flex items-center gap-1">
       <FormatButton
         active={props.editor.isActive('bold')}
         onClick={() => props.editor.chain().focus().toggleBold().run()}
