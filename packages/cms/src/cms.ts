@@ -48,8 +48,12 @@ export const deepdish = async (config: DeepDishConfig) => {
   const components = createComponents(contracts)
 
   return {
-    Text: components.text,
+    // TODO: map contract names to component names
+    components: {
+      Text: components.text,
+    },
+    middleware: deepdishMiddleware.bind(null, config),
   }
 }
 
-export { DeepDishProvider, deepdishMiddleware }
+export { DeepDishProvider }
