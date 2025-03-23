@@ -47,7 +47,7 @@ function renderFields(
     }
 
     if (subSchema.type === 'string') {
-      const rich = meta[fieldName]?.rich ?? false
+      const rich = Boolean(meta[fieldName]?.rich)
 
       return (
         <Field
@@ -213,7 +213,6 @@ function Fieldset(props: {
 export function DynamicForm(props: {
   content: unknown
   contentRootKey: string
-  description?: React.ReactNode
   onSubmit: (content: Content) => void
   schema: JSONSchema7
   meta: Record<string, Meta>
