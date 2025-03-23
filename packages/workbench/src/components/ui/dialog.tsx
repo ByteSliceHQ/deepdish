@@ -100,6 +100,9 @@ function DialogTitle({
   className,
   ...props
 }: React.ComponentProps<typeof DialogPrimitive.Title>) {
+  // NB: the `DialogTitle`'s accessibility checking doesn't support Shadow DOM at the moment,
+  // so there'll always be an error toast when running the Workbench in a Next.js dev environment.
+  // https://github.com/radix-ui/primitives/pull/3384
   return (
     <DialogPrimitive.Title
       data-slot="dialog-title"
