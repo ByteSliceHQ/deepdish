@@ -59,6 +59,9 @@ That helper function will return the base URL of the Vercel environment (or your
 
 Create a `deepdish.ts` file in the `app` directory of your Next.js project. Import the `deepdish` function from `@deepdish/cms` and initialize it with your configuration.
 
+> [!Note]
+> The `deepdish` function creates components based on your configuration. Ensure you export them so they can be used throughout your application.
+
 ```ts
 import { deepdish } from '@deepdish/cms';
 
@@ -67,7 +70,7 @@ import { deepdish } from '@deepdish/cms';
 // We recommend using an environment variable for this.
 const draft = process.env.DEEPDISH_MODE === "draft";
 
-const components = await deepdish({
+export const components = await deepdish({
   draft,
   baseUrl: process.env.BASE_URL, // or getBaseUrl() if using Vercel
   secretKey: process.env.DEEPDISH_SECRET_KEY,
@@ -115,7 +118,7 @@ export default deepdishMiddleware(config);
 To add a DeepDish component to your page, import one that has been created based on your configuration. Pass it a `deepdish` prop with a `key` unique to the data you want to render. The `render` prop will be given a strongly-typed `value` that you can use to render whatever you'd like!
 
 ```tsx
-import { Text } from "@/layout";
+import { Text } from "@/deepdish";
 
 function Home() {
   return (
