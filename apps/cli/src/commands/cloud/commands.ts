@@ -6,7 +6,7 @@ import { cloudKeyRoutes } from './key/commands'
 export const cloudRoutes = buildRouteMap({
   routes: {
     auth: cloudAuthRoutes,
-    billin: cloudBillingRoutes,
+    billing: cloudBillingRoutes,
     key: cloudKeyRoutes,
   },
   docs: {
