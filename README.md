@@ -61,7 +61,7 @@ That helper function will return the base URL of the Vercel environment (or your
 Create a `deepdish.ts` file in the `app` directory of your Next.js project. Import the `deepdish` function from `@deepdish/cms` and initialize it with your configuration.
 
 > [!Note]
-> The `deepdish` function creates components based on your configuration. Ensure you export them so they can be used throughout your application.
+> The `deepdish` function creates components and middleware based on your configuration. Ensure you export them so they can be used within your application.
 
 ```ts
 import { deepdish } from '@deepdish/cms'
