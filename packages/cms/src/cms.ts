@@ -2,7 +2,7 @@ import { createTypographyResolver } from '@deepdish-cloud/resolvers/typography'
 import { schema } from '@deepdish/core/schema'
 import { createComponents } from '@deepdish/ui/components'
 import { configure } from '@deepdish/ui/config'
-import { deepdishMiddleware } from './middleware'
+import { middleware } from './middleware'
 import { ProviderContainer as DeepDishProvider } from './provider/container'
 
 export type DeepDishConfig = {
@@ -52,7 +52,7 @@ export const deepdish = async (config: DeepDishConfig) => {
     components: {
       Text: components.text,
     },
-    middleware: deepdishMiddleware.bind(null, config),
+    middleware: middleware(config),
   }
 }
 

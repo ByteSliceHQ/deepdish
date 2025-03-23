@@ -101,12 +101,15 @@ export default function RootLayout(props: { children: React.ReactNode }) {
 
 ### Step 4: Add the middleware
 
-In your `middleware.ts` file—where [Next.js middleware](https://nextjs.org/docs/app/building-your-application/routing/middleware) is defined—add the configured DeepDish middleware.
+In your `middleware.ts` file—where [Next.js middleware](https://nextjs.org/docs/app/api-reference/file-conventions/middleware) is defined—add the configured DeepDish middleware.
 
 ```ts
+import type { NextResponse } from 'next/server'
 import * as deepdish from "@/deepdish"
 
-export default deepdish.middleware
+export default function (request: NextRequest) {
+  return deepdish.middleware(request)
+}
 ```
 
 ### Step 5: Add a DeepDish Component
