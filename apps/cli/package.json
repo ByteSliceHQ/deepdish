@@ -1,0 +1,37 @@
+{
+  "name": "@deepdish/cli",
+  "version": "0.0.0",
+  "description": "DeepDish command line application",
+  "author": {
+    "name": "ByteSlice, LLC",
+    "url": "https://byteslice.co"
+  },
+  "type": "module",
+  "bin": {
+    "__cli_bash_complete": "dist/bash-complete.js",
+    "cli": "dist/cli.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prebuild": "tsc -p tsconfig.json",
+    "build": "tsup",
+    "dev": "tsup --watch"
+  },
+  "dependencies": {
+    "@stricli/auto-complete": "1.1.1",
+    "@stricli/core": "1.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "22.x",
+    "tsup": "catalog:repo",
+    "typescript": "catalog:repo"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  }
+}
