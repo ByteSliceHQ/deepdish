@@ -42,6 +42,10 @@ export async function login(this: LocalContext): Promise<void> {
     throw callback.failure
   }
 
+  if (callback.data.state !== state) {
+    throw new Error('Invalid state.')
+  }
+
   const token = await withResult(
     () =>
       exchangeCallbackCodeForToken(BASE_DEEPDISH_CLOUD_URL, callback.data.code),
