@@ -78,7 +78,7 @@ export function createTemporaryCallbackServer(
       )
 
       if (params.failure) {
-        res.writeHead(400, { 'Content-Type': 'text/plain' })
+        res.writeHead(400, { 'Content-Type': 'text/html' })
         res.end(failureHtml)
 
         reject(params.failure)
