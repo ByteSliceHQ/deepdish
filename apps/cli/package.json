@@ -20,8 +20,12 @@
     "dev": "tsup --watch"
   },
   "dependencies": {
+    "@byteslice/result": "0.1.0",
+    "@clerk/clerk-js": "5.57.3",
     "@stricli/auto-complete": "1.1.1",
-    "@stricli/core": "1.1.1"
+    "@stricli/core": "1.1.1",
+    "open": "10.1.0",
+    "valibot": "1.0.0-rc.0"
   },
   "devDependencies": {
     "@types/node": "22.x",
