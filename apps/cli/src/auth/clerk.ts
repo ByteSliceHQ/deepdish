@@ -1,6 +1,6 @@
-import pkg from '@clerk/clerk-js/headless/index.js'
+import clerk from '@clerk/clerk-js/headless/index.js'
 
-const Clerk = pkg.Clerk
+const Clerk = clerk.Clerk
 
 export async function makeClerk(publishableKey: string) {
   const clerk = new Clerk(publishableKey)
@@ -12,7 +12,7 @@ export async function makeClerk(publishableKey: string) {
   return clerk
 }
 
-export async function createSignIn(clerk: pkg.Clerk, ticket: string) {
+export async function createSignIn(clerk: clerk.Clerk, ticket: string) {
   const signIn = await clerk.client?.signIn.create({
     ticket,
     strategy: 'ticket',
