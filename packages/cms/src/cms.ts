@@ -1,7 +1,8 @@
 import { createTypographyResolver } from '@deepdish-cloud/resolvers/typography'
 import { schema } from '@deepdish/core/schema'
+import { createComponents } from '@deepdish/ui/components'
 import { configure } from '@deepdish/ui/config'
-import { deepdishMiddleware } from './middleware'
+import { middleware } from './middleware'
 import { ProviderContainer as DeepDishProvider } from './provider/container'
 
 export type DeepDishConfig = {
@@ -22,17 +23,19 @@ export const deepdish = async (config: DeepDishConfig) => {
     config.projectAlias,
   )
 
-  return await configure({
-    contracts: {
-      typography: {
-        resolver: {
-          // TODO: Remove this once the cloud resolver supports keys.
-          keys: () => Promise.resolve({ success: false, data: [] }),
-          ...cloudTypographyResolver,
-        },
-        schema: schema((v) => v.string()),
+  const contracts = {
+    text: {
+      resolver: {
+        // TODO: Remove this once the cloud resolver supports keys.
+        keys: () => Promise.resolve({ success: false, data: [] }),
+        ...cloudTypographyResolver,
       },
+      schema: schema((v) => v.string()),
     },
+  }
+
+  await configure({
+    contracts,
     logging: {
       enabled: config.loggingEnabled ?? false,
     },
@@ -41,6 +44,16 @@ export const deepdish = async (config: DeepDishConfig) => {
       draft: config.draft,
     },
   })
+
+  const components = createComponents(contracts)
+
+  return {
+    // TODO: map contract names to component names
+    components: {
+      Text: components.text,
+    },
+    middleware: middleware(config),
+  }
 }
 
-export { DeepDishProvider, deepdishMiddleware }
+export { DeepDishProvider }

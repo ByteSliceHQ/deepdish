@@ -1,9 +1,10 @@
 # DeepDish
 
-Welcome to DeepDish. DeepDish allows you to build Next.js apps without integrating a CMS.
-DeepDish is built on top of React server components and specifically designed for Next.js.
+DeepDish enables developers to build web applications without integrating a CMS, allowing content managers to make edits directly on each page.
 
-Created by the [ByteSlice](https://byteslice.co) team for devs and marketing teams.
+Specifically designed for [Next.js](https://nextjs.org/), DeepDish leverages the capabilities of [React Server Components](https://react.dev/reference/rsc/server-components).
+
+🍕 Built by the team at [ByteSlice](https://byteslice.co).
 
 ## Installation
 
@@ -21,14 +22,13 @@ bun add @deepdish/cms
 
 ## Creating an account
 
-We are actively building out the DeepDish platform. To get started, join the [DeepDish waitlist](https://www.deepdish.app).
-We are sending out invites to our waitlist every Friday to gain access to the platform.
+We are actively building out the DeepDish platform. To request access, please join the [waitlist](https://www.deepdish.app).
 
 ## Getting Started
 
-Follow the guide below to get started with DeepDish.
+Follow the guide below to get up-and-running with DeepDish.
 
-### Step 1: Setup your environment
+### Step 1: Set up your environment
 
 Set the following environment variables in your local `.env.local` file:
 
@@ -46,97 +46,91 @@ BASE_URL=http://localhost:3000
 
 #### Vercel helpers
 
-If you're using Vercel, you can omit the `BASE_URL` environment variable and use the following helpers to get the base URL based on the Vercel environment.
+If you're using Vercel, you can omit the `BASE_URL` environment variable and use the `getBaseUrl` helper instead.
 
 ```ts
-import { getBaseUrl } from "@deepdish/cms/vercel";
-const baseUrl = getBaseUrl();
+import { getBaseUrl } from "@deepdish/cms/vercel"
+
+const baseUrl = getBaseUrl()
 ```
 
-The `getBaseUrl` function will return the base URL based on the Vercel environment, or your local development endpoint if you're running the app locally.
-This is handy when using the Vercel preview feature.
+That helper function will return the base URL of the Vercel environment (or your local development endpoint if you're running the app locally). This is particularly useful when using the Vercel preview feature.
 
-### Step 2: Add a deepdish.ts file
+### Step 2: Configure your project
 
-Create a `deepdish.ts` file in the `app` directory of your Next.js project.
+Create a `deepdish.ts` file in the `app` directory of your Next.js project. Import the `deepdish` function from `@deepdish/cms` and initialize it with your configuration.
 
-`app/deepdish.ts`:
+> [!Note]
+> The `deepdish` function creates components and middleware based on your configuration. Ensure you export them so they can be used within your application.
 
 ```ts
-import type { DeepDishConfig } from '@deepdish/cms';
-
-// If you're using Vercel, use the following helpers to get the base URL.
-// import { getBaseUrl } from "@deepdish/cms/vercel";
-// const baseUrl = getBaseUrl();
-const baseUrl = process.env.BASE_URL;
+import { deepdish } from '@deepdish/cms'
 
 // Draft mode is dependent upon your environment.
 // Set to `true` to enable the DeepDish Workbench, or `false` to disable it.
 // We recommend using an environment variable for this.
-const draft = process.env.DEEPDISH_MODE === "draft";
+const draft = process.env.DEEPDISH_MODE === "draft"
 
-export const config: DeepDishConfig = {
+export const { components, middleware } = await deepdish({
   draft,
-  baseUrl,
+  baseUrl: process.env.BASE_URL, // or getBaseUrl() if using Vercel
   secretKey: process.env.DEEPDISH_SECRET_KEY,
   projectAlias: process.env.DEEPDISH_PROJECT_ALIAS,
-};
+})
 ```
 
-### Step 3: Configure your project
+### Step 3: Add the provider
 
-In your `app/layout.tsx` file, import the `deepdish` function from `@deepdish/cms` and initialize it with your `config` object.
-Additionally, import the `DeepDishProvider` component from `@deepdish/cms` and wrap your app with it.
+Import the `DeepDishProvider` component from `@deepdish/cms` and wrap the subtree where DeepDish components will be rendered.
 
 ```tsx
-import { deepdish, DeepDishProvider } from "@deepdish/cms";
-import { config } from "@/deepdish";
+import { DeepDishProvider } from "@deepdish/cms"
 
-await deepdish(config);
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html>
       <body>
         <DeepDishProvider>
-          {children}
+          {props.children}
         </DeepDishProvider>
       </body>
     </html>
-  );
+  )
 }
 ```
 
-### Step 4: Add the DeepDish Middleware
+### Step 4: Add the middleware
 
-In your `middleware.ts` file, import the `deepdishMiddleware` function from `@deepdish/cms` and initialize it with your `config` object.
+In your `middleware.ts` file—where [Next.js middleware](https://nextjs.org/docs/app/api-reference/file-conventions/middleware) is defined—add the configured DeepDish middleware.
 
 ```ts
-import { deepdishMiddleware } from "@deepdish/cms";
-import { config } from "@/deepdish";
+import type { NextResponse } from 'next/server'
+import * as deepdish from "@/deepdish"
 
-export default deepdishMiddleware(config);
+export default function (request: NextRequest) {
+  return deepdish.middleware(request)
+}
 ```
 
 ### Step 5: Add a DeepDish Component
 
-To add a DeepDish component to your page, import one and pass it a `deepdish` prop. That object requires a `key` to uniquely identify the component.
+To add a DeepDish component to your page, import one that has been created based on your configuration. Pass it a `deepdish` prop with a `key` unique to the data you want to render. The `render` prop will be given a strongly-typed `value` that you can use to render whatever you'd like!
 
 ```tsx
-import { Header1 } from "@/deepdish";
+import * as deepdish from "@/deepdish"
+
+const { Text } = deepdish.components
 
 function Home() {
   return (
     <div>
-      <Header1 deepdish={{ key: "title" }}>
-        Header Fallback
-      </Header1>
+      <Text
+        deepdish={{ key: 'headline' }}
+        fallback="Grab a slice!"
+        render={async (value) => <p className="text-xl font-bold">{value}</p>}
+      />
     </div>
-  );
+  )
 }
 ```
 

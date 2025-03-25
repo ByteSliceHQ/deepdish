@@ -1,4 +1,4 @@
-import { deepdishMiddleware as middleware } from '@deepdish/nextjs'
+import { deepdishMiddleware } from '@deepdish/nextjs'
 import { type NextRequest, NextResponse } from 'next/server'
 import type { DeepDishConfig } from './cms'
 
@@ -21,18 +21,17 @@ async function verify(_request: NextRequest) {
   return true
 }
 
-export const deepdishMiddleware = (
-  config: DeepDishConfig,
-  request: NextRequest,
-  response?: NextResponse,
-) =>
-  middleware(
-    {
-      draft: config.draft,
-      verify,
-      signIn,
-      signOut,
-    },
-    request,
-    response,
-  )
+export function middleware(config: DeepDishConfig) {
+  return (request: NextRequest, response?: NextResponse) => {
+    return deepdishMiddleware(
+      {
+        draft: config.draft,
+        verify,
+        signIn,
+        signOut,
+      },
+      request,
+      response,
+    )
+  }
+}
