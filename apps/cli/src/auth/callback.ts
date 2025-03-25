@@ -1,6 +1,6 @@
 import http from 'node:http'
-import * as v from 'valibot'
 import { withResult } from '@byteslice/result'
+import * as v from 'valibot'
 
 const callbackSchema = v.object({
   code: v.string(),

@@ -1,14 +1,14 @@
-import { withResult } from '@byteslice/result'
-import type { LocalContext } from '@/context'
 import { createTemporaryCallbackServer } from '@/auth/callback'
-import { makeClerk, createSignIn } from '@/auth/clerk'
-import { openAuthorizeUrl, generateOAuthState } from '@/auth/oauth'
+import { createSignIn, makeClerk } from '@/auth/clerk'
 import {
-  exchangeCallbackCodeForToken,
-  getConfig,
   createSessionJwt,
+  exchangeCallbackCodeForToken,
   exchangeTokenForTicket,
+  getConfig,
 } from '@/auth/exchange'
+import { generateOAuthState, openAuthorizeUrl } from '@/auth/oauth'
+import type { LocalContext } from '@/context'
+import { withResult } from '@byteslice/result'
 
 const CALLBACK_PORT = 8765
 const BASE_DEEPDISH_CLOUD_URL = 'http://localhost:3000'
