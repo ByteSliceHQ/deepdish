@@ -28,7 +28,7 @@
     "valibot": "1.0.0-rc.0"
   },
   "devDependencies": {
-    "@types/node": "22.x",
+    "@types/node": "catalog:repo",
     "tsup": "catalog:repo",
     "typescript": "catalog:repo"
   },
