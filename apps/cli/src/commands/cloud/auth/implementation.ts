@@ -7,13 +7,18 @@ import {
   getConfig,
 } from '@/auth/exchange'
 import { generateOAuthState, openAuthorizeUrl } from '@/auth/oauth'
+import { writeJwt } from '@/auth/storage'
 import type { LocalContext } from '@/context'
 import { withResult } from '@byteslice/result'
 
+// TODO: move these to environment variables
+const AUTHORIZE_URL = 'https://native-pony-6.clerk.accounts.dev/oauth/authorize'
 const CALLBACK_PORT = 8765
 const BASE_DEEPDISH_CLOUD_URL = 'http://localhost:3000'
 const BASE_CALLBACK_URL = `http://localhost:${CALLBACK_PORT}`
 
+// TODO: test errors
+// TODO: add formatted console logging
 export async function login(this: LocalContext): Promise<void> {
   const state = generateOAuthState()
 
@@ -27,7 +32,7 @@ export async function login(this: LocalContext): Promise<void> {
   }
 
   openAuthorizeUrl({
-    authorizeUri: 'https://native-pony-6.clerk.accounts.dev/oauth/authorize',
+    authorizeUri: AUTHORIZE_URL,
     clientId: config.data.clientId,
     redirectUri: `${BASE_CALLBACK_URL}/callback`,
     state,
@@ -82,7 +87,16 @@ export async function login(this: LocalContext): Promise<void> {
     signIn.data.createdSessionId,
   )
 
-  console.log('jwt', jwt)
+  const write = await withResult(
+    () => writeJwt(this, jwt),
+    (err) => err,
+  )
+
+  if (write.failure) {
+    throw write.failure
+  }
+
+  console.log('Success! You are now logged in.')
 }
 
 // TODO: refactor this, Clerk can do a signup for you

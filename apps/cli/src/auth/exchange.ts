@@ -5,9 +5,7 @@ const configSchema = v.object({
   clientId: v.string(),
 })
 
-const jwtSchema = v.object({
-  jwt: v.string(),
-})
+const jwtSchema = v.string()
 
 const tokenSchema = v.object({
   idToken: v.string(),
