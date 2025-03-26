@@ -74,7 +74,7 @@ async function signInAndSaveJwt(
         signIn.data.createdSessionId,
       ),
     (err) =>
-      new Error('Failed to create a new sign-in for this device', {
+      new Error('Failed to create a session JWT', {
         cause: err.message,
       }),
   )
@@ -86,7 +86,7 @@ async function signInAndSaveJwt(
   const write = await withResult(
     () => writeJwt(ctx, jwt.data),
     (err) =>
-      new Error('Could not save JWT to disk', {
+      new Error('Failed to save the session JWT to disk', {
         cause: err.message,
       }),
   )
