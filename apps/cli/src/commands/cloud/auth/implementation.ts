@@ -14,7 +14,7 @@ import { withResult } from '@byteslice/result'
 // TODO: move these to environment variables
 const AUTHORIZE_URL = 'https://native-pony-6.clerk.accounts.dev/oauth/authorize'
 const CALLBACK_PORT = 8765
-const BASE_DEEPDISH_CLOUD_URL = 'http://localhost:3000'
+const BASE_DEEPDISH_CLOUD_URL = 'http://localhost:4004'
 const BASE_CALLBACK_URL = `http://localhost:${CALLBACK_PORT}`
 
 // TODO: test errors
