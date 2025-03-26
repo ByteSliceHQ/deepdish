@@ -2,7 +2,8 @@ import http from 'node:http'
 import { withResult } from '@byteslice/result'
 import * as v from 'valibot'
 
-const CALLBACK_PORT = 8765
+export const CALLBACK_PORT = 8765
+export const CALLBACK_URL = `http://localhost:${CALLBACK_PORT}`
 
 const callbackSchema = v.object({
   code: v.string(),
@@ -52,19 +53,12 @@ const failureHtml = `
   </html>
 `
 
-function extractCallbackParams(
-  localCallbackUrl: string,
-  req: http.IncomingMessage,
-) {
+function extractCallbackParams(req: http.IncomingMessage) {
   if (!req.url) {
     throw new Error('No URL found in callback response.')
   }
 
-  if (!req.url.startsWith('/callback')) {
-    throw new Error('Invalid URL in callback response.')
-  }
-
-  const url = new URL(req.url, localCallbackUrl)
+  const url = new URL(req.url, CALLBACK_URL)
   return v.parse(callbackSchema, Object.fromEntries(url.searchParams.entries()))
 }
 
@@ -74,7 +68,7 @@ export function createTemporaryCallbackServer(): Promise<
   return new Promise((resolve, reject) => {
     const server = http.createServer(async (req, res) => {
       const params = await withResult(
-        () => extractCallbackParams(getCallbackUrl(), req),
+        () => extractCallbackParams(req),
         (err) => err,
       )
 
@@ -101,8 +95,4 @@ export function createTemporaryCallbackServer(): Promise<
 
     server.listen(CALLBACK_PORT)
   })
-}
-
-export function getCallbackUrl() {
-  return `http://localhost:${CALLBACK_PORT}/callback`
 }

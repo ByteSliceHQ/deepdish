@@ -1,4 +1,4 @@
-import { createTemporaryCallbackServer, getCallbackUrl } from '@/auth/callback'
+import { createTemporaryCallbackServer, CALLBACK_URL } from '@/auth/callback'
 import { createSignIn, makeClerk } from '@/auth/clerk'
 import {
   createSessionJwt,
@@ -29,7 +29,7 @@ export async function login(this: LocalContext): Promise<void> {
   openAuthorizeUrl({
     authorizeUri: env.OAUTH_AUTHORIZE_URL,
     clientId: config.data.clientId,
-    redirectUri: `${getCallbackUrl()}/callback`,
+    redirectUri: CALLBACK_URL,
     state,
   })
 
