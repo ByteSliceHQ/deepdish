@@ -1,16 +1,84 @@
-import { createTemporaryCallbackServer, CALLBACK_URL } from '@/auth/callback'
+import {
+  createTemporaryCallbackServer,
+  CALLBACK_URL,
+  type CallbackParams,
+} from '@/auth/callback'
 import { createSignIn, makeClerk } from '@/auth/clerk'
 import {
   createSessionJwt,
   exchangeCallbackCodeForToken,
   exchangeTokenForTicket,
   getConfig,
+  type Config,
 } from '@/auth/exchange'
 import { generateOAuthState, openAuthorizeUrl } from '@/auth/oauth'
 import { writeJwt } from '@/auth/storage'
 import type { LocalContext } from '@/context'
 import { env } from '@/env'
 import { withResult } from '@byteslice/result'
+
+async function signInAndSaveJwt(
+  ctx: LocalContext,
+  config: Config,
+  callbackParams: CallbackParams,
+) {
+  const token = await withResult(
+    () =>
+      exchangeCallbackCodeForToken(
+        env.BASE_DEEPDISH_CLOUD_URL,
+        callbackParams.code,
+      ),
+    (err) => err,
+  )
+
+  if (token.failure) {
+    throw token.failure
+  }
+
+  const ticket = await withResult(
+    () =>
+      exchangeTokenForTicket(env.BASE_DEEPDISH_CLOUD_URL, token.data.idToken),
+    (err) => err,
+  )
+
+  if (ticket.failure) {
+    throw ticket.failure
+  }
+
+  const clerk = await makeClerk(config.clerkPublishableKey)
+
+  const signIn = await withResult(
+    () => createSignIn(clerk, ticket.data.token),
+    (err) => err,
+  )
+
+  if (signIn.failure) {
+    throw signIn.failure
+  }
+
+  const jwt = await withResult(
+    () =>
+      createSessionJwt(
+        env.BASE_DEEPDISH_CLOUD_URL,
+        token.data.idToken,
+        signIn.data.createdSessionId,
+      ),
+    (err) => err,
+  )
+
+  if (jwt.failure) {
+    throw jwt.failure
+  }
+
+  const write = await withResult(
+    () => writeJwt(ctx, jwt.data),
+    (err) => err,
+  )
+
+  if (write.failure) {
+    throw write.failure
+  }
+}
 
 // TODO: test errors
 // TODO: add formatted console logging
@@ -33,68 +101,16 @@ export async function login(this: LocalContext): Promise<void> {
     state,
   })
 
-  // TODO: move all logic into `createTemporaryCallbackServer` so that we can show
-  // failure HTML if any of the operations fail
-  const callback = await withResult(
-    () => createTemporaryCallbackServer(),
-    (err) => err,
-  )
-
-  if (callback.failure) {
-    throw callback.failure
-  }
-
-  if (callback.data.state !== state) {
-    throw new Error('Invalid state.')
-  }
-
-  const token = await withResult(
+  const result = await withResult(
     () =>
-      exchangeCallbackCodeForToken(
-        env.BASE_DEEPDISH_CLOUD_URL,
-        callback.data.code,
-      ),
+      createTemporaryCallbackServer(async (callbackParams) => {
+        await signInAndSaveJwt(this, config.data, callbackParams)
+      }),
     (err) => err,
   )
 
-  if (token.failure) {
-    throw token.failure
-  }
-
-  const ticket = await withResult(
-    () =>
-      exchangeTokenForTicket(env.BASE_DEEPDISH_CLOUD_URL, token.data.idToken),
-    (err) => err,
-  )
-
-  if (ticket.failure) {
-    throw ticket.failure
-  }
-
-  const clerk = await makeClerk(config.data.clerkPublishableKey)
-
-  const signIn = await withResult(
-    () => createSignIn(clerk, ticket.data.token),
-    (err) => err,
-  )
-
-  if (signIn.failure) {
-    throw signIn.failure
-  }
-
-  const jwt = await createSessionJwt(
-    env.BASE_DEEPDISH_CLOUD_URL,
-    token.data.idToken,
-    signIn.data.createdSessionId,
-  )
-
-  const write = await withResult(
-    () => writeJwt(this, jwt),
-    (err) => err,
-  )
-
-  if (write.failure) {
-    throw write.failure
+  if (result.failure) {
+    throw result.failure
   }
 
   console.log('Success! You are now logged in.')

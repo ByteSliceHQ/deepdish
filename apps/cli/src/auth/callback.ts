@@ -5,6 +5,8 @@ import * as v from 'valibot'
 export const CALLBACK_PORT = 8765
 export const CALLBACK_URL = `http://localhost:${CALLBACK_PORT}`
 
+export type CallbackParams = v.InferOutput<typeof callbackSchema>
+
 const callbackSchema = v.object({
   code: v.string(),
   state: v.string(),
@@ -62,9 +64,21 @@ function extractCallbackParams(req: http.IncomingMessage) {
   return v.parse(callbackSchema, Object.fromEntries(url.searchParams.entries()))
 }
 
-export function createTemporaryCallbackServer(): Promise<
-  v.InferOutput<typeof callbackSchema>
-> {
+function sendFailurePage(res: http.ServerResponse) {
+  res.writeHead(400, { 'Content-Type': 'text/html' })
+  res.end(failureHtml)
+}
+
+function sendSuccessPage(res: http.ServerResponse) {
+  res.writeHead(200, {
+    'Content-Type': 'text/html',
+  })
+  res.end(successHtml)
+}
+
+export function createTemporaryCallbackServer(
+  fn: (params: CallbackParams) => Promise<void>,
+): Promise<void> {
   return new Promise((resolve, reject) => {
     const server = http.createServer(async (req, res) => {
       const params = await withResult(
@@ -73,23 +87,26 @@ export function createTemporaryCallbackServer(): Promise<
       )
 
       if (params.failure) {
-        res.writeHead(400, { 'Content-Type': 'text/html' })
-        res.end(failureHtml)
-
+        sendFailurePage(res)
         reject(params.failure)
         return
       }
 
-      res.writeHead(200, {
-        'Content-Type': 'text/html',
-        // ensure server stops listening for subsequent requests and closes properly
-        Connection: 'close',
-      })
+      const result = await withResult(
+        () => fn(params.data),
+        (err) => err,
+      )
 
-      res.end(successHtml)
+      if (result.failure) {
+        sendFailurePage(res)
+        reject(result.failure)
+        return
+      }
+
+      sendSuccessPage(res)
 
       server.close(() => {
-        resolve(params.data)
+        resolve()
       })
     })
 

@@ -1,5 +1,7 @@
 import * as v from 'valibot'
 
+export type Config = v.InferOutput<typeof configSchema>
+
 const configSchema = v.object({
   clerkPublishableKey: v.string(),
   clientId: v.string(),
