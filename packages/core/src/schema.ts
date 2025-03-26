@@ -77,8 +77,8 @@ export function serialize<S extends Schema>(
   return toJsonSchema(schema, { errorMode: errorMode ?? 'ignore' })
 }
 
-export function schema(
-  buildSchema: (valibot: typeof v, utils: SchemaUtils) => Schema,
+export function schema<T>(
+  buildSchema: (valibot: typeof v, utils: SchemaUtils) => Schema<T>,
 ) {
   return buildSchema(v, { meta, required, rich })
 }
