@@ -1,15 +1,15 @@
 import {
-  createTemporaryCallbackServer,
   CALLBACK_URL,
   type CallbackParams,
+  createTemporaryCallbackServer,
 } from '@/auth/callback'
 import { createSignIn, makeClerk } from '@/auth/clerk'
 import {
+  type Config,
   createSessionJwt,
   exchangeCallbackCodeForToken,
   exchangeTokenForTicket,
   getConfig,
-  type Config,
 } from '@/auth/exchange'
 import { generateOAuthState, openAuthorizeUrl } from '@/auth/oauth'
 import { writeJwt } from '@/auth/storage'
