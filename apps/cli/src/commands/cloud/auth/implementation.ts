@@ -104,6 +104,10 @@ export async function login(this: LocalContext): Promise<void> {
   const result = await withResult(
     () =>
       createTemporaryCallbackServer(async (callbackParams) => {
+        if (callbackParams.state !== state) {
+          throw new Error('Invalid state.')
+        }
+
         await signInAndSaveJwt(this, config.data, callbackParams)
       }),
     (err) => err,
