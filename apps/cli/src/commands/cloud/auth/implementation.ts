@@ -16,6 +16,7 @@ import { writeJwt } from '@/auth/storage'
 import type { LocalContext } from '@/context'
 import { env } from '@/env'
 import { withResult } from '@byteslice/result'
+import chalk from 'chalk'
 
 async function signInAndSaveJwt(
   ctx: LocalContext,
@@ -28,7 +29,10 @@ async function signInAndSaveJwt(
         env.BASE_DEEPDISH_CLOUD_URL,
         callbackParams.code,
       ),
-    (err) => err,
+    (err) =>
+      new Error('Failed to exchange callback code for token', {
+        cause: err.message,
+      }),
   )
 
   if (token.failure) {
@@ -38,7 +42,10 @@ async function signInAndSaveJwt(
   const ticket = await withResult(
     () =>
       exchangeTokenForTicket(env.BASE_DEEPDISH_CLOUD_URL, token.data.idToken),
-    (err) => err,
+    (err) =>
+      new Error('Failed to exchange access token code for a sign-in ticket', {
+        cause: err.message,
+      }),
   )
 
   if (ticket.failure) {
@@ -49,7 +56,10 @@ async function signInAndSaveJwt(
 
   const signIn = await withResult(
     () => createSignIn(clerk, ticket.data.token),
-    (err) => err,
+    (err) =>
+      new Error('Failed to create a new sign-in for this device', {
+        cause: err.message,
+      }),
   )
 
   if (signIn.failure) {
@@ -63,7 +73,10 @@ async function signInAndSaveJwt(
         token.data.idToken,
         signIn.data.createdSessionId,
       ),
-    (err) => err,
+    (err) =>
+      new Error('Failed to create a new sign-in for this device', {
+        cause: err.message,
+      }),
   )
 
   if (jwt.failure) {
@@ -72,7 +85,10 @@ async function signInAndSaveJwt(
 
   const write = await withResult(
     () => writeJwt(ctx, jwt.data),
-    (err) => err,
+    (err) =>
+      new Error('Could not save JWT to disk', {
+        cause: err.message,
+      }),
   )
 
   if (write.failure) {
@@ -80,8 +96,6 @@ async function signInAndSaveJwt(
   }
 }
 
-// TODO: test errors
-// TODO: add formatted console logging
 export async function login(this: LocalContext): Promise<void> {
   const state = generateOAuthState()
 
@@ -117,7 +131,7 @@ export async function login(this: LocalContext): Promise<void> {
     throw result.failure
   }
 
-  console.log('Success! You are now logged in.')
+  console.log(chalk.green('Success! You are now logged in.'))
 }
 
 // TODO: refactor this, Clerk can do a signup for you

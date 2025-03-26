@@ -24,6 +24,7 @@
     "@clerk/clerk-js": "5.57.3",
     "@stricli/auto-complete": "1.1.1",
     "@stricli/core": "1.1.1",
+    "chalk": "5.4.1",
     "open": "10.1.0",
     "valibot": "1.0.0-rc.0"
   },
