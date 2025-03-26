@@ -15,9 +15,9 @@
     "dist"
   ],
   "scripts": {
-    "prebuild": "tsc -p tsconfig.json",
-    "build": "tsup",
-    "dev": "tsup --watch"
+    "build": "op run --no-masking --env-file=.env.development --tsup",
+    "dev": "op run --no-masking --env-file=.env.development -- tsup --watch",
+    "prebuild": "tsc -p tsconfig.json"
   },
   "dependencies": {
     "@byteslice/result": "0.1.0",
@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "@types/node": "catalog:repo",
+    "dotenv": "16.4.7",
     "tsup": "catalog:repo",
     "typescript": "catalog:repo"
   },

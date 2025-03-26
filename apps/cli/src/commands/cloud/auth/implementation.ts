@@ -1,4 +1,4 @@
-import { createTemporaryCallbackServer } from '@/auth/callback'
+import { createTemporaryCallbackServer, getCallbackUrl } from '@/auth/callback'
 import { createSignIn, makeClerk } from '@/auth/clerk'
 import {
   createSessionJwt,
@@ -10,12 +10,7 @@ import { generateOAuthState, openAuthorizeUrl } from '@/auth/oauth'
 import { writeJwt } from '@/auth/storage'
 import type { LocalContext } from '@/context'
 import { withResult } from '@byteslice/result'
-
-// TODO: move these to environment variables
-const AUTHORIZE_URL = 'https://native-pony-6.clerk.accounts.dev/oauth/authorize'
-const CALLBACK_PORT = 8765
-const BASE_DEEPDISH_CLOUD_URL = 'http://localhost:4004'
-const BASE_CALLBACK_URL = `http://localhost:${CALLBACK_PORT}`
+import { env } from '@/env'
 
 // TODO: test errors
 // TODO: add formatted console logging
@@ -23,7 +18,7 @@ export async function login(this: LocalContext): Promise<void> {
   const state = generateOAuthState()
 
   const config = await withResult(
-    () => getConfig(BASE_DEEPDISH_CLOUD_URL),
+    () => getConfig(env.BASE_DEEPDISH_CLOUD_URL),
     (err) => err,
   )
 
@@ -32,14 +27,16 @@ export async function login(this: LocalContext): Promise<void> {
   }
 
   openAuthorizeUrl({
-    authorizeUri: AUTHORIZE_URL,
+    authorizeUri: env.OAUTH_AUTHORIZE_URL,
     clientId: config.data.clientId,
-    redirectUri: `${BASE_CALLBACK_URL}/callback`,
+    redirectUri: `${getCallbackUrl()}/callback`,
     state,
   })
 
+  // TODO: move all logic into `createTemporaryCallbackServer` so that we can show
+  // failure HTML if any of the operations fail
   const callback = await withResult(
-    () => createTemporaryCallbackServer(BASE_CALLBACK_URL, CALLBACK_PORT),
+    () => createTemporaryCallbackServer(),
     (err) => err,
   )
 
@@ -53,7 +50,10 @@ export async function login(this: LocalContext): Promise<void> {
 
   const token = await withResult(
     () =>
-      exchangeCallbackCodeForToken(BASE_DEEPDISH_CLOUD_URL, callback.data.code),
+      exchangeCallbackCodeForToken(
+        env.BASE_DEEPDISH_CLOUD_URL,
+        callback.data.code,
+      ),
     (err) => err,
   )
 
@@ -62,7 +62,8 @@ export async function login(this: LocalContext): Promise<void> {
   }
 
   const ticket = await withResult(
-    () => exchangeTokenForTicket(BASE_DEEPDISH_CLOUD_URL, token.data.idToken),
+    () =>
+      exchangeTokenForTicket(env.BASE_DEEPDISH_CLOUD_URL, token.data.idToken),
     (err) => err,
   )
 
@@ -82,7 +83,7 @@ export async function login(this: LocalContext): Promise<void> {
   }
 
   const jwt = await createSessionJwt(
-    BASE_DEEPDISH_CLOUD_URL,
+    env.BASE_DEEPDISH_CLOUD_URL,
     token.data.idToken,
     signIn.data.createdSessionId,
   )

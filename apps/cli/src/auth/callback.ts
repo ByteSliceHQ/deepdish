@@ -2,6 +2,8 @@ import http from 'node:http'
 import { withResult } from '@byteslice/result'
 import * as v from 'valibot'
 
+const CALLBACK_PORT = 8765
+
 const callbackSchema = v.object({
   code: v.string(),
   state: v.string(),
@@ -66,14 +68,13 @@ function extractCallbackParams(
   return v.parse(callbackSchema, Object.fromEntries(url.searchParams.entries()))
 }
 
-export function createTemporaryCallbackServer(
-  localCallbackUrl: string,
-  port: number,
-): Promise<v.InferOutput<typeof callbackSchema>> {
+export function createTemporaryCallbackServer(): Promise<
+  v.InferOutput<typeof callbackSchema>
+> {
   return new Promise((resolve, reject) => {
     const server = http.createServer(async (req, res) => {
       const params = await withResult(
-        () => extractCallbackParams(localCallbackUrl, req),
+        () => extractCallbackParams(getCallbackUrl(), req),
         (err) => err,
       )
 
@@ -98,6 +99,10 @@ export function createTemporaryCallbackServer(
       })
     })
 
-    server.listen(port)
+    server.listen(CALLBACK_PORT)
   })
+}
+
+export function getCallbackUrl() {
+  return `http://localhost:${CALLBACK_PORT}/callback`
 }
