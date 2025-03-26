@@ -134,7 +134,6 @@ export async function login(this: LocalContext): Promise<void> {
   console.log(chalk.green('Success! You are now logged in.'))
 }
 
-// TODO: refactor this, Clerk can do a signup for you
 export async function signup(this: LocalContext): Promise<void> {
   await console.log('cloud signup')
 }
