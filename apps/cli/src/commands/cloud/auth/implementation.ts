@@ -9,8 +9,8 @@ import {
 import { generateOAuthState, openAuthorizeUrl } from '@/auth/oauth'
 import { writeJwt } from '@/auth/storage'
 import type { LocalContext } from '@/context'
-import { withResult } from '@byteslice/result'
 import { env } from '@/env'
+import { withResult } from '@byteslice/result'
 
 // TODO: test errors
 // TODO: add formatted console logging
