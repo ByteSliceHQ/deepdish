@@ -49,7 +49,7 @@ const failureHtml = `
         </svg>
         <h1 class="text-2xl font-semibold mt-4">Authentication Failed</h1>
         <p class="text-gray-600 mt-2">Something bad happened while trying to authenticate you. Please try again.</p>
-        <p class="text-gray-600 mt-2">If the problem persists, <a href="mailto:help@byteslice.co" target="_blank">please let us know</a></p>.
+        <p class="text-gray-600 mt-2">If the problem persists, <a href="mailto:help@byteslice.co" target="_blank" class="text-amber-500 hover:text-amber-600">please let us know</a>.</p>
       </div>
     </body>
   </html>
