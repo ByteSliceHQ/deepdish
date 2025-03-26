@@ -19,7 +19,7 @@ import { withResult } from '@byteslice/result'
 import chalk from 'chalk'
 
 async function signInAndSaveJwt(
-  ctx: LocalContext,
+  context: LocalContext,
   config: Config,
   callbackParams: CallbackParams,
 ) {
@@ -84,7 +84,7 @@ async function signInAndSaveJwt(
   }
 
   const write = await withResult(
-    () => writeJwt(ctx, jwt.data),
+    () => writeJwt(context, jwt.data),
     (err) =>
       new Error('Failed to save the session JWT to disk', {
         cause: err.message,
