@@ -7,3 +7,13 @@ export type Contract<S extends Schema> = {
 }
 
 export type Contracts = Record<string, Contract<Schema>>
+
+export function createContract<V>(
+  schema: Schema<V>,
+  resolver: Resolver<V>,
+): Contract<Schema<V>> {
+  return {
+    schema,
+    resolver,
+  }
+}
