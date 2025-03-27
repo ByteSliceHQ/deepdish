@@ -1,6 +1,5 @@
 import { toJsonSchema } from '@valibot/to-json-schema'
 import type { JSONSchema7 } from 'json-schema'
-import type { BaseIssue, BaseSchema, GenericSchema, InferOutput } from 'valibot'
 import * as v from 'valibot'
 
 type SchemaUtils = {
@@ -14,10 +13,10 @@ export type Meta = {
   rich?: boolean
 }
 
-// biome-ignore lint/suspicious/noExplicitAny: generic schema type requires output type of any
-export type Schema<S = unknown> = BaseSchema<S, any, BaseIssue<unknown>>
+// biome-ignore lint/suspicious/noExplicitAny: value can be any type
+export type Schema<V = any> = v.GenericSchema<V>
 
-export type Value<S extends Schema> = InferOutput<S>
+export type Value<S extends Schema> = v.InferOutput<S>
 
 export function extractMetadata<S extends Schema>(
   valibotSchema: S,
@@ -78,7 +77,7 @@ export function serialize<S extends Schema>(
 }
 
 export function schema<T>(
-  buildSchema: (valibot: typeof v, utils: SchemaUtils) => GenericSchema<T>,
+  buildSchema: (valibot: typeof v, utils: SchemaUtils) => Schema<T>,
 ) {
   return buildSchema(v, { meta, required, rich })
 }
