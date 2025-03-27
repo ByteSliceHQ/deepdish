@@ -77,7 +77,7 @@ export function serialize<S extends Schema>(
 }
 
 export function schema<T>(
-  buildSchema: (valibot: typeof v, utils: SchemaUtils) => v.GenericSchema<T>,
+  buildSchema: (valibot: typeof v, utils: SchemaUtils) => Schema<T>,
 ) {
   return buildSchema(v, { meta, required, rich })
 }
