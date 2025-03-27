@@ -2,4 +2,4 @@
 "@deepdish/core": minor
 ---
 
-Modified defined schema type.
+Enhanced defined schema type.
