@@ -3,6 +3,7 @@ import { schema } from '@deepdish/core/schema'
 import { createJsonResolver } from '@deepdish/resolvers/json'
 import { createComponents } from '@deepdish/ui/components'
 import { configure } from '@deepdish/ui/config'
+import { createContract } from '@deepdish/ui/contract'
 import type { DeepDishProps } from '@deepdish/ui/deepdish'
 
 const featureSchema = schema((v, utils) =>
@@ -15,18 +16,18 @@ const featureSchema = schema((v, utils) =>
 const textSchema = schema((v) => v.string())
 
 const contracts = {
-  text: {
-    resolver: createJsonResolver(contentPaths.text, textSchema, {
+  text: createContract(
+    textSchema,
+    createJsonResolver(contentPaths.text, textSchema, {
       maxBatchSize: 10,
     }),
-    schema: textSchema,
-  },
-  feature: {
-    resolver: createJsonResolver(contentPaths.feature, featureSchema, {
+  ),
+  feature: createContract(
+    featureSchema,
+    createJsonResolver(contentPaths.feature, featureSchema, {
       maxBatchSize: 10,
     }),
-    schema: featureSchema,
-  },
+  ),
 }
 
 async function cms() {
