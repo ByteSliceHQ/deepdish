@@ -26,7 +26,7 @@ catalogs:
     tsup: 8.2.4
     typescript: 5.7.2
     "@types/bun": 1.1.12
-    "@types/node": 20.9.0
+    "@types/node": 22.13.13
 
   tailwind:
     tailwindcss: 4.0.3
