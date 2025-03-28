@@ -26,7 +26,7 @@
     "@stricli/core": "1.1.1",
     "chalk": "5.4.1",
     "open": "10.1.0",
-    "valibot": "1.0.0-rc.0"
+    "valibot": "catalog:valibot"
   },
   "devDependencies": {
     "@types/node": "catalog:repo",
