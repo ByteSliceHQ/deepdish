@@ -16,15 +16,21 @@
   ],
   "scripts": {
     "prebuild": "tsc -p tsconfig.json",
-    "build": "tsup",
-    "dev": "tsup --watch"
+    "build": "op run --no-masking --env-file=.env.development --tsup",
+    "dev": "op run --no-masking --env-file=.env.development -- tsup --watch"
   },
   "dependencies": {
+    "@byteslice/result": "0.1.0",
+    "@clerk/clerk-js": "5.57.3",
     "@stricli/auto-complete": "1.1.1",
-    "@stricli/core": "1.1.1"
+    "@stricli/core": "1.1.1",
+    "chalk": "5.4.1",
+    "open": "10.1.0",
+    "valibot": "1.0.0-rc.0"
   },
   "devDependencies": {
-    "@types/node": "22.x",
+    "@types/node": "catalog:repo",
+    "dotenv": "16.4.7",
     "tsup": "catalog:repo",
     "typescript": "catalog:repo"
   },
