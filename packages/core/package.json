@@ -30,11 +30,11 @@
     "dev": "tsup --watch"
   },
   "dependencies": {
-    "@valibot/to-json-schema": "1.0.0-rc.0",
+    "@valibot/to-json-schema": "catalog:valibot",
     "json-schema": "0.4.0",
     "mitt": "3.0.1",
     "react": "catalog:react",
-    "valibot": "1.0.0-rc.0",
+    "valibot": "catalog:valibot",
     "zustand": "5.0.3"
   },
   "devDependencies": {

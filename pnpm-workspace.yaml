@@ -35,6 +35,10 @@ catalogs:
     "@tailwindcss/postcss": 4.0.3
     "@tailwindcss/vite": 4.0.3
 
+  valibot:
+    valibot: 1.0.0
+    "@valibot/to-json-schema": 1.0.0
+
   vite:
     vite: 6.1.0
     "@vitejs/plugin-react-swc": 3.5.0
