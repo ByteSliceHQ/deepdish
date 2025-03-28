@@ -25,7 +25,7 @@
     "@byteslice/result": "0.1.0",
     "@deepdish/core": "workspace:0.5.0",
     "dataloader": "2.2.2",
-    "valibot": "1.0.0-rc.0"
+    "valibot": "catalog:valibot"
   },
   "devDependencies": {
     "@types/bun": "catalog:repo",

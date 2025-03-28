@@ -44,7 +44,7 @@
     "remark-rehype": "11.1.0",
     "server-only": "0.0.1",
     "unified": "11.0.5",
-    "valibot": "1.0.0-rc.0"
+    "valibot": "catalog:valibot"
   },
   "devDependencies": {
     "@tsconfig/create-react-app": "2.0.5",

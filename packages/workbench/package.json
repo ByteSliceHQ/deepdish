@@ -68,7 +68,7 @@
     "tailwind-merge": "catalog:tailwind",
     "tailwindcss": "catalog:tailwind",
     "tailwindcss-animate": "catalog:tailwind",
-    "valibot": "1.0.0-rc.0"
+    "valibot": "catalog:valibot"
   },
   "devDependencies": {
     "@tanstack/router-devtools": "1.106.0",
