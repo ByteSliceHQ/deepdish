@@ -43,7 +43,7 @@ async function signInAndSaveJwt(
     () =>
       exchangeTokenForTicket(env.BASE_DEEPDISH_CLOUD_URL, token.data.idToken),
     (err) =>
-      new Error('Failed to exchange access token code for a sign-in ticket', {
+      new Error('Failed to exchange ID token code for a sign-in ticket', {
         cause: err.message,
       }),
   )
@@ -128,6 +128,9 @@ export async function login(this: LocalContext): Promise<void> {
   )
 
   if (result.failure) {
+    console.log(
+      chalk.red('There was an error logging in. Please try again soon.'),
+    )
     throw result.failure
   }
 
