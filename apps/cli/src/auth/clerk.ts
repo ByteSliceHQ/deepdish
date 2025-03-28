@@ -2,7 +2,7 @@ import clerk from '@clerk/clerk-js/headless/index.js'
 
 const Clerk = clerk.Clerk
 
-export async function makeClerk(publishableKey: string) {
+export async function createClerk(publishableKey: string) {
   const clerk = new Clerk(publishableKey)
 
   await clerk.load({

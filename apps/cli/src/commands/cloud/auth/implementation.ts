@@ -3,7 +3,7 @@ import {
   type CallbackParams,
   createTemporaryCallbackServer,
 } from '@/auth/callback'
-import { createSignIn, makeClerk } from '@/auth/clerk'
+import { createClerk, createSignIn } from '@/auth/clerk'
 import {
   type Config,
   createSessionJwt,
@@ -52,7 +52,7 @@ async function signInAndSaveJwt(
     throw ticket.failure
   }
 
-  const clerk = await makeClerk(config.clerkPublishableKey)
+  const clerk = await createClerk(config.clerkPublishableKey)
 
   const signIn = await withResult(
     () => createSignIn(clerk, ticket.data.token),
