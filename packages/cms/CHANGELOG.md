@@ -1,5 +1,28 @@
 # @deepdish/cms
 
+## 0.10.0
+
+### Minor Changes
+
+- 78fe0e7: Modified middleware to partially apply config.
+- 78fe0e7: Exported created components and configured middleware from `deepdish` function.
+- 78fe0e7: Modified base url helper to apply defaults when no argument is provided.
+
+### Patch Changes
+
+- b71e7cf: Added error suppression to schema serialization.
+- Updated dependencies [301b4da]
+- Updated dependencies [3f60630]
+- Updated dependencies [c2c5d25]
+- Updated dependencies [b71e7cf]
+- Updated dependencies [451a37d]
+- Updated dependencies [608e6e3]
+- Updated dependencies [b71e7cf]
+  - @deepdish/core@0.6.0
+  - @deepdish/workbench@0.12.0
+  - @deepdish/ui@0.16.1
+  - @deepdish/nextjs@0.9.1
+
 ## 0.9.0
 
 ### Minor Changes

@@ -1,5 +1,18 @@
 # @deepdish/ui
 
+## 0.16.1
+
+### Patch Changes
+
+- 608e6e3: Updated valibot to major release.
+- Updated dependencies [301b4da]
+- Updated dependencies [c2c5d25]
+- Updated dependencies [608e6e3]
+- Updated dependencies [b71e7cf]
+  - @deepdish/core@0.6.0
+  - @deepdish/resolvers@0.14.1
+  - @deepdish/menu@0.1.1
+
 ## 0.16.0
 
 ### Minor Changes
