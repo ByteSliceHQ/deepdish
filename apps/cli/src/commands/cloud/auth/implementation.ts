@@ -166,22 +166,31 @@ export async function logout(this: LocalContext): Promise<void> {
     throw config.failure
   }
 
-  const result = await withResult(
-    async () => {
-      await revokeSession(
+  const revocation = await withResult(
+    async () =>
+      revokeSession(
         env.BASE_DEEPDISH_CLOUD_URL,
         credentials.data.jwt,
         credentials.data.sessionId,
-      )
-
-      await purgeCredentialsFile(this)
-    },
-
+      ),
     (err) => err,
   )
 
-  if (result.failure) {
-    throw result.failure
+  if (revocation.failure) {
+    console.log(
+      chalk.yellow(
+        'There was an issue revoking your session. You are probably already logged out. Purging credentials file...',
+      ),
+    )
+  }
+
+  const purge = await withResult(
+    async () => purgeCredentialsFile(this),
+    (err) => err,
+  )
+
+  if (purge.failure) {
+    throw purge.failure
   }
 
   console.log(chalk.green('Success! You are now logged out.'))

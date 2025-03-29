@@ -39,7 +39,15 @@ export function getDeepDishDirectory(context: LocalContext) {
 
 export async function purgeCredentialsFile(context: LocalContext) {
   const filePath = getCredentialsFilePath(context)
-  await context.fsPromise.unlink(filePath)
+
+  const exists = await context.fsPromise
+    .stat(filePath)
+    .then(() => true)
+    .catch(() => false)
+
+  if (exists) {
+    await context.fsPromise.unlink(filePath)
+  }
 }
 
 export async function readCredentialsFile(context: LocalContext) {
