@@ -1,6 +1,29 @@
 import type { LocalContext } from '@/context'
+import * as v from 'valibot'
 
-export function getJwtDirectory(context: LocalContext) {
+const credentialsSchema = v.object({
+  jwt: v.string(),
+  sessionId: v.string(),
+})
+
+async function ensureDirectoryExists(context: LocalContext, path: string) {
+  const exists = await context.fsPromise
+    .stat(path)
+    .then(() => true)
+    .catch(() => false)
+
+  if (!exists) {
+    await context.fsPromise.mkdir(path, { recursive: true })
+  }
+}
+
+export function getCredentialsFilePath(context: LocalContext) {
+  const directory = getDeepDishDirectory(context)
+
+  return `${directory}/credentials`
+}
+
+export function getDeepDishDirectory(context: LocalContext) {
   if (!context.path) {
     throw new Error('No `path` found in context.')
   }
@@ -14,30 +37,39 @@ export function getJwtDirectory(context: LocalContext) {
   return context.path.join(home, '.deepdish')
 }
 
-export function getJwtFilePath(context: LocalContext) {
-  const directory = getJwtDirectory(context)
-
-  return `${directory}/jwt`
-}
-
-export async function readJwt(context: LocalContext) {
-  const path = getJwtFilePath(context)
-
-  return await context.fsPromise.readFile(path, 'utf8')
-}
-
-export async function writeJwt(context: LocalContext, jwt: string) {
-  const directory = getJwtDirectory(context)
-  const filePath = getJwtFilePath(context)
+export async function purgeCredentialsFile(context: LocalContext) {
+  const filePath = getCredentialsFilePath(context)
 
   const exists = await context.fsPromise
     .stat(filePath)
     .then(() => true)
     .catch(() => false)
 
-  if (!exists) {
-    await context.fsPromise.mkdir(directory, { recursive: true })
+  if (exists) {
+    await context.fsPromise.unlink(filePath)
   }
+}
 
-  await context.fsPromise.writeFile(filePath, jwt)
+export async function readCredentialsFile(context: LocalContext) {
+  const filePath = getCredentialsFilePath(context)
+  const content = await context.fsPromise.readFile(filePath, 'utf8')
+
+  return v.parse(credentialsSchema, JSON.parse(content))
+}
+
+export async function saveCredentialsFile(
+  context: LocalContext,
+  token: string,
+  sessionId: string,
+) {
+  const filePath = getCredentialsFilePath(context)
+  await ensureDirectoryExists(context, getDeepDishDirectory(context))
+
+  await context.fsPromise.writeFile(
+    filePath,
+    JSON.stringify({
+      jwt: token,
+      sessionId,
+    }),
+  )
 }
