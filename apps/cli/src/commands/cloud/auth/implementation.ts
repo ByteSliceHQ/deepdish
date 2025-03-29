@@ -151,7 +151,7 @@ export async function logout(this: LocalContext): Promise<void> {
   if (credentials.failure) {
     console.log(
       chalk.red(
-        'There was an issue reading your cedentials. You are probably already logged out.',
+        'There was an issue reading your credentials. You are probably already logged out.',
       ),
     )
     return
