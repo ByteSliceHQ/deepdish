@@ -6,13 +6,17 @@ import {
 import { createClerk, createSignIn } from '@/auth/clerk'
 import {
   type Config,
-  createSessionJwt,
   exchangeCallbackCodeForToken,
   exchangeTokenForTicket,
   getConfig,
 } from '@/auth/exchange'
 import { generateOAuthState, openAuthorizeUrl } from '@/auth/oauth'
-import { writeJwt } from '@/auth/storage'
+import { createSessionJwt, revokeSession } from '@/auth/session'
+import {
+  purgeCredentialsFile,
+  readCredentialsFile,
+  saveCredentialsFile,
+} from '@/auth/storage'
 import type { LocalContext } from '@/context'
 import { env } from '@/env'
 import { withResult } from '@byteslice/result'
@@ -84,9 +88,9 @@ async function signInAndSaveJwt(
   }
 
   const write = await withResult(
-    () => writeJwt(context, jwt.data),
+    () => saveCredentialsFile(context, jwt.data, signIn.data.createdSessionId),
     (err) =>
-      new Error('Failed to save the session JWT to disk', {
+      new Error('Failed to save your credentials to disk', {
         cause: err.message,
       }),
   )
@@ -131,10 +135,56 @@ export async function login(this: LocalContext): Promise<void> {
     console.log(
       chalk.red('There was an error logging in. Please try again soon.'),
     )
+
     throw result.failure
   }
 
   console.log(chalk.green('Success! You are now logged in.'))
+}
+
+export async function logout(this: LocalContext): Promise<void> {
+  const credentials = await withResult(
+    () => readCredentialsFile(this),
+    (err) => err,
+  )
+
+  if (credentials.failure) {
+    console.log(
+      chalk.red(
+        'There was an issue reading your cedentials. You are probably already logged out.',
+      ),
+    )
+    return
+  }
+
+  const config = await withResult(
+    () => getConfig(env.BASE_DEEPDISH_CLOUD_URL),
+    (err) => err,
+  )
+
+  if (config.failure) {
+    throw config.failure
+  }
+
+  const result = await withResult(
+    async () => {
+      await revokeSession(
+        env.BASE_DEEPDISH_CLOUD_URL,
+        credentials.data.jwt,
+        credentials.data.sessionId,
+      )
+
+      await purgeCredentialsFile(this)
+    },
+
+    (err) => err,
+  )
+
+  if (result.failure) {
+    throw result.failure
+  }
+
+  console.log(chalk.green('Success! You are now logged out.'))
 }
 
 export async function signup(this: LocalContext): Promise<void> {

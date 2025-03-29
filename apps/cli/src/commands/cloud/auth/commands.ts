@@ -16,6 +16,22 @@ export const cloudAuthLogin = buildCommand({
   },
 })
 
+export const cloudAuthLogout = buildCommand({
+  loader: async () => {
+    const { logout } = await import('./implementation')
+    return logout
+  },
+  parameters: {
+    positional: {
+      kind: 'tuple',
+      parameters: [],
+    },
+  },
+  docs: {
+    brief: 'Log out of an existing account',
+  },
+})
+
 export const cloudAuthSignup = buildCommand({
   loader: async () => {
     const { signup } = await import('./implementation')
@@ -35,6 +51,7 @@ export const cloudAuthSignup = buildCommand({
 export const cloudAuthRoutes = buildRouteMap({
   routes: {
     login: cloudAuthLogin,
+    logout: cloudAuthLogout,
     signup: cloudAuthSignup,
   },
   docs: {

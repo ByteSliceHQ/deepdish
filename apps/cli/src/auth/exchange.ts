@@ -7,8 +7,6 @@ const configSchema = v.object({
   clientId: v.string(),
 })
 
-const jwtSchema = v.string()
-
 const tokenSchema = v.object({
   idToken: v.string(),
   expiresIn: v.number(),
@@ -71,24 +69,4 @@ export async function exchangeTokenForTicket(
 
   const json = await response.json()
   return v.parse(ticketSchema, json)
-}
-
-export async function createSessionJwt(
-  baseDeepdishCloudUrl: string,
-  token: string,
-  sessionId: string,
-) {
-  const response = await fetch(`${baseDeepdishCloudUrl}/jwt`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify({
-      sessionId,
-    }),
-  })
-
-  const json = await response.json()
-  return v.parse(jwtSchema, json)
 }
