@@ -17,13 +17,16 @@ type Components<C extends Contracts, S extends Schemas<C>> = {
   [K in keyof S]: Component<S[K]>
 }
 
+function createComponent<S extends Schema>(contract: string, schema: S) {
+  return (props: ComponentProps<S>) => {
+    return <DeepDish<Value<typeof schema>> {...props} contract={contract} />
+  }
+}
+
 export function createComponents<C extends Contracts>(contracts: C) {
   const components = {} as Components<C, Schemas<C>>
   for (const name in contracts) {
-    type V = Value<C[typeof name]['schema']>
-    components[name] = (props) => {
-      return <DeepDish<V> {...props} contract={name} />
-    }
+    components[name] = createComponent(name, contracts[name].schema)
   }
 
   return components
