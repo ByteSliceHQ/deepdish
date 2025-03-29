@@ -6,9 +6,12 @@ type Schemas<C extends Contracts> = {
   [K in keyof C]: C[K]['schema']
 }
 
-type Component<S extends Schema> = React.FC<
-  Omit<React.ComponentProps<typeof DeepDish<Value<S>>>, 'contract'>
+type ComponentProps<S extends Schema> = Omit<
+  React.ComponentProps<typeof DeepDish<Value<S>>>,
+  'contract'
 >
+
+type Component<S extends Schema> = React.ComponentType<ComponentProps<S>>
 
 type Components<C extends Contracts, S extends Schemas<C>> = {
   [K in keyof S]: Component<S[K]>
