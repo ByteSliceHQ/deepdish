@@ -2,21 +2,21 @@ import {
   CALLBACK_URL,
   type CallbackParams,
   createTemporaryCallbackServer,
-} from '@/auth/callback'
-import { createClerk, createSignIn } from '@/auth/clerk'
+} from '@/cloud/auth/callback'
+import { createClerk, createSignIn } from '@/cloud/auth/clerk'
 import {
   type Config,
   exchangeCallbackCodeForToken,
   exchangeTokenForTicket,
   getConfig,
-} from '@/auth/exchange'
-import { generateOAuthState, openAuthorizeUrl } from '@/auth/oauth'
-import { createSessionJwt, revokeSession } from '@/auth/session'
+} from '@/cloud/auth/exchange'
+import { generateOAuthState, openAuthorizeUrl } from '@/cloud/auth/oauth'
+import { createSessionJwt, revokeSession } from '@/cloud/auth/session'
 import {
   purgeCredentialsFile,
   readCredentialsFile,
   saveCredentialsFile,
-} from '@/auth/storage'
+} from '@/cloud/auth/storage'
 import { Failure } from '@/components/failure'
 import { Success } from '@/components/success'
 import { Warning } from '@/components/warning'
