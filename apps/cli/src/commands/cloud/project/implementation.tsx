@@ -7,13 +7,11 @@ import { withResult } from '@byteslice/result'
 import { Text, render } from 'ink'
 import Spinner from 'ink-spinner'
 
-type Flags = {
-  name: string
-}
-
 export async function createProject(
   this: LocalContext,
-  flags: Flags,
+  flags: {
+    name: string
+  },
 ): Promise<void> {
   const client = await createAdminClient(this)
 
