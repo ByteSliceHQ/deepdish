@@ -1,7 +1,7 @@
 import { Box, Text } from 'ink'
 import { Fragment } from 'react'
 
-interface Data extends Record<string, unknown> {}
+type Data = Record<string, unknown>
 
 type Cell<T extends Data> = {
   column: Column<T>
