@@ -26,8 +26,8 @@ const ticketSchema = v.object({
   updatedAt: v.number(),
 })
 
-export async function getConfig(baseDeepdishCloudUrl: string) {
-  const response = await fetch(`${baseDeepdishCloudUrl}/config`, {
+export async function getConfig(cloudCliUrl: string) {
+  const response = await fetch(`${cloudCliUrl}/config`, {
     headers: {
       'Content-Type': 'application/json',
     },
@@ -38,10 +38,10 @@ export async function getConfig(baseDeepdishCloudUrl: string) {
 }
 
 export async function exchangeCallbackCodeForToken(
-  baseDeepdishCloudUrl: string,
+  cloudCliUrl: string,
   callbackCode: string,
 ) {
-  const response = await fetch(`${baseDeepdishCloudUrl}/token`, {
+  const response = await fetch(`${cloudCliUrl}/token`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -56,10 +56,10 @@ export async function exchangeCallbackCodeForToken(
 }
 
 export async function exchangeTokenForTicket(
-  baseDeepdishCloudUrl: string,
+  cloudCliUrl: string,
   token: string,
 ) {
-  const response = await fetch(`${baseDeepdishCloudUrl}/ticket`, {
+  const response = await fetch(`${cloudCliUrl}/ticket`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

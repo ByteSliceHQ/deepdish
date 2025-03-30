@@ -2,25 +2,28 @@ import {
   CALLBACK_URL,
   type CallbackParams,
   createTemporaryCallbackServer,
-} from '@/auth/callback'
-import { createClerk, createSignIn } from '@/auth/clerk'
+} from '@/cloud/auth/callback'
+import { createClerk, createSignIn } from '@/cloud/auth/clerk'
 import {
   type Config,
   exchangeCallbackCodeForToken,
   exchangeTokenForTicket,
   getConfig,
-} from '@/auth/exchange'
-import { generateOAuthState, openAuthorizeUrl } from '@/auth/oauth'
-import { createSessionJwt, revokeSession } from '@/auth/session'
+} from '@/cloud/auth/exchange'
+import { generateOAuthState, openAuthorizeUrl } from '@/cloud/auth/oauth'
+import { createSessionJwt, revokeSession } from '@/cloud/auth/session'
 import {
   purgeCredentialsFile,
   readCredentialsFile,
   saveCredentialsFile,
-} from '@/auth/storage'
+} from '@/cloud/auth/storage'
+import { Failure } from '@/components/failure'
+import { Success } from '@/components/success'
+import { Warning } from '@/components/warning'
 import type { LocalContext } from '@/context'
 import { env } from '@/env'
 import { withResult } from '@byteslice/result'
-import chalk from 'chalk'
+import { render } from 'ink'
 
 async function signInAndSaveJwt(
   context: LocalContext,
@@ -30,7 +33,7 @@ async function signInAndSaveJwt(
   const token = await withResult(
     () =>
       exchangeCallbackCodeForToken(
-        env.BASE_DEEPDISH_CLOUD_URL,
+        env.DEEPDISH_CLOUD_CLI_URL,
         callbackParams.code,
       ),
     (err) =>
@@ -45,7 +48,7 @@ async function signInAndSaveJwt(
 
   const ticket = await withResult(
     () =>
-      exchangeTokenForTicket(env.BASE_DEEPDISH_CLOUD_URL, token.data.idToken),
+      exchangeTokenForTicket(env.DEEPDISH_CLOUD_CLI_URL, token.data.idToken),
     (err) =>
       new Error('Failed to exchange ID token code for a sign-in ticket', {
         cause: err.message,
@@ -73,7 +76,7 @@ async function signInAndSaveJwt(
   const jwt = await withResult(
     () =>
       createSessionJwt(
-        env.BASE_DEEPDISH_CLOUD_URL,
+        env.DEEPDISH_CLOUD_CLI_URL,
         token.data.idToken,
         signIn.data.createdSessionId,
       ),
@@ -104,7 +107,7 @@ export async function login(this: LocalContext): Promise<void> {
   const state = generateOAuthState()
 
   const config = await withResult(
-    () => getConfig(env.BASE_DEEPDISH_CLOUD_URL),
+    () => getConfig(env.DEEPDISH_CLOUD_CLI_URL),
     (err) => err,
   )
 
@@ -132,14 +135,11 @@ export async function login(this: LocalContext): Promise<void> {
   )
 
   if (result.failure) {
-    console.log(
-      chalk.red('There was an error logging in. Please try again soon.'),
-    )
-
-    throw result.failure
+    render(<Failure message={result.failure.message} />)
+    process.exit(1)
   }
 
-  console.log(chalk.green('Success! You are now logged in.'))
+  render(<Success message="Success! You are now logged in." />)
 }
 
 export async function logout(this: LocalContext): Promise<void> {
@@ -149,16 +149,15 @@ export async function logout(this: LocalContext): Promise<void> {
   )
 
   if (credentials.failure) {
-    console.log(
-      chalk.red(
-        'There was an issue reading your credentials. You are probably already logged out.',
-      ),
+    render(
+      <Failure message="There was an issue reading your credentials. You are probably already logged out." />,
     )
-    return
+
+    process.exit(1)
   }
 
   const config = await withResult(
-    () => getConfig(env.BASE_DEEPDISH_CLOUD_URL),
+    () => getConfig(env.DEEPDISH_CLOUD_CLI_URL),
     (err) => err,
   )
 
@@ -169,7 +168,7 @@ export async function logout(this: LocalContext): Promise<void> {
   const revocation = await withResult(
     async () =>
       revokeSession(
-        env.BASE_DEEPDISH_CLOUD_URL,
+        env.DEEPDISH_CLOUD_CLI_URL,
         credentials.data.jwt,
         credentials.data.sessionId,
       ),
@@ -177,10 +176,8 @@ export async function logout(this: LocalContext): Promise<void> {
   )
 
   if (revocation.failure) {
-    console.log(
-      chalk.yellow(
-        'There was an issue revoking your session. You are probably already logged out. Purging credentials file...',
-      ),
+    render(
+      <Warning message="There was an issue revoking your session. You are probably already logged out. Purging credentials file..." />,
     )
   }
 
@@ -193,7 +190,7 @@ export async function logout(this: LocalContext): Promise<void> {
     throw purge.failure
   }
 
-  console.log(chalk.green('Success! You are now logged out.'))
+  render(<Success message="Success! You are now logged out." />)
 }
 
 export async function signup(this: LocalContext): Promise<void> {

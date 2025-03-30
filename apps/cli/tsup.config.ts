@@ -30,7 +30,9 @@ function parseEnv() {
 
 export default defineConfig({
   entry: ['src/bin/cli.ts', 'src/bin/bash-complete.ts'],
+  external: ['react-devtools-core'],
   format: ['esm'],
+  target: 'esnext',
   clean: true,
   splitting: true,
   minify: true,
