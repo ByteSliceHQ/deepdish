@@ -1,4 +1,7 @@
-import { Feature, Text } from '@/cms'
+import { components } from '@/cms'
+
+const { Text } = components.text
+const { Feature } = components.feature
 
 export default function Demo() {
   return (
@@ -61,7 +64,21 @@ export default function Demo() {
       </div>
       <div>
         <p className="font-bold">Custom elements</p>
-        <Feature deepdish={{ key: 'features/feature-1' }} />
+        <Feature
+          deepdish={{ key: 'features/feature-1' }}
+          render={async (value) => {
+            return (
+              <div className="border border-gray-200 rounded-lg p-4 bg-white shadow-sm inline-block">
+                <h1 className="text-xl text-gray-800 font-bold">
+                  {value?.name ?? 'Feature Name'}
+                </h1>
+                <p className="text-gray-500">
+                  {value?.description ?? 'Feature Description'}
+                </p>
+              </div>
+            )
+          }}
+        />
       </div>
     </div>
   )

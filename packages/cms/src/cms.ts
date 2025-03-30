@@ -29,9 +29,10 @@ export const deepdish = async (config: DeepDishConfig) => {
   }
 
   const contracts = {
-    text: createContract(
+    typography: createContract(
       schema((v) => v.string()),
       cloudTypographyResolver,
+      {},
     ),
   }
 
@@ -46,13 +47,8 @@ export const deepdish = async (config: DeepDishConfig) => {
     },
   })
 
-  const components = createComponents(contracts)
-
   return {
-    // TODO: map contract names to component names
-    components: {
-      Text: components.text,
-    },
+    components: createComponents(contracts),
     middleware: middleware(config),
   }
 }

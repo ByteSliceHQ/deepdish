@@ -1,9 +1,11 @@
-import { Text } from '@/cms'
+import { components } from '@/cms'
 import { Button } from '@/components/ui/button'
 import { Waitlist } from '@clerk/nextjs'
 import { ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+
+const { Text } = components.text
 
 export default function Home() {
   return (
