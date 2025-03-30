@@ -22,8 +22,7 @@
   "dependencies": {
     "@byteslice/result": "0.1.0",
     "@clerk/clerk-js": "5.57.3",
-    "@deepdish-cloud/clients": "file:../../../deepdish-cloud/packages/clients",
-    "@deepdish-cloud/trpc": "file:../../../deepdish-cloud/packages/trpc",
+    "@deepdish-cloud/clients": "0.0.1",
     "@stricli/auto-complete": "1.1.1",
     "@stricli/core": "1.1.1",
     "chalk": "5.4.1",
