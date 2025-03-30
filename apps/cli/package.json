@@ -22,7 +22,7 @@
   "dependencies": {
     "@byteslice/result": "0.1.0",
     "@clerk/clerk-js": "5.57.3",
-    "@deepdish-cloud/clients": "0.0.1",
+    "@deepdish-cloud/clients": "0.0.2",
     "@stricli/auto-complete": "1.1.1",
     "@stricli/core": "1.1.1",
     "chalk": "5.4.1",
