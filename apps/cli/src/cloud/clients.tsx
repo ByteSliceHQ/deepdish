@@ -1,5 +1,5 @@
 import { readCredentialsFile } from '@/auth/storage'
-import { Failure } from '@/components/Failure'
+import { Failure } from '@/components/failure'
 import type { LocalContext } from '@/context'
 import { env } from '@/env'
 import { withResult } from '@byteslice/result'

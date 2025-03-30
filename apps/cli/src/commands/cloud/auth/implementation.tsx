@@ -17,9 +17,9 @@ import {
   readCredentialsFile,
   saveCredentialsFile,
 } from '@/auth/storage'
-import { Failure } from '@/components/Failure'
-import { Success } from '@/components/Success'
-import { Warning } from '@/components/Warning'
+import { Failure } from '@/components/failure'
+import { Success } from '@/components/success'
+import { Warning } from '@/components/warning'
 import type { LocalContext } from '@/context'
 import { env } from '@/env'
 import { withResult } from '@byteslice/result'
