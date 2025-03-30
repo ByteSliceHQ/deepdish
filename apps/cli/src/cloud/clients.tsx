@@ -1,10 +1,10 @@
+import { readCredentialsFile } from '@/auth/storage'
+import { Failure } from '@/components/Failure'
+import type { LocalContext } from '@/context'
+import { env } from '@/env'
 import { withResult } from '@byteslice/result'
 import { createClient } from '@deepdish-cloud/clients/admin'
-import { readCredentialsFile } from '@/auth/storage'
-import type { LocalContext } from '@/context'
 import { render } from 'ink'
-import { Failure } from '@/components/Failure'
-import { env } from '@/env'
 
 export async function createAdminClient(context: LocalContext) {
   const credentials = await withResult(

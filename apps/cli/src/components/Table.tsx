@@ -1,5 +1,5 @@
-import { Fragment } from 'react'
 import { Box, Text } from 'ink'
+import { Fragment } from 'react'
 
 interface Data extends Record<string, unknown> {}
 

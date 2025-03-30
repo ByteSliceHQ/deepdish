@@ -1,4 +1,4 @@
-import { Text, Box } from 'ink'
+import { Box, Text } from 'ink'
 
 export function Failure(props: { message: string }) {
   return (

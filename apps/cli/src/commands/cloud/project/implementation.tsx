@@ -1,11 +1,11 @@
-import { withResult } from '@byteslice/result'
 import { createAdminClient } from '@/cloud/clients'
-import type { LocalContext } from '@/context'
-import { render, Text } from 'ink'
-import Spinner from 'ink-spinner'
-import { Table } from '@/components/Table'
 import { Failure } from '@/components/Failure'
 import { Success } from '@/components/Success'
+import { Table } from '@/components/Table'
+import type { LocalContext } from '@/context'
+import { withResult } from '@byteslice/result'
+import { Text, render } from 'ink'
+import Spinner from 'ink-spinner'
 
 type Flags = {
   name: string
