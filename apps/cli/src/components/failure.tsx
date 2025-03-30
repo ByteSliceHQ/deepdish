@@ -5,8 +5,8 @@ export function Failure(props: { message: string }) {
     <Box flexDirection="column">
       <Text color="red">{props.message}</Text>
       <Text>
-        If this issue persists, send us an email at byteslice.co, and we can
-        help you out.
+        If this issue persists, send us an email at help@byteslice.co, and we
+        can help you out.
       </Text>
     </Box>
   )
