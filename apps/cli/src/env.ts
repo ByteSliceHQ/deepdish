@@ -1,7 +1,8 @@
 import * as v from 'valibot'
 
 const envSchema = v.object({
-  BASE_DEEPDISH_CLOUD_URL: v.string(),
+  DEEPDISH_CLOUD_ADMIN_URL: v.string(),
+  DEEPDISH_CLOUD_CLI_URL: v.string(),
   OAUTH_AUTHORIZE_URL: v.string(),
 })
 
@@ -9,7 +10,9 @@ const envSchema = v.object({
 // we seemingly need to structure these values manually
 const values = {
   /* @ts-ignore */
-  BASE_DEEPDISH_CLOUD_URL: process.env.BASE_DEEPDISH_CLOUD_URL,
+  DEEPDISH_CLOUD_ADMIN_URL: process.env.DEEPDISH_CLOUD_ADMIN_URL,
+  /* @ts-ignore */
+  DEEPDISH_CLOUD_CLI_URL: process.env.DEEPDISH_CLOUD_CLI_URL,
   /* @ts-ignore */
   OAUTH_AUTHORIZE_URL: process.env.OAUTH_AUTHORIZE_URL,
 }
