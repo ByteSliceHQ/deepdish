@@ -1,3 +1,10 @@
+/**
+ * `ink-table` (https://github.com/maticzav/ink-table)
+ * deserves credit for some inspiration and code behind
+ * this `Table` component. This has been heavily modified
+ * and simplified for our use case.
+ */
+
 import { Box, Text } from 'ink'
 import { Fragment } from 'react'
 
