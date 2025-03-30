@@ -46,13 +46,11 @@ export function createComponents<C extends Contracts>(contracts: C) {
         contract.schema,
       )
 
-      if (contract.components) {
-        for (const componentName in contract.components) {
-          contractComponents[componentName] = createComponent(
-            contractName,
-            contract.schema,
-          )
-        }
+      for (const componentName in contract.components) {
+        contractComponents[componentName] = createComponent(
+          contractName,
+          contract.schema,
+        )
       }
 
       return [contractName, contractComponents]
