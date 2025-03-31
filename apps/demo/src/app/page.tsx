@@ -1,7 +1,6 @@
 import { components } from '@/cms'
 
-const { Text } = components.text
-const { Feature } = components.feature
+const { Feature, Text } = components
 
 export default function Demo() {
   return (
