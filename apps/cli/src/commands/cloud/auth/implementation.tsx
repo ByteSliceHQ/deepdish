@@ -16,7 +16,7 @@ import {
   purgeCredentialsFile,
   readCredentialsFile,
   saveCredentialsFile,
-} from '@/cloud/auth/storage'
+} from '@/cloud/auth/credentials'
 import { Failure } from '@/components/failure'
 import { Success } from '@/components/success'
 import { Warning } from '@/components/warning'
@@ -24,6 +24,7 @@ import type { LocalContext } from '@/context'
 import { env } from '@/env'
 import { withResult } from '@byteslice/result'
 import { render } from 'ink'
+import { purgeActiveProjectFile } from '@/cloud/project'
 
 async function signInAndSaveJwt(
   context: LocalContext,
@@ -182,7 +183,10 @@ export async function logout(this: LocalContext): Promise<void> {
   }
 
   const purge = await withResult(
-    async () => purgeCredentialsFile(this),
+    async () => {
+      await purgeCredentialsFile(this)
+      await purgeActiveProjectFile(this)
+    },
     (err) => err,
   )
 

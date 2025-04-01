@@ -1,4 +1,4 @@
-import { readCredentialsFile } from '@/cloud/auth/storage'
+import { readCredentialsFile } from '@/cloud/auth/credentials'
 import { Failure } from '@/components/failure'
 import type { LocalContext } from '@/context'
 import { env } from '@/env'
