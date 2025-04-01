@@ -7,8 +7,8 @@ import { Warning } from '@/components/warning'
 import type { LocalContext } from '@/context'
 import { withResult } from '@byteslice/result'
 import { Text, render } from 'ink'
-import Spinner from 'ink-spinner'
 import SelectInput from 'ink-select-input'
+import Spinner from 'ink-spinner'
 
 export async function createProject(
   this: LocalContext,

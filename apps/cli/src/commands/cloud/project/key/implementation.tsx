@@ -4,7 +4,7 @@ import { Failure } from '@/components/failure'
 import { Success } from '@/components/success'
 import type { LocalContext } from '@/context'
 import { withResult } from '@byteslice/result'
-import { Box, render, Text } from 'ink'
+import { Box, Text, render } from 'ink'
 
 export async function createKey(this: LocalContext) {
   const client = await createAdminClient(this)

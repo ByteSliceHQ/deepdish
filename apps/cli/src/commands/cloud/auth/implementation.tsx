@@ -5,6 +5,11 @@ import {
 } from '@/cloud/auth/callback'
 import { createClerk, createSignIn } from '@/cloud/auth/clerk'
 import {
+  purgeCredentialsFile,
+  readCredentialsFile,
+  saveCredentialsFile,
+} from '@/cloud/auth/credentials'
+import {
   type Config,
   exchangeCallbackCodeForToken,
   exchangeTokenForTicket,
@@ -12,11 +17,7 @@ import {
 } from '@/cloud/auth/exchange'
 import { generateOAuthState, openAuthorizeUrl } from '@/cloud/auth/oauth'
 import { createSessionJwt, revokeSession } from '@/cloud/auth/session'
-import {
-  purgeCredentialsFile,
-  readCredentialsFile,
-  saveCredentialsFile,
-} from '@/cloud/auth/credentials'
+import { purgeActiveProjectFile } from '@/cloud/project'
 import { Failure } from '@/components/failure'
 import { Success } from '@/components/success'
 import { Warning } from '@/components/warning'
@@ -24,7 +25,6 @@ import type { LocalContext } from '@/context'
 import { env } from '@/env'
 import { withResult } from '@byteslice/result'
 import { render } from 'ink'
-import { purgeActiveProjectFile } from '@/cloud/project'
 
 async function signInAndSaveJwt(
   context: LocalContext,
