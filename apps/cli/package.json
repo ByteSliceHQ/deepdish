@@ -27,6 +27,7 @@
     "@stricli/core": "1.1.1",
     "chalk": "5.4.1",
     "ink": "5.2.0",
+    "ink-select-input": "6.0.0",
     "ink-spinner": "5.0.0",
     "open": "10.1.0",
     "react": "catalog:react-18",
