@@ -12,7 +12,7 @@ type Data = Record<string, unknown>
 
 type Cell<T extends Data> = {
   column: Column<T>
-  value: string | null
+  value: React.ReactNode
 }
 
 type Column<T extends Data> = {
@@ -21,9 +21,25 @@ type Column<T extends Data> = {
   width: number
 }
 
+function parseCellValue(value: unknown) {
+  if (typeof value === 'boolean') {
+    if (value) {
+      return (
+        <>
+          <Text color="green">✔</Text> yes
+        </>
+      )
+    }
+
+    return 'no'
+  }
+
+  return String(value)
+}
+
 function makeCells<T extends Data>(data: T, columns: Column<T>[]): Cell<T>[] {
   return columns.map((column) => {
-    const value = column.key in data ? String(data[column.key]) : null
+    const value = column.key in data ? parseCellValue(data[column.key]) : null
 
     return {
       column,
