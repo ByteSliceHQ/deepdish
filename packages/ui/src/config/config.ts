@@ -1,5 +1,4 @@
 import type { Result } from '@byteslice/result'
-import type { Schema } from '@deepdish/core/schema'
 import { getLogger } from '@logtape/logtape'
 import type { Contract, Contracts } from './contract'
 import { configureLogging } from './logging'
@@ -48,7 +47,7 @@ export async function configure(input: Config): Promise<Result<void>> {
   return { data: undefined }
 }
 
-export function getContract(name: string): Result<Contract<Schema>> {
+export function getContract(name: string): Result<Contract> {
   if (!config) {
     return notConfigured()
   }
