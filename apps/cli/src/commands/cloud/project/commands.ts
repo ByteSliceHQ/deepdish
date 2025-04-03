@@ -1,4 +1,5 @@
 import { buildCommand, buildRouteMap } from '@stricli/core'
+import { cloudProjectKeyRoutes } from './key/commands'
 
 export const cloudProjectCreate = buildCommand({
   loader: async () => {
@@ -40,10 +41,28 @@ export const cloudProjectList = buildCommand({
   },
 })
 
+export const cloudProjectSelect = buildCommand({
+  loader: async () => {
+    const { selectProject } = await import('./implementation')
+    return selectProject
+  },
+  parameters: {
+    positional: {
+      kind: 'tuple',
+      parameters: [],
+    },
+  },
+  docs: {
+    brief: 'Select a project to be your active one',
+  },
+})
+
 export const cloudProjectRoutes = buildRouteMap({
   routes: {
     create: cloudProjectCreate,
+    key: cloudProjectKeyRoutes,
     list: cloudProjectList,
+    select: cloudProjectSelect,
   },
   docs: {
     brief: 'Cloud project commands',
