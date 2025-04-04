@@ -32,7 +32,6 @@ export const deepdish = async (config: DeepDishConfig) => {
     typography: createContract(
       schema((v) => v.string()),
       cloudTypographyResolver,
-      {},
     ),
   }
 

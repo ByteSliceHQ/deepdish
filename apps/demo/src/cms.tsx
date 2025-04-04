@@ -20,14 +20,12 @@ const contracts = {
     createJsonResolver(contentPaths.text, textSchema, {
       maxBatchSize: 10,
     }),
-    {},
   ),
   feature: createContract(
     featureSchema,
     createJsonResolver(contentPaths.feature, featureSchema, {
       maxBatchSize: 10,
     }),
-    {},
   ),
 }
 

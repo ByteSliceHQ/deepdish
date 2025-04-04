@@ -8,7 +8,7 @@ import { cookieResolver } from './resolver'
 const textSchema = schema((v) => v.string())
 
 const contracts = {
-  text: createContract(textSchema, cookieResolver, {}),
+  text: createContract(textSchema, cookieResolver),
 }
 
 async function cms() {
