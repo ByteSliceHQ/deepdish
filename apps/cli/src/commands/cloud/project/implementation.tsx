@@ -117,5 +117,13 @@ export async function selectProject(this: LocalContext) {
     render(<Success message={`${item.label} is now your active project.`} />)
   }
 
+  if (!items.length) {
+    render(
+      <Warning message="No projects found. Please create a project first." />,
+    )
+
+    return
+  }
+
   render(<SelectInput items={items} onSelect={handleSelect} />)
 }
