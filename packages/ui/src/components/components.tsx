@@ -14,7 +14,7 @@ export function createContractComponent<S extends Schema>(
   schema: S,
   contract: string,
 ): ContractComponent<S> {
-  return (props) => {
+  return function ContractComponent(props) {
     return <DeepDish<Value<typeof schema>> {...props} contract={contract} />
   }
 }
