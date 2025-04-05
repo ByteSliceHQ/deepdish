@@ -1,5 +1,17 @@
 # @deepdish/nextjs
 
+## 0.9.1
+
+### Patch Changes
+
+- Updated dependencies [3f60630]
+- Updated dependencies [36458ad]
+- Updated dependencies [b71e7cf]
+- Updated dependencies [451a37d]
+- Updated dependencies [608e6e3]
+  - @deepdish/workbench@0.12.0
+  - @deepdish/menu@0.1.1
+
 ## 0.9.0
 
 ### Minor Changes
