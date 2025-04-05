@@ -42,7 +42,7 @@ export default function Home() {
           <div className="flex justify-center space-x-2 mt-8 items-center">
             <Image src="/byteslice.svg" width={24} height={24} alt="" />
             <p className="text-gray-400 text-xs">
-              Built by the team at <a href="https://byteslice.co">ByteSlice</a>
+              Built by the team at <a href="https://byteslice.co">ByteSlice</a>.
             </p>
           </div>
         </div>
