@@ -10,7 +10,7 @@ type ContractComponent<S extends Schema> = React.ComponentType<
   Omit<DeepDishProps<S>, 'contract'>
 >
 
-function createContractComponent<S extends Schema>(
+export function createContractComponent<S extends Schema>(
   schema: S,
   contract: string,
 ): ContractComponent<S> {
