@@ -119,12 +119,12 @@ To add a DeepDish component to your page, import one that has been created based
 ```tsx
 import * as deepdish from "@/deepdish"
 
-const { Text } = deepdish.components
+const { Typography } = deepdish.components
 
 function Home() {
   return (
     <div>
-      <Text
+      <Typography
         deepdish={{ key: 'headline' }}
         fallback="Grab a slice!"
         render={async (value) => <p className="text-xl font-bold">{value}</p>}
