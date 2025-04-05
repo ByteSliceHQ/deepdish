@@ -2,7 +2,7 @@ import { defineConfig } from 'tsup'
 
 export default defineConfig([
   {
-    entry: ['src/config/config.ts', 'src/content.ts'],
+    entry: ['src/config/config.ts', 'src/config/contract.ts', 'src/content.ts'],
     format: ['esm'],
     sourcemap: true,
     target: 'esnext',

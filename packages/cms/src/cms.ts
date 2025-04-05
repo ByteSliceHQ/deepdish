@@ -2,6 +2,7 @@ import { createTypographyResolver } from '@deepdish-cloud/resolvers/typography'
 import { schema } from '@deepdish/core/schema'
 import { createComponents } from '@deepdish/ui/components'
 import { configure } from '@deepdish/ui/config'
+import { createContract } from '@deepdish/ui/contract'
 import { middleware } from './middleware'
 import { ProviderContainer as DeepDishProvider } from './provider/container'
 
@@ -17,21 +18,21 @@ export type DeepDishConfig = {
 }
 
 export const deepdish = async (config: DeepDishConfig) => {
-  const cloudTypographyResolver = createTypographyResolver(
-    config.cloudOverrides?.endpoint ?? 'https://api.deepdish.app/content',
-    config.secretKey,
-    config.projectAlias,
-  )
+  const cloudTypographyResolver = {
+    // TODO: Remove this once the cloud resolver supports keys.
+    keys: () => Promise.resolve({ success: false, data: [] }),
+    ...createTypographyResolver(
+      config.cloudOverrides?.endpoint ?? 'https://api.deepdish.app/content',
+      config.secretKey,
+      config.projectAlias,
+    ),
+  }
 
   const contracts = {
-    text: {
-      resolver: {
-        // TODO: Remove this once the cloud resolver supports keys.
-        keys: () => Promise.resolve({ success: false, data: [] }),
-        ...cloudTypographyResolver,
-      },
-      schema: schema((v) => v.string()),
-    },
+    typography: createContract(
+      schema((v) => v.string()),
+      cloudTypographyResolver,
+    ),
   }
 
   await configure({
@@ -45,13 +46,8 @@ export const deepdish = async (config: DeepDishConfig) => {
     },
   })
 
-  const components = createComponents(contracts)
-
   return {
-    // TODO: map contract names to component names
-    components: {
-      Text: components.text,
-    },
+    components: createComponents(contracts),
     middleware: middleware(config),
   }
 }

@@ -12,7 +12,7 @@ export function JsonSchemaForm(props: {
   onSubmit: (content: Content) => Promise<void>
   schema: JSONSchema7
   uniqueId: string
-  meta: Record<string, Meta>
+  meta: Record<string, Meta | undefined>
 }) {
   const initialUniqueId = useRef<string>(props.uniqueId)
   const [shouldRender, setShouldRender] = useState<boolean>(false)

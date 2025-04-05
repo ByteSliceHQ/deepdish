@@ -33,14 +33,19 @@ describe('extractMetadata', () => {
   })
 
   it('should handle schemas without metadata', () => {
-    const schemaWithoutMetadata = schema((v) =>
+    const objectSchemaWithoutMetadata = schema((v) =>
       v.object({
         name: v.string(),
         age: v.number(),
       }),
     )
 
-    const result = extractMetadata(schemaWithoutMetadata)
-    expect(result).toBeEmptyObject()
+    expect(extractMetadata(objectSchemaWithoutMetadata)).toBeEmptyObject()
+
+    const stringSchemaWithoutMetadata = schema((v) => v.string())
+    expect(extractMetadata(stringSchemaWithoutMetadata)).toBeEmptyObject()
+
+    const arraySchemaWithoutMetadata = schema((v) => v.array(v.string()))
+    expect(extractMetadata(arraySchemaWithoutMetadata)).toBeEmptyObject()
   })
 })

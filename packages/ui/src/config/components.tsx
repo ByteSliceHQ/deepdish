@@ -2,26 +2,36 @@ import type { Schema, Value } from '@deepdish/core/schema'
 import { DeepDish } from '../deepdish'
 import type { Contracts } from './contract'
 
-type Schemas<C extends Contracts> = {
-  [K in keyof C]: C[K]['schema']
-}
-
-type Component<S extends Schema> = React.FC<
-  Omit<React.ComponentProps<typeof DeepDish<Value<S>>>, 'contract'>
+type DeepDishProps<S extends Schema> = React.ComponentProps<
+  typeof DeepDish<Value<S>>
 >
 
-type Components<C extends Contracts, S extends Schemas<C>> = {
-  [K in keyof S]: Component<S[K]>
+type ContractComponent<S extends Schema> = React.ComponentType<
+  Omit<DeepDishProps<S>, 'contract'>
+>
+
+function createContractComponent<S extends Schema>(
+  schema: S,
+  contract: string,
+): ContractComponent<S> {
+  return (props) => {
+    return <DeepDish<Value<typeof schema>> {...props} contract={contract} />
+  }
+}
+
+function capitalize(text: string) {
+  return text.charAt(0).toUpperCase() + text.slice(1)
 }
 
 export function createComponents<C extends Contracts>(contracts: C) {
-  const components = {} as Components<C, Schemas<C>>
-  for (const name in contracts) {
-    type V = Value<C[typeof name]['schema']>
-    components[name] = (props) => {
-      return <DeepDish<V> {...props} contract={name} />
-    }
+  type ContractComponents = {
+    [P in keyof C as Capitalize<P & string>]: ContractComponent<C[P]['schema']>
   }
 
-  return components
+  return Object.fromEntries(
+    Object.entries(contracts).map(([name, contract]) => [
+      capitalize(name),
+      createContractComponent(contract.schema, name),
+    ]),
+  ) as ContractComponents
 }

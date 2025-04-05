@@ -12,6 +12,8 @@ import type {
   DeepDishProps,
 } from './types'
 
+type Render<V> = (value?: V) => Promise<React.ReactElement>
+
 const logger = getLogger(['deepdish', 'ui'])
 
 async function canEdit() {
@@ -125,7 +127,7 @@ async function DeepDishElement<V>(props: {
   deepdish: DeepDishElementProps
   fallback?: V
   inCollection?: boolean
-  render(value?: V): Promise<React.ReactElement>
+  render: Render<V>
 }) {
   logger.debug('Rendering DeepDish element', {
     contract: props.contract,
@@ -239,7 +241,7 @@ async function DeepDishCollection<V>(props: {
   contract: string
   deepdish: DeepDishCollectionProps
   fallback?: V
-  render(value?: V): Promise<React.ReactElement>
+  render: Render<V>
 }) {
   logger.debug('Rendering DeepDish collection', {
     contract: props.contract,
@@ -329,7 +331,7 @@ export async function DeepDish<V>(props: {
   contract: string
   deepdish?: DeepDishProps
   fallback?: V
-  render(value?: V): Promise<React.ReactElement>
+  render: Render<V>
 }) {
   logger.debug('Rendering DeepDish component', {
     contract: props.contract,
