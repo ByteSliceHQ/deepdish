@@ -21,7 +21,7 @@ function renderFields(
   register: UseFormRegister<FieldValues>,
   control: Control<FieldValues>,
   parentKey: string,
-  meta: Record<string, Meta>,
+  meta: Record<string, Meta | undefined>,
 ) {
   return Object.entries(properties).map(([key, subSchema]) => {
     if (typeof subSchema === 'boolean') {
@@ -215,7 +215,7 @@ export function DynamicForm(props: {
   contentRootKey: string
   onSubmit: (content: Content) => void
   schema: JSONSchema7
-  meta: Record<string, Meta>
+  meta: Record<string, Meta | undefined>
   uniqueId: string
 }) {
   const defaultValues: FieldValues = useMemo(() => {
