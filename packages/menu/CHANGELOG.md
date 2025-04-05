@@ -1,5 +1,11 @@
 # @deepdish/menu
 
+## 0.1.1
+
+### Patch Changes
+
+- 608e6e3: Updated valibot to major release.
+
 ## 0.1.0
 
 ### Minor Changes

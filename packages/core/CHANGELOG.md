@@ -1,5 +1,17 @@
 # @deepdish/core
 
+## 0.6.0
+
+### Minor Changes
+
+- c2c5d25: Enhanced defined schema type.
+- b71e7cf: Added schema-building helpers.
+
+### Patch Changes
+
+- 301b4da: Added type inference to schema builder.
+- 608e6e3: Updated valibot to major release.
+
 ## 0.5.0
 
 ### Minor Changes
