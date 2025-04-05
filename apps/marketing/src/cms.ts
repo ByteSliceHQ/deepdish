@@ -20,7 +20,7 @@ async function cms() {
       enabled: process.env.NODE_ENV === 'development',
     },
     settings: {
-      baseUrl: getBaseUrl(),
+      baseUrl: process.env.BASE_URL,
       draft: process.env.DEEPDISH_MODE === 'draft',
     },
   })

@@ -8,6 +8,7 @@
   "scripts": {
     "build": "turbo run build",
     "build:packages": "turbo run build --filter './packages/*'",
+    "build:marketing": "turbo run build --filter @deepdish/marketing...",
     "ci:publish": "pnpm run build:packages && changeset publish && git push --follow-tags",
     "ci:version": "changeset version && pnpm install --no-frozen-lockfile",
     "clean": "rimraf --glob **/.next **/.turbo **/dist **/node_modules",
@@ -17,6 +18,7 @@
     "dev:demo": "turbo run dev --filter @deepdish/demo...",
     "dev:marketing": "turbo run dev --filter @deepdish/marketing...",
     "sort-manifests": "sort-package-json package.json apps/**/package.json packages/**/package.json",
+    "start:marketing": "turbo run start --filter @deepdish/marketing...",
     "test": "bun test --coverage"
   },
   "devDependencies": {
