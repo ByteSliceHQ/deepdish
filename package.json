@@ -7,6 +7,7 @@
   ],
   "scripts": {
     "build": "turbo run build",
+    "build:demo": "turbo run build --filter @deepdish/demo...",
     "build:marketing": "turbo run build --filter @deepdish/marketing...",
     "build:packages": "turbo run build --filter './packages/*'",
     "ci:publish": "pnpm run build:packages && changeset publish && git push --follow-tags",
@@ -18,6 +19,7 @@
     "dev:demo": "turbo run dev --filter @deepdish/demo...",
     "dev:marketing": "turbo run dev --filter @deepdish/marketing...",
     "sort-manifests": "sort-package-json package.json apps/**/package.json packages/**/package.json",
+    "start:demo": "turbo run start --filter @deepdish/demo...",
     "start:marketing": "turbo run start --filter @deepdish/marketing...",
     "test": "bun test --coverage"
   },

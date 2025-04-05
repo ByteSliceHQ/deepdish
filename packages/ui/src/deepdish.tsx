@@ -20,8 +20,8 @@ async function canEdit() {
   const settingsResult = getSettings()
 
   logger.debug('Checking edit mode settings', {
-    hasSettings: !settingsResult.failure,
-    hasError: !!settingsResult.failure,
+    hasSettings: Boolean(!settingsResult.failure),
+    hasError: Boolean(settingsResult.failure),
   })
   if (settingsResult.failure) {
     return false
@@ -62,7 +62,7 @@ async function canEdit() {
 
   logger.debug('Edit verification complete', {
     isVerified: !response.failure ? response.data : false,
-    hasError: !!response.failure,
+    hasError: Boolean(response.failure),
   })
 
   if (response.failure) {
@@ -132,15 +132,15 @@ async function DeepDishElement<V>(props: {
   logger.debug('Rendering DeepDish element', {
     contract: props.contract,
     key: props.deepdish.key,
-    hasFallback: props.fallback !== undefined,
-    inCollection: props.inCollection,
+    hasFallback: Boolean(props.fallback !== undefined),
+    inCollection: Boolean(props.inCollection),
   })
 
   const resolver = getResolver(props.contract)
 
   logger.debug('Initializing content resolver', {
     contractName: props.contract,
-    hasResolver: !!resolver,
+    hasResolver: Boolean(resolver),
   })
 
   if (!resolver) {
@@ -246,7 +246,7 @@ async function DeepDishCollection<V>(props: {
   logger.debug('Rendering DeepDish collection', {
     contract: props.contract,
     collection: props.deepdish.collection,
-    hasFallback: props.fallback !== undefined,
+    hasFallback: Boolean(props.fallback !== undefined),
   })
 
   const resolver = getResolver(props.contract)
@@ -335,8 +335,8 @@ export async function DeepDish<V>(props: {
 }) {
   logger.debug('Rendering DeepDish component', {
     contract: props.contract,
-    hasDeepDishProps: !!props.deepdish,
-    hasFallback: props.fallback !== undefined,
+    hasDeepDishProps: Boolean(props.deepdish),
+    hasFallback: Boolean(props.fallback !== undefined),
   })
 
   if (!props.deepdish) {
