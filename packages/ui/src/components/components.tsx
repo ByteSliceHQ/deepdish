@@ -1,6 +1,6 @@
 import type { Schema, Value } from '@deepdish/core/schema'
+import type { Contracts } from '../config/contract'
 import { DeepDish } from '../deepdish'
-import type { Contracts } from './contract'
 
 type DeepDishProps<S extends Schema> = React.ComponentProps<
   typeof DeepDish<Value<S>>
