@@ -13,7 +13,7 @@ function Wrapper(props: {
 
 export function SimpleNumberForm(props: {
   content: number
-  meta: Meta
+  meta?: Meta
   onSubmit: (content: Content) => Promise<void>
   uniqueId: string
 }) {
@@ -47,7 +47,7 @@ export function SimpleNumberForm(props: {
 
 export function SimpleTextForm(props: {
   content: string
-  meta: Meta
+  meta?: Meta
   onSubmit: (content: Content) => void
   uniqueId: string
 }) {
@@ -62,7 +62,7 @@ export function SimpleTextForm(props: {
 
   return (
     <Wrapper>
-      {props.meta.rich ? (
+      {props.meta?.rich ? (
         <RichText
           content={value || ''}
           uniqueId={props.uniqueId}
