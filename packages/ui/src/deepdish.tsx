@@ -22,6 +22,7 @@ async function canEdit() {
   logger.debug('Checking edit mode settings', {
     hasSettings: Boolean(!settingsResult.failure),
     hasError: Boolean(settingsResult.failure),
+    errorMessage: settingsResult.failure?.message,
   })
   if (settingsResult.failure) {
     return false
@@ -61,6 +62,7 @@ async function canEdit() {
   logger.debug('Edit verification complete', {
     isVerified: !response.failure ? response.data : false,
     hasError: Boolean(response.failure),
+    errorMessage: response.failure?.message,
   })
 
   if (response.failure) {
@@ -75,7 +77,7 @@ function getResolver(contract: string) {
   logger.debug('Contract resolver lookup', {
     contract,
     hasResolver: !result.failure,
-    error: result.failure?.message,
+    errorMessage: result.failure?.message,
   })
   return result.failure ? null : result.data.resolver
 }
