@@ -37,9 +37,7 @@ async function canEdit() {
     return false
   }
 
-  logger.debug(
-    'DeepDish: Draft mode enabled, proceeding with edit verification',
-  )
+  logger.debug('Draft mode enabled, proceeding with edit verification')
 
   const response = await withResult(
     async () => {
