@@ -132,7 +132,7 @@ async function DeepDishElement<V>(props: {
   logger.debug('Rendering DeepDish element', {
     contract: props.contract,
     key: props.deepdish.key,
-    hasFallback: Boolean(props.fallback !== undefined),
+    hasFallback: props.fallback !== undefined,
     inCollection: Boolean(props.inCollection),
   })
 
@@ -246,7 +246,7 @@ async function DeepDishCollection<V>(props: {
   logger.debug('Rendering DeepDish collection', {
     contract: props.contract,
     collection: props.deepdish.collection,
-    hasFallback: Boolean(props.fallback !== undefined),
+    hasFallback: props.fallback !== undefined,
   })
 
   const resolver = getResolver(props.contract)
@@ -336,7 +336,7 @@ export async function DeepDish<V>(props: {
   logger.debug('Rendering DeepDish component', {
     contract: props.contract,
     hasDeepDishProps: Boolean(props.deepdish),
-    hasFallback: Boolean(props.fallback !== undefined),
+    hasFallback: props.fallback !== undefined,
   })
 
   if (!props.deepdish) {
