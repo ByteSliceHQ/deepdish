@@ -1,3 +1,4 @@
+// IMPORTANT: Only works in Vercel
 export function getBaseUrl() {
   switch (process.env.VERCEL_ENV) {
     case 'production':

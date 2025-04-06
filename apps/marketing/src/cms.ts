@@ -1,4 +1,3 @@
-import { getBaseUrl } from '@/lib/get-base-url'
 import { schema } from '@deepdish/core/schema'
 import { createComponents } from '@deepdish/ui/components'
 import { configure } from '@deepdish/ui/config'
@@ -18,7 +17,7 @@ async function cms() {
       enabled: process.env.NODE_ENV === 'development',
     },
     settings: {
-      baseUrl: getBaseUrl(),
+      baseUrl: process.env.BASE_URL,
       draft: process.env.DEEPDISH_MODE === 'draft',
     },
   })

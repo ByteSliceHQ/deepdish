@@ -18,14 +18,27 @@ const logger = getLogger(['deepdish', 'ui'])
 
 async function canEdit() {
   const settingsResult = getSettings()
+
+  logger.debug('Checking edit mode settings', {
+    hasSettings: Boolean(!settingsResult.failure),
+    hasError: Boolean(settingsResult.failure),
+    errorMessage: settingsResult.failure?.message,
+  })
   if (settingsResult.failure) {
     return false
   }
+
   const settings = settingsResult.data
+  logger.debug('Edit mode configuration', {
+    draftMode: settings.draft,
+    baseUrl: settings.baseUrl,
+  })
 
   if (!settings.draft) {
     return false
   }
+
+  logger.debug('Draft mode enabled, proceeding with edit verification')
 
   const response = await withResult(
     async () => {
@@ -46,6 +59,12 @@ async function canEdit() {
     },
   )
 
+  logger.debug('Edit verification complete', {
+    isVerified: !response.failure ? response.data : false,
+    hasError: Boolean(response.failure),
+    errorMessage: response.failure?.message,
+  })
+
   if (response.failure) {
     return false
   }
@@ -55,12 +74,23 @@ async function canEdit() {
 
 function getResolver(contract: string) {
   const result = getContract(contract)
+  logger.debug('Contract resolver lookup', {
+    contract,
+    hasResolver: !result.failure,
+    errorMessage: result.failure?.message,
+  })
   return result.failure ? null : result.data.resolver
 }
 
 function handleUpdate<V>(contract: string, key: DeepDishElementProps['key']) {
   return async (value: V) => {
     'use server'
+
+    logger.debug('Handling content update', {
+      contract,
+      key,
+      valueType: typeof value,
+    })
 
     const resolver = getResolver(contract)
     if (!resolver) {
@@ -84,6 +114,11 @@ function handleUpdate<V>(contract: string, key: DeepDishElementProps['key']) {
       })
       return
     }
+
+    logger.debug('Content update successful', {
+      contract,
+      key,
+    })
   }
 }
 
@@ -94,14 +129,37 @@ async function DeepDishElement<V>(props: {
   inCollection?: boolean
   render: Render<V>
 }) {
+  logger.debug('Rendering DeepDish element', {
+    contract: props.contract,
+    key: props.deepdish.key,
+    hasFallback: props.fallback !== undefined,
+    inCollection: Boolean(props.inCollection),
+  })
+
   const resolver = getResolver(props.contract)
+
+  logger.debug('Initializing content resolver', {
+    contractName: props.contract,
+    hasResolver: Boolean(resolver),
+  })
+
   if (!resolver) {
     return props.render(props.fallback)
   }
 
+  logger.debug('Content resolver initialized, fetching content', {
+    key: props.deepdish.key,
+  })
+
   const readResult = await resolver.read({
     key: props.deepdish.key,
     headers: await headers(),
+  })
+
+  logger.debug('Content fetch result', {
+    key: props.deepdish.key,
+    hasContent: !readResult.failure,
+    errorType: readResult.failure?.type,
   })
   if (readResult.failure) {
     switch (readResult.failure.type) {
@@ -122,7 +180,13 @@ async function DeepDishElement<V>(props: {
         })
         break
       case 'CONTENT_MISSING':
+        logger.debug('Content not found, checking edit permissions', {
+          key: props.deepdish.key,
+        })
         if (await canEdit()) {
+          logger.debug('Edit permissions granted, rendering editable content', {
+            key: props.deepdish.key,
+          })
           return (
             <Shell deepdishKey={props.deepdish.key}>
               <Menu
@@ -136,15 +200,28 @@ async function DeepDishElement<V>(props: {
             </Shell>
           )
         }
+        logger.debug('Edit permissions denied, rendering fallback', {
+          key: props.deepdish.key,
+        })
         break
     }
 
     return props.render(props.fallback)
   }
 
+  logger.debug('Content loaded successfully', {
+    key: props.deepdish.key,
+    hasContent: !!readResult.data,
+  })
+
   if (!(await canEdit())) {
     return props.render(readResult.data)
   }
+
+  logger.debug('Rendering component in edit mode', {
+    key: props.deepdish.key,
+    contract: props.contract,
+  })
 
   return (
     <Shell deepdishKey={props.deepdish.key}>
@@ -166,8 +243,17 @@ async function DeepDishCollection<V>(props: {
   fallback?: V
   render: Render<V>
 }) {
+  logger.debug('Rendering DeepDish collection', {
+    contract: props.contract,
+    collection: props.deepdish.collection,
+    hasFallback: props.fallback !== undefined,
+  })
+
   const resolver = getResolver(props.contract)
   if (!resolver) {
+    logger.debug('No resolver found for collection, rendering fallback', {
+      contract: props.contract,
+    })
     return props.render(props.fallback)
   }
 
@@ -175,7 +261,15 @@ async function DeepDishCollection<V>(props: {
 
   if (Array.isArray(props.deepdish.collection)) {
     keys = props.deepdish.collection
+    logger.debug('Using static collection keys', {
+      contract: props.contract,
+      keyCount: keys.length,
+    })
   } else {
+    logger.debug('Fetching dynamic collection keys', {
+      contract: props.contract,
+      collection: props.deepdish.collection,
+    })
     const keysResult = await resolver.keys(props.deepdish.collection)
 
     if (keysResult.failure) {
@@ -199,12 +293,24 @@ async function DeepDishCollection<V>(props: {
           break
       }
 
+      logger.debug('Collection keys fetch failed, rendering fallback', {
+        contract: props.contract,
+        errorType: keysResult.failure.type,
+      })
       return props.render(props.fallback)
     }
 
     keys = keysResult.data
+    logger.debug('Collection keys fetched successfully', {
+      contract: props.contract,
+      keyCount: keys.length,
+    })
   }
 
+  logger.debug('Rendering collection items', {
+    contract: props.contract,
+    itemCount: keys.length,
+  })
   return keys.map((key) => {
     const { collection, ...rest } = props.deepdish
 
@@ -227,11 +333,24 @@ export async function DeepDish<V>(props: {
   fallback?: V
   render: Render<V>
 }) {
+  logger.debug('Rendering DeepDish component', {
+    contract: props.contract,
+    hasDeepDishProps: Boolean(props.deepdish),
+    hasFallback: props.fallback !== undefined,
+  })
+
   if (!props.deepdish) {
+    logger.debug('No DeepDish props provided, rendering without wrapper', {
+      contract: props.contract,
+    })
     return <>{props.render(props.fallback)}</>
   }
 
   if (props.deepdish.collection !== undefined) {
+    logger.debug('Rendering as collection', {
+      contract: props.contract,
+      collection: props.deepdish.collection,
+    })
     return (
       <DeepDishCollection
         contract={props.contract}
@@ -242,6 +361,10 @@ export async function DeepDish<V>(props: {
     )
   }
 
+  logger.debug('Rendering as single element', {
+    contract: props.contract,
+    key: props.deepdish.key,
+  })
   return (
     <DeepDishElement
       contract={props.contract}
