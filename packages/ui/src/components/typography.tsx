@@ -1,5 +1,5 @@
 import { type Value, schema } from '@deepdish/core/schema'
-import { createContractComponent } from './components'
+import type { ContractComponent } from './components'
 import type { Component, Render } from './types'
 
 const typography = {
@@ -12,14 +12,14 @@ type TypographySchema = typeof typography.schema
 type TypographyValue = Value<TypographySchema>
 
 function createTypographyComponent(
-  Component: ReturnType<typeof createContractComponent<TypographySchema>>,
+  Contract: ContractComponent<TypographySchema>,
 ) {
   return function componentFactory<T extends keyof JSX.IntrinsicElements>(
     render: Render<T, TypographyValue>,
   ): Component<T, TypographyValue> {
     return function TypographyComponent(props) {
       return (
-        <Component
+        <Contract
           deepdish={props.deepdish}
           fallback={props.children}
           render={render.bind(null, props)}
@@ -29,10 +29,10 @@ function createTypographyComponent(
   }
 }
 
-export function createTypographyComponents() {
-  const createComponent = createTypographyComponent(
-    createContractComponent(typography.schema, typography.namespace),
-  )
+export function createTypographyComponents(
+  Contract: ContractComponent<TypographySchema>,
+) {
+  const createComponent = createTypographyComponent(Contract)
 
   return {
     Bold: createComponent<'b'>(async (props, value) => {

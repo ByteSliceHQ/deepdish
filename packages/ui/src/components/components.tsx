@@ -2,11 +2,11 @@ import type { Schema, Value } from '@deepdish/core/schema'
 import type { Contracts } from '../config/contract'
 import { DeepDish } from '../deepdish'
 
-type ContractComponent<S extends Schema> = React.ComponentType<
+export type ContractComponent<S extends Schema> = React.ComponentType<
   Omit<React.ComponentProps<typeof DeepDish<Value<S>>>, 'contract'>
 >
 
-export function createContractComponent<S extends Schema>(
+function createContractComponent<S extends Schema>(
   schema: S,
   contract: string,
 ): ContractComponent<S> {
