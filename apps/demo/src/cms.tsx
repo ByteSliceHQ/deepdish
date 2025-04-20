@@ -2,6 +2,7 @@ import { contentPaths, initContent } from '@/content'
 import { schema } from '@deepdish/core/schema'
 import { createJsonResolver } from '@deepdish/resolvers/json'
 import { createComponents } from '@deepdish/ui/components'
+import { createTypographyComponents } from '@deepdish/ui/components/typography'
 import { configure } from '@deepdish/ui/config'
 import { createContract } from '@deepdish/ui/contract'
 
@@ -43,7 +44,12 @@ async function cms() {
     },
   })
 
-  return createComponents(contracts)
+  const components = createComponents(contracts)
+
+  return {
+    ...components,
+    ...createTypographyComponents(components.Text),
+  }
 }
 
 export const components = await cms()
