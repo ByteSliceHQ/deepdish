@@ -1,5 +1,5 @@
 import { type Value, schema } from '@deepdish/core/schema'
-import type { ContractComponent } from './components'
+import type { ContractComponent } from './factory'
 import type { Component, Render } from './types'
 
 const typography = {

@@ -9,8 +9,8 @@
   "type": "module",
   "exports": {
     "./components": {
-      "import": "./dist/components/components.js",
-      "types": "./dist/components/components.d.ts"
+      "import": "./dist/components/factory.js",
+      "types": "./dist/components/factory.d.ts"
     },
     "./config": {
       "import": "./dist/config/config.js",
