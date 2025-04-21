@@ -1,5 +1,33 @@
 # @deepdish/demo
 
+## 0.5.0
+
+### Minor Changes
+
+- 5d2f350: Utilized components directly from created catalog.
+
+### Patch Changes
+
+- b71e7cf: Replaced valibot with core schema helpers.
+- Updated dependencies [301b4da]
+- Updated dependencies [c2c5d25]
+- Updated dependencies [78fe0e7]
+- Updated dependencies [b71e7cf]
+- Updated dependencies [78fe0e7]
+- Updated dependencies [5d2f350]
+- Updated dependencies [5d2f350]
+- Updated dependencies [76d757a]
+- Updated dependencies [608e6e3]
+- Updated dependencies [5d2f350]
+- Updated dependencies [78fe0e7]
+- Updated dependencies [b71e7cf]
+- Updated dependencies [50d8acb]
+  - @deepdish/core@0.6.0
+  - @deepdish/cms@0.10.0
+  - @deepdish/ui@0.17.0
+  - @deepdish/resolvers@0.14.1
+  - @deepdish/nextjs@0.9.1
+
 ## 0.4.0
 
 ### Minor Changes
