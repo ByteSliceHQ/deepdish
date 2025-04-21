@@ -9,8 +9,12 @@
   "type": "module",
   "exports": {
     "./components": {
-      "import": "./dist/config/components.js",
-      "types": "./dist/config/components.d.ts"
+      "import": "./dist/components/factory.js",
+      "types": "./dist/components/factory.d.ts"
+    },
+    "./components/typography": {
+      "import": "./dist/components/typography.js",
+      "types": "./dist/components/typography.d.ts"
     },
     "./config": {
       "import": "./dist/config/config.js",

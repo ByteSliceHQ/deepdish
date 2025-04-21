@@ -1,24 +1,20 @@
 import { components } from '@/cms'
 
-const { Feature, Text } = components
+const { Feature, Paragraph, Text } = components
 
 export default function Demo() {
   return (
     <div className="flex flex-col px-8 py-6 gap-4">
       <div className="flex flex-col gap-1 max-w-prose">
-        <Text
-          deepdish={{ key: 'headline' }}
-          fallback="DeepDish Demo"
-          render={async (value) => <p className="text-xl font-bold">{value}</p>}
-        />
-        <Text
-          deepdish={{ key: 'sub-headline' }}
-          fallback="DeepDish is an alternative to traditional CMS systems. The code looks
+        <Paragraph deepdish={{ key: 'headline' }} className="text-xl font-bold">
+          DeepDish Demo
+        </Paragraph>
+        <Paragraph deepdish={{ key: 'sub-headline' }}>
+          DeepDish is an alternative to traditional CMS systems. The code looks
           like normal React, but every element is editable. First, log in with
           the Workbench below. Then, simply right-click on elements and edit the
-          text."
-          render={async (value) => <p>{value}</p>}
-        />
+          text.
+        </Paragraph>
       </div>
       <div className="grid grid-cols-3 gap-4">
         <div>
