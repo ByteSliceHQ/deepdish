@@ -1,5 +1,25 @@
 # @deepdish/ui
 
+## 0.17.0
+
+### Minor Changes
+
+- 5d2f350: Exported contract factory.
+- 76d757a: Added debugging logs to assist developer experience.
+- 5d2f350: Capitalized created contract component names.
+- 50d8acb: Created typography component factory.
+
+### Patch Changes
+
+- 608e6e3: Updated valibot to major release.
+- Updated dependencies [301b4da]
+- Updated dependencies [c2c5d25]
+- Updated dependencies [608e6e3]
+- Updated dependencies [b71e7cf]
+  - @deepdish/core@0.6.0
+  - @deepdish/resolvers@0.14.1
+  - @deepdish/menu@0.1.1
+
 ## 0.16.0
 
 ### Minor Changes
