@@ -1,5 +1,23 @@
 # @deepdish/workbench
 
+## 0.12.0
+
+### Minor Changes
+
+- 3f60630: Added a full-screen modal to the rich-text editor.
+- 451a37d: Added support for rich-text editing.
+
+### Patch Changes
+
+- 36458ad: Added undefined meta handling.
+- b71e7cf: Added error suppression to schema serialization.
+- 608e6e3: Updated valibot to major release.
+- Updated dependencies [301b4da]
+- Updated dependencies [c2c5d25]
+- Updated dependencies [608e6e3]
+- Updated dependencies [b71e7cf]
+  - @deepdish/core@0.6.0
+
 ## 0.11.0
 
 ### Minor Changes
