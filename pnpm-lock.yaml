@@ -173,52 +173,6 @@ importers:
         specifier: catalog:repo
         version: 5.7.2
 
-  apps/demo:
-    dependencies:
-      '@deepdish/cms':
-        specifier: workspace:0.10.0
-        version: link:../../packages/cms
-      '@deepdish/core':
-        specifier: workspace:0.6.0
-        version: link:../../packages/core
-      '@deepdish/nextjs':
-        specifier: workspace:0.9.1
-        version: link:../../packages/nextjs
-      '@deepdish/resolvers':
-        specifier: workspace:0.14.1
-        version: link:../../packages/resolvers
-      '@deepdish/ui':
-        specifier: workspace:0.17.0
-        version: link:../../packages/ui
-      next:
-        specifier: 15.1.4
-        version: 15.1.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      react:
-        specifier: 19.0.0
-        version: 19.0.0
-      react-dom:
-        specifier: 19.0.0
-        version: 19.0.0(react@19.0.0)
-    devDependencies:
-      '@types/node':
-        specifier: 20.14.2
-        version: 20.14.2
-      '@types/react':
-        specifier: 18.3.3
-        version: 18.3.3
-      '@types/react-dom':
-        specifier: 18.3.0
-        version: 18.3.0
-      postcss:
-        specifier: 8.4.38
-        version: 8.4.38
-      tailwindcss:
-        specifier: 3.4.1
-        version: 3.4.1
-      typescript:
-        specifier: 5.5.4
-        version: 5.5.4
-
   apps/marketing:
     dependencies:
       '@clerk/nextjs':
@@ -309,6 +263,52 @@ importers:
       tailwindcss:
         specifier: 3.4.4
         version: 3.4.4
+      typescript:
+        specifier: 5.5.4
+        version: 5.5.4
+
+  examples/demo:
+    dependencies:
+      '@deepdish/cms':
+        specifier: workspace:0.10.0
+        version: link:../../packages/cms
+      '@deepdish/core':
+        specifier: workspace:0.6.0
+        version: link:../../packages/core
+      '@deepdish/nextjs':
+        specifier: workspace:0.9.1
+        version: link:../../packages/nextjs
+      '@deepdish/resolvers':
+        specifier: workspace:0.14.1
+        version: link:../../packages/resolvers
+      '@deepdish/ui':
+        specifier: workspace:0.17.0
+        version: link:../../packages/ui
+      next:
+        specifier: 15.1.4
+        version: 15.1.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      react:
+        specifier: 19.0.0
+        version: 19.0.0
+      react-dom:
+        specifier: 19.0.0
+        version: 19.0.0(react@19.0.0)
+    devDependencies:
+      '@types/node':
+        specifier: 20.14.2
+        version: 20.14.2
+      '@types/react':
+        specifier: 18.3.3
+        version: 18.3.3
+      '@types/react-dom':
+        specifier: 18.3.0
+        version: 18.3.0
+      postcss:
+        specifier: 8.4.38
+        version: 8.4.38
+      tailwindcss:
+        specifier: 3.4.1
+        version: 3.4.1
       typescript:
         specifier: 5.5.4
         version: 5.5.4
