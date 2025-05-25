@@ -44,6 +44,6 @@
     "node": ">=22"
   },
   "publishConfig": {
-    "access": "restricted"
+    "access": "public"
   }
 }
