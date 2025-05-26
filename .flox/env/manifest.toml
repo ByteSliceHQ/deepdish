@@ -16,6 +16,9 @@ on-activate = '''
   shopt -s globstar # enable recursive globbing
   rm -rf **/.next **/.turbo **/dist **/node_modules
 
+  echo -e "\n🔑 Setting npm token for private registry..."
+  export NPM_TOKEN_DEEPDISH_CLOUD=$(op read "op://shared/npm tokens/NPM_TOKEN_DEEPDISH_CLOUD")
+
   echo -e "\n📦 Installing dependencies..."
   pnpm install --frozen-lockfile
 
