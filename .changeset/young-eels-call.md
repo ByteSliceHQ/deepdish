@@ -2,4 +2,4 @@
 "@deepdish/cli": minor
 ---
 
-Attemped to fix npx ux.
+Attempted to fix npx ux.
