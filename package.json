@@ -7,6 +7,7 @@
   ],
   "scripts": {
     "build": "turbo run build",
+    "build:cli": "turbo run build --filter @deepdish/cli...",
     "build:demo": "turbo run build --filter @deepdish/demo...",
     "build:marketing": "turbo run build --filter @deepdish/marketing...",
     "build:packages": "turbo run build --filter './packages/*'",

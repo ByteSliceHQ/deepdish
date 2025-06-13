@@ -8,8 +8,8 @@
   },
   "type": "module",
   "bin": {
-    "__cli_bash_complete": "dist/bash-complete.js",
-    "cli": "dist/cli.js"
+    "__cli_bash_complete": "./dist/bash-complete.js",
+    "deepdish": "./dist/cli.js"
   },
   "files": [
     "dist"
@@ -17,6 +17,7 @@
   "scripts": {
     "prebuild": "tsc -p tsconfig.json",
     "build": "op run --no-masking --env-file=.env.development -- tsup",
+    "postbuild": "chmod +x ./dist/cli.js",
     "dev": "op run --no-masking --env-file=.env.development -- tsup --watch"
   },
   "dependencies": {
