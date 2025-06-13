@@ -1,5 +1,11 @@
 # @deepdish/cli
 
+## 0.3.0
+
+### Minor Changes
+
+- 16b54c2: Fixed CI build and release.
+
 ## 0.2.0
 
 ### Minor Changes
