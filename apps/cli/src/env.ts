@@ -17,7 +17,8 @@ const values = {
     process.env.DEEPDISH_CLOUD_CLI_URL || 'https://api.deepdish.app/cli',
   /* @ts-ignore */
   OAUTH_AUTHORIZE_URL:
-    process.env.OAUTH_AUTHORIZE_URL || 'https://clerk.deepdish.app',
+    process.env.OAUTH_AUTHORIZE_URL ||
+    'https://clerk.deepdish.app/oauth/authorize',
 }
 
 export const env = v.parse(envSchema, values)

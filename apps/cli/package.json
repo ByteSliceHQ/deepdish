@@ -7,6 +7,7 @@
     "url": "https://byteslice.co"
   },
   "type": "module",
+  "main": "./dist/cli.js",
   "bin": {
     "__cli_bash_complete": "./dist/bash-complete.js",
     "deepdish": "./dist/cli.js"
@@ -17,13 +18,13 @@
   "scripts": {
     "prebuild": "tsc -p tsconfig.json",
     "build": "if command -v op >/dev/null 2>&1; then op run --no-masking --env-file=.env.development -- tsup; else tsup; fi",
-    "postbuild": "chmod +x ./dist/cli.js",
+    "postbuild": "chmod +x ./dist/cli.js && chmod +x ./dist/bash-complete.js",
     "dev": "op run --no-masking --env-file=.env.development -- tsup --watch"
   },
   "dependencies": {
     "@byteslice/result": "catalog:byteslice",
     "@clerk/clerk-js": "5.57.3",
-    "@deepdish-cloud/clients": "0.0.2",
+    "@deepdish-cloud/clients": "0.0.3",
     "@stricli/auto-complete": "1.1.1",
     "@stricli/core": "1.1.1",
     "chalk": "5.4.1",
