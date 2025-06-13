@@ -4,6 +4,9 @@ packages:
   - "examples/*"
 
 catalogs:
+  byteslice:
+    "@byteslice/result": 0.2.2
+
   react:
     react: 19.0.0
     react-dom: 19.0.0

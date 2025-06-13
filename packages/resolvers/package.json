@@ -22,7 +22,7 @@
     "dev": "tsup --watch"
   },
   "dependencies": {
-    "@byteslice/result": "0.1.0",
+    "@byteslice/result": "catalog:byteslice",
     "@deepdish/core": "workspace:0.6.0",
     "dataloader": "2.2.2",
     "valibot": "catalog:valibot"

@@ -20,7 +20,7 @@
     "dev": "op run --no-masking --env-file=.env.development -- tsup --watch"
   },
   "dependencies": {
-    "@byteslice/result": "0.1.0",
+    "@byteslice/result": "catalog:byteslice",
     "@clerk/clerk-js": "5.57.3",
     "@deepdish-cloud/clients": "0.0.2",
     "@stricli/auto-complete": "1.1.1",
