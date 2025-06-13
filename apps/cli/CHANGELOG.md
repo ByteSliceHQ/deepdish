@@ -1,5 +1,11 @@
 # @deepdish/cli
 
+## 0.2.0
+
+### Minor Changes
+
+- 3abf894: Fixed release process for cli executable.
+
 ## 0.1.0
 
 ### Minor Changes
