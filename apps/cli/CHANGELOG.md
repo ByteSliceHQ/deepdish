@@ -1,5 +1,11 @@
 # @deepdish/cli
 
+## 0.5.0
+
+### Minor Changes
+
+- 6a89f62: Attempted to fix npx ux.
+
 ## 0.4.0
 
 ### Minor Changes
