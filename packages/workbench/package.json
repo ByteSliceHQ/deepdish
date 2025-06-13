@@ -20,7 +20,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@byteslice/result": "0.1.0",
+    "@byteslice/result": "catalog:byteslice",
     "@deepdish/core": "workspace:0.6.0",
     "@radix-ui/react-checkbox": "1.1.4",
     "@radix-ui/react-dialog": "1.1.6",

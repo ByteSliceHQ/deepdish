@@ -5,6 +5,10 @@ settings:
   excludeLinksFromLockfile: false
 
 catalogs:
+  byteslice:
+    '@byteslice/result':
+      specifier: 0.2.2
+      version: 0.2.2
   peer-next:
     next:
       specifier: ^15.0.0
@@ -121,8 +125,8 @@ importers:
   apps/cli:
     dependencies:
       '@byteslice/result':
-        specifier: 0.1.0
-        version: 0.1.0
+        specifier: catalog:byteslice
+        version: 0.2.2
       '@clerk/clerk-js':
         specifier: 5.57.3
         version: 5.57.3(@types/react@18.3.3)(react-dom@19.0.0(react@18.3.1))(react@18.3.1)
@@ -491,8 +495,8 @@ importers:
   packages/resolvers:
     dependencies:
       '@byteslice/result':
-        specifier: 0.1.0
-        version: 0.1.0
+        specifier: catalog:byteslice
+        version: 0.2.2
       '@deepdish/core':
         specifier: workspace:0.6.0
         version: link:../core
@@ -553,8 +557,8 @@ importers:
   packages/ui:
     dependencies:
       '@byteslice/result':
-        specifier: 0.1.0
-        version: 0.1.0
+        specifier: catalog:byteslice
+        version: 0.2.2
       '@deepdish/core':
         specifier: workspace:0.6.0
         version: link:../core
@@ -632,8 +636,8 @@ importers:
   packages/workbench:
     dependencies:
       '@byteslice/result':
-        specifier: 0.1.0
-        version: 0.1.0
+        specifier: catalog:byteslice
+        version: 0.2.2
       '@deepdish/core':
         specifier: workspace:0.6.0
         version: link:../core
@@ -977,6 +981,9 @@ packages:
 
   '@byteslice/result@0.1.0':
     resolution: {integrity: sha512-iFDmVs6QhYq3p/BNuYSjOOvWNgpWoSo7q+jIFLEOob5AaFRRTwfbbQBrCX5civnYKHwZsuLDauSH/dmbnwYWsg==}
+
+  '@byteslice/result@0.2.2':
+    resolution: {integrity: sha512-dYAFK4SYj57r5WXB5ASrEztoTifMztFm8VTXDZLEgXTQ6lf39CtJPYCUrbugOeUoleqUr0vj7fqolVTShJFv/g==}
 
   '@changesets/apply-release-plan@7.0.10':
     resolution: {integrity: sha512-wNyeIJ3yDsVspYvHnEz1xQDq18D9ifed3lI+wxRQRK4pArUcuHgCTrHv0QRnnwjhVCQACxZ+CBih3wgOct6UXw==}
@@ -6186,6 +6193,8 @@ snapshots:
       tough-cookie: 4.1.4
 
   '@byteslice/result@0.1.0': {}
+
+  '@byteslice/result@0.2.2': {}
 
   '@changesets/apply-release-plan@7.0.10':
     dependencies:
