@@ -17,8 +17,8 @@
   "scripts": {
     "prebuild": "tsc -p tsconfig.json",
     "build": "op run --no-masking --env-file=.env.development -- tsup",
-    "dev": "op run --no-masking --env-file=.env.development -- tsup --watch",
-    "postbuild": "chmod +x ./dist/cli.js"
+    "postbuild": "chmod +x ./dist/cli.js",
+    "dev": "op run --no-masking --env-file=.env.development -- tsup --watch"
   },
   "dependencies": {
     "@byteslice/result": "catalog:byteslice",
