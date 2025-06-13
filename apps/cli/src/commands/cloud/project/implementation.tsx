@@ -74,10 +74,17 @@ export async function listProjects(this: LocalContext) {
 
   const activeProjectId = activeProject.failure ? null : activeProject.data
 
-  const data = projects.data.map((project) => ({
-    ...project,
-    active: project.id === activeProjectId,
-  }))
+  const data = projects.data.map(
+    (project: {
+      id: number
+      name: string
+      alias: string
+      createdAt: string
+    }) => ({
+      ...project,
+      active: project.id === activeProjectId,
+    }),
+  )
 
   render(
     <Table keys={['active', 'name', 'id', 'alias', 'createdAt']} data={data} />,
@@ -97,7 +104,7 @@ export async function selectProject(this: LocalContext) {
     this.process.exit(1)
   }
 
-  const items = projects.data.map((project) => ({
+  const items = projects.data.map((project: { id: number; name: string }) => ({
     label: project.name,
     value: project.id,
   }))
