@@ -1,6 +1,6 @@
 {
   "name": "@deepdish/cli",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "DeepDish command line application",
   "author": {
     "name": "ByteSlice, LLC",
