@@ -10,11 +10,14 @@ const envSchema = v.object({
 // we seemingly need to structure these values manually
 const values = {
   /* @ts-ignore */
-  DEEPDISH_CLOUD_ADMIN_URL: process.env.DEEPDISH_CLOUD_ADMIN_URL,
+  DEEPDISH_CLOUD_ADMIN_URL:
+    process.env.DEEPDISH_CLOUD_ADMIN_URL || 'https://api.deepdish.app/admin',
   /* @ts-ignore */
-  DEEPDISH_CLOUD_CLI_URL: process.env.DEEPDISH_CLOUD_CLI_URL,
+  DEEPDISH_CLOUD_CLI_URL:
+    process.env.DEEPDISH_CLOUD_CLI_URL || 'https://api.deepdish.app/cli',
   /* @ts-ignore */
-  OAUTH_AUTHORIZE_URL: process.env.OAUTH_AUTHORIZE_URL,
+  OAUTH_AUTHORIZE_URL:
+    process.env.OAUTH_AUTHORIZE_URL || 'https://clerk.deepdish.app',
 }
 
 export const env = v.parse(envSchema, values)

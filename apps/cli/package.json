@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "prebuild": "tsc -p tsconfig.json",
-    "build": "op run --no-masking --env-file=.env.development -- tsup",
+    "build": "if command -v op >/dev/null 2>&1; then op run --no-masking --env-file=.env.development -- tsup; else tsup; fi",
     "postbuild": "chmod +x ./dist/cli.js",
     "dev": "op run --no-masking --env-file=.env.development -- tsup --watch"
   },
