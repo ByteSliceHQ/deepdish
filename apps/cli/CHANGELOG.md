@@ -1,5 +1,11 @@
 # @deepdish/cli
 
+## 0.4.0
+
+### Minor Changes
+
+- 67421dc: Hard coded the env variables for DeepDish endpoints in production.
+
 ## 0.3.0
 
 ### Minor Changes
