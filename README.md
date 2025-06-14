@@ -58,7 +58,7 @@ That helper function will return the base URL of the Vercel environment (or your
 
 ### Step 2: Configure your project
 
-Create a `deepdish.ts` file in the `app` directory of your Next.js project. Import the `deepdish` function from `@deepdish/cms` and initialize it with your configuration.
+Create a `deepdish.ts` file in the `src` directory of your Next.js project. Import the `deepdish` function from `@deepdish/cms` and initialize it with your configuration.
 
 > [!Note]
 > The `deepdish` function creates components and middleware based on your configuration. Ensure you export them so they can be used within your application.
@@ -104,7 +104,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
 In your `middleware.ts` file—where [Next.js middleware](https://nextjs.org/docs/app/api-reference/file-conventions/middleware) is defined—add the configured DeepDish middleware.
 
 ```ts
-import type { NextResponse } from 'next/server'
+import type { NextRequest } from 'next/server'
 import * as deepdish from "@/deepdish"
 
 export default function (request: NextRequest) {
