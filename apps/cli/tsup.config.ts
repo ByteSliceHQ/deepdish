@@ -37,4 +37,5 @@ export default defineConfig({
   splitting: true,
   minify: true,
   env: parseEnv(),
+  shims: true,
 })
