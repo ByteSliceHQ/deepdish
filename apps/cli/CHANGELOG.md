@@ -1,5 +1,11 @@
 # @deepdish/cli
 
+## 0.7.0
+
+### Minor Changes
+
+- 5e76bc6: Included executable name in the bin definition.
+
 ## 0.6.0
 
 ### Minor Changes
