@@ -7,10 +7,10 @@
     "url": "https://byteslice.co"
   },
   "type": "module",
-  "main": "./dist/cli.js",
+  "main": "./dist/index.js",
   "bin": {
     "__cli_bash_complete": "./dist/bash-complete.js",
-    "deepdish": "./dist/cli.js"
+    "deepdish": "./dist/index.js"
   },
   "files": [
     "dist"
@@ -18,7 +18,7 @@
   "scripts": {
     "prebuild": "tsc -p tsconfig.json",
     "build": "if command -v op >/dev/null 2>&1; then op run --no-masking --env-file=.env.development -- tsup; else tsup; fi",
-    "postbuild": "chmod +x ./dist/cli.js && chmod +x ./dist/bash-complete.js",
+    "postbuild": "chmod +x ./dist/index.js && chmod +x ./dist/bash-complete.js",
     "dev": "op run --no-masking --env-file=.env.development -- tsup --watch"
   },
   "dependencies": {
