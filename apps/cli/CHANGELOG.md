@@ -1,5 +1,11 @@
 # @deepdish/cli
 
+## 0.6.0
+
+### Minor Changes
+
+- f7bbe9b: Renamed cli.js to index.js to support npx.
+
 ## 0.5.0
 
 ### Minor Changes
