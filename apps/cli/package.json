@@ -9,6 +9,7 @@
   "type": "module",
   "main": "./dist/index.js",
   "bin": {
+    "@deepdish/cli": "./dist/index.js",
     "__cli_bash_complete": "./dist/bash-complete.js",
     "deepdish": "./dist/index.js"
   },
