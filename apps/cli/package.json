@@ -1,5 +1,5 @@
 {
-  "name": "@deepdish/cli",
+  "name": "deepdish",
   "version": "0.7.0",
   "description": "DeepDish command line application",
   "author": {
@@ -9,7 +9,6 @@
   "type": "module",
   "main": "./dist/index.js",
   "bin": {
-    "@deepdish/cli": "./dist/index.js",
     "__cli_bash_complete": "./dist/bash-complete.js",
     "deepdish": "./dist/index.js"
   },
