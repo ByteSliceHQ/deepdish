@@ -15,6 +15,7 @@ posthog
 registrator
 rehype
 shadcn
+signup
 sonner
 stricli
 tsup
