@@ -1,5 +1,0 @@
----
-"deepdish": minor
----
-
-Added README.
