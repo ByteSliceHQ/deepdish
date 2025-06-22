@@ -1,5 +1,11 @@
 # @deepdish/cli
 
+## 0.8.0
+
+### Minor Changes
+
+- 2417aa2: Renamed cli package to deepdish.
+
 ## 0.7.0
 
 ### Minor Changes
