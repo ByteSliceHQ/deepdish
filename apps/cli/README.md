@@ -6,22 +6,13 @@ The DeepDish command line interface (CLI) provides a powerful way to interact wi
 
 ### Using npm
 ```bash
-npm install -g deepdish
-```
-
-### Using npx (no installation required)
-```bash
 npx deepdish [command]
-```
-
-### Using pnpm
-```bash
-pnpm add -g deepdish
-```
-
-### Using yarn
-```bash
-yarn global add deepdish
+# or
+pnpx deepdish [command]
+# or
+yarn dlx deepdish [command]
+# or
+bunx deepdish [command]
 ```
 
 ## Requirements
