@@ -1,5 +1,11 @@
 # @deepdish/cli
 
+## 0.9.0
+
+### Minor Changes
+
+- 63d8826: Added README.
+
 ## 0.8.0
 
 ### Minor Changes
