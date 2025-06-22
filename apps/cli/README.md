@@ -4,7 +4,6 @@ The DeepDish command line interface (CLI) provides a powerful way to interact wi
 
 ## Installation
 
-### Using npm
 ```bash
 npx deepdish [command]
 # or
